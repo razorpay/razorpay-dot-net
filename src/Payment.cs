@@ -3,39 +3,46 @@ using System.Net.Http;
 
 namespace Razorpay.Api
 {
-	public class Payment : Entity
-	{
-        new public dynamic Fetch(string id)
+    public class Payment : Entity
+    {
+        new public Payment Fetch(string id)
         {
-            return base.Fetch(id);
+            return (Payment)base.Fetch(id);
         }
 
-        new public dynamic All(Dictionary<string, object> options = null)
+        new public List<Payment> All(Dictionary<string, object> options = null)
         {
-            return base.All(options);
+            List<Entity> entities = base.All(options);
+            List<Payment> refunds = new List<Payment>();
+            foreach (Entity entity in entities)
+            {
+                refunds.Add(entity as Payment);
+            }
+            return refunds;
         }
 
-        public dynamic Refund(string id)
-	    {
-	        string relativeUrl = GetEntityUrl() + id + "/refund";
-	        return Request(relativeUrl, HttpMethod.Post, null);
-	    }
+        public Refund Refund()
+        {
+            string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/refund";
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, null);
+            return (Refund)entities[0];
+        }
 
-        public dynamic Capture(string id, Dictionary<string, object> attributes)
-	    {
-	        string relativeUrl = GetEntityUrl()  +  id  + "/capture";
-	        return Request(relativeUrl, HttpMethod.Post, attributes);
-	    }
+        public Payment Capture(Dictionary<string, object> attributes)
+        {
+            string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/capture";
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, attributes);
+            return (Payment)entities[0];
+        }
 
-	    public Refund this[string id]
-	    {
+        public Refund Refunds
+        {
             get
             {
                 Refund refund = new Refund();
-                refund.PaymentId = id;
+                refund.PaymentId = this["id"].ToString();
                 return refund;
             }
-
-	    }
-	}
+        }
+    }
 }
