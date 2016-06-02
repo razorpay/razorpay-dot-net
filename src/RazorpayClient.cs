@@ -7,6 +7,7 @@ namespace Razorpay.Api
         public static string Key = null;
         public static string Secret = null;
         private Payment payment = null;
+        private Order order = null;
 
         public RazorpayClient(string key, string secret)
         {
@@ -23,6 +24,18 @@ namespace Razorpay.Api
                     payment = new Payment();
                 }
                 return payment;
+            }
+        }
+
+        public Order Order
+        {
+            get
+            {
+                if (order == null)
+                {
+                    order = new Order();
+                }
+                return order;
             }
         }
 

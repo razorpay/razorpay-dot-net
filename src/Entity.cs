@@ -75,6 +75,10 @@ namespace Razorpay.Api
             {
                 entity = new Refund();
             }
+            else if (response["entity"] == "order")
+            {
+                entity = new Order();
+            }
             else
             {
                 entity = new Entity();

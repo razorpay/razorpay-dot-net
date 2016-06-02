@@ -13,18 +13,18 @@ namespace Razorpay.Api
         new public List<Payment> All(Dictionary<string, object> options = null)
         {
             List<Entity> entities = base.All(options);
-            List<Payment> refunds = new List<Payment>();
+            List<Payment> payments = new List<Payment>();
             foreach (Entity entity in entities)
             {
-                refunds.Add(entity as Payment);
+                payments.Add(entity as Payment);
             }
-            return refunds;
+            return payments;
         }
 
-        public Refund Refund()
+        public Refund Refund(Dictionary<string, object> data = null)
         {
             string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/refund";
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, null);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
             return (Refund)entities[0];
         }
 

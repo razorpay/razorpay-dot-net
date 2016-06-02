@@ -3,7 +3,9 @@
 bin
 packages
 TestResults
-/src/obj
-/src/bin
+/net40/obj
+/net45/obj
+/net40/bin
+/net45/bin
 /test/obj
 /test/bin

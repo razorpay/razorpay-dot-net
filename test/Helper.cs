@@ -9,6 +9,32 @@ namespace RazorpayClientTest
 {
     public class Helper
     {
+        public static RazorpayClient client;
+
+        public static List<Order> TestGetAllOrders()
+        {
+            Dictionary<string, object> options = new Dictionary<string, object>();
+
+            DateTime endTime = DateTime.UtcNow;
+            DateTime startTime = endTime.Add(TimeSpan.FromHours(-1));
+            options.Add("from", Utils.ToUnixTimestamp(startTime));
+            options.Add("to", Utils.ToUnixTimestamp(endTime));
+
+            List<Order> result = Helper.client.Order.All(options);
+            return result;
+        }
+
+        public static Order TestGetOrderById()
+        {
+            List<Order> result = TestGetAllOrders();
+            Order testEntity = result[0];
+            string orderId = testEntity["id"].ToString();
+
+            Order order = Helper.client.Order.Fetch(orderId);
+            return order;
+        }
+
+
         public static List<Payment> TestGetAllPayments()
         {
             Dictionary<string, object> options = new Dictionary<string, object>();
@@ -18,7 +44,7 @@ namespace RazorpayClientTest
             options.Add("from", Utils.ToUnixTimestamp(startTime));
             options.Add("to", Utils.ToUnixTimestamp(endTime));
 
-            List<Payment> result = PaymentTestCases.client.Payment.All(options);
+            List<Payment> result = Helper.client.Payment.All(options);
             return result;
         }
 
@@ -28,7 +54,7 @@ namespace RazorpayClientTest
             Payment testEntity = result[0];
             string paymentId = testEntity["id"].ToString();
 
-            Payment payment = PaymentTestCases.client.Payment.Fetch(paymentId);
+            Payment payment = Helper.client.Payment.Fetch(paymentId);
 
             return payment;
         }
@@ -51,6 +77,18 @@ namespace RazorpayClientTest
             List<Payment> payments = TestGetAllPayments();
             Payment paymentCaptured = FindPaymentWithStatus("captured", payments);
             Refund refund = paymentCaptured.Refund();
+
+            return refund;
+        }
+
+        public static Refund TestPartialRefundPayment()
+        {
+            List<Payment> payments = TestGetAllPayments();
+            Payment paymentCaptured = FindPaymentWithStatus("captured", payments);
+
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data.Add("amount", "100");
+            Refund refund = paymentCaptured.Refund(data);
 
             return refund;
         }
@@ -89,6 +127,26 @@ namespace RazorpayClientTest
             }
 
             return payments[index];
+        }
+
+        public static Order TestCreateOrder()
+        {
+            Dictionary<string, object> options = new Dictionary<string, object>();
+            options.Add("amount", "1000");
+            options.Add("currency", "INR");
+            options.Add("receipt", "123");
+
+            Order order = client.Order.Create(options);
+            return order;   
+        }
+
+        public static List<Payment> TestGetPaymentByOrderId()
+        {
+            List<Order> orders = TestGetAllOrders();
+            Order order = orders[orders.Count() - 1];
+  
+            List<Payment> payments = order.Payments();
+            return payments;
         }
     }
 }
