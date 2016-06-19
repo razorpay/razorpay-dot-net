@@ -27,7 +27,7 @@ Usage
 RazorpayClient client = new RazorpayClient(key, secret);
 `
 ### Get Payments
-`Dictionary<string, object> options = new Dictionary<stirng,object>();`
+`Dictionary<string, object> options = new Dictionary<string,object>();`
 
 `options.Add("from", startTime); // start time is a unix timestamp, you can get unix timestamp using`
 
@@ -42,7 +42,7 @@ Payment payment = client.Payment.Fetch(id);
 `
 
 ### Capture a payment
-`Dictionary<string, object> options = new Dictionary<stirng,object>();`
+`Dictionary<string, object> options = new Dictionary<string,object>();`
 
 `options.Add("amount", amountToBeCaptured); `
 
@@ -53,12 +53,12 @@ Payment payment = client.Payment.Fetch(id);
 Refund refund = payment.Refund();
 `
 
-### Fecth All Redunds for a payment
+### Fetch All Refunds for a payment
 `
 List<Refund> refunds = payment.Refunds.All();
 `
 
-### Fecth One Redund for a payment using refund id
+### Fetch One Refund for a payment using refund id
 `
 Refund refund = payment.Refunds.Fetch(id);
 `
@@ -70,12 +70,12 @@ paymentAmount = payment["amount"];
 
 Development
 -------
-* Open solution in the visual studio 2013, it should build fine
+* Open solution in visual studio 2013, it should build fine
 
 Ubuntu
 ------
 
-### Compliling using Mono
+### Compiling using Mono
 * Download the 'Newtonsoft.Json' nuget package.
 
 * Compile the source code into a library  
@@ -107,7 +107,7 @@ Run xbuild (in the root directory where sln file exist)
 
 ### FAQ 
 
-1. In case of last commands fails with "invalid cert received from server", run below commands
+1. In case the last command fails with "invalid cert received from server", run below commands
     * yes | certmgr -ssl -m https://go.microsoft.com
     * yes | certmgr -ssl -m https://nugetgallery.blob.core.windows.net
     * yes | certmgr -ssl -m https://myget.org
