@@ -1,61 +1,56 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Razorpay.Api;
+﻿using Razorpay.Api;
 using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace RazorpayClientTest
 {
-    [TestClass]
     public class PaymentTestCases
     {
-        [ClassInitialize]
-        public static void Init(TestContext testcontext)
+        public static void Init(string key, string secret)
         {
-            Helper.client = new RazorpayClient("<api-key>", "<api-secret>");
+            Helper.client = new RazorpayClient(key, secret);
         }
 
-        [TestMethod]
-        public void GetAllPaymentsTest()
+        public static void GetAllPaymentsTest()
         {
             List<Payment> result = Helper.TestGetAllPayments();
             Debug.Assert(result != null);
         }
 
-        [TestMethod]
-        public void GetPaymentById()
+        public static void GetPaymentById()
         {
             Payment payment = Helper.TestGetPaymentById();
+            Debug.Assert(payment != null);
         }
 
-        [TestMethod]
-        public void CapturePayment()
+        public static void CapturePayment()
         {
             Payment payment = Helper.TestCapturePayment();
+            Debug.Assert(payment != null);
         }
 
-        [TestMethod]
-        public void RefundPayment()
+        public static void RefundPayment()
         {
             Refund refund = Helper.TestRefundPayment();
+            Debug.Assert(refund != null);
         }
 
-        [TestMethod]
-        public void RefundPaymentPartial()
+        public static void RefundPaymentPartial()
         {
             Refund refund = Helper.TestPartialRefundPayment();
+            Debug.Assert(refund != null);
         }
 
-        [TestMethod]
-        public void TestGetRefunds()
+        public static void TestGetRefunds()
         {
             List<Refund> refunds = Helper.TestGetRefunds();
+            Debug.Assert(refunds != null);
         }
 
-        [TestMethod]
-        public void TestGetRefundById()
+        public static void TestGetRefundById()
         {
             Refund refund = Helper.TestGetRefundById();
+            Debug.Assert(refund != null);
         }
     }
 }

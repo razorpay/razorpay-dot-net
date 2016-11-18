@@ -12,14 +12,14 @@ namespace Razorpay.Api
         public RazorpayClient(string key, string secret)
         {
             RazorpayClient.Key = key;
-            RazorpayClient.Secret = secret;        
+            RazorpayClient.Secret = secret;
         }
 
         public Payment Payment
         {
             get
             {
-                if(payment == null)
+                if (payment == null)
                 {
                     payment = new Payment();
                 }

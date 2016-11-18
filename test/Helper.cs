@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RazorpayClientTest
 {
@@ -63,7 +61,7 @@ namespace RazorpayClientTest
         {
             List<Payment> result = TestGetAllPayments();
             Payment payment = FindPaymentWithStatus("authorized", result);
- 
+
             Dictionary<string, object> options = new Dictionary<string, object>();
             options.Add("amount", payment["amount"]);
 
@@ -137,14 +135,14 @@ namespace RazorpayClientTest
             options.Add("receipt", "123");
 
             Order order = client.Order.Create(options);
-            return order;   
+            return order;
         }
 
         public static List<Payment> TestGetPaymentByOrderId()
         {
             List<Order> orders = TestGetAllOrders();
             Order order = orders[orders.Count() - 1];
-  
+
             List<Payment> payments = order.Payments();
             return payments;
         }

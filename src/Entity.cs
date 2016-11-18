@@ -1,8 +1,6 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
 
 namespace Razorpay.Api
 {
@@ -34,7 +32,18 @@ namespace Razorpay.Api
         protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options)
         {
             client = new RestClient();
-            string postData = JsonConvert.SerializeObject(options);
+            string postData = string.Empty;
+
+            if ((verb == HttpMethod.Get) && (options != null))
+            {
+                string queryString = QueryString(options);
+
+                relativeUrl = relativeUrl + "?" + queryString;
+            }
+            else if (verb == HttpMethod.Post)
+            {
+                postData = JsonConvert.SerializeObject(options);
+            }
 
             string responseStr = client.MakeRequest(relativeUrl, verb, postData);
 
@@ -43,6 +52,18 @@ namespace Razorpay.Api
             List<Entity> entities = Build(response);
 
             return entities;
+        }
+
+        protected static string QueryString(IDictionary<string, object> dict)
+        {
+            var list = new List<string>();
+            foreach (var item in dict)
+            {
+                string param = string.Format("{0}={1}", item.Key, item.Value);
+                list.Add(param);
+            }
+
+            return string.Join("&", list);
         }
 
         private List<Entity> Build(dynamic response)

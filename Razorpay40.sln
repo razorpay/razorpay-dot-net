@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorpayClient40", "net40\RazorpayClient40.csproj", "{D468F846-3CFE-4E6F-A3D3-84F84C0BB632}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorpayClientTest40", "test\RazorpayClientTest40.csproj", "{F107469B-620C-414F-A4C6-DD5AEB12E2F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorpayClientTest40", "test\RazorpayClientTest40.csproj", "{ECD057B8-9696-4F26-B0E9-333EF56458B8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +21,14 @@ Global
 		{D468F846-3CFE-4E6F-A3D3-84F84C0BB632}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D468F846-3CFE-4E6F-A3D3-84F84C0BB632}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D468F846-3CFE-4E6F-A3D3-84F84C0BB632}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F107469B-620C-414F-A4C6-DD5AEB12E2F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F107469B-620C-414F-A4C6-DD5AEB12E2F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F107469B-620C-414F-A4C6-DD5AEB12E2F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F107469B-620C-414F-A4C6-DD5AEB12E2F7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5EFC9BE8-5D24-4F02-A4A9-3CC459C9A987}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5EFC9BE8-5D24-4F02-A4A9-3CC459C9A987}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5EFC9BE8-5D24-4F02-A4A9-3CC459C9A987}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5EFC9BE8-5D24-4F02-A4A9-3CC459C9A987}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECD057B8-9696-4F26-B0E9-333EF56458B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECD057B8-9696-4F26-B0E9-333EF56458B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECD057B8-9696-4F26-B0E9-333EF56458B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECD057B8-9696-4F26-B0E9-333EF56458B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

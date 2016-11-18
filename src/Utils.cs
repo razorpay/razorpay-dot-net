@@ -3,7 +3,7 @@ using System;
 namespace Razorpay.Api
 {
     public class Utils
-    {    
+    {
         public static long ToUnixTimestamp(DateTime inputTime)
         {
             DateTime unixReferenceTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
