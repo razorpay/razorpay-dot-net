@@ -8,16 +8,5 @@ namespace Razorpay.Api
         {
             return (Card)base.Fetch(id);
         }
-
-        new public List<Card> All(Dictionary<string, object> options = null)
-        {
-            List<Entity> entities = base.All(options);
-            List<Card> cards = new List<Card>();
-            foreach (Entity entity in entities)
-            {
-                cards.Add(entity as Card);
-            }
-            return cards;
-        }
     }
 }
