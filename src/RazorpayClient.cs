@@ -42,24 +42,34 @@ namespace Razorpay.Api
             }
         }
 
-        public string getKey()
+        public static string getKey()
         {
             return Key;
         }
 
-        public string getSecret()
+        public static string getSecret()
         {
             return Secret;
         }
 
-        public void setAppsDetails(string title, string version)
+        public static void setAppsDetails(string title, string version)
         {
             appsDetails.Add(title, version);
         }
 
-        public Dictionary<string, string> getAppsDetails()
+        public static Dictionary<string, string> getAppsDetails()
         {
             return appsDetails;
+        }
+
+        public static string getBaseUrl()
+        {
+            return BaseUrl;
+        }
+
+        public static string getVersion()
+        {
+            return Version;
         }
     }
 }

@@ -89,6 +89,9 @@
     <Compile Include="..\src\Invoice.cs">
       <Link>Invoice.cs</Link>
     </Compile>
+    <Compile Include="..\src\Customer.cs">
+      <Link>Customer.cs</Link>
+    </Compile>
     <Compile Include="..\src\RestClient.cs">
       <Link>RestClient.cs</Link>
     </Compile>

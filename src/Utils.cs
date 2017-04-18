@@ -56,7 +56,7 @@ namespace Razorpay.Api
 
         private static string getActualSignature(string payload)
         {
-            byte[] secret = Encoding.UTF8.GetBytes(RazorpayClient.Secret);
+            byte[] secret = Encoding.UTF8.GetBytes(RazorpayClient.getSecret());
 
             HMACSHA256 hashHmac = new HMACSHA256(secret);
 

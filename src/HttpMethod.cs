@@ -7,5 +7,6 @@ namespace Razorpay.Api
         Get,
         Post,
         Delete,
+        Put,
     }
 }
