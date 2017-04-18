@@ -4,6 +4,8 @@ namespace Razorpay.Api
 {
     public class Customer : Entity 
     {
+        string id;
+
         new public Customer Fetch(string id)
         {
             return (Customer)base.Fetch(id);
@@ -21,6 +23,13 @@ namespace Razorpay.Api
             string relativeUrl = GetEntityUrl();
             List<Entity> entities = Request(relativeUrl, HttpMethod.Put, data);
             return (Customer)entities[0];
+        }
+
+        public Token tokens()
+        {
+            Token token = new Token();
+            token["CustomerId"] = this.id;
+            return token;
         }
     }
 }
