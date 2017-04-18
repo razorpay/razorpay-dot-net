@@ -1,11 +1,14 @@
+using System.Collections.Generic;
+
 namespace Razorpay.Api
 {
     public class RazorpayClient
     {
-        public const string Version = "1.0.0";
-        public const string BaseUrl = "https://api.razorpay.com/v1/";
-        public static string Key = null;
-        public static string Secret = null;
+        protected const string Version = "1.0.0";
+        protected const string BaseUrl = "https://api.razorpay.com/v1/";
+        protected static string Key = null;
+        protected static string Secret = null; 
+        protected static Dictionary<string, string> appsDetails = new Dictionary<string, string>();
         private Payment payment = null;
         private Order order = null;
 
@@ -39,5 +42,24 @@ namespace Razorpay.Api
             }
         }
 
+        public string getKey()
+        {
+            return Key;
+        }
+
+        public string getSecret()
+        {
+            return Secret;
+        }
+
+        public void setAppsDetails(string title, string version)
+        {
+            appsDetails.Add(title, version);
+        }
+
+        public Dictionary<string, string> getAppsDetails()
+        {
+            return appsDetails;
+        }
     }
 }
