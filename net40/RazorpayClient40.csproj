@@ -77,6 +77,9 @@
     <Compile Include="..\src\Refund.cs">
       <Link>Refund.cs</Link>
     </Compile>
+    <Compile Include="..\src\Token.cs">
+      <Link>Token.cs</Link>
+    </Compile>
     <Compile Include="..\src\RestClient.cs">
       <Link>RestClient.cs</Link>
     </Compile>
