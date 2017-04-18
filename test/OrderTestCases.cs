@@ -14,25 +14,25 @@ namespace RazorpayClientTest
         public static void GetAllOrdersTest()
         {
             List<Order> result = Helper.TestGetAllOrders();
-            Debug.Assert(result != null);
+            Helper.Assert(result != null, "No orders retrieved");
         }
 
         public static void GetOrderByIdTest()
         {
             Order order = Helper.TestGetOrderById();
-            Debug.Assert(order != null);
+            Helper.Assert(order != null, "Could not retrieve order by Id");
         }
 
         public static void TestCreateOrder()
         {
             Order result = Helper.TestCreateOrder();
-            Debug.Assert(result != null);
+            Helper.Assert(result != null, "Could not create order");
         }
 
         public static void TestGetPaymentsByOrder()
         {
             List<Payment> result = Helper.TestGetPaymentByOrderId();
-            Debug.Assert(result != null);
+            Helper.Assert(result != null, "Could not get payment by order");
         }
     }
 }

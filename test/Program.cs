@@ -1,5 +1,4 @@
 ﻿// Test file
-using System;
 
 namespace RazorpayClientTest
 {

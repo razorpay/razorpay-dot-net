@@ -14,7 +14,7 @@ namespace RazorpayClientTest
             Dictionary<string, object> options = new Dictionary<string, object>();
 
             DateTime endTime = DateTime.UtcNow;
-            DateTime startTime = endTime.Add(TimeSpan.FromHours(-1));
+            DateTime startTime = endTime.Add(TimeSpan.FromHours(-1800));
             options.Add("from", Utils.ToUnixTimestamp(startTime));
             options.Add("to", Utils.ToUnixTimestamp(endTime));
 
@@ -38,7 +38,7 @@ namespace RazorpayClientTest
             Dictionary<string, object> options = new Dictionary<string, object>();
 
             DateTime endTime = DateTime.UtcNow;
-            DateTime startTime = endTime.Add(TimeSpan.FromHours(-1));
+            DateTime startTime = endTime.Add(TimeSpan.FromHours(-1800));
             options.Add("from", Utils.ToUnixTimestamp(startTime));
             options.Add("to", Utils.ToUnixTimestamp(endTime));
 
@@ -145,6 +145,14 @@ namespace RazorpayClientTest
 
             List<Payment> payments = order.Payments();
             return payments;
+        }
+
+        public static void Assert(bool condition, string message)
+        {
+            if (condition == false)
+            {
+                throw new Exception(message);
+            }
         }
     }
 }
