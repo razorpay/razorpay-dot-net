@@ -13,8 +13,7 @@ If you are using nuget package manager, you can add below in your packages.confi
 
 `<package id="Razorpay" version="1.0.0" targetFramework="net40" />`  
 or  
-`<package id="Razporpay" version="1.0.0" targetFramework="net45" />
-`
+`<package id="Razporpay" version="1.0.0" targetFramework="net45" />`
 
 else  
 * Download Nuget package from [here](https://www.nuget.org/packages/Razorpay)
@@ -23,9 +22,8 @@ else
 Usage
 -----
 ### Initialize
-`
-RazorpayClient client = new RazorpayClient(key, secret);
-`
+`RazorpayClient client = new RazorpayClient(key, secret);`
+
 ### Get Payments
 `Dictionary<string, object> options = new Dictionary<string,object>();`
 
@@ -37,9 +35,7 @@ RazorpayClient client = new RazorpayClient(key, secret);
 
 
 ### Get Payment using Id
-`
-Payment payment = client.Payment.Fetch(id);
-`
+`Payment payment = client.Payment.Fetch(id);`
 
 ### Capture a payment
 `Dictionary<string, object> options = new Dictionary<string,object>();`
@@ -49,24 +45,16 @@ Payment payment = client.Payment.Fetch(id);
 `Payment payment = payment.Capture(options);`
 
 ### Refund a payment
-`
-Refund refund = payment.Refund();
-`
+`Refund refund = payment.Refund();`
 
 ### Fetch All Refunds for a payment
-`
-List<Refund> refunds = payment.Refunds.All();
-`
+`List<Refund> refunds = payment.Refunds.All();`
 
 ### Fetch One Refund for a payment using refund id
-`
-Refund refund = payment.Refunds.Fetch(id);
-`
+`Refund refund = payment.Refunds.Fetch(id);`
 
 ### Accessing the payment attributes
-`
-paymentAmount = payment["amount"]; 
-`
+`paymentAmount = payment["amount"];`
 
 Development
 -------
@@ -78,27 +66,25 @@ Ubuntu
 ### Compiling using Mono
 * Download the 'Newtonsoft.Json' nuget package.
 
+* Create a bin folder in the root directory
+
+`mkdir bin`
+
 * Compile the source code into a library  
 
-`mcs -t:library -lib:"/usr/lib/mono/4.5" -r:"System.dll,System.Net.dll,System.Net.Http.dll,System.Core.dll,System.Xml.dll,System.Xml.Linq.dll,System.Core.dll,./packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll" -out:"bin/RazorpayClient.dll" ./src/*.cs -lib:/usr/lib/mono/2.0`
+`mcs -t:library -lib:"/usr/lib/mono/4.5" -r:"System.dll,System.Net.dll,System.Net.Http.dll,System.Core.dll,System.Xml.dll,System.Xml.Linq.dll,System.Core.dll,./packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll" -out:"bin/RazorpayClient.dll" ./src/**/*.cs -lib:/usr/lib/mono/2.0`
 
 * copy Dependency dll
 
-`
-cp packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll ./bin
-`
+`cp packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll ./bin`
 
 * Compile test exe
 
-`
-mcs -t:exe -lib:"/usr/lib/mono/4.5,./bin" -r:"RazorpayClient.dll,Newtonsoft.Json.dll" -out:"bin/RazorpayApiTest.exe" ./test/*.cs
-`
+`mcs -t:exe -lib:"/usr/lib/mono/4.5,./bin" -r:"RazorpayClient.dll,Newtonsoft.Json.dll" -out:"bin/RazorpayApiTest.exe" ./test/*.cs`
 
 * Run Test exe  
 
-`
-mono RazorpayApiTest.exe [key] [secret]
-`
+`mono bin/RazorpayApiTest.exe [key] [secret]`
 
 
 ### Compiling using xbuild
