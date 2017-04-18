@@ -11,9 +11,9 @@ Installation
 --------
 If you are using nuget package manager, you can add below in your packages.config file 
 
-`<package id="Razorpay" version="1.0.0" targetFramework="net40" />`  
+`<package id="Razorpay" version="1.2.0" targetFramework="net40" />`  
 or  
-`<package id="Razporpay" version="1.0.0" targetFramework="net45" />`
+`<package id="Razporpay" version="1.2.0" targetFramework="net45" />`
 
 else  
 * Download Nuget package from [here](https://www.nuget.org/packages/Razorpay)

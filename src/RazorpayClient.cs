@@ -4,7 +4,7 @@ namespace Razorpay.Api
 {
     public class RazorpayClient
     {
-        protected const string Version = "1.0.0";
+        protected const string Version = "1.2.0";
         protected const string BaseUrl = "https://api.razorpay.com/v1/";
         protected static string Key = null;
         protected static string Secret = null; 
