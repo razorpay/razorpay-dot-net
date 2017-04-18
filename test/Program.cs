@@ -1,4 +1,5 @@
 ﻿// Test file
+using System;
 
 namespace RazorpayClientTest
 {
@@ -6,9 +7,9 @@ namespace RazorpayClientTest
     {
         public static void Main(string[] args)
         {
-            string key = "<api-key>";
-
-            string secret = "<api-secret>";
+            // Getting the Key ID and Key Secret from user input
+            string key = args[0];
+            string secret = args[1];
 
             PaymentTestCases.Init(key, secret);
 
