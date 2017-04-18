@@ -7,10 +7,10 @@ namespace Razorpay.Api.Errors
         public string ErrorCode { get; private set; }
         public int HttpStatusCode { get; private set; }
 
-        public BaseError(string message, string errroCode, int httpStatusCode)
+        public BaseError(string message, string errorCode, int httpStatusCode)
             : base(message)
         {
-            this.ErrorCode = errroCode;
+            this.ErrorCode = errorCode;
             this.HttpStatusCode = httpStatusCode;
         }
     }

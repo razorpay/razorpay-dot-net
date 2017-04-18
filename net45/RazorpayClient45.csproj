@@ -65,6 +65,9 @@
     <Compile Include="..\src\Errors\ServerError.cs">
       <Link>Errors\ServerError.cs</Link>
     </Compile>
+    <Compile Include="..\src\Errors\SignatureVerificationError.cs">
+      <Link>Errors\SignatureVerificationError.cs</Link>
+    </Compile>
     <Compile Include="..\src\Order.cs">
       <Link>Order.cs</Link>
     </Compile>
