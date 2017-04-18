@@ -11,15 +11,7 @@ namespace Razorpay.Api
     {
         public string MakeRequest(string relativeUrl, HttpMethod method, string data)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(RazorpayClient.BaseUrl + relativeUrl);
-            request.Method = method.ToString();
-            request.ContentLength = 0;
-            request.ContentType = "application/json";
-            request.UserAgent = "razorpay-dot-net/" + RazorpayClient.Version;
-
-            string authString = string.Format("{0}:{1}", RazorpayClient.Key, RazorpayClient.Secret);
-            request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(
-                Encoding.UTF8.GetBytes(authString));
+            HttpWebRequest request = createRequest(relativeUrl, method);
 
             if (method == HttpMethod.Post)
             {
@@ -32,6 +24,26 @@ namespace Razorpay.Api
                 }
             }
 
+            return createResponse(request);
+        }
+
+        private HttpWebRequest createRequest(string relativeUrl, HttpMethod method)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(RazorpayClient.BaseUrl + relativeUrl);
+            request.Method = method.ToString();
+            request.ContentLength = 0;
+            request.ContentType = "application/json";
+            request.UserAgent = "razorpay-dot-net/" + RazorpayClient.Version;
+
+            string authString = string.Format("{0}:{1}", RazorpayClient.Key, RazorpayClient.Secret);
+            request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(
+                Encoding.UTF8.GetBytes(authString));
+
+            return request;
+        }
+
+        private string createResponse(HttpWebRequest request) 
+        {
             var responseValue = string.Empty;
             HttpWebResponse response = null;
 
