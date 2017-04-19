@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="ClientTestCases.cs" />
     <Compile Include="OrderTestCases.cs" />
     <Compile Include="PaymentTestCases.cs" />
   </ItemGroup>

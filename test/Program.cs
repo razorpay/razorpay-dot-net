@@ -10,9 +10,20 @@ namespace RazorpayClientTest
             string key = args[0];
             string secret = args[1];
 
+            RunClientTestCases(key, secret);
+
             RunAllPaymentTests(key, secret);
 
             RunAllOrderTests(key, secret);
+        }
+
+        public static void RunClientTestCases(string key, string secret)
+        {
+            ClientTestCases.Init(key, secret);
+
+            ClientTestCases.TestGetKey(key);
+
+            ClientTestCases.TestGetSecret(secret);
         }
 
         public static void RunAllPaymentTests(string key, string secret)
