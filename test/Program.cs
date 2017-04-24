@@ -24,6 +24,12 @@ namespace RazorpayClientTest
             ClientTestCases.TestGetKey(key);
 
             ClientTestCases.TestGetSecret(secret);
+
+            ClientTestCases.TestAppsDetails();
+
+            ClientTestCases.TestGetBaseUrl();
+
+            ClientTestCases.TestGetVersion();
         }
 
         public static void RunAllPaymentTests(string key, string secret)
