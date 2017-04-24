@@ -18,7 +18,7 @@ namespace Razorpay.Api
            
         public Customer Edit(Dictionary<string, object> data) 
         {
-            string relativeUrl = GetEntityUrl();
+            string relativeUrl = string.Format("{0}/{1}", GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.Put, data);
             return (Customer)entities[0];
         }

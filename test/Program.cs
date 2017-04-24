@@ -87,7 +87,11 @@ namespace RazorpayClientTest
 
             CustomerTestCases.CreateCustomerTest();
 
-            // CustomerTestCases.EditCustomerTest();
+            CustomerTestCases.FetchCustomerTest();
+
+            CustomerTestCases.EditCustomerTest();
+
+            CustomerTestCases.GetCustomerTokenTest();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace Razorpay.Api
 
                 relativeUrl = relativeUrl + "?" + queryString;
             }
-            else if (verb == HttpMethod.Post)
+            else if ((verb == HttpMethod.Post) || (verb == HttpMethod.Put))
             {
                 postData = JsonConvert.SerializeObject(options);
             }
@@ -103,6 +103,10 @@ namespace Razorpay.Api
             else if (response["entity"] == "customer")
             {
                 entity = new Customer();
+            }
+            else if (response["entity"] == "invoice")
+            {
+                entity = new Invoice();
             }
             else
             {

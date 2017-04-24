@@ -203,6 +203,32 @@ namespace RazorpayClientTest
             return Helper.client.Customer.Create(data);
         }
 
+        public static Customer TestFetchCustomer(Customer customer)
+        {
+            string id = (string) customer["id"];
+
+            return Helper.client.Customer.Fetch(id);
+        }
+
+        public static Customer TestEditCustomer(Customer customer)
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            string name = generateRandomString(11, true);
+            string number = generateRandomString(11, false);
+
+            data.Add("name", name);
+            data.Add("email", string.Format("{0}@gmail.com", name));
+            data.Add("contact", number);
+
+            return customer.Edit(data);
+        }
+
+        public static Token TestGetCustomerToken(Customer customer)
+        {
+            return customer.Tokens();
+        }
+
         public static string generateRandomString(int length, bool alphaNumeric)
         {
             Random random = new Random();

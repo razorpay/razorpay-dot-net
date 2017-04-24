@@ -14,7 +14,7 @@ namespace Razorpay.Api
         {
             HttpWebRequest request = createRequest(relativeUrl, method);
 
-            if (method == HttpMethod.Post)
+            if ((method == HttpMethod.Post) || (method == HttpMethod.Put)) 
             {
                 var bytes = Encoding.UTF8.GetBytes(data);
                 request.ContentLength = bytes.Length;
