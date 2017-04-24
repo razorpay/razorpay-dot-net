@@ -157,5 +157,32 @@ namespace RazorpayClientTest
 
             Utils.verifyPaymentSignature(attributes);
         }
+
+        public static void TestFailedVerifyPaymentSignature()
+        {
+            Dictionary<string, string> attributes = new Dictionary<string, string>();
+
+            attributes.Add("razorpay_payment_id", "pay_1234567890");
+            attributes.Add("razorpay_order_id", "order_123456789");
+            attributes.Add("razorpay_signature", "this_hash_will_fail_signature_validation");   
+
+            Utils.verifyPaymentSignature(attributes);
+        }
+
+        public static void TestVerifyWebhookSignature()
+        {
+            string payload = string.Format("{0}|{1}", "order_123456789", "pay_1234567890");
+            string expected = "1dcae2ddc7994c1a9b10a9e52a840d705dc9e9c5d48dc5ec04413aa4866a0784";
+
+            Utils.verifyWebhookSignature(payload, expected);
+        }
+
+        public static void TestFailedVerifyWebhookSignature()
+        {
+            string payload = string.Format("{0}|{1}", "pay_1234567890", "order_123456789");
+            string expected = "this_hash_will_fail_signature_validation";
+
+            Utils.verifyWebhookSignature(payload, expected);
+        }
     }
 }

@@ -71,6 +71,12 @@ namespace RazorpayClientTest
             UtilsTestCases.Init(key, secret);
 
             UtilsTestCases.VerifyPaymentSignatureTest();
+
+            UtilsTestCases.FailedVerifyPaymentSignatureTest();
+
+            UtilsTestCases.VerifyWebhookSignatureTest();
+
+            UtilsTestCases.FailedVerifyWebhookSignatureTest();
         }
     }
 }

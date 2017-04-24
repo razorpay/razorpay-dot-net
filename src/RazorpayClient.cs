@@ -11,7 +11,6 @@ namespace Razorpay.Api
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         private Payment payment = null;
         private Order order = null;
-        private Utils utils = null;
 
         public RazorpayClient(string key, string secret)
         {
@@ -74,18 +73,6 @@ namespace Razorpay.Api
                     order = new Order();
                 }
                 return order;
-            }
-        }
-
-        public Utils Utils
-        {
-            get
-            {
-                if (utils == null)
-                {
-                    utils = new Utils();
-                }
-                return utils;
             }
         }
     }
