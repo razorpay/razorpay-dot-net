@@ -2,8 +2,9 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
-using Razorpay.Api.Errors;
 using Newtonsoft.Json;
+using Razorpay.Api.Errors;
+using System.Collections.Generic;
 
 namespace Razorpay.Api
 {
@@ -33,13 +34,41 @@ namespace Razorpay.Api
             request.Method = method.ToString();
             request.ContentLength = 0;
             request.ContentType = "application/json";
-            request.UserAgent = "razorpay-dot-net/" + RazorpayClient.getVersion();
+
+            string userAgent = string.Format("{0} {1}", RazorpayClient.getVersion(), getAppDetailsUa());
+            request.UserAgent = "razorpay-dot-net/" + userAgent;
 
             string authString = string.Format("{0}:{1}", RazorpayClient.getKey(), RazorpayClient.getSecret());
             request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(
                 Encoding.UTF8.GetBytes(authString));
 
             return request;
+        }
+
+        private static string getAppDetailsUa()
+        {
+            List<Dictionary<string, string>> appsDetails = RazorpayClient.getAppsDetails();
+
+            string appsDetailsUa = string.Empty;
+
+            foreach(Dictionary<string, string> appsDetail in appsDetails)
+            {
+                string appUa = string.Empty;
+
+                if (appsDetail.ContainsKey("title"))
+                {
+                    appUa = appsDetail["title"];
+
+                    if (appsDetail.ContainsKey("version"))
+                    {
+                        appUa += appsDetail["version"];
+                    }
+                }
+
+                appsDetailsUa += appUa;
+            }
+
+            return appsDetailsUa;
         }
 
         private string createResponse(HttpWebRequest request) 
