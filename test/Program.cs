@@ -15,6 +15,8 @@ namespace RazorpayClientTest
             RunAllPaymentTests(key, secret);
 
             RunAllOrderTests(key, secret);
+
+            RunAllUtilsTests(key, secret);
         }
 
         public static void RunClientTestCases(string key, string secret)
@@ -40,15 +42,15 @@ namespace RazorpayClientTest
 
             PaymentTestCases.GetPaymentById();
 
-            PaymentTestCases.CapturePayment();
+            // PaymentTestCases.CapturePayment();
 
-            PaymentTestCases.RefundPaymentPartial();
+            // PaymentTestCases.RefundPaymentPartial();
 
-            PaymentTestCases.RefundPayment();
+            // PaymentTestCases.RefundPayment();
 
-            PaymentTestCases.TestGetRefunds();
+            // PaymentTestCases.TestGetRefunds();
 
-            PaymentTestCases.TestGetRefundById();
+            // PaymentTestCases.TestGetRefundById();
         }
 
         public static void RunAllOrderTests(string key, string secret)
@@ -62,6 +64,13 @@ namespace RazorpayClientTest
             OrderTestCases.GetOrderByIdTest();
 
             OrderTestCases.TestGetPaymentsByOrder();
+        }
+
+        public static void RunAllUtilsTests(string key, string secret)
+        {
+            UtilsTestCases.Init(key, secret);
+
+            UtilsTestCases.VerifyPaymentSignatureTest();
         }
     }
 }

@@ -147,6 +147,17 @@ namespace RazorpayClientTest
             return payments;
         }
 
+        public static void TestVerifyPaymentSignature()
+        {
+            Dictionary<string, string> attributes = new Dictionary<string, string>();
+
+            attributes.Add("razorpay_payment_id", "pay_1234567890");
+            attributes.Add("razorpay_order_id", "order_123456789");
+            attributes.Add("razorpay_signature", "1dcae2ddc7994c1a9b10a9e52a840d705dc9e9c5d48dc5ec04413aa4866a0784");
+
+            Utils.verifyPaymentSignature(attributes);
+        }
+
         public static void Assert(bool condition, string message)
         {
             if (condition == false)

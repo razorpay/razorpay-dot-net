@@ -11,35 +11,12 @@ namespace Razorpay.Api
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         private Payment payment = null;
         private Order order = null;
+        private Utils utils = null;
 
         public RazorpayClient(string key, string secret)
         {
             RazorpayClient.Key = key;
             RazorpayClient.Secret = secret;
-        }
-
-        public Payment Payment
-        {
-            get
-            {
-                if (payment == null)
-                {
-                    payment = new Payment();
-                }
-                return payment;
-            }
-        }
-
-        public Order Order
-        {
-            get
-            {
-                if (order == null)
-                {
-                    order = new Order();
-                }
-                return order;
-            }
         }
 
         public static string getKey()
@@ -74,6 +51,42 @@ namespace Razorpay.Api
         public static string getVersion()
         {
             return Version;
+        }
+
+        public Payment Payment
+        {
+            get
+            {
+                if (payment == null)
+                {
+                    payment = new Payment();
+                }
+                return payment;
+            }
+        }
+
+        public Order Order
+        {
+            get
+            {
+                if (order == null)
+                {
+                    order = new Order();
+                }
+                return order;
+            }
+        }
+
+        public Utils Utils
+        {
+            get
+            {
+                if (utils == null)
+                {
+                    utils = new Utils();
+                }
+                return utils;
+            }
         }
     }
 }
