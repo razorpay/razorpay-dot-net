@@ -17,6 +17,8 @@ namespace RazorpayClientTest
             RunAllOrderTests(key, secret);
 
             RunAllUtilsTests(key, secret);
+
+            RunAllCustomerTests(key, secret);
         }
 
         public static void RunClientTestCases(string key, string secret)
@@ -77,6 +79,15 @@ namespace RazorpayClientTest
             UtilsTestCases.VerifyWebhookSignatureTest();
 
             UtilsTestCases.FailedVerifyWebhookSignatureTest();
+        }
+
+        public static void RunAllCustomerTests(string key, string secret)
+        {
+            CustomerTestCases.Init(key, secret);
+
+            CustomerTestCases.CreateCustomerTest();
+
+            // CustomerTestCases.EditCustomerTest();
         }
     }
 }

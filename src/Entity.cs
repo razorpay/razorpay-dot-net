@@ -100,6 +100,10 @@ namespace Razorpay.Api
             {
                 entity = new Order();
             }
+            else if (response["entity"] == "customer")
+            {
+                entity = new Customer();
+            }
             else
             {
                 entity = new Entity();

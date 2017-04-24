@@ -9,21 +9,21 @@ namespace Razorpay.Api
             return (Customer)base.Fetch(id);
         }
 
-        public Customer create(Dictionary<string, object> data)
+        public Customer Create(Dictionary<string, object> data)
         {
             string relativeUrl = GetEntityUrl();
             List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
             return (Customer)entities[0];
         }
-
-        public Customer edit(Dictionary<string, object> data)
+           
+        public Customer Edit(Dictionary<string, object> data) 
         {
             string relativeUrl = GetEntityUrl();
             List<Entity> entities = Request(relativeUrl, HttpMethod.Put, data);
             return (Customer)entities[0];
         }
 
-        public Token tokens()
+        public Token Tokens()
         {
             Token token = new Token();
             token.CustomerId = this["id"].ToString();
