@@ -12,6 +12,7 @@ namespace Razorpay.Api
         private Payment payment = null;
         private Order order = null;
         private Customer customer = null;
+        private Invoice invoice = null;
 
         public RazorpayClient(string key, string secret)
         {
@@ -86,6 +87,18 @@ namespace Razorpay.Api
                     customer = new Customer();
                 }
                 return customer;
+            }
+        }
+
+        public Invoice Invoice
+        {
+            get
+            {
+                if (invoice == null)
+                {
+                    invoice = new Invoice();
+                }
+                return invoice;
             }
         }
     }

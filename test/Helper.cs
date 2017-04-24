@@ -1,8 +1,11 @@
-﻿using Razorpay.Api;
+﻿
 using System;
+using System.IO;
 using System.Text;
-using System.Collections.Generic;
 using System.Linq;
+using Razorpay.Api;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace RazorpayClientTest
 {
@@ -227,6 +230,30 @@ namespace RazorpayClientTest
         public static Token TestGetCustomerToken(Customer customer)
         {
             return customer.Tokens();
+        }
+
+        // returns Invoice
+        public static Invoice TestCreateInvoice()
+        {
+            Dictionary<string, object> items = new Dictionary<string, object>();
+
+            using (StreamReader r = new StreamReader("./test/data/invoice-create.json"))
+            {
+                string json = r.ReadToEnd();
+                items = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            }
+
+            // Different receipt each time
+            items["receipt"] = generateRandomString(14, false);
+
+            return Helper.client.Invoice.Create(items);
+        }
+
+        public static Invoice TestFetchInvoice(Invoice invoice)
+        {
+            string id = invoice["id"];
+
+            return Helper.client.Invoice.Fetch(id);
         }
 
         public static string generateRandomString(int length, bool alphaNumeric)

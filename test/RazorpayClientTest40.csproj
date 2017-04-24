@@ -43,6 +43,7 @@
     <Compile Include="PaymentTestCases.cs" />
     <Compile Include="UtilsTestCases.cs" />
     <Compile Include="CustomerTestCases.cs" />
+    <Compile Include="InvoiceTestCases.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
