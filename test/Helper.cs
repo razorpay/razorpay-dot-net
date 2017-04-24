@@ -1,5 +1,6 @@
 ﻿using Razorpay.Api;
 using System;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,6 +8,9 @@ namespace RazorpayClientTest
 {
     public class Helper
     {
+        private static string alphaNum = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        private static string num = "0123456789";
+
         public static RazorpayClient client;
 
         public static List<Order> TestGetAllOrders()
@@ -184,5 +188,34 @@ namespace RazorpayClientTest
 
             Utils.verifyWebhookSignature(payload, expected);
         }
+
+        public static Customer TestCreateCustomer()
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            string name = generateRandomString(10, true);
+            string number = generateRandomString(10, false);
+
+            data.Add("name", name);
+            data.Add("email", string.Format("{0}@gmail.com", name));
+            data.Add("contact", number);
+
+            return Helper.client.Customer.Create(data);
+        }
+
+        public static string generateRandomString(int length, bool alphaNumeric)
+        {
+            Random random = new Random();
+            string characters = string.Empty;
+
+            characters = (alphaNumeric == true) ? alphaNum : num;
+            
+            StringBuilder result = new StringBuilder(length);
+
+            for (int i = 0; i < length; i++) {
+                result.Append(characters[random.Next(characters.Length)]);
+            }
+            return result.ToString();
+        }   
     }
 }
