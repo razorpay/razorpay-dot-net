@@ -1,5 +1,6 @@
 ﻿using Razorpay.Api;
 using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace RazorpayClientTest
 {
@@ -13,43 +14,43 @@ namespace RazorpayClientTest
         public static void GetAllPaymentsTest()
         {
             List<Payment> result = Helper.TestGetAllPayments();
-            Helper.Assert(result != null, "No payments retrieved");
+            Assert.AreNotSame(null, result);
         }
 
         public static void GetPaymentById()
         {
             Payment payment = Helper.TestGetPaymentById();
-            Helper.Assert(payment != null, "Could not fetch payment by Id");
+            Assert.AreNotSame(null, payment);
         }
 
         public static void CapturePayment()
         {
             Payment payment = Helper.TestCapturePayment();
-            Helper.Assert(payment != null, "Payment capture could not be completed");
+            Assert.AreNotSame(null, payment);
         }
 
         public static void RefundPayment()
         {
             Refund refund = Helper.TestRefundPayment();
-            Helper.Assert(refund != null, "Payment refund could not be completed");
+            Assert.AreNotSame(null, refund);
         }
 
         public static void RefundPaymentPartial()
         {
             Refund refund = Helper.TestPartialRefundPayment();
-            Helper.Assert(refund != null, "Payment partial refund could not be completed");
+            Assert.AreNotSame(null, refund);
         }
 
         public static void TestGetRefunds()
         {
             List<Refund> refunds = Helper.TestGetRefunds();
-            Helper.Assert(refunds != null, "Could not get refunds");
+            Assert.AreNotSame(null, refunds);
         }
 
         public static void TestGetRefundById()
         {
             Refund refund = Helper.TestGetRefundById();
-            Helper.Assert(refund != null, "Could not get refund by id");
+            Assert.AreNotSame(null, refund);
         }
     }
 }

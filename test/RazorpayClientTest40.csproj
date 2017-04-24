@@ -30,6 +30,9 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="NUnit">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net40\nunit.framework.dll</HintPath>
+    </Reference>
     <Compile Include="Program.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="ClientTestCases.cs" />

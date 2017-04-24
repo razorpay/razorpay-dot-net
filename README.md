@@ -65,6 +65,10 @@ Ubuntu
 
 ### Compiling using Mono
 * Download the 'Newtonsoft.Json' nuget package.
+`nuget install Newtonsoft.Json`
+
+* Download the 'NUnit' nuget package.
+`nuget install NUnit`
 
 * Create a bin folder in the root directory
 
@@ -77,10 +81,11 @@ Ubuntu
 * copy Dependency dll
 
 `cp packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll ./bin`
+`cp packages/NUnit.3.6.1/lib/net45/nunit.framework.dll ./bin`
 
 * Compile test exe
 
-`mcs -t:exe -lib:"/usr/lib/mono/4.5,./bin" -r:"RazorpayClient.dll,Newtonsoft.Json.dll" -out:"bin/RazorpayApiTest.exe" ./test/*.cs`
+`mcs -t:exe -lib:"/usr/lib/mono/4.5,./bin" -r:"RazorpayClient.dll,Newtonsoft.Json.dll,nunit.framework.dll" -out:"bin/RazorpayApiTest.exe" ./test/*.cs`
 
 * Run Test exe  
 

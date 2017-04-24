@@ -1,5 +1,5 @@
 using Razorpay.Api;
-using System;
+using NUnit.Framework;
 using System.Collections.Generic;
 
 namespace RazorpayClientTest
@@ -13,12 +13,12 @@ namespace RazorpayClientTest
 
         public static void TestGetKey(string key)
         {
-            Helper.Assert(key == RazorpayClient.getKey(), "Not able to get correct key.");
+            Assert.AreSame(key, RazorpayClient.getKey());
         }
 
         public static void TestGetSecret(string secret)
         {
-            Helper.Assert(secret == RazorpayClient.getSecret(), "Not able to get correct secret.");
+            Assert.AreSame(secret, RazorpayClient.getSecret());
         }
 
         public static void TestAppsDetails()
@@ -30,27 +30,27 @@ namespace RazorpayClientTest
 
             List<Dictionary<string, string>> appsDetails = RazorpayClient.getAppsDetails();
 
-            Helper.Assert(appsDetails.Count == 1, "Incorrect number of items set in the list");
-            Helper.Assert(appsDetails[0]["title"] == title, "Title not set correctly");
-            Helper.Assert(appsDetails[0]["version"] == version, "Version not set correctly");
+            Assert.True(appsDetails.Count == 1);
+            Assert.AreSame(title, appsDetails[0]["title"]);
+            Assert.AreSame(version, appsDetails[0]["version"]);
         }
 
         public static void TestGetBaseUrl()
         {
             string baseUrl = RazorpayClient.getBaseUrl();
 
-            string actualBaseUrl = "https://api.razorpay.com/v1/";
+            string expectedBaseUrl = "https://api.razorpay.com/v1/";
 
-            Helper.Assert(baseUrl == actualBaseUrl, "Base URL not being returned correctly.");
+            Assert.AreSame(expectedBaseUrl, baseUrl);
         }
 
         public static void TestGetVersion()
         {
             string version = RazorpayClient.getVersion();
 
-            string actualVersion = "1.2.0";
+            string expectedVersion = "1.2.0";
 
-            Helper.Assert(version == actualVersion, "Version not being returned correctly.");
+            Assert.AreSame(expectedVersion, version);
         }
     }
 }

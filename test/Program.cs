@@ -42,15 +42,15 @@ namespace RazorpayClientTest
 
             PaymentTestCases.GetPaymentById();
 
-            // PaymentTestCases.CapturePayment();
+            PaymentTestCases.CapturePayment();
 
-            // PaymentTestCases.RefundPaymentPartial();
+            PaymentTestCases.RefundPaymentPartial();
 
-            // PaymentTestCases.RefundPayment();
+            PaymentTestCases.RefundPayment();
 
-            // PaymentTestCases.TestGetRefunds();
+            PaymentTestCases.TestGetRefunds();
 
-            // PaymentTestCases.TestGetRefundById();
+            PaymentTestCases.TestGetRefundById();
         }
 
         public static void RunAllOrderTests(string key, string secret)

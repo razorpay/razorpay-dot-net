@@ -1,4 +1,5 @@
-﻿using Razorpay.Api;
+﻿using NUnit.Framework;
+using Razorpay.Api;
 using System.Collections.Generic;
 
 namespace RazorpayClientTest
@@ -13,25 +14,25 @@ namespace RazorpayClientTest
         public static void GetAllOrdersTest()
         {
             List<Order> result = Helper.TestGetAllOrders();
-            Helper.Assert(result != null, "No orders retrieved");
+            Assert.AreNotSame(null, result);
         }
 
         public static void GetOrderByIdTest()
         {
             Order order = Helper.TestGetOrderById();
-            Helper.Assert(order != null, "Could not retrieve order by Id");
+            Assert.AreNotSame(null, order);
         }
 
         public static void TestCreateOrder()
         {
             Order result = Helper.TestCreateOrder();
-            Helper.Assert(result != null, "Could not create order");
+            Assert.AreNotSame(null, result);
         }
 
         public static void TestGetPaymentsByOrder()
         {
             List<Payment> result = Helper.TestGetPaymentByOrderId();
-            Helper.Assert(result != null, "Could not get payment by order");
+            Assert.AreNotSame(null, result);
         }
     }
 }

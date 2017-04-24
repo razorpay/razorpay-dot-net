@@ -157,13 +157,5 @@ namespace RazorpayClientTest
 
             Utils.verifyPaymentSignature(attributes);
         }
-
-        public static void Assert(bool condition, string message)
-        {
-            if (condition == false)
-            {
-                throw new Exception(message);
-            }
-        }
     }
 }
