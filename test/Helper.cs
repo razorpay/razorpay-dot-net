@@ -39,7 +39,6 @@ namespace RazorpayClientTest
             return order;
         }
 
-
         public static List<Payment> TestGetAllPayments()
         {
             Dictionary<string, object> options = new Dictionary<string, object>();

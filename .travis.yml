@@ -2,9 +2,11 @@ language: csharp
 install: 
   - nuget install Newtonsoft.Json -Version 7.0.1 -OutputDirectory packages
   - nuget install NUnit -Version 3.6.1 -OutputDirectory packages
-script:
+before_script:
+  - mkdir bin
   - mcs -t:library -lib:"/usr/lib/mono/4.5" -r:"System.dll,System.Net.dll,System.Net.Http.dll,System.Core.dll,System.Xml.dll,System.Xml.Linq.dll,System.Core.dll,./packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll" -out:"bin/RazorpayClient.dll" ./src/**/*.cs -lib:/usr/lib/mono/2.0
   - cp packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll ./bin
   - cp packages/NUnit.3.6.1/lib/net45/nunit.framework.dll ./bin
   - mcs -t:exe -lib:"/usr/lib/mono/4.5,./bin" -r:"RazorpayClient.dll,Newtonsoft.Json.dll,nunit.framework.dll" -out:"bin/RazorpayApiTest.exe" ./test/*.cs
+script:
   - mono bin/RazorpayApiTest.exe rzp_test_123456789 thisisarandomsecret

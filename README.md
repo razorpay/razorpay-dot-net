@@ -65,10 +65,10 @@ Ubuntu
 
 ### Compiling using Mono
 * Download the 'Newtonsoft.Json' nuget package.
-`nuget install Newtonsoft.Json`
+`nuget install Newtonsoft.Json -Version 7.0.1 -OutputDirectory packages`
 
 * Download the 'NUnit' nuget package.
-`nuget install NUnit`
+`nuget install NUnit -Version 3.6.1 -OutputDirectory packages`
 
 * Create a bin folder in the root directory
 
