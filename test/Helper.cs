@@ -256,6 +256,13 @@ namespace RazorpayClientTest
             return Helper.client.Invoice.Fetch(id);
         }
 
+        // public static Token TestFetchCustomerToken(Token token)
+        // {
+        //     List<Token> tokens = token.All();
+
+        //     return tokens[0];
+        // }
+
         public static string generateRandomString(int length, bool alphaNumeric)
         {
             Random random = new Random();

@@ -6,13 +6,14 @@ namespace Razorpay.Api
     {
         protected const string Version = "1.2.0";
         protected const string BaseUrl = "https://api.razorpay.com/v1/";
-        protected static string Key = null;
-        protected static string Secret = null; 
+        protected static string key = null;
+        protected static string secret = null; 
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         private Payment payment = null;
         private Order order = null;
         private Customer customer = null;
         private Invoice invoice = null;
+        private Token token = null;
 
         public RazorpayClient(string key, string secret)
         {
@@ -20,14 +21,28 @@ namespace Razorpay.Api
             RazorpayClient.Secret = secret;
         }
 
-        public static string getKey()
+        public static string Key
         {
-            return Key;
+            get
+            {
+                return key;
+            }
+            set 
+            {
+                key = value;
+            }
         }
 
-        public static string getSecret()
+        public static string Secret
         {
-            return Secret;
+            get
+            {
+                return secret;
+            }
+            set 
+            {
+                secret = value;
+            }
         }
 
         public static void setAppsDetails(string title, string version)
@@ -39,9 +54,12 @@ namespace Razorpay.Api
             appsDetails.Add(appDetail);
         }
 
-        public static List<Dictionary<string, string>> getAppsDetails()
+        public static List<Dictionary<string, string>> AppsDetails
         {
-            return appsDetails;
+            get
+            {
+                return appsDetails;
+            }
         }
 
         public static string getBaseUrl()
@@ -99,6 +117,18 @@ namespace Razorpay.Api
                     invoice = new Invoice();
                 }
                 return invoice;
+            }
+        }
+
+        public Token Token
+        {
+            get
+            {
+                if (token == null)
+                {
+                    token = new Token();
+                }
+                return token;
             }
         }
     }

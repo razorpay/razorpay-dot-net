@@ -44,6 +44,7 @@
     <Compile Include="UtilsTestCases.cs" />
     <Compile Include="CustomerTestCases.cs" />
     <Compile Include="InvoiceTestCases.cs" />
+    <Compile Include="TokenTestCases.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

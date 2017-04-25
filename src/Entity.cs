@@ -108,6 +108,10 @@ namespace Razorpay.Api
             {
                 entity = new Invoice();
             }
+            else if (response["entity"] == "token")
+            {
+                entity = new Token();
+            }
             else
             {
                 entity = new Entity();

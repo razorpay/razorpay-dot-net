@@ -21,6 +21,8 @@ namespace RazorpayClientTest
             RunAllCustomerTests(key, secret);
 
             RunAllInvoiceTests(key, secret);
+
+            RunAllTokenTests(key, secret);
         }
 
         public static void RunClientTestCases(string key, string secret)
@@ -103,6 +105,15 @@ namespace RazorpayClientTest
             InvoiceTestCases.CreateInvoiceTest();
 
             InvoiceTestCases.FetchInvoiceTest();
+        }
+
+        public static void RunAllTokenTests(string key, string secret)
+        {
+            TokenTestCases.Init(key, secret);
+
+            // TokenTestCases.CreateTokenTest();
+
+
         }
     }
 }

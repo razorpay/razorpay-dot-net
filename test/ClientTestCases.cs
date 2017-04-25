@@ -13,12 +13,12 @@ namespace RazorpayClientTest
 
         public static void TestGetKey(string key)
         {
-            Assert.AreSame(key, RazorpayClient.getKey());
+            Assert.AreSame(key, RazorpayClient.Key);
         }
 
         public static void TestGetSecret(string secret)
         {
-            Assert.AreSame(secret, RazorpayClient.getSecret());
+            Assert.AreSame(secret, RazorpayClient.Secret);
         }
 
         public static void TestAppsDetails()
@@ -28,7 +28,7 @@ namespace RazorpayClientTest
 
             RazorpayClient.setAppsDetails(title, version);
 
-            List<Dictionary<string, string>> appsDetails = RazorpayClient.getAppsDetails();
+            List<Dictionary<string, string>> appsDetails = RazorpayClient.AppsDetails;
 
             Assert.True(appsDetails.Count == 1);
             Assert.AreSame(title, appsDetails[0]["title"]);

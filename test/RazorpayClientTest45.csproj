@@ -39,6 +39,7 @@
     <Compile Include="UtilsTestCases.cs" />
     <Compile Include="CustomerTestCases.cs" />
     <Compile Include="InvoiceTestCases.cs" />
+    <Compile Include="TokenTestCases.cs" />
     <Reference Include="NUnit">
       <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>

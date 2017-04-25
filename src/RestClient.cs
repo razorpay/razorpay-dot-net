@@ -38,7 +38,7 @@ namespace Razorpay.Api
             string userAgent = string.Format("{0} {1}", RazorpayClient.getVersion(), getAppDetailsUa());
             request.UserAgent = "razorpay-dot-net/" + userAgent;
 
-            string authString = string.Format("{0}:{1}", RazorpayClient.getKey(), RazorpayClient.getSecret());
+            string authString = string.Format("{0}:{1}", RazorpayClient.Key, RazorpayClient.Secret);
             request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(
                 Encoding.UTF8.GetBytes(authString));
 
@@ -47,7 +47,7 @@ namespace Razorpay.Api
 
         private static string getAppDetailsUa()
         {
-            List<Dictionary<string, string>> appsDetails = RazorpayClient.getAppsDetails();
+            List<Dictionary<string, string>> appsDetails = RazorpayClient.AppsDetails;
 
             string appsDetailsUa = string.Empty;
 
