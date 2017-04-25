@@ -43,5 +43,15 @@ namespace Razorpay.Api
                 return refund;
             }
         }
+
+        public Transfer Transfers
+        {
+            get
+            {
+                Transfer transfer = new Transfer();
+                transfer.PaymentId = this["id"].ToString();
+                return transfer;
+            }
+        }
     }
 }

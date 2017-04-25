@@ -92,6 +92,12 @@
     <Compile Include="..\src\Customer.cs">
       <Link>Customer.cs</Link>
     </Compile>
+    <Compile Include="..\src\Transfer.cs">
+      <Link>Transfer.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Reversal.cs">
+      <Link>Reversal.cs</Link>
+    </Compile>
     <Compile Include="..\src\RestClient.cs">
       <Link>RestClient.cs</Link>
     </Compile>

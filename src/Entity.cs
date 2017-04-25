@@ -116,6 +116,14 @@ namespace Razorpay.Api
             {
                 entity = new Card();
             }
+            else if (response["entity"] == "transfer")
+            {
+                entity = new Transfer();
+            }
+            else if (response.Property("transfer_id") != null)
+            {
+                entity = new Reversal();
+            }
             else
             {
                 entity = new Entity();
