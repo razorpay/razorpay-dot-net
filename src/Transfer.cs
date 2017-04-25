@@ -4,26 +4,9 @@ namespace Razorpay.Api
 {
     public class Transfer : Entity
     {
-        public string PaymentId;
-
         new public Transfer Fetch(string id)
         {
             return (Transfer)base.Fetch(id);
-        }
-
-        new public List<Transfer> All(Dictionary<string, object> options = null)
-        {
-            string relativeUrl = string.Format("payments/{0}/{1}", this.PaymentId, GetEntityUrl());
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
-
-            List<Transfer> transfers = new List<Transfer>();
-
-            foreach(Entity entitiy in entities)
-            {
-                transfers.Add(entitiy as Transfer);
-            }
-
-            return transfers;
         }
 
         public Transfer Edit(Dictionary<string, object> options = null)
@@ -35,7 +18,7 @@ namespace Razorpay.Api
 
         public Transfer Create(Dictionary<string, object> options = null)
         {
-            string relativeUrl = string.Format("payments/{0}/{1}", this.PaymentId, GetEntityUrl());
+            string relativeUrl = GetEntityUrl();
             List<Entity> entities = Request(relativeUrl, HttpMethod.Post, options);
             return (Transfer)entities[0];
         }
