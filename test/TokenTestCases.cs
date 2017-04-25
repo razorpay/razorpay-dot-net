@@ -1,25 +1,37 @@
-using Razorpay.Api;
 using System;
-using Newtonsoft.Json;
+using Razorpay.Api;
+using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace RazorpayClientTest
 {
-    public class TokenTestCases
+    class TokenTestCases
     {
         public static void Init(string key, string secret)
         {
             Helper.client = new RazorpayClient(key, secret);
         }
 
-        // public static void CreateTokenTest()
-        // {
-        //     Customer customer = Helper.TestCreateCustomer();
+        public static void FetchAllTokenTest()
+        {
+            Customer customer = Helper.TestCreateCustomer();
 
-        //     Token token = Helper.TestGetCustomerToken(customer);
+            Token token = Helper.TestGetCustomerToken(customer);
 
-        //     Token fetchedToken = Helper.TestFetchCustomerToken(token);
+            List<Token> fetchedTokens = Helper.TestFetchAllCustomerToken(token);
 
-        //     Console.Write(fetchedToken["id"]);
-        // }
+            Assert.Greater(fetchedTokens.Count, 0);
+        }
+
+        public static void FetchTokenByIdTest()
+        {
+            Customer customer = Helper.TestCreateCustomer();
+
+            Token token = Helper.TestGetCustomerToken(customer);
+
+            Token fetchedTokenById = Helper.TestFetchCustomerTokenById(token);
+
+            Assert.AreNotSame(null, fetchedTokenById);
+        }
     }
 }

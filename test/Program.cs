@@ -111,9 +111,9 @@ namespace RazorpayClientTest
         {
             TokenTestCases.Init(key, secret);
 
-            // TokenTestCases.CreateTokenTest();
+            TokenTestCases.FetchAllTokenTest();
 
-
+            TokenTestCases.FetchTokenByIdTest();
         }
     }
 }

@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace RazorpayClientTest
 {
-    public class UtilsTestCases
+    class UtilsTestCases
     {
         public static void Init(string key, string secret)
         {

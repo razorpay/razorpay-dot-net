@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace RazorpayClientTest
 {
-    public class CustomerTestCases
+    class CustomerTestCases
     {
         public static void Init(string key, string secret)
         {

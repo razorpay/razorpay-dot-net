@@ -256,12 +256,20 @@ namespace RazorpayClientTest
             return Helper.client.Invoice.Fetch(id);
         }
 
-        // public static Token TestFetchCustomerToken(Token token)
-        // {
-        //     List<Token> tokens = token.All();
+        public static List<Token> TestFetchAllCustomerToken(Token token)
+        {
+            token.CustomerId = "cust_5rZjWeKfUdrIfG";
+            return token.All();
+        }
 
-        //     return tokens[0];
-        // }
+        public static Token TestFetchCustomerTokenById(Token token)
+        {
+            string id = "token_6xUjl4iJ44jtb4";
+
+            token.CustomerId = "cust_5rZjWeKfUdrIfG";
+
+            return token.Fetch(id);
+        }
 
         public static string generateRandomString(int length, bool alphaNumeric)
         {
