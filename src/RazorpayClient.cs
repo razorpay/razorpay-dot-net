@@ -14,6 +14,7 @@ namespace Razorpay.Api
         private Customer customer = null;
         private Invoice invoice = null;
         private Token token = null;
+        private Card card = null;
 
         public RazorpayClient(string key, string secret)
         {
@@ -135,6 +136,18 @@ namespace Razorpay.Api
                     token = new Token();
                 }
                 return token;
+            }
+        }
+
+        public Card Card
+        {
+            get
+            {
+                if (card == null)
+                {
+                    card = new Card();
+                }
+                return card;
             }
         }
     }

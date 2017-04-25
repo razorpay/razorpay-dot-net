@@ -112,6 +112,10 @@ namespace Razorpay.Api
             {
                 entity = new Token();
             }
+            else if (response["entity"] == "card")
+            {
+                entity = new Card();
+            }
             else
             {
                 entity = new Entity();

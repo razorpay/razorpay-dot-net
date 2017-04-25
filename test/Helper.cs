@@ -280,6 +280,13 @@ namespace RazorpayClientTest
             return token.Delete(id);
         }
 
+        public static Card TestFetchCardById()
+        {
+            string id = "card_7ivcCwFQgqgnV1";
+
+            return Helper.client.Card.Fetch(id);
+        }
+
         public static string generateRandomString(int length, bool alphaNumeric)
         {
             Random random = new Random();
