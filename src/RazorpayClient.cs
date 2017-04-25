@@ -4,8 +4,8 @@ namespace Razorpay.Api
 {
     public class RazorpayClient
     {
-        protected const string Version = "1.2.0";
-        protected const string BaseUrl = "https://api.razorpay.com/v1/";
+        protected const string version = "1.2.0";
+        protected const string baseUrl = "https://api.razorpay.com/v1/";
         protected static string key = null;
         protected static string secret = null; 
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
@@ -45,6 +45,14 @@ namespace Razorpay.Api
             }
         }
 
+        public static List<Dictionary<string, string>> AppsDetails
+        {
+            get
+            {
+                return appsDetails;
+            }
+        }
+
         public static void setAppsDetails(string title, string version)
         {
             Dictionary<string, string> appDetail = new Dictionary<string, string>();
@@ -54,22 +62,20 @@ namespace Razorpay.Api
             appsDetails.Add(appDetail);
         }
 
-        public static List<Dictionary<string, string>> AppsDetails
+        public static string BaseUrl
         {
             get
             {
-                return appsDetails;
+                return baseUrl;
             }
         }
 
-        public static string getBaseUrl()
+        public static string Version
         {
-            return BaseUrl;
-        }
-
-        public static string getVersion()
-        {
-            return Version;
+            get
+            {
+                return version;
+            }
         }
 
         public Payment Payment

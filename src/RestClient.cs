@@ -30,12 +30,12 @@ namespace Razorpay.Api
 
         private HttpWebRequest createRequest(string relativeUrl, HttpMethod method)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(RazorpayClient.getBaseUrl() + relativeUrl);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(RazorpayClient.BaseUrl + relativeUrl);
             request.Method = method.ToString();
             request.ContentLength = 0;
             request.ContentType = "application/json";
 
-            string userAgent = string.Format("{0} {1}", RazorpayClient.getVersion(), getAppDetailsUa());
+            string userAgent = string.Format("{0} {1}", RazorpayClient.Version, getAppDetailsUa());
             request.UserAgent = "razorpay-dot-net/" + userAgent;
 
             string authString = string.Format("{0}:{1}", RazorpayClient.Key, RazorpayClient.Secret);

@@ -37,7 +37,7 @@ namespace RazorpayClientTest
 
         public static void TestGetBaseUrl()
         {
-            string baseUrl = RazorpayClient.getBaseUrl();
+            string baseUrl = RazorpayClient.BaseUrl;
 
             string expectedBaseUrl = "https://api.razorpay.com/v1/";
 
@@ -46,7 +46,7 @@ namespace RazorpayClientTest
 
         public static void TestGetVersion()
         {
-            string version = RazorpayClient.getVersion();
+            string version = RazorpayClient.Version;
 
             string expectedVersion = "1.2.0";
 
