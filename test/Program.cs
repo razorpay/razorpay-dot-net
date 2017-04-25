@@ -114,6 +114,8 @@ namespace RazorpayClientTest
             TokenTestCases.FetchAllTokenTest();
 
             TokenTestCases.FetchTokenByIdTest();
+
+            TokenTestCases.DeleteTokenByIdTest();
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Razorpay.Api
             {
                 return key;
             }
-            set 
+            private set 
             {
                 key = value;
             }
@@ -39,7 +39,7 @@ namespace Razorpay.Api
             {
                 return secret;
             }
-            set 
+            private set 
             {
                 secret = value;
             }

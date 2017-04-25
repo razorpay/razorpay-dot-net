@@ -258,17 +258,26 @@ namespace RazorpayClientTest
 
         public static List<Token> TestFetchAllCustomerToken(Token token)
         {
-            token.CustomerId = "cust_5rZjWeKfUdrIfG";
+            token.CustomerId = "cust_5P3Svw0zgLjtca";
             return token.All();
         }
 
         public static Token TestFetchCustomerTokenById(Token token)
         {
-            string id = "token_6xUjl4iJ44jtb4";
+            string id = "token_5P3dj4d4y8RDor";
 
-            token.CustomerId = "cust_5rZjWeKfUdrIfG";
+            token.CustomerId = "cust_5P3Svw0zgLjtca";
 
             return token.Fetch(id);
+        }
+
+        public static Token TestDeleteCustomerTokenById(Token token)
+        {
+            string id = "token_5P3dj4d4y8RDor";
+
+            token.CustomerId = "cust_5P3Svw0zgLjtca";
+
+            return token.Delete(id);
         }
 
         public static string generateRandomString(int length, bool alphaNumeric)

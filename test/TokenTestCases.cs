@@ -1,4 +1,3 @@
-using System;
 using Razorpay.Api;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -32,6 +31,17 @@ namespace RazorpayClientTest
             Token fetchedTokenById = Helper.TestFetchCustomerTokenById(token);
 
             Assert.AreNotSame(null, fetchedTokenById);
+        }
+
+        public static void DeleteTokenByIdTest()
+        {
+            Customer customer = Helper.TestCreateCustomer();
+
+            Token token = Helper.TestGetCustomerToken(customer);
+
+            Token deletedToken = Helper.TestDeleteCustomerTokenById(token);
+
+            Assert.IsTrue(deletedToken.Attributes.deleted == true);
         }
     }
 }
