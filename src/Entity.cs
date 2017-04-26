@@ -20,6 +20,10 @@ namespace Razorpay.Api
             {"transfer", new Transfer()},
             {"reversal", new Reversal()}
         };
+        private List<HttpMethod> JsonifyInput = new List<HttpMethod>()
+        {
+            HttpMethod.Post, HttpMethod.Put, HttpMethod.Patch
+        };
 
         protected Entity Fetch(string id)
         {
@@ -52,7 +56,7 @@ namespace Razorpay.Api
 
                 relativeUrl = relativeUrl + "?" + queryString;
             }
-            else if ((verb == HttpMethod.Post) || (verb == HttpMethod.Put))
+            else if (JsonifyInput.Contains(verb) == true)
             {
                 postData = JsonConvert.SerializeObject(options);
             }

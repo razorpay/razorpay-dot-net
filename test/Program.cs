@@ -25,6 +25,8 @@ namespace RazorpayClientTest
             RunAllTokenTests(key, secret);
 
             RunAllCardTests(key, secret);
+
+            RunAllTransferTests(key, secret);
         }
 
         public static void RunClientTestCases(string key, string secret)
@@ -125,6 +127,23 @@ namespace RazorpayClientTest
             CardTestCases.Init(key, secret);
 
             CardTestCases.FetchCardByIdTest();
+        }
+
+        public static void RunAllTransferTests(string key, string secret)
+        {
+            TransferTestCases.Init(key, secret);
+
+            TransferTestCases.CreatePaymentTransferTest();
+
+            TransferTestCases.GetPaymentTransfersTest();
+
+            TransferTestCases.CreateTransferTest();
+
+            TransferTestCases.GetTransferByIdTest();
+
+            TransferTestCases.CreateReversalByTransferIdTest();
+
+            TransferTestCases.PatchTransferByIdTest();
         }
     }
 }

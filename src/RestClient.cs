@@ -10,11 +10,16 @@ namespace Razorpay.Api
 {
     public class RestClient
     {
+        private List<HttpMethod> JsonifyInput = new List<HttpMethod>()
+        {
+            HttpMethod.Post, HttpMethod.Put, HttpMethod.Patch
+        };
+
         public string MakeRequest(string relativeUrl, HttpMethod method, string data)
         {
             HttpWebRequest request = createRequest(relativeUrl, method);
 
-            if ((method == HttpMethod.Post) || (method == HttpMethod.Put)) 
+            if (JsonifyInput.Contains(method) == true) 
             {
                 var bytes = Encoding.UTF8.GetBytes(data);
                 request.ContentLength = bytes.Length;

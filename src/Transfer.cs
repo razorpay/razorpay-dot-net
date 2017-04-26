@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 namespace Razorpay.Api
 {
@@ -12,7 +13,7 @@ namespace Razorpay.Api
         public Transfer Edit(Dictionary<string, object> options = null)
         {
             string relativeUrl = string.Format("{0}/{1}", GetEntityUrl(), this["id"]);
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Put, options);   
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Patch, options);   
             return (Transfer)entities[0];
         }
 
@@ -23,7 +24,7 @@ namespace Razorpay.Api
             return (Transfer)entities[0];
         }
 
-        public Reversal Reversals
+        public Reversal Reversal
         {
             get 
             {

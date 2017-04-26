@@ -46,6 +46,7 @@
     <Compile Include="InvoiceTestCases.cs" />
     <Compile Include="TokenTestCases.cs" />
     <Compile Include="CardTestCases.cs" />
+    <Compile Include="TransferTestCases.cs" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>

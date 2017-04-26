@@ -110,6 +110,7 @@ namespace RazorpayClientTest
             Payment paymentRefunded = FindPaymentWithStatus("refunded", payments);
             List<Refund> refunds = paymentRefunded.Refunds.All();
             Refund refund = paymentRefunded.Refunds.Fetch(refunds[0]["id"].ToString());
+            Console.Write(JsonConvert.SerializeObject(refund));
             return refund;
         }
 
@@ -284,6 +285,80 @@ namespace RazorpayClientTest
             string id = "card_7ivcCwFQgqgnV1";
 
             return Helper.client.Card.Fetch(id);
+        }
+
+        public static Transfer CreatePaymentTransferTest()
+        {
+            Payment payment = TestCapturePayment();
+
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            using (StreamReader r = new StreamReader("./test/data/payment-transfer-create.json"))
+            {
+                string json = r.ReadToEnd();
+                data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            }
+
+            return payment.Transfer(data);
+        }
+
+        public static List<Transfer> GetPaymentTransfersTest()
+        {
+            string id = "pay_7jIxJQrSXiVNOs";
+
+            Payment payment = Helper.client.Payment.Fetch(id);
+
+            return payment.Transfers;
+        }
+
+        public static Transfer CreateTransferTest()
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            using (StreamReader r = new StreamReader("./test/data/transfer-create.json"))
+            {
+                string json = r.ReadToEnd();
+                data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            }
+
+            return Helper.client.Transfer.Create(data);
+        }
+
+        public static Transfer GetTransferByIdTest()
+        {
+            string id = "trf_7jPXPraSwhSA7B";
+
+            return Helper.client.Transfer.Fetch(id);
+        }
+
+        public static Reversal CreateReversalByTransferIdTest()
+        {
+            Transfer transfer = GetTransferByIdTest();
+
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            using (StreamReader r = new StreamReader("./test/data/transfer-reversal-create.json"))
+            {
+                string json = r.ReadToEnd();
+                data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            }
+
+            return transfer.Reversal.Create(data);
+        }
+
+        public static Transfer PatchTransferByIdTest()
+        {
+            Transfer transfer = GetTransferByIdTest();
+
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            using (StreamReader r = new StreamReader("./test/data/transfer-patch.json"))
+            {
+                string json = r.ReadToEnd();
+                data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            }
+
+            return transfer.Edit(data);
         }
 
         public static string generateRandomString(int length, bool alphaNumeric)

@@ -36,7 +36,7 @@ namespace RazorpayClientTest
             Customer editedCustomer = Helper.TestEditCustomer(customer);
 
             Assert.AreNotSame(null, editedCustomer);
-            Assert.IsFalse(customer == editedCustomer);
+            Assert.IsFalse(customer["name"] == editedCustomer["name"]);
         }
 
         public static void GetCustomerTokenTest()
