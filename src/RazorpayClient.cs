@@ -15,6 +15,8 @@ namespace Razorpay.Api
         private Invoice invoice = null;
         private Token token = null;
         private Card card = null;
+        private Transfer transfer = null;
+        private Reversal reversal = null;
 
         public RazorpayClient(string key, string secret)
         {
@@ -148,6 +150,30 @@ namespace Razorpay.Api
                     card = new Card();
                 }
                 return card;
+            }
+        }
+
+        public Transfer Transfer
+        {
+            get
+            {
+                if (transfer == null)
+                {
+                    transfer = new Transfer();
+                }
+                return transfer;
+            }
+        }
+
+        public Reversal Reversal
+        {
+            get
+            {
+                if (reversal == null)
+                {
+                    reversal = new Reversal();
+                }
+                return reversal;
             }
         }
     }
