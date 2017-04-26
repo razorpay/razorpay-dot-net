@@ -8,9 +8,7 @@ namespace Razorpay.Api
 
         new public Refund Fetch(string id)
         {
-            string relativeUrl = string.Format("payments/{0}/{1}/{2}", this.PaymentId, GetEntityUrl(), id);
-            List<Entity> refunds = Request(relativeUrl, HttpMethod.Get, null);
-            return (Refund)refunds[0];
+            return (Refund)base.Fetch(id);
         }
 
         new public List<Refund> All(Dictionary<string, object> options = null)

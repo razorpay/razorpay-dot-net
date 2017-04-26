@@ -51,19 +51,22 @@ namespace Razorpay.Api
             return (Transfer)entities[0];
         }
 
-        public List<Transfer> Transfers(Dictionary<string, object> options = null)
+        public List<Transfer> Transfers
         {
-            string relativeUrl = string.Format("payments/{0}/{1}", this["id"], GetEntityUrl());
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
-
-            List<Transfer> transfers = new List<Transfer>();
-
-            foreach(Entity entitiy in entities)
+            get
             {
-                transfers.Add(entitiy as Transfer);
-            }
+                string relativeUrl = string.Format("payments/{0}/transfers", this["id"]);
+                List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
 
-            return transfers;
+                List<Transfer> transfers = new List<Transfer>();
+
+                foreach(Entity entity in entities)
+                {
+                    transfers.Add(entity as Transfer);
+                }
+
+                return transfers;
+            }
         }
     }
 }

@@ -8,6 +8,18 @@ namespace Razorpay.Api
     {
         public dynamic Attributes;
         private RestClient client;
+        private static Dictionary<string, Entity> Entities = new Dictionary<string, Entity>()
+        {
+            {"payment", new Payment()},
+            {"refund", new Refund()},
+            {"order", new Order()},
+            {"customer", new Customer()},
+            {"invoice", new Invoice()},
+            {"token", new Token()},
+            {"card", new Card()},
+            {"transfer", new Transfer()},
+            {"reversal", new Reversal()}
+        };
 
         protected Entity Fetch(string id)
         {
@@ -88,41 +100,16 @@ namespace Razorpay.Api
         private Entity ParseEntity(dynamic response)
         {
             Entity entity = null;
-            if (response["entity"] == "payment")
+            
+            string responseEntity = (string) response["entity"];
+
+            if (Entities.ContainsKey(responseEntity) == true)
             {
-                entity = new Payment();
+                entity = Entities[responseEntity];
             }
-            else if (response["entity"] == "refund")
-            {
-                entity = new Refund();
-            }
-            else if (response["entity"] == "order")
-            {
-                entity = new Order();
-            }
-            else if (response["entity"] == "customer")
-            {
-                entity = new Customer();
-            }
-            else if (response["entity"] == "invoice")
-            {
-                entity = new Invoice();
-            }
-            else if ((response["entity"] == "token") || (response.Property("deleted") != null))
+            else if (response.Property("deleted") != null)
             {
                 entity = new Token();
-            }
-            else if (response["entity"] == "card")
-            {
-                entity = new Card();
-            }
-            else if (response["entity"] == "transfer")
-            {
-                entity = new Transfer();
-            }
-            else if (response.Property("transfer_id") != null)
-            {
-                entity = new Reversal();
             }
             else
             {
