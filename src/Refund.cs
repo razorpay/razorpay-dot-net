@@ -6,14 +6,12 @@ namespace Razorpay.Api
     {
         public string PaymentId;
 
-        public Refund Fetch(string id)
+        new public Refund Fetch(string id)
         {
-            string relativeUrl = string.Format("payments/{0}/{1}/{2}", this.PaymentId, GetEntityUrl(), id);
-            List<Entity> refunds = Request(relativeUrl, HttpMethod.Get, null);
-            return (Refund)refunds[0];
+            return (Refund)base.Fetch(id);
         }
 
-        public List<Refund> All(Dictionary<string, object> options = null)
+        new public List<Refund> All(Dictionary<string, object> options = null)
         {
             string relativeUrl = string.Format("payments/{0}/{1}", this.PaymentId, GetEntityUrl());
             List<Entity> entities = Request(relativeUrl, HttpMethod.Get, options);

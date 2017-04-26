@@ -43,5 +43,30 @@ namespace Razorpay.Api
                 return refund;
             }
         }
+
+        public Transfer Transfer(Dictionary<string, object> data = null)
+        {
+            string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/transfers";
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
+            return (Transfer)entities[0];
+        }
+
+        public List<Transfer> Transfers
+        {
+            get
+            {
+                string relativeUrl = string.Format("payments/{0}/transfers", this["id"]);
+                List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+
+                List<Transfer> transfers = new List<Transfer>();
+
+                foreach(Entity entity in entities)
+                {
+                    transfers.Add(entity as Transfer);
+                }
+
+                return transfers;
+            }
+        }
     }
 }

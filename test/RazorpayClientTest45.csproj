@@ -33,8 +33,21 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="ClientTestCases.cs" />
     <Compile Include="OrderTestCases.cs" />
     <Compile Include="PaymentTestCases.cs" />
+    <Compile Include="UtilsTestCases.cs" />
+    <Compile Include="CustomerTestCases.cs" />
+    <Compile Include="InvoiceTestCases.cs" />
+    <Compile Include="TokenTestCases.cs" />
+    <Compile Include="CardTestCases.cs" />
+    <Compile Include="TransferTestCases.cs" />
+    <Reference Include="NUnit">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

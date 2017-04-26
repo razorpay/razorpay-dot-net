@@ -11,10 +11,15 @@ Installation
 --------
 If you are using nuget package manager, you can add below in your packages.config file 
 
-`<package id="Razorpay" version="1.0.0" targetFramework="net40" />`  
+```xml
+<package id="Razorpay" version="1.2.0" targetFramework="net40" />
+```  
+
 or  
-`<package id="Razporpay" version="1.0.0" targetFramework="net45" />
-`
+
+```cs
+<package id="Razporpay" version="1.2.0" targetFramework="net45" />
+```
 
 else  
 * Download Nuget package from [here](https://www.nuget.org/packages/Razorpay)
@@ -23,50 +28,53 @@ else
 Usage
 -----
 ### Initialize
-`
+```cs
 RazorpayClient client = new RazorpayClient(key, secret);
-`
+```
+
 ### Get Payments
-`Dictionary<string, object> options = new Dictionary<string,object>();`
+```cs
+Dictionary<string, object> options = new Dictionary<string,object>();
 
-`options.Add("from", startTime); // start time is a unix timestamp, you can get unix timestamp using`
+options.Add("from", startTime); // start time is a unix timestamp, you can get unix timestamp using                                // Utils.ToUnixTimestamp  method
 
-`                                // Utils.ToUnixTimestamp  method`
-
-`List<Payment> payments = client.Payment.All(options);`
+List<Payment> payments = client.Payment.All(options);
+```
 
 
 ### Get Payment using Id
-`
+```cs
 Payment payment = client.Payment.Fetch(id);
-`
+```
 
 ### Capture a payment
-`Dictionary<string, object> options = new Dictionary<string,object>();`
+```cs
+Dictionary<string, object> options = new Dictionary<string,object>();
 
-`options.Add("amount", amountToBeCaptured); `
+options.Add("amount", amountToBeCaptured); 
 
-`Payment payment = payment.Capture(options);`
+Payment payment = payment.Capture(options);
+```
 
 ### Refund a payment
-`
+```cs
 Refund refund = payment.Refund();
-`
+```
 
 ### Fetch All Refunds for a payment
-`
+```cs
 List<Refund> refunds = payment.Refunds.All();
-`
+```
 
 ### Fetch One Refund for a payment using refund id
-`
+```cs
 Refund refund = payment.Refunds.Fetch(id);
-`
+```
 
 ### Accessing the payment attributes
-`
-paymentAmount = payment["amount"]; 
-`
+```cs
+paymentAmount = payment["amount"];
+```
 
 Development
 -------
@@ -77,28 +85,45 @@ Ubuntu
 
 ### Compiling using Mono
 * Download the 'Newtonsoft.Json' nuget package.
+```
+nuget install Newtonsoft.Json -Version 7.0.1 -OutputDirectory packages
+```
+
+* Download the 'NUnit' nuget package.
+```
+nuget install NUnit -Version 3.6.1 -OutputDirectory packages
+```
+
+* Create a bin folder in the root directory
+
+```
+mkdir bin
+```
 
 * Compile the source code into a library  
 
-`mcs -t:library -lib:"/usr/lib/mono/4.5" -r:"System.dll,System.Net.dll,System.Net.Http.dll,System.Core.dll,System.Xml.dll,System.Xml.Linq.dll,System.Core.dll,./packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll" -out:"bin/RazorpayClient.dll" ./src/*.cs -lib:/usr/lib/mono/2.0`
+```
+mcs -t:library -lib:"/usr/lib/mono/4.5" -r:"System.dll,System.Net.dll,System.Net.Http.dll,System.Core.dll,System.Xml.dll,System.Xml.Linq.dll,System.Core.dll,./packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll" -out:"bin/RazorpayClient.dll" ./src/**/*.cs -lib:/usr/lib/mono/2.0
+```
 
 * copy Dependency dll
 
-`
+```
 cp packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll ./bin
-`
+cp packages/NUnit.3.6.1/lib/net45/nunit.framework.dll ./bin
+```
 
 * Compile test exe
 
-`
-mcs -t:exe -lib:"/usr/lib/mono/4.5,./bin" -r:"RazorpayClient.dll,Newtonsoft.Json.dll" -out:"bin/RazorpayApiTest.exe" ./test/*.cs
-`
+```
+mcs -t:exe -lib:"/usr/lib/mono/4.5,./bin" -r:"RazorpayClient.dll,Newtonsoft.Json.dll,nunit.framework.dll" -out:"bin/RazorpayApiTest.exe" ./test/*.cs
+```
 
 * Run Test exe  
 
-`
-mono RazorpayApiTest.exe [key] [secret]
-`
+```
+mono bin/RazorpayApiTest.exe [key] [secret]
+```
 
 
 ### Compiling using xbuild

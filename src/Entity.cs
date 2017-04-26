@@ -8,6 +8,22 @@ namespace Razorpay.Api
     {
         public dynamic Attributes;
         private RestClient client;
+        private static Dictionary<string, Entity> Entities = new Dictionary<string, Entity>()
+        {
+            {"payment", new Payment()},
+            {"refund", new Refund()},
+            {"order", new Order()},
+            {"customer", new Customer()},
+            {"invoice", new Invoice()},
+            {"token", new Token()},
+            {"card", new Card()},
+            {"transfer", new Transfer()},
+            {"reversal", new Reversal()}
+        };
+        private List<HttpMethod> JsonifyInput = new List<HttpMethod>()
+        {
+            HttpMethod.Post, HttpMethod.Put, HttpMethod.Patch
+        };
 
         protected Entity Fetch(string id)
         {
@@ -40,7 +56,7 @@ namespace Razorpay.Api
 
                 relativeUrl = relativeUrl + "?" + queryString;
             }
-            else if (verb == HttpMethod.Post)
+            else if (JsonifyInput.Contains(verb) == true)
             {
                 postData = JsonConvert.SerializeObject(options);
             }
@@ -88,17 +104,16 @@ namespace Razorpay.Api
         private Entity ParseEntity(dynamic response)
         {
             Entity entity = null;
-            if (response["entity"] == "payment")
+            
+            string responseEntity = (string) response["entity"];
+
+            if (Entities.ContainsKey(responseEntity) == true)
             {
-                entity = new Payment();
+                entity = Entities[responseEntity];
             }
-            else if (response["entity"] == "refund")
+            else if (response.Property("deleted") != null)
             {
-                entity = new Refund();
-            }
-            else if (response["entity"] == "order")
-            {
-                entity = new Order();
+                entity = new Token();
             }
             else
             {

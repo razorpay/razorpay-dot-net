@@ -62,6 +62,9 @@
     <Compile Include="..\src\Errors\ServerError.cs">
       <Link>Errors\ServerError.cs</Link>
     </Compile>
+    <Compile Include="..\src\Errors\SignatureVerificationError.cs">
+      <Link>Errors\SignatureVerificationError.cs</Link>
+    </Compile>
     <Compile Include="..\src\Order.cs">
       <Link>Order.cs</Link>
     </Compile>
@@ -73,6 +76,24 @@
     </Compile>
     <Compile Include="..\src\Refund.cs">
       <Link>Refund.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Token.cs">
+      <Link>Token.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Card.cs">
+      <Link>Card.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Invoice.cs">
+      <Link>Invoice.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Customer.cs">
+      <Link>Customer.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Transfer.cs">
+      <Link>Transfer.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Reversal.cs">
+      <Link>Reversal.cs</Link>
     </Compile>
     <Compile Include="..\src\RestClient.cs">
       <Link>RestClient.cs</Link>
