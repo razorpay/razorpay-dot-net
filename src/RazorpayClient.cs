@@ -105,13 +105,16 @@ namespace Razorpay.Api
             }
         }
 
-        public Refund Refund(string paymentId)
+        public Refund Refund
         {
-            if (refund == null)
+            get
             {
-                refund = new Refund(paymentId);
+                if (refund == null)
+                {
+                    refund = new Refund();
+                }
+                return refund;
             }
-            return refund;
         }
 
         public Customer Customer

@@ -41,16 +41,6 @@ namespace Razorpay.Api
             return (Refund)entities[0];
         }
 
-        public Refund Refund
-        {
-            get
-            {
-                string paymentId = this["id"].ToString();
-                Refund refund = new Refund(paymentId);
-                return refund;
-            }
-        }
-
         public List<Refund> getAllRefunds(Dictionary<string, object> data = null)
         {
             string relativeUrl = string.Format("payments/{0}/refunds", this["id"]);

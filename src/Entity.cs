@@ -11,7 +11,7 @@ namespace Razorpay.Api
         private static Dictionary<string, Entity> Entities = new Dictionary<string, Entity>()
         {
             {"payment", new Payment()},
-            {"refund", new Refund(string.Empty)},
+            {"refund", new Refund()},
             {"order", new Order()},
             {"customer", new Customer()},
             {"invoice", new Invoice()},

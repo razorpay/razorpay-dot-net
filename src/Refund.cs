@@ -4,13 +4,6 @@ namespace Razorpay.Api
 {
     public class Refund : Entity
     {
-        public string PaymentId;
-
-        public Refund(string paymentId)
-        {
-            PaymentId = paymentId;
-        }
-
         new public Refund Fetch(string id)
         {
             return (Refund)base.Fetch(id);
