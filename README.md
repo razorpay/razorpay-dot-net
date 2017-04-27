@@ -58,17 +58,17 @@ Payment payment = payment.Capture(options);
 
 ### Refund a payment
 ```cs
-Refund refund = payment.Refund();
+Refund refund = payment.createRefund();
 ```
 
 ### Fetch All Refunds for a payment
 ```cs
-List<Refund> refunds = payment.Refunds.All();
+List<Refund> refunds = payment.getAllRefunds();
 ```
 
 ### Fetch One Refund for a payment using refund id
 ```cs
-Refund refund = payment.Refunds.Fetch(id);
+Refund refund = payment.fetchRefund(id);
 ```
 
 ### Accessing the payment attributes
