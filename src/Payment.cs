@@ -20,13 +20,6 @@ namespace Razorpay.Api
             return payments;
         }
 
-        public Refund Refund(Dictionary<string, object> data = null)
-        {
-            string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/refund";
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
-            return (Refund)entities[0];
-        }
-
         public Payment Capture(Dictionary<string, object> attributes)
         {
             string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/capture";
@@ -34,7 +27,21 @@ namespace Razorpay.Api
             return (Payment)entities[0];
         }
 
-        public Refund Refunds
+        public Refund createRefund(Dictionary<string, object> data = null)
+        {
+            string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/refunds";
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
+            return (Refund)entities[0];
+        }
+
+        public Refund fetchRefund(string id)
+        {
+            string relativeUrl = string.Format("payments/{0}/refunds/{1}", this["id"], id);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+            return (Refund)entities[0];
+        }
+
+        public Refund Refund
         {
             get
             {
@@ -42,6 +49,18 @@ namespace Razorpay.Api
                 Refund refund = new Refund(paymentId);
                 return refund;
             }
+        }
+
+        public List<Refund> getAllRefunds(Dictionary<string, object> data = null)
+        {
+            string relativeUrl = string.Format("payments/{0}/refunds", this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, data);
+            List<Refund> refunds = new List<Refund>();
+            foreach (Entity entity in entities)
+            {
+                refunds.Add(entity as Refund);
+            }
+            return refunds;
         }
 
         public Transfer Transfer(Dictionary<string, object> data = null)
