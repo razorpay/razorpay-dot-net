@@ -28,8 +28,8 @@ namespace Razorpay.Api
         {
             get 
             {
-                Reversal reversal = new Reversal();
-                reversal.TransferId = this["id"].ToString();
+                string transferId = this["id"].ToString();
+                Reversal reversal = new Reversal(transferId);
                 return reversal;
             }
         }

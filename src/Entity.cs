@@ -11,14 +11,14 @@ namespace Razorpay.Api
         private static Dictionary<string, Entity> Entities = new Dictionary<string, Entity>()
         {
             {"payment", new Payment()},
-            {"refund", new Refund()},
+            {"refund", new Refund(string.Empty)},
             {"order", new Order()},
             {"customer", new Customer()},
             {"invoice", new Invoice()},
-            {"token", new Token()},
+            {"token", new Token(string.Empty)},
             {"card", new Card()},
             {"transfer", new Transfer()},
-            {"reversal", new Reversal()}
+            {"reversal", new Reversal(string.Empty)}
         };
         private List<HttpMethod> JsonifyInput = new List<HttpMethod>()
         {
@@ -113,7 +113,7 @@ namespace Razorpay.Api
             }
             else if (response.Property("deleted") != null)
             {
-                entity = new Token();
+                entity = new Token(string.Empty);
             }
             else
             {

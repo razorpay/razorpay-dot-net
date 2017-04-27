@@ -6,6 +6,11 @@ namespace Razorpay.Api
     {
         public string CustomerId;
 
+        public Token(string customerId)
+        {
+            CustomerId = customerId;
+        }
+
         new public Token Fetch(string id)
         {
             string relativeUrl = string.Format("customers/{0}/{1}/{2}", this.CustomerId, GetEntityUrl(), id);

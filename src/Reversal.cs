@@ -6,6 +6,11 @@ namespace Razorpay.Api
     {
         public string TransferId;
 
+        public Reversal(string transferId)
+        {
+            TransferId = transferId;
+        }
+
         public Reversal Create(Dictionary<string, object> options = null)
         {
             string relativeUrl = string.Format("transfers/{0}/{1}", this.TransferId, GetEntityUrl());

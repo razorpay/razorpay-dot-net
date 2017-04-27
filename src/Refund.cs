@@ -6,6 +6,11 @@ namespace Razorpay.Api
     {
         public string PaymentId;
 
+        public Refund(string paymentId)
+        {
+            PaymentId = paymentId;
+        }
+
         new public Refund Fetch(string id)
         {
             return (Refund)base.Fetch(id);

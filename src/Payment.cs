@@ -38,8 +38,8 @@ namespace Razorpay.Api
         {
             get
             {
-                Refund refund = new Refund();
-                refund.PaymentId = this["id"].ToString();
+                string paymentId = this["id"].ToString();
+                Refund refund = new Refund(paymentId);
                 return refund;
             }
         }

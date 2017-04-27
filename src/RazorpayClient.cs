@@ -11,12 +11,12 @@ namespace Razorpay.Api
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         private Payment payment = null;
         private Order order = null;
+        private Refund refund = null;
         private Customer customer = null;
         private Invoice invoice = null;
         private Token token = null;
         private Card card = null;
         private Transfer transfer = null;
-        private Reversal reversal = null;
 
         public RazorpayClient(string key, string secret)
         {
@@ -105,6 +105,15 @@ namespace Razorpay.Api
             }
         }
 
+        public Refund Refund(string paymentId)
+        {
+            if (refund == null)
+            {
+                refund = new Refund(paymentId);
+            }
+            return refund;
+        }
+
         public Customer Customer
         {
             get
@@ -129,16 +138,13 @@ namespace Razorpay.Api
             }
         }
 
-        public Token Token
+        public Token Token(string customerId)
         {
-            get
+            if (token == null)
             {
-                if (token == null)
-                {
-                    token = new Token();
-                }
-                return token;
+                token = new Token(customerId);
             }
+            return token;
         }
 
         public Card Card
@@ -162,18 +168,6 @@ namespace Razorpay.Api
                     transfer = new Transfer();
                 }
                 return transfer;
-            }
-        }
-
-        public Reversal Reversal
-        {
-            get
-            {
-                if (reversal == null)
-                {
-                    reversal = new Reversal();
-                }
-                return reversal;
             }
         }
     }
