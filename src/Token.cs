@@ -6,7 +6,7 @@ namespace Razorpay.Api
     {
         public string CustomerId;
 
-        public Token(string customerId)
+        public Token(string customerId = "")
         {
             CustomerId = customerId;
         }

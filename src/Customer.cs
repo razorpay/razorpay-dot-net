@@ -23,7 +23,7 @@ namespace Razorpay.Api
             return (Customer)entities[0];
         }
 
-        public Token Tokens()
+        public Token Token()
         {
             string customerId = this["id"].ToString();
             Token token = new Token(customerId);

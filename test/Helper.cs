@@ -80,7 +80,7 @@ namespace RazorpayClientTest
         {
             List<Payment> payments = TestGetAllPayments();
             Payment paymentCaptured = FindPaymentWithStatus("captured", payments);
-            Refund refund = paymentCaptured.createRefund();
+            Refund refund = paymentCaptured.Refund();
 
             return refund;
         }
@@ -92,7 +92,7 @@ namespace RazorpayClientTest
 
             Dictionary<string, object> data = new Dictionary<string, object>();
             data.Add("amount", "100");
-            Refund refund = paymentCaptured.createRefund(data);
+            Refund refund = paymentCaptured.Refund(data);
 
             return refund;
         }
@@ -101,15 +101,15 @@ namespace RazorpayClientTest
         {
             List<Payment> payments = TestGetAllPayments();
             Payment paymentRefunded = FindPaymentWithStatus("refunded", payments);
-            List<Refund> refunds = paymentRefunded.getAllRefunds();
+            List<Refund> refunds = paymentRefunded.AllRefunds();
             return refunds;
         }
         public static Refund TestGetRefundById()
         {
             List<Payment> payments = TestGetAllPayments();
             Payment paymentRefunded = FindPaymentWithStatus("refunded", payments);
-            List<Refund> refunds = paymentRefunded.getAllRefunds();
-            Refund refund = paymentRefunded.fetchRefund(refunds[0]["id"].ToString());
+            List<Refund> refunds = paymentRefunded.AllRefunds();
+            Refund refund = paymentRefunded.FetchRefund(refunds[0]["id"].ToString());
             return refund;
         }
 
@@ -228,7 +228,7 @@ namespace RazorpayClientTest
 
         public static Token TestGetCustomerToken(Customer customer)
         {
-            return customer.Tokens();
+            return customer.Token();
         }
 
         // returns Invoice

@@ -6,7 +6,7 @@ namespace Razorpay.Api
     {
         public string TransferId;
 
-        public Reversal(string transferId)
+        public Reversal(string transferId = "")
         {
             TransferId = transferId;
         }

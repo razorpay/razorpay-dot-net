@@ -27,21 +27,21 @@ namespace Razorpay.Api
             return (Payment)entities[0];
         }
 
-        public Refund createRefund(Dictionary<string, object> data = null)
+        public Refund Refund(Dictionary<string, object> data = null)
         {
             string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/refunds";
             List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
             return (Refund)entities[0];
         }
 
-        public Refund fetchRefund(string id)
+        public Refund FetchRefund(string id)
         {
             string relativeUrl = string.Format("payments/{0}/refunds/{1}", this["id"], id);
             List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
             return (Refund)entities[0];
         }
 
-        public List<Refund> getAllRefunds(Dictionary<string, object> data = null)
+        public List<Refund> AllRefunds(Dictionary<string, object> data = null)
         {
             string relativeUrl = string.Format("payments/{0}/refunds", this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.Get, data);

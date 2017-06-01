@@ -15,10 +15,10 @@ namespace Razorpay.Api
             {"order", new Order()},
             {"customer", new Customer()},
             {"invoice", new Invoice()},
-            {"token", new Token(string.Empty)},
+            {"token", new Token()},
             {"card", new Card()},
             {"transfer", new Transfer()},
-            {"reversal", new Reversal(string.Empty)}
+            {"reversal", new Reversal()}
         };
         private List<HttpMethod> JsonifyInput = new List<HttpMethod>()
         {
@@ -113,7 +113,7 @@ namespace Razorpay.Api
             }
             else if (response.Property("deleted") != null)
             {
-                entity = new Token(string.Empty);
+                entity = new Token();
             }
             else
             {
