@@ -1,8 +1,6 @@
 using Razorpay.Api;
 using NUnit.Framework;
 using System.Collections.Generic;
-using System;
-using Newtonsoft.Json;
 
 namespace RazorpayClientTest
 {

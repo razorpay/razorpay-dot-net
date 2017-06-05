@@ -1,9 +1,16 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Razorpay.Api
 {
     public class Customer : Entity 
     {
+        public Customer(string customerId = "")
+        {
+            this.Attributes = new Dictionary<string, object>();
+            this["id"] = customerId;
+        }
+
         new public Customer Fetch(string id)
         {
             return (Customer)base.Fetch(id);
@@ -23,11 +30,33 @@ namespace Razorpay.Api
             return (Customer)entities[0];
         }
 
-        public Token Token()
+        public Token Token(string tokenId) 
         {
-            string customerId = this["id"].ToString();
-            Token token = new Token(customerId);
-            return token;
+            string relativeUrl = string.Format("{0}/{1}/tokens/{2}", GetEntityUrl(), this["id"], tokenId);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+            return (Token)entities[0];
+        }
+
+        // Fetch multiple tokens associated with the customerId
+        public List<Token> Tokens() 
+        {
+            string relativeUrl = string.Format("{0}/{1}/tokens", GetEntityUrl(), this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+
+            List<Token> tokens = new List<Token>();
+
+            foreach(Entity entity in entities)
+            {
+                tokens.Add(entity as Token);
+            }
+
+            return tokens;
+        }
+
+        public void DeleteToken(string tokenId)
+        {
+            string relativeUrl = string.Format("{0}/{1}/tokens/{2}", GetEntityUrl(), this["id"], tokenId);
+            Request(relativeUrl, HttpMethod.Delete, null);
         }
     }
 }

@@ -69,9 +69,9 @@ namespace RazorpayClientTest
             Payment payment = FindPaymentWithStatus("authorized", result);
 
             Dictionary<string, object> options = new Dictionary<string, object>();
-            options.Add("amount", payment["amount"]);
+            options.Add("amount", "100");
 
-            Payment paymentCaptured = payment.Capture(options);
+            Payment paymentCaptured = new Payment((string) payment["id"]).Capture(options);
 
             return paymentCaptured;
         }
@@ -80,7 +80,7 @@ namespace RazorpayClientTest
         {
             List<Payment> payments = TestGetAllPayments();
             Payment paymentCaptured = FindPaymentWithStatus("captured", payments);
-            Refund refund = paymentCaptured.Refund();
+            Refund refund = new Payment((string) paymentCaptured["id"]).Refund();
 
             return refund;
         }
@@ -92,7 +92,7 @@ namespace RazorpayClientTest
 
             Dictionary<string, object> data = new Dictionary<string, object>();
             data.Add("amount", "100");
-            Refund refund = paymentCaptured.Refund(data);
+            Refund refund = new Payment((string) paymentCaptured["id"]).Refund(data);
 
             return refund;
         }
@@ -101,9 +101,23 @@ namespace RazorpayClientTest
         {
             List<Payment> payments = TestGetAllPayments();
             Payment paymentRefunded = FindPaymentWithStatus("refunded", payments);
-            List<Refund> refunds = paymentRefunded.AllRefunds();
+            List<Refund> refunds = new Payment((string) paymentRefunded["id"]).AllRefunds();
             return refunds;
         }
+
+        public static List<Refund> TestFetchAllRefunds()
+        {
+            List<Refund> refunds = Helper.client.Refund.All();
+            return refunds;
+        }
+
+        public static Refund TestFetchSingleRefund()
+        {
+            List<Refund> refunds = TestFetchAllRefunds();
+
+            return (Refund)refunds[0];
+        }
+
         public static Refund TestGetRefundById()
         {
             List<Payment> payments = TestGetAllPayments();
@@ -214,6 +228,7 @@ namespace RazorpayClientTest
 
         public static Customer TestEditCustomer(Customer customer)
         {
+            // new Customer(id).Edit(data); -> makes things non-uniform
             Dictionary<string, object> data = new Dictionary<string, object>();
 
             string name = generateRandomString(11, true);
@@ -222,13 +237,15 @@ namespace RazorpayClientTest
             data.Add("name", name);
             data.Add("email", string.Format("{0}@gmail.com", name));
             data.Add("contact", number);
-
+            
             return customer.Edit(data);
         }
 
-        public static Token TestGetCustomerToken(Customer customer)
+        public static Customer TestCreateCustomerEntity()
         {
-            return customer.Token();
+            string id = "cust_7zD6YU2PZEAMIy";
+
+            return new Customer(id);
         }
 
         // returns Invoice
@@ -255,28 +272,23 @@ namespace RazorpayClientTest
             return Helper.client.Invoice.Fetch(id);
         }
 
-        public static List<Token> TestFetchAllCustomerToken(Token token)
+        public static List<Token> TestFetchAllCustomerToken(Customer customer)
         {
-            token.CustomerId = "cust_5P3Svw0zgLjtca";
-            return token.All();
+            return customer.Tokens();
         }
 
-        public static Token TestFetchCustomerTokenById(Token token)
+        public static Token TestFetchCustomerTokenById(Customer customer)
         {
-            string id = "token_5P3dj4d4y8RDor";
+            string id = "token_7zEIXkywn4YZgc";
 
-            token.CustomerId = "cust_5P3Svw0zgLjtca";
-
-            return token.Fetch(id);
+            return customer.Token(id);
         }
 
-        public static Token TestDeleteCustomerTokenById(Token token)
+        public static void TestDeleteCustomerTokenById(Customer customer)
         {
-            string id = "token_5P3dj4d4y8RDor";
+            string id = "token_7zEIXkywn4YZgc";
 
-            token.CustomerId = "cust_5P3Svw0zgLjtca";
-
-            return token.Delete(id);
+            customer.DeleteToken(id);
         }
 
         public static Card TestFetchCardById()
@@ -307,7 +319,7 @@ namespace RazorpayClientTest
 
             Payment payment = Helper.client.Payment.Fetch(id);
 
-            return payment.Transfers;
+            return payment.Transfers();
         }
 
         public static Transfer CreateTransferTest()

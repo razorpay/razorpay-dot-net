@@ -14,6 +14,8 @@ namespace RazorpayClientTest
 
             RunAllPaymentTests(key, secret);
 
+            RunAllRefundTests(key, secret);
+
             RunAllOrderTests(key, secret);
 
             RunAllUtilsTests(key, secret);
@@ -21,8 +23,6 @@ namespace RazorpayClientTest
             RunAllCustomerTests(key, secret);
 
             RunAllInvoiceTests(key, secret);
-
-            RunAllTokenTests(key, secret);
 
             RunAllCardTests(key, secret);
 
@@ -63,6 +63,15 @@ namespace RazorpayClientTest
             PaymentTestCases.TestGetRefundById();
         }
 
+        public static void RunAllRefundTests(string key, string secret)
+        {
+            RefundTestCases.Init(key, secret);
+
+            RefundTestCases.FetchAllRefundsTest();
+
+            RefundTestCases.FetchRefundTest();
+        }
+
         public static void RunAllOrderTests(string key, string secret)
         {
             OrderTestCases.Init(key, secret);
@@ -100,6 +109,10 @@ namespace RazorpayClientTest
             CustomerTestCases.EditCustomerTest();
 
             CustomerTestCases.GetCustomerTokenTest();
+
+            CustomerTestCases.GetAllCustomerTokens();
+
+            CustomerTestCases.DeleteTokenByIdTest();
         }
 
         public static void RunAllInvoiceTests(string key, string secret)
@@ -109,17 +122,6 @@ namespace RazorpayClientTest
             InvoiceTestCases.CreateInvoiceTest();
 
             InvoiceTestCases.FetchInvoiceTest();
-        }
-
-        public static void RunAllTokenTests(string key, string secret)
-        {
-            TokenTestCases.Init(key, secret);
-
-            TokenTestCases.FetchAllTokenTest();
-
-            TokenTestCases.FetchTokenByIdTest();
-
-            TokenTestCases.DeleteTokenByIdTest();
         }
 
         public static void RunAllCardTests(string key, string secret)

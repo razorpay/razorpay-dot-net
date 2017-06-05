@@ -48,7 +48,7 @@ namespace RazorpayClientTest
         {
             string version = RazorpayClient.Version;
 
-            string expectedVersion = "1.2.0";
+            string expectedVersion = "2.0.0";
 
             Assert.AreSame(expectedVersion, version);
         }

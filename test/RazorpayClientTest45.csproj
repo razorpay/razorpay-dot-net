@@ -39,7 +39,7 @@
     <Compile Include="UtilsTestCases.cs" />
     <Compile Include="CustomerTestCases.cs" />
     <Compile Include="InvoiceTestCases.cs" />
-    <Compile Include="TokenTestCases.cs" />
+    <Compile Include="RefundTestCases.cs" />
     <Compile Include="CardTestCases.cs" />
     <Compile Include="TransferTestCases.cs" />
     <Reference Include="NUnit">

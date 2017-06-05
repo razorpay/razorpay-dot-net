@@ -4,6 +4,12 @@ namespace Razorpay.Api
 {
     public class Payment : Entity
     {
+        public Payment(string paymentId = "")
+        {
+            this.Attributes = new Dictionary<string, object>();
+            this["id"] = paymentId;
+        }
+
         new public Payment Fetch(string id)
         {
             return (Payment)base.Fetch(id);
@@ -29,14 +35,14 @@ namespace Razorpay.Api
 
         public Refund Refund(Dictionary<string, object> data = null)
         {
-            string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/refunds";
+            string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/refund";
             List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
             return (Refund)entities[0];
         }
 
-        public Refund FetchRefund(string id)
+        public Refund FetchRefund(string refundId)
         {
-            string relativeUrl = string.Format("payments/{0}/refunds/{1}", this["id"], id);
+            string relativeUrl = string.Format("payments/{0}/refunds/{1}", this["id"], refundId);
             List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
             return (Refund)entities[0];
         }
@@ -55,27 +61,24 @@ namespace Razorpay.Api
 
         public Transfer Transfer(Dictionary<string, object> data = null)
         {
-            string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/transfers";
+            string relativeUrl = string.Format("{0}/{1}/transfers", GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
             return (Transfer)entities[0];
         }
 
-        public List<Transfer> Transfers
+        public List<Transfer> Transfers()
         {
-            get
+            string relativeUrl = string.Format("{0}/{1}/transfers", GetEntityUrl(), this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+
+            List<Transfer> transfers = new List<Transfer>();
+
+            foreach(Entity entity in entities)
             {
-                string relativeUrl = string.Format("payments/{0}/transfers", this["id"]);
-                List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
-
-                List<Transfer> transfers = new List<Transfer>();
-
-                foreach(Entity entity in entities)
-                {
-                    transfers.Add(entity as Transfer);
-                }
-
-                return transfers;
+                transfers.Add(entity as Transfer);
             }
+
+            return transfers;
         }
     }
 }

@@ -17,7 +17,7 @@ If you are using nuget package manager, you can add below in your packages.confi
 
 or  
 
-```cs
+```xml
 <package id="Razporpay" version="1.2.0" targetFramework="net45" />
 ```
 

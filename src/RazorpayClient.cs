@@ -4,7 +4,7 @@ namespace Razorpay.Api
 {
     public class RazorpayClient
     {
-        protected const string version = "1.2.0";
+        protected const string version = "2.0.0";
         protected const string baseUrl = "https://api.razorpay.com/v1/";
         protected static string key = null;
         protected static string secret = null; 
@@ -14,7 +14,6 @@ namespace Razorpay.Api
         private Refund refund = null;
         private Customer customer = null;
         private Invoice invoice = null;
-        private Token token = null;
         private Card card = null;
         private Transfer transfer = null;
 
@@ -83,7 +82,7 @@ namespace Razorpay.Api
 
         public Payment Payment
         {
-            get
+            get 
             {
                 if (payment == null)
                 {
@@ -119,7 +118,7 @@ namespace Razorpay.Api
 
         public Customer Customer
         {
-            get
+            get 
             {
                 if (customer == null)
                 {
@@ -139,15 +138,6 @@ namespace Razorpay.Api
                 }
                 return invoice;
             }
-        }
-
-        public Token Token(string customerId)
-        {
-            if (token == null)
-            {
-                token = new Token(customerId);
-            }
-            return token;
         }
 
         public Card Card
