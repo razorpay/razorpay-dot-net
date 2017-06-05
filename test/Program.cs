@@ -145,6 +145,8 @@ namespace RazorpayClientTest
 
             TransferTestCases.CreateReversalByTransferIdTest();
 
+            TransferTestCases.FetchReversalsByTransferIdTest();
+
             TransferTestCases.PatchTransferByIdTest();
         }
     }

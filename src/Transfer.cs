@@ -1,10 +1,15 @@
 using System.Collections.Generic;
-using System;
 
 namespace Razorpay.Api
 {
     public class Transfer : Entity
     {
+        public Transfer(string transferId = "")
+        {
+            this.Attributes = new Dictionary<string, object>();
+            this["id"] = transferId;
+        }
+
         new public Transfer Fetch(string id)
         {
             return (Transfer)base.Fetch(id);
@@ -24,14 +29,28 @@ namespace Razorpay.Api
             return (Transfer)entities[0];
         }
 
-        public Reversal Reversal
+        /**
+         * Create a reversal 
+        **/
+        public Reversal Reversal(Dictionary<string, object> options = null)
         {
-            get 
+            string relativeUrl = string.Format("{0}/{1}/reversals", GetEntityUrl(), this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, options);
+            return (Reversal)entities[0];
+        }
+
+        public List<Reversal> Reversals(Dictionary<string, object> options = null)
+        {
+            string relativeUrl = string.Format("{0}/{1}/reversals", GetEntityUrl(), this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, options);
+            List<Reversal> reversals = new List<Reversal>();
+
+            foreach (Entity entity in entities)
             {
-                string transferId = this["id"].ToString();
-                Reversal reversal = new Reversal(transferId);
-                return reversal;
+                reversals.Add((Reversal)entity);
             }
+
+            return reversals;
         }
     }
 }

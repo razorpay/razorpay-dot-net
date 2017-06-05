@@ -46,6 +46,13 @@ namespace RazorpayClientTest
             Assert.AreNotSame(null, reversal);
         }
 
+        public static void FetchReversalsByTransferIdTest()
+        {
+            List<Reversal> reversals = Helper.FetchReversalsByTransferIdTest();
+
+            Assert.AreNotSame(null, reversals);
+        }
+
         public static void PatchTransferByIdTest()
         {
             Transfer transfer = Helper.PatchTransferByIdTest();

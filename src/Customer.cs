@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace Razorpay.Api
 {
@@ -37,7 +36,9 @@ namespace Razorpay.Api
             return (Token)entities[0];
         }
 
-        // Fetch multiple tokens associated with the customerId
+        /**
+         * Fetch multiple tokens associated with the customerId
+        **/
         public List<Token> Tokens() 
         {
             string relativeUrl = string.Format("{0}/{1}/tokens", GetEntityUrl(), this["id"]);

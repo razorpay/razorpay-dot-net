@@ -115,7 +115,9 @@ namespace RazorpayClientTest
         {
             List<Refund> refunds = TestFetchAllRefunds();
 
-            return (Refund)refunds[0];
+            Refund refund = (Refund)refunds[0];
+
+            return Helper.client.Refund.Fetch((string) refund["id"]);
         }
 
         public static Refund TestGetRefundById()
@@ -344,7 +346,7 @@ namespace RazorpayClientTest
 
         public static Reversal CreateReversalByTransferIdTest()
         {
-            Transfer transfer = GetTransferByIdTest();
+            Transfer transfer = new Transfer("trf_7zEqfpoxMChlja");
 
             Dictionary<string, object> data = new Dictionary<string, object>();
 
@@ -354,7 +356,14 @@ namespace RazorpayClientTest
                 data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
             }
 
-            return transfer.Reversal.Create(data);
+            return transfer.Reversal(data);
+        }
+
+        public static List<Reversal> FetchReversalsByTransferIdTest()
+        {
+            Transfer transfer = new Transfer("trf_7zEqfpoxMChlja");
+
+            return transfer.Reversals();
         }
 
         public static Transfer PatchTransferByIdTest()
