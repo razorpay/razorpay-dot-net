@@ -6,7 +6,7 @@ namespace Razorpay.Api
 {
     public class Entity
     {
-        public dynamic Attributes;
+        public dynamic Attributes = new Dictionary<string, object>();
         private RestClient client;
         private static Dictionary<string, Entity> Entities = new Dictionary<string, Entity>()
         {
@@ -63,10 +63,9 @@ namespace Razorpay.Api
 
             string responseStr = client.MakeRequest(relativeUrl, verb, postData);
 
-            // Check this once
             if (verb == HttpMethod.Delete)
             {
-                return new List<Entity>();
+                return null;
             }
 
             dynamic response = JsonConvert.DeserializeObject(responseStr);
@@ -117,10 +116,6 @@ namespace Razorpay.Api
             if (Entities.ContainsKey(responseEntity) == true)
             {
                 entity = Entities[responseEntity];
-            }
-            else if (response.Property("deleted") != null)
-            {
-                entity = new Token();
             }
             else
             {

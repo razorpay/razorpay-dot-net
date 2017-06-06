@@ -6,7 +6,6 @@ namespace Razorpay.Api
     {
         public Payment(string paymentId = "")
         {
-            this.Attributes = new Dictionary<string, object>();
             this["id"] = paymentId;
         }
 
