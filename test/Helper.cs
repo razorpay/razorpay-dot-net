@@ -120,6 +120,19 @@ namespace RazorpayClientTest
             return Helper.client.Refund.Fetch((string) refund["id"]);
         }
 
+        public static Refund TestCreateDirectRefund()
+        {
+            List<Payment> payments = TestGetAllPayments();
+
+            Payment payment = payments[0];
+
+            Dictionary<string, object> attributes = new Dictionary<string, object>();
+
+            attributes.Add("payment_id", payment["id"]);
+
+            return Helper.client.Refund.Create(attributes);
+        }
+
         public static Refund TestGetRefundById()
         {
             List<Payment> payments = TestGetAllPayments();

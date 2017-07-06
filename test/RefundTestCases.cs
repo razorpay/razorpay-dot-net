@@ -24,5 +24,12 @@ namespace RazorpayClientTest
 
             Assert.AreNotSame(null, refund);
         }
+
+        public static void CreateRefundTest()
+        {
+            Refund refund = Helper.TestCreateDirectRefund();
+
+            Assert.AreNotSame(null, refund);
+        }
     }
 }

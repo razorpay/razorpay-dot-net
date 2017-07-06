@@ -70,6 +70,8 @@ namespace RazorpayClientTest
             RefundTestCases.FetchAllRefundsTest();
 
             RefundTestCases.FetchRefundTest();
+
+            RefundTestCases.CreateRefundTest();
         }
 
         public static void RunAllOrderTests(string key, string secret)
