@@ -4,19 +4,21 @@ namespace Razorpay.Api
 {
     public class Refund : Entity
     {
-        public string PaymentId;
-
-        public Refund Fetch(string id)
+        new public Refund Fetch(string id)
         {
-            string relativeUrl = string.Format("payments/{0}/{1}/{2}", this.PaymentId, GetEntityUrl(), id);
-            List<Entity> refunds = Request(relativeUrl, HttpMethod.Get, null);
-            return (Refund)refunds[0];
+            return (Refund)base.Fetch(id);
         }
 
-        public List<Refund> All(Dictionary<string, object> options = null)
+        public Refund Create(Dictionary<string, object> data = null)
         {
-            string relativeUrl = string.Format("payments/{0}/{1}", this.PaymentId, GetEntityUrl());
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, options);
+            string relativeUrl = GetEntityUrl();
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
+            return (Refund)entities[0];
+        }
+
+        new public List<Refund> All(Dictionary<string, object> options = null)
+        {
+            List<Entity> entities = Request(GetEntityUrl(), HttpMethod.Get, options);
             List<Refund> refunds = new List<Refund>();
             foreach (Entity entity in entities)
             {

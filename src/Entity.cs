@@ -6,8 +6,24 @@ namespace Razorpay.Api
 {
     public class Entity
     {
-        public dynamic Attributes;
+        public dynamic Attributes = new Dictionary<string, object>();
         private RestClient client;
+        private static Dictionary<string, Entity> Entities = new Dictionary<string, Entity>()
+        {
+            {"payment", new Payment()},
+            {"refund", new Refund()},
+            {"order", new Order()},
+            {"customer", new Customer()},
+            {"invoice", new Invoice()},
+            {"token", new Token()},
+            {"card", new Card()},
+            {"transfer", new Transfer()},
+            {"reversal", new Reversal()}
+        };
+        private List<HttpMethod> JsonifyInput = new List<HttpMethod>()
+        {
+            HttpMethod.Post, HttpMethod.Put, HttpMethod.Patch
+        };
 
         protected Entity Fetch(string id)
         {
@@ -40,12 +56,17 @@ namespace Razorpay.Api
 
                 relativeUrl = relativeUrl + "?" + queryString;
             }
-            else if (verb == HttpMethod.Post)
+            else if (JsonifyInput.Contains(verb) == true)
             {
                 postData = JsonConvert.SerializeObject(options);
             }
 
             string responseStr = client.MakeRequest(relativeUrl, verb, postData);
+
+            if (verb == HttpMethod.Delete)
+            {
+                return null;
+            }
 
             dynamic response = JsonConvert.DeserializeObject(responseStr);
 
@@ -85,20 +106,16 @@ namespace Razorpay.Api
             return entities;
         }
 
+        // iF HttpMethod = delete, return
         private Entity ParseEntity(dynamic response)
         {
             Entity entity = null;
-            if (response["entity"] == "payment")
+            
+            string responseEntity = (string) response["entity"];
+
+            if (Entities.ContainsKey(responseEntity) == true)
             {
-                entity = new Payment();
-            }
-            else if (response["entity"] == "refund")
-            {
-                entity = new Refund();
-            }
-            else if (response["entity"] == "order")
-            {
-                entity = new Order();
+                entity = Entities[responseEntity];
             }
             else
             {

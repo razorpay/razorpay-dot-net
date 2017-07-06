@@ -1,0 +1,41 @@
+{
+  "customer": {
+    "email": "test@test.com",
+    "contact": "9999999999",
+    "billing_address": {
+      "line1": "#11, Navi Camp",
+      "city": "Pandora",
+      "state": "Karnataka",
+      "zipcode": "560076",
+      "country": "India"
+    }
+  },
+  "line_items": [
+    {
+      "name": "Book / English August",
+      "amount": 20000,
+      "currency": "INR",
+      "quantity": 2
+    },
+    {
+      "name": "Book / Ignited Minds",
+      "amount": 15000,
+      "currency": "INR",
+      "quantity": 1
+    }
+  ],
+  "draft": "0",
+  "sms_notify": "1",
+  "email_notify": "1",
+  "date": 1488439025,
+  "receipt": "max-14-char-no",
+  "type": "invoice",
+  "currency": "INR",
+  "expire_by": 1498439025,
+  "terms": "Terms and condition of the service/invoice",
+  "notes": {
+    "random_key": "Random note"
+  },
+  "description": "Just an optional description for the invoice",
+  "comment": "Optional comment to the customer for the invoice"
+}
