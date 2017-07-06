@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 
 namespace Razorpay.Api.Errors
@@ -8,7 +7,7 @@ namespace Razorpay.Api.Errors
     {
         BAD_REQUEST_ERROR,
         SERVER_ERROR,
-        GATEWAY_ERROR,
+        GATEWAY_ERROR
     };
 
 

@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -38,9 +42,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +63,9 @@
     <Compile Include="..\src\Errors\ServerError.cs">
       <Link>Errors\ServerError.cs</Link>
     </Compile>
+    <Compile Include="..\src\Errors\SignatureVerificationError.cs">
+      <Link>Errors\SignatureVerificationError.cs</Link>
+    </Compile>
     <Compile Include="..\src\Order.cs">
       <Link>Order.cs</Link>
     </Compile>
@@ -74,6 +78,24 @@
     <Compile Include="..\src\Refund.cs">
       <Link>Refund.cs</Link>
     </Compile>
+    <Compile Include="..\src\Token.cs">
+      <Link>Token.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Card.cs">
+      <Link>Card.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Invoice.cs">
+      <Link>Invoice.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Customer.cs">
+      <Link>Customer.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Transfer.cs">
+      <Link>Transfer.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Reversal.cs">
+      <Link>Reversal.cs</Link>
+    </Compile>
     <Compile Include="..\src\RestClient.cs">
       <Link>RestClient.cs</Link>
     </Compile>
@@ -84,6 +106,9 @@
     <Compile Include="..\src\HttpMethod.cs">
       <Link>HttpMethod.cs</Link>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

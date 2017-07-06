@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -26,18 +26,33 @@
     <ExternalConsole>true</ExternalConsole>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="NUnit">
+      <HintPath>..\packages\NUnit.3.6.1\lib\net40\nunit.framework.dll</HintPath>
+    </Reference>
     <Compile Include="Program.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="ClientTestCases.cs" />
     <Compile Include="OrderTestCases.cs" />
     <Compile Include="PaymentTestCases.cs" />
+    <Compile Include="UtilsTestCases.cs" />
+    <Compile Include="CustomerTestCases.cs" />
+    <Compile Include="InvoiceTestCases.cs" />
+    <Compile Include="RefundTestCases.cs" />
+    <Compile Include="CardTestCases.cs" />
+    <Compile Include="TransferTestCases.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\net40\RazorpayClient40.csproj">
       <Project>{D468F846-3CFE-4E6F-A3D3-84F84C0BB632}</Project>

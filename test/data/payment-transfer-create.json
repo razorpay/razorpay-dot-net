@@ -1,0 +1,9 @@
+{
+  "transfers": [
+    {
+      "account": "acc_7jO4N6LScw5CEG",
+      "amount" : 1000,
+      "currency": "INR"
+    }
+  ]
+}
