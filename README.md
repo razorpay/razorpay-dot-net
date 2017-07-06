@@ -9,17 +9,12 @@ Razorpay client .NET Api. The api follows the following practices
 
 Installation
 --------
-If you are using nuget package manager, you can add below in your packages.config file 
+If you are using nuget package manager:
 
-```xml
-<package id="Razorpay" version="1.2.0" targetFramework="net40" />
-```  
-
-or  
-
-```xml
-<package id="Razporpay" version="1.2.0" targetFramework="net45" />
-```
+`
+Install-Package Razorpay
+`
+=======
 
 else  
 * Download Nuget package from [here](https://www.nuget.org/packages/Razorpay)
