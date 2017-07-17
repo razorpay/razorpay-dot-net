@@ -207,17 +207,19 @@ namespace RazorpayClientTest
         public static void TestVerifyWebhookSignature()
         {
             string payload = string.Format("{0}|{1}", "order_123456789", "pay_1234567890");
-            string expected = "1dcae2ddc7994c1a9b10a9e52a840d705dc9e9c5d48dc5ec04413aa4866a0784";
+            string secret = "chosen_webhook_secret";
+            string expected = "0c24222f628d6c36a0bd4604537228b9bae972d3986dc89172c60abafbd3c232";
 
-            Utils.verifyWebhookSignature(payload, expected);
+            Utils.verifyWebhookSignature(payload, expected, secret);
         }
 
         public static void TestFailedVerifyWebhookSignature()
         {
             string payload = string.Format("{0}|{1}", "pay_1234567890", "order_123456789");
+            string secret = "chosen_webhook_secret";
             string expected = "this_hash_will_fail_signature_validation";
 
-            Utils.verifyWebhookSignature(payload, expected);
+            Utils.verifyWebhookSignature(payload, expected, secret);
         }
 
         public static Customer TestCreateCustomer()

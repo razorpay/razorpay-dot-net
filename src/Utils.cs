@@ -16,12 +16,14 @@ namespace Razorpay.Api
 
             string payload = string.Format("{0}|{1}", orderId, paymentId);
 
-            verifySignature(payload, expectedSignature);
+            string secret = RazorpayClient.Secret;
+
+            verifySignature(payload, expectedSignature, secret);
         }
 
-        public static void verifyWebhookSignature(string payload, string expectedSignature)
+        public static void verifyWebhookSignature(string payload, string expectedSignature, string secret)
         {
-            verifySignature(payload, expectedSignature);
+            verifySignature(payload, expectedSignature, secret);
         }
 
         public static long ToUnixTimestamp(DateTime inputTime)
@@ -31,9 +33,9 @@ namespace Razorpay.Api
             return (long)diff.TotalSeconds;
         }
 
-        private static void verifySignature(string payload, string expectedSignature)
+        private static void verifySignature(string payload, string expectedSignature, string secret)
         {
-            string actualSignature = getActualSignature(payload);
+            string actualSignature = getActualSignature(payload, secret);
 
             bool verified = actualSignature.Equals(expectedSignature);
 
@@ -43,11 +45,11 @@ namespace Razorpay.Api
             }
         }
 
-        private static string getActualSignature(string payload)
+        private static string getActualSignature(string payload, string secret)
         {
-            byte[] secret = StringEncode(RazorpayClient.Secret);
+            byte[] secretBytes = StringEncode(secret);
 
-            HMACSHA256 hashHmac = new HMACSHA256(secret);
+            HMACSHA256 hashHmac = new HMACSHA256(secretBytes);
 
             var bytes = StringEncode(payload);
 
