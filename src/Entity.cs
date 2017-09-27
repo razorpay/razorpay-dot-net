@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace Razorpay.Api
 {
@@ -8,19 +9,19 @@ namespace Razorpay.Api
     {
         public dynamic Attributes = new Dictionary<string, object>();
         private RestClient client;
-        private static Dictionary<string, Entity> Entities = new Dictionary<string, Entity>()
+        private static Dictionary<string, string> Entities = new Dictionary<string, string>()
         {
-            {"payment", new Payment()},
-            {"refund", new Refund()},
-            {"order", new Order()},
-            {"customer", new Customer()},
-            {"invoice", new Invoice()},
-            {"token", new Token()},
-            {"card", new Card()},
-            {"transfer", new Transfer()},
-            {"reversal", new Reversal()}
+            {"payment", "Razorpay.Api.Payment"},
+            {"refund", "Razorpay.Api.Refund"},
+            {"order", "Razorpay.Api.Order"},
+            {"customer", "Razorpay.Api.Customer"},
+            {"invoice", "Razorpay.Api.Invoice"},
+            {"token", "Razorpay.Api.Token"},
+            {"card", "Razorpay.Api.Card"},
+            {"transfer", "Razorpay.Api.Transfer"},
+            {"reversal", "Razorpay.Api.Reversal"}
         };
-        private List<HttpMethod> JsonifyInput = new List<HttpMethod>()
+        private static List<HttpMethod> JsonifyInput = new List<HttpMethod>()
         {
             HttpMethod.Post, HttpMethod.Put, HttpMethod.Patch
         };
@@ -115,7 +116,9 @@ namespace Razorpay.Api
 
             if (Entities.ContainsKey(responseEntity) == true)
             {
-                entity = Entities[responseEntity];
+                string type = Entities[responseEntity];
+
+                entity = (Entity) FormatterServices.GetUninitializedObject(Type.GetType(type));
             }
             else
             {
