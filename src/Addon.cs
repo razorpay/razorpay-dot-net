@@ -9,15 +9,11 @@ namespace Razorpay.Api
             return (Addon)base.Fetch(id);
         }
 
-        new public List<Addon> All(Dictionary<string, object> options = null)
+        public Addon Delete()
         {
-            List<Entity> entities = base.All(options);
-            List<Addon> addons = new List<Addon>();
-            foreach (Entity entity in entities)
-            {
-                addons.Add(entity as Addon);
-            }
-            return addons;
+            string relativeUrl = GetEntityUrl() + "/" + this["id"];
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Delete, null);
+            return (Addon)entities[0];
         }
 
         public Addon Create(Dictionary<string, object> data)

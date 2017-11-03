@@ -26,5 +26,12 @@ namespace Razorpay.Api
             List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
             return (VirtualAccount)entities[0];
         }
+
+        public VirtualAccount Edit(Dictionary<string, object> data) 
+        {
+            string relativeUrl = string.Format("{0}/{1}", GetEntityUrl(), this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Put, data);
+            return (VirtualAccount)entities[0];
+        }
     }
 }
