@@ -12,7 +12,7 @@ namespace Razorpay.Api
         new public List<Plan> All(Dictionary<string, object> options = null)
         {
             List<Entity> entities = base.All(options);
-            List<Order> plans = new List<Plan>();
+            List<Plan> plans = new List<Plan>();
             foreach (Entity entity in entities)
             {
                 plans.Add(entity as Plan);
