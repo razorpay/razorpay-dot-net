@@ -34,6 +34,13 @@ namespace Razorpay.Api
             return (VirtualAccount)entities[0];
         }
 
+        public VirtualAccount Close() 
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+            data.Add("status", "closed");
+            return Edit(data);
+        }
+
         public List<Payment> Payments()
         {
             string relativeUrl = string.Format("virtual_accounts/{0}/payments", this["id"]);
