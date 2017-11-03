@@ -22,16 +22,29 @@ namespace Razorpay.Api
 
         public VirtualAccount Create(Dictionary<string, object> data)
         {
-            string relativeUrl = GetEntityUrl();
+            string relativeUrl = "virtual_accounts";
             List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
             return (VirtualAccount)entities[0];
         }
 
         public VirtualAccount Edit(Dictionary<string, object> data) 
         {
-            string relativeUrl = string.Format("{0}/{1}", GetEntityUrl(), this["id"]);
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Put, data);
+            string relativeUrl = string.Format("virtual_accounts/{0}", this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Patch, data);
             return (VirtualAccount)entities[0];
+        }
+
+        public List<Payment> Payments()
+        {
+            string relativeUrl = string.Format("virtual_accounts/{0}/payments", this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+
+            List<Payment> payments = new List<Payment>();
+            foreach (Entity entity in entities)
+            {
+                payments.Add(entity as Payment);
+            }
+            return payments;
         }
     }
 }
