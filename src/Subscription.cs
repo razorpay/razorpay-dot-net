@@ -4,6 +4,11 @@ namespace Razorpay.Api
 {
     public class Subscription : Entity
     {
+        public Subscription(string subscriptionId = "")
+        {
+            this["id"] = subscriptionId;
+        }
+
         new public Subscription Fetch(string id)
         {
             return (Subscription)base.Fetch(id);

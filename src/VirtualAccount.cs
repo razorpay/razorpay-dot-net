@@ -4,6 +4,11 @@ namespace Razorpay.Api
 {
     public class VirtualAccount : Entity
     {
+        public VirtualAccount(string accountId = "")
+        {
+            this["id"] = accountId;
+        }
+
         new public VirtualAccount Fetch(string id)
         {
             return (VirtualAccount)base.Fetch(id);
