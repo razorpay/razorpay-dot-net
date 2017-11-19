@@ -27,6 +27,14 @@ namespace RazorpayClientTest
             RunAllCardTests(key, secret);
 
             RunAllTransferTests(key, secret);
+
+            RunAllPlanTests(key, secret);
+
+            RunAllSubscriptionTests(key, secret);
+
+            RunAllAddonTests(key, secret);
+
+            RunAllVirtualAccountTests(key, secret);
         }
 
         public static void RunClientTestCases(string key, string secret)
@@ -150,6 +158,58 @@ namespace RazorpayClientTest
             TransferTestCases.FetchReversalsByTransferIdTest();
 
             TransferTestCases.PatchTransferByIdTest();
+        }
+
+        public static void RunAllPlanTests(string key, string secret)
+        {
+            PlanTestCases.Init(key, secret);
+
+            PlanTestCases.PlanFetchTest();
+
+            PlanTestCases.PlanCreateTest();
+
+            PlanTestCases.PlanFetchAllTest();
+        }
+
+        public static void RunAllSubscriptionTests(string key, string secret)
+        {
+            SubscriptionTestCases.Init(key, secret);
+
+            SubscriptionTestCases.CreateSubscriptionTest();
+
+            SubscriptionTestCases.FetchSubscriptionTest();
+
+            SubscriptionTestCases.FetchAllSubscriptionTest();
+
+            SubscriptionTestCases.CancelCreatedSubscriptionTest();
+        }
+
+        public static void RunAllAddonTests(string key, string secret)
+        {
+            AddonTestCases.Init(key, secret);
+
+            AddonTestCases.CreateAddonTest();
+
+            AddonTestCases.FetchAddonTest();
+
+            AddonTestCases.DeleteAddonTest();
+        }
+
+        public static void RunAllVirtualAccountTests(string key, string secret)
+        {
+            VirtualAccountTestCases.Init(key, secret);
+
+            VirtualAccountTestCases.CreateVirtualAccountTest();
+
+            VirtualAccountTestCases.FetchVirtualAccountTest();
+
+            VirtualAccountTestCases.EditVirtualAccountTest();
+
+            VirtualAccountTestCases.CloseVirtualAccountTest();
+
+            VirtualAccountTestCases.VirtualAccountPaymentsTest();
+
+            VirtualAccountTestCases.FetchAllVirtualAccountTest();
         }
     }
 }
