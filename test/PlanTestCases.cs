@@ -27,9 +27,9 @@ namespace RazorpayClientTest
 
         public static void PlanFetchAllTest()
         {
-            List<Plan> plans = Helper.client.TestFetchAllPlans();
+            List<Plan> plans = Helper.TestFetchAllPlans();
 
-            Assert.NotNull(plan);
+            Assert.NotNull(plans);
         }
     }
 }

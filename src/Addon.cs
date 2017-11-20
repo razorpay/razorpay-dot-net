@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System;
+using Newtonsoft.Json;
 
 namespace Razorpay.Api
 {
@@ -9,17 +11,24 @@ namespace Razorpay.Api
             return (Addon)base.Fetch(id);
         }
 
+        public List<Addon> All()
+        {
+            List<Entity> entities = Request(GetEntityUrl(), HttpMethod.Get, null);
+
+            List<Addon> addons = new List<Addon>();
+
+            foreach (Entity entity in entities)
+            {
+                addons.Add(entity as Addon);
+            }
+
+            return addons;
+        }
+
         public Addon Delete()
         {
             string relativeUrl = GetEntityUrl() + "/" + this["id"];
             List<Entity> entities = Request(relativeUrl, HttpMethod.Delete, null);
-            return (Addon)entities[0];
-        }
-
-        public Addon Create(Dictionary<string, object> data)
-        {
-            string relativeUrl = GetEntityUrl();
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
             return (Addon)entities[0];
         }
     }

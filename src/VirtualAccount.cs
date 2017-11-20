@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System;using Newtonsoft.Json;
+
 
 namespace Razorpay.Api
 {
@@ -11,13 +13,18 @@ namespace Razorpay.Api
 
         new public VirtualAccount Fetch(string id)
         {
-            return (VirtualAccount)base.Fetch(id);
+            string relativeUrl = string.Format("virtual_accounts/{0}", id);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+            return (VirtualAccount)entities[0];
         }
 
         new public List<VirtualAccount> All(Dictionary<string, object> options = null)
         {
-            List<Entity> entities = base.All(options);
+            string relativeUrl = "virtual_accounts";
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+
             List<VirtualAccount> virtualaccounts = new List<VirtualAccount>();
+            
             foreach (Entity entity in entities)
             {
                 virtualaccounts.Add(entity as VirtualAccount);
@@ -25,14 +32,14 @@ namespace Razorpay.Api
             return virtualaccounts;
         }
 
-        public VirtualAccount Create(Dictionary<string, object> data)
+        public VirtualAccount Create(Dictionary<string, object> data = null)
         {
             string relativeUrl = "virtual_accounts";
             List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
             return (VirtualAccount)entities[0];
         }
 
-        public VirtualAccount Edit(Dictionary<string, object> data) 
+        public VirtualAccount Edit(Dictionary<string, object> data = null) 
         {
             string relativeUrl = string.Format("virtual_accounts/{0}", this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.Patch, data);

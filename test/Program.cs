@@ -192,7 +192,7 @@ namespace RazorpayClientTest
 
             AddonTestCases.FetchAddonTest();
 
-            AddonTestCases.DeleteAddonTest();
+            // AddonTestCases.DeleteAddonTest();
         }
 
         public static void RunAllVirtualAccountTests(string key, string secret)

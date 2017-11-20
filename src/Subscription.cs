@@ -38,5 +38,12 @@ namespace Razorpay.Api
             List<Entity> entities = Request(relativeUrl, HttpMethod.Post, null);
             return (Subscription)entities[0];
         }
+
+        public Addon createAddon(Dictionary<string, object> data = null)
+        {
+            string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/addons";
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
+            return (Addon)entities[0];
+        }
     }
 }

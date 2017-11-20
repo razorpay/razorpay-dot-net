@@ -414,7 +414,7 @@ namespace RazorpayClientTest
         {
             Plan plan = TestCreatePlan();
 
-            return Helper.client.Plan.Fetch(plan["id"]);
+            return Helper.client.Plan.Fetch((string)plan["id"]);
         }
 
         public static List<Plan> TestFetchAllPlans()
@@ -434,8 +434,6 @@ namespace RazorpayClientTest
 
             Subscription subscription = Helper.client.Subscription.Create(data);
 
-            // Console.Write(JsonConvert.SerializeObject(subscription));
-
             return subscription;
         }
 
@@ -443,7 +441,7 @@ namespace RazorpayClientTest
         {
             Subscription subscription1 = TestCreateSubscription();
 
-            Subscription subscription2 = Helper.client.Subscription.Fetch(subscription1["id"]);
+            Subscription subscription2 = Helper.client.Subscription.Fetch((string)subscription1["id"]);
 
             Assert.AreEqual(subscription1["id"], subscription2["id"]);
 
@@ -472,23 +470,26 @@ namespace RazorpayClientTest
                 data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
             }
 
-            return Helper.client.Addon.Create(data);
+            Subscription subscription = TestCreateSubscription();
+
+            return subscription.createAddon(data);
         }
 
         public static Addon TestFetchAddon()
         {
             Addon addon = TestCreateAddon();
 
-            Addon addon2 = Helper.client.Addon.Fetch(addon["id"]);
+            Addon addon2 = Helper.client.Addon.Fetch((string)addon["id"]);
 
             Assert.AreEqual(addon["id"], addon2["id"]);
 
             return addon2;
         }
 
+        // TODO: Need to re-test this
         public static Addon TestDeleteAddon()
         {
-            Addon addon = TestCreateAddon();
+            Addon addon = Helper.client.Addon.All()[0];
 
             return addon.Delete();
         }
@@ -510,7 +511,7 @@ namespace RazorpayClientTest
         {
             VirtualAccount va = VirtualAccountCreateTest();
 
-            VirtualAccount va2 = Helper.client.VirtualAccount.Fetch(va["id"]);
+            VirtualAccount va2 = Helper.client.VirtualAccount.Fetch((string)va["id"]);
 
             Assert.AreEqual(va["id"], va2["id"]);
 
