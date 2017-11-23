@@ -42,6 +42,10 @@
     <Compile Include="RefundTestCases.cs" />
     <Compile Include="CardTestCases.cs" />
     <Compile Include="TransferTestCases.cs" />
+    <Compile Include="AddonTestCases.cs" />
+    <Compile Include="SubscriptionTestCases.cs" />
+    <Compile Include="VirtualAccountTestCases.cs" />
+    <Compile Include="PlanTestCases.cs" />
     <Reference Include="NUnit">
       <HintPath>..\packages\NUnit.3.6.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>

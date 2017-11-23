@@ -27,9 +27,8 @@ namespace RazorpayClientTest
 
         public static void DeleteAddonTest()
         {
-            Addon addon = Helper.TestDeleteAddon();
-
-            Assert.NotNull(addon);
+            // If no exception is thrown, then it is a successful delete
+            Helper.TestDeleteAddon();
         }
     }
 }

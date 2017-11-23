@@ -6,6 +6,11 @@ namespace Razorpay.Api
 {
     public class Addon : Entity
     {
+        public Addon(string addonId = "")
+        {
+            this["id"] = addonId;
+        }
+        
         new public Addon Fetch(string id)
         {
             return (Addon)base.Fetch(id);
@@ -25,11 +30,10 @@ namespace Razorpay.Api
             return addons;
         }
 
-        public Addon Delete()
+        public void Delete()
         {
             string relativeUrl = GetEntityUrl() + "/" + this["id"];
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Delete, null);
-            return (Addon)entities[0];
+            Request(relativeUrl, HttpMethod.Delete, null);
         }
     }
 }

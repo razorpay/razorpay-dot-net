@@ -439,7 +439,9 @@ namespace RazorpayClientTest
 
         public static Subscription TestFetchSubscription()
         {
-            Subscription subscription1 = TestCreateSubscription();
+            Subscription subscription = TestCreateSubscription();
+
+            Subscription subscription1 = new Subscription(subscription["id"]);
 
             Subscription subscription2 = Helper.client.Subscription.Fetch((string)subscription1["id"]);
 
@@ -457,7 +459,9 @@ namespace RazorpayClientTest
         {
             Subscription subscription = TestCreateSubscription();
 
-            return subscription.Cancel();
+            Subscription subscription1 = new Subscription(subscription["id"]);
+
+            return subscription1.Cancel();
         }
 
         public static Addon TestCreateAddon()
@@ -486,12 +490,13 @@ namespace RazorpayClientTest
             return addon2;
         }
 
-        // TODO: Need to re-test this
-        public static Addon TestDeleteAddon()
+        public static void TestDeleteAddon()
         {
             Addon addon = Helper.client.Addon.All()[0];
 
-            return addon.Delete();
+            Addon addon1 = new Addon(addon["id"]);
+
+            addon1.Delete();
         }
 
         public static VirtualAccount VirtualAccountCreateTest()
@@ -530,14 +535,18 @@ namespace RazorpayClientTest
                 data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
             }
 
-            return va.Edit(data);
+            VirtualAccount va1 = new VirtualAccount(va["id"]);
+
+            return va1.Edit(data);
         }
 
         public static VirtualAccount VirtualAccountCloseTest()
         {
             VirtualAccount va = VirtualAccountCreateTest();
 
-            return va.Close();
+            VirtualAccount va1 = new VirtualAccount(va["id"]);
+
+            return va1.Close();
         }
 
         public static List<VirtualAccount> FetchAllVirtualAccountTest()
@@ -549,7 +558,9 @@ namespace RazorpayClientTest
         {
             VirtualAccount va = VirtualAccountCreateTest();
 
-            return va.Payments();
+            VirtualAccount va1 = new VirtualAccount(va["id"]);
+
+            return va1.Payments();
         }
 
         public static string generateRandomString(int length, bool alphaNumeric)
