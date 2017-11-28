@@ -441,11 +441,11 @@ namespace RazorpayClientTest
         {
             Subscription subscription = TestCreateSubscription();
 
-            Subscription subscription1 = new Subscription(subscription["id"]);
+            Subscription subscription1 = new Subscription((string)subscription["id"]);
 
             Subscription subscription2 = Helper.client.Subscription.Fetch((string)subscription1["id"]);
 
-            Assert.AreEqual(subscription1["id"], subscription2["id"]);
+            Assert.AreEqual((string)subscription1["id"], (string)subscription2["id"]);
 
             return subscription2;
         }
@@ -459,7 +459,7 @@ namespace RazorpayClientTest
         {
             Subscription subscription = TestCreateSubscription();
 
-            Subscription subscription1 = new Subscription(subscription["id"]);
+            Subscription subscription1 = new Subscription((string)subscription["id"]);
 
             return subscription1.Cancel();
         }
@@ -476,7 +476,7 @@ namespace RazorpayClientTest
 
             Subscription subscription = TestCreateSubscription();
 
-            Subscription subscription1 = new Subscription(subscription["id"]);
+            Subscription subscription1 = new Subscription((string)subscription["id"]);
 
             return subscription1.createAddon(data);
         }
@@ -487,7 +487,7 @@ namespace RazorpayClientTest
 
             Addon addon2 = Helper.client.Addon.Fetch((string)addon["id"]);
 
-            Assert.AreEqual(addon["id"], addon2["id"]);
+            Assert.AreEqual((string)addon["id"], (string)addon2["id"]);
 
             return addon2;
         }
@@ -496,7 +496,7 @@ namespace RazorpayClientTest
         {
             Addon addon = Helper.client.Addon.All()[0];
 
-            Addon addon1 = new Addon(addon["id"]);
+            Addon addon1 = new Addon((string)addon["id"]);
 
             addon1.Delete();
         }
@@ -537,7 +537,7 @@ namespace RazorpayClientTest
                 data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
             }
 
-            VirtualAccount va1 = new VirtualAccount(va["id"]);
+            VirtualAccount va1 = new VirtualAccount((string)va["id"]);
 
             return va1.Edit(data);
         }
@@ -546,7 +546,7 @@ namespace RazorpayClientTest
         {
             VirtualAccount va = VirtualAccountCreateTest();
 
-            VirtualAccount va1 = new VirtualAccount(va["id"]);
+            VirtualAccount va1 = new VirtualAccount((string)va["id"]);
 
             return va1.Close();
         }
@@ -560,7 +560,7 @@ namespace RazorpayClientTest
         {
             VirtualAccount va = VirtualAccountCreateTest();
 
-            VirtualAccount va1 = new VirtualAccount(va["id"]);
+            VirtualAccount va1 = new VirtualAccount((string)va["id"]);
 
             return va1.Payments();
         }
