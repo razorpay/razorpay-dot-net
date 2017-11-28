@@ -19,7 +19,11 @@ namespace Razorpay.Api
             {"token", "Razorpay.Api.Token"},
             {"card", "Razorpay.Api.Card"},
             {"transfer", "Razorpay.Api.Transfer"},
-            {"reversal", "Razorpay.Api.Reversal"}
+            {"reversal", "Razorpay.Api.Reversal"},
+            {"plan", "Razorpay.Api.Plan"},
+            {"subscription", "Razorpay.Api.Subscription"},
+            {"virtual_account", "Razorpay.Api.VirtualAccount"},
+            {"addon", "Razorpay.Api.Addon"},
         };
         private static List<HttpMethod> JsonifyInput = new List<HttpMethod>()
         {

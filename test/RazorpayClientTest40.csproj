@@ -48,6 +48,10 @@
     <Compile Include="RefundTestCases.cs" />
     <Compile Include="CardTestCases.cs" />
     <Compile Include="TransferTestCases.cs" />
+    <Compile Include="AddonTestCases.cs" />
+    <Compile Include="SubscriptionTestCases.cs" />
+    <Compile Include="VirtualAccountTestCases.cs" />
+    <Compile Include="PlanTestCases.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

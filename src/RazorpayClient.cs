@@ -16,6 +16,10 @@ namespace Razorpay.Api
         private Invoice invoice = null;
         private Card card = null;
         private Transfer transfer = null;
+        private Addon addon = null;
+        private Plan plan = null;
+        private Subscription subscription = null;
+        private VirtualAccount virtualaccount = null;
 
         public RazorpayClient(string key, string secret)
         {
@@ -161,6 +165,54 @@ namespace Razorpay.Api
                     transfer = new Transfer();
                 }
                 return transfer;
+            }
+        }
+
+        public Addon Addon
+        {
+            get 
+            {
+                if (addon == null)
+                {
+                    addon = new Addon();
+                }
+                return addon;
+            }
+        }
+
+        public Plan Plan 
+        {
+            get 
+            {
+                if (plan == null)
+                {
+                    plan = new Plan();
+                }
+                return plan;
+            }
+        }
+
+        public Subscription Subscription
+        {
+            get 
+            {
+                if (subscription == null)
+                {
+                    subscription = new Subscription();
+                }
+                return subscription;
+            }
+        }
+
+        public VirtualAccount VirtualAccount
+        {
+            get 
+            {
+                if (virtualaccount == null)
+                {
+                    virtualaccount = new VirtualAccount();
+                }
+                return virtualaccount;
             }
         }
     }

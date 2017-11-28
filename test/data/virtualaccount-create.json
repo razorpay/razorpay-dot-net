@@ -1,0 +1,10 @@
+{
+    "name": "Test virtual account",
+    "description": "VA for tests",
+    "receiver_types": [
+        "bank_account"
+    ],
+    "notes": {
+        "a": "b"
+    }
+}

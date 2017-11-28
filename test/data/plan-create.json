@@ -1,0 +1,10 @@
+{
+    "period": "weekly",
+    "interval": 1,
+    "item": {
+        "name": "Test Weekly 1 plan",
+        "description": "Description for the weekly 1 plan",
+        "amount": 600,
+        "currency": "INR"
+    }
+}

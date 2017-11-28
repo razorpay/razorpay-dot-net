@@ -5,6 +5,7 @@ using System.Text;
 using System.Linq;
 using Razorpay.Api;
 using Newtonsoft.Json;
+using NUnit.Framework;
 using System.Collections.Generic;
 
 namespace RazorpayClientTest
@@ -394,6 +395,174 @@ namespace RazorpayClientTest
             }
 
             return transfer.Edit(data);
+        }
+
+        public static Plan TestCreatePlan()
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            using (StreamReader r = new StreamReader("./test/data/plan-create.json"))
+            {
+                string json = r.ReadToEnd();
+                data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            }
+
+            return Helper.client.Plan.Create(data);
+        }
+
+        public static Plan TestFetchPlan()
+        {
+            Plan plan = TestCreatePlan();
+
+            return Helper.client.Plan.Fetch((string)plan["id"]);
+        }
+
+        public static List<Plan> TestFetchAllPlans()
+        {
+            return Helper.client.Plan.All();
+        }
+
+        public static Subscription TestCreateSubscription()
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            using (StreamReader r = new StreamReader("./test/data/subscription-create.json"))
+            {
+                string json = r.ReadToEnd();
+                data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            }
+
+            Subscription subscription = Helper.client.Subscription.Create(data);
+
+            return subscription;
+        }
+
+        public static Subscription TestFetchSubscription()
+        {
+            Subscription subscription = TestCreateSubscription();
+
+            Subscription subscription1 = new Subscription((string)subscription["id"]);
+
+            Subscription subscription2 = Helper.client.Subscription.Fetch((string)subscription1["id"]);
+
+            Assert.AreEqual((string)subscription1["id"], (string)subscription2["id"]);
+
+            return subscription2;
+        }
+
+        public static List<Subscription> TestFetchSubscriptions()
+        {
+            return Helper.client.Subscription.All();
+        }
+
+        public static Subscription TestCancelSubscription()
+        {
+            Subscription subscription = TestCreateSubscription();
+
+            Subscription subscription1 = new Subscription((string)subscription["id"]);
+
+            return subscription1.Cancel();
+        }
+
+        public static Addon TestCreateAddon()
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            using (StreamReader r = new StreamReader("./test/data/addon-create.json"))
+            {
+                string json = r.ReadToEnd();
+                data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            }
+
+            Subscription subscription = TestCreateSubscription();
+
+            Subscription subscription1 = new Subscription((string)subscription["id"]);
+
+            return subscription1.createAddon(data);
+        }
+
+        public static Addon TestFetchAddon()
+        {
+            Addon addon = TestCreateAddon();
+
+            Addon addon2 = Helper.client.Addon.Fetch((string)addon["id"]);
+
+            Assert.AreEqual((string)addon["id"], (string)addon2["id"]);
+
+            return addon2;
+        }
+
+        public static void TestDeleteAddon()
+        {
+            Addon addon = Helper.client.Addon.All()[0];
+
+            Addon addon1 = new Addon((string)addon["id"]);
+
+            addon1.Delete();
+        }
+
+        public static VirtualAccount VirtualAccountCreateTest()
+        {
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            using (StreamReader r = new StreamReader("./test/data/virtualaccount-create.json"))
+            {
+                string json = r.ReadToEnd();
+                data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            }
+
+            return Helper.client.VirtualAccount.Create(data);
+        }
+
+        public static VirtualAccount VirtualAccountFetchTest()
+        {
+            VirtualAccount va = VirtualAccountCreateTest();
+
+            VirtualAccount va2 = Helper.client.VirtualAccount.Fetch((string)va["id"]);
+
+            Assert.AreEqual(va["id"], va2["id"]);
+
+            return va2;
+        }
+
+        public static VirtualAccount VirtualAccountEditTest()
+        {
+            VirtualAccount va = VirtualAccountCreateTest();
+
+            Dictionary<string, object> data = new Dictionary<string, object>();
+
+            using (StreamReader r = new StreamReader("./test/data/virtualaccount-edit.json"))
+            {
+                string json = r.ReadToEnd();
+                data = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            }
+
+            VirtualAccount va1 = new VirtualAccount((string)va["id"]);
+
+            return va1.Edit(data);
+        }
+
+        public static VirtualAccount VirtualAccountCloseTest()
+        {
+            VirtualAccount va = VirtualAccountCreateTest();
+
+            VirtualAccount va1 = new VirtualAccount((string)va["id"]);
+
+            return va1.Close();
+        }
+
+        public static List<VirtualAccount> FetchAllVirtualAccountTest()
+        {
+            return Helper.client.VirtualAccount.All();
+        }
+
+        public static List<Payment> FetchAllPaymentsFromVa()
+        {
+            VirtualAccount va = VirtualAccountCreateTest();
+
+            VirtualAccount va1 = new VirtualAccount((string)va["id"]);
+
+            return va1.Payments();
         }
 
         public static string generateRandomString(int length, bool alphaNumeric)

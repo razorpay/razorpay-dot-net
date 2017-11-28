@@ -104,6 +104,18 @@
     <Compile Include="..\src\Utils.cs">
       <Link>Utils.cs</Link>
     </Compile>
+    <Compile Include="..\src\Plan.cs">
+      <Link>Plan.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Subscription.cs">
+      <Link>Subscription.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Addon.cs">
+      <Link>Addon.cs</Link>
+    </Compile>
+    <Compile Include="..\src\VirtualAccount.cs">
+      <Link>VirtualAccount.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\src\HttpMethod.cs">
       <Link>HttpMethod.cs</Link>
