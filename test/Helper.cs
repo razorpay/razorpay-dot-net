@@ -476,7 +476,9 @@ namespace RazorpayClientTest
 
             Subscription subscription = TestCreateSubscription();
 
-            return subscription.createAddon(data);
+            Subscription subscription1 = new Subscription(subscription["id"]);
+
+            return subscription1.createAddon(data);
         }
 
         public static Addon TestFetchAddon()
