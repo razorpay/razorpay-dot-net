@@ -4,10 +4,10 @@ namespace Razorpay.Api
 {
     public class RazorpayClient
     {
-        protected const string version = "2.0.0";
+        protected const string version = "3.0.0";
         protected const string baseUrl = "https://api.razorpay.com/v1/";
         protected static string key = null;
-        protected static string secret = null; 
+        protected static string secret = null;
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         private Payment payment = null;
         private Order order = null;
@@ -33,7 +33,7 @@ namespace Razorpay.Api
             {
                 return key;
             }
-            private set 
+            private set
             {
                 key = value;
             }
@@ -45,7 +45,7 @@ namespace Razorpay.Api
             {
                 return secret;
             }
-            private set 
+            private set
             {
                 secret = value;
             }
@@ -86,7 +86,7 @@ namespace Razorpay.Api
 
         public Payment Payment
         {
-            get 
+            get
             {
                 if (payment == null)
                 {
@@ -122,7 +122,7 @@ namespace Razorpay.Api
 
         public Customer Customer
         {
-            get 
+            get
             {
                 if (customer == null)
                 {
@@ -170,7 +170,7 @@ namespace Razorpay.Api
 
         public Addon Addon
         {
-            get 
+            get
             {
                 if (addon == null)
                 {
@@ -180,9 +180,9 @@ namespace Razorpay.Api
             }
         }
 
-        public Plan Plan 
+        public Plan Plan
         {
-            get 
+            get
             {
                 if (plan == null)
                 {
@@ -194,7 +194,7 @@ namespace Razorpay.Api
 
         public Subscription Subscription
         {
-            get 
+            get
             {
                 if (subscription == null)
                 {
@@ -206,7 +206,7 @@ namespace Razorpay.Api
 
         public VirtualAccount VirtualAccount
         {
-            get 
+            get
             {
                 if (virtualaccount == null)
                 {
