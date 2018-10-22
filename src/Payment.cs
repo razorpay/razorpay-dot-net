@@ -58,11 +58,19 @@ namespace Razorpay.Api
             return refunds;
         }
 
-        public Transfer Transfer(Dictionary<string, object> data = null)
+        public List<Transfer> Transfer(Dictionary<string, object> data = null)
         {
             string relativeUrl = string.Format("{0}/{1}/transfers", GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
-            return (Transfer)entities[0];
+
+            // Todo: Make a utility method or something to DRY below for-each thing from across this sdk.
+            List<Transfer> transfers = new List<Transfer>();
+            foreach(Entity entity in entities)
+            {
+                transfers.Add(entity as Transfer);
+            }
+
+            return transfers;
         }
 
         public List<Transfer> Transfers()
