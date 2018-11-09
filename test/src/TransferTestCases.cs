@@ -13,9 +13,9 @@ namespace RazorpayClientTest
 
         public static void CreatePaymentTransferTest()
         {
-            Transfer transfer = Helper.CreatePaymentTransferTest();
+            List<Transfer> transfers = Helper.CreatePaymentTransferTest();
 
-            Assert.AreNotSame(null, transfer);
+            Assert.AreNotSame(null, transfers);
         }
 
         public static void GetPaymentTransfersTest()

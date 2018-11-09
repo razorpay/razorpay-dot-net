@@ -316,7 +316,7 @@ namespace RazorpayClientTest
             return Helper.client.Card.Fetch(id);
         }
 
-        public static Transfer CreatePaymentTransferTest()
+        public static List<Transfer> CreatePaymentTransferTest()
         {
             Payment payment = TestCapturePayment();
 

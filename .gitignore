@@ -2,6 +2,7 @@
 *.userprefs
 *.suo
 *.user
+.vs
 bin
 packages
 TestResults
@@ -9,5 +10,7 @@ TestResults
 /net45/obj
 /net40/bin
 /net45/bin
-/test/obj
-/test/bin
+/test/net40/obj
+/test/net40/bin
+/test/net45/obj
+/test/net45/bin

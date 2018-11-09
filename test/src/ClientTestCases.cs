@@ -26,7 +26,7 @@ namespace RazorpayClientTest
             string title = "ASP.NET";
             string version = "4.5";
 
-            RazorpayClient.setAppsDetails(title, version);
+            Helper.client.setAppsDetails(title, version);
 
             List<Dictionary<string, string>> appsDetails = RazorpayClient.AppsDetails;
 
@@ -34,6 +34,24 @@ namespace RazorpayClientTest
             Assert.AreSame(title, appsDetails[0]["title"]);
             Assert.AreSame(version, appsDetails[0]["version"]);
         }
+
+        public static void TestHeaders()
+        {
+            string headerKey = "X-RZP-TEST";
+            string headerValue = "success";
+
+            Helper.client.addHeader(headerKey, headerValue);
+
+            Dictionary<string, string> headers = RazorpayClient.Headers;
+
+            Assert.True(headers.Count == 1);
+
+            string value;
+            headers.TryGetValue(headerKey, out value);
+
+            Assert.AreSame(value, headerValue);
+        }
+
 
         public static void TestGetBaseUrl()
         {
@@ -48,7 +66,7 @@ namespace RazorpayClientTest
         {
             string version = RazorpayClient.Version;
 
-            string expectedVersion = "2.0.0";
+            string expectedVersion = "3.0.0";
 
             Assert.AreSame(expectedVersion, version);
         }

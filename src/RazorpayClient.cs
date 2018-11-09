@@ -9,6 +9,7 @@ namespace Razorpay.Api
         protected static string key = null;
         protected static string secret = null;
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
+        protected static Dictionary<string, string> headers = new Dictionary<string, string>();
         private Payment payment = null;
         private Order order = null;
         private Refund refund = null;
@@ -59,13 +60,26 @@ namespace Razorpay.Api
             }
         }
 
-        public static void setAppsDetails(string title, string version)
+        public static Dictionary<string, string> Headers
+        {
+            get
+            {
+                return headers;
+            }
+        }
+
+        public void setAppsDetails(string title, string version)
         {
             Dictionary<string, string> appDetail = new Dictionary<string, string>();
             appDetail.Add("title", title);
             appDetail.Add("version", version);
 
             appsDetails.Add(appDetail);
+        }
+
+        public void addHeader(string key, string value)
+        {
+            headers.Add(key, value);
         }
 
         public static string BaseUrl
