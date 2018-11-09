@@ -47,6 +47,8 @@ namespace RazorpayClientTest
 
             ClientTestCases.TestAppsDetails();
 
+            ClientTestCases.TestHeaders();
+
             ClientTestCases.TestGetBaseUrl();
 
             ClientTestCases.TestGetVersion();

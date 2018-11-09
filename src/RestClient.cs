@@ -47,6 +47,11 @@ namespace Razorpay.Api
             request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(
                 Encoding.UTF8.GetBytes(authString));
 
+            foreach (KeyValuePair<string, string> header in RazorpayClient.Headers)
+            {
+                request.Headers[header.Key] = header.Value;
+            }
+
             return request;
         }
 

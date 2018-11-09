@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -26,42 +27,40 @@
     <ExternalConsole>true</ExternalConsole>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="NUnit">
-      <HintPath>..\packages\NUnit.3.6.1\lib\net40\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework">
+      <HintPath>..\..\packages\NUnit.3.11.0\lib\net40\nunit.framework.dll</HintPath>
     </Reference>
-    <Compile Include="Program.cs" />
-    <Compile Include="Helper.cs" />
-    <Compile Include="ClientTestCases.cs" />
-    <Compile Include="OrderTestCases.cs" />
-    <Compile Include="PaymentTestCases.cs" />
-    <Compile Include="UtilsTestCases.cs" />
-    <Compile Include="CustomerTestCases.cs" />
-    <Compile Include="InvoiceTestCases.cs" />
-    <Compile Include="RefundTestCases.cs" />
-    <Compile Include="CardTestCases.cs" />
-    <Compile Include="TransferTestCases.cs" />
-    <Compile Include="AddonTestCases.cs" />
-    <Compile Include="SubscriptionTestCases.cs" />
-    <Compile Include="VirtualAccountTestCases.cs" />
-    <Compile Include="PlanTestCases.cs" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
+    <Compile Include="..\src\Program.cs" />
+    <Compile Include="..\src\Helper.cs" />
+    <Compile Include="..\src\ClientTestCases.cs" />
+    <Compile Include="..\src\OrderTestCases.cs" />
+    <Compile Include="..\src\PaymentTestCases.cs" />
+    <Compile Include="..\src\UtilsTestCases.cs" />
+    <Compile Include="..\src\CustomerTestCases.cs" />
+    <Compile Include="..\src\InvoiceTestCases.cs" />
+    <Compile Include="..\src\RefundTestCases.cs" />
+    <Compile Include="..\src\CardTestCases.cs" />
+    <Compile Include="..\src\TransferTestCases.cs" />
+    <Compile Include="..\src\AddonTestCases.cs" />
+    <Compile Include="..\src\SubscriptionTestCases.cs" />
+    <Compile Include="..\src\VirtualAccountTestCases.cs" />
+    <Compile Include="..\src\PlanTestCases.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\net40\RazorpayClient40.csproj">
+    <ProjectReference Include="..\..\net40\RazorpayClient40.csproj">
       <Project>{D468F846-3CFE-4E6F-A3D3-84F84C0BB632}</Project>
       <Name>RazorpayClient40</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
