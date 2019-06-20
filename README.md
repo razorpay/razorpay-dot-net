@@ -75,6 +75,30 @@ Refund refund = payment.fetchRefund(id);
 paymentAmount = payment["amount"];
 ```
 
+### Create an order
+```cs
+Dictionary<string, object> options = new Dictionary<string,object>();
+
+options.Add("amount", TransactionAmount); 
+options.Add("currency", "INR"); 
+options.Add("receipt", "MerchantTransactionId"); 
+options.Add("payment_capture", 1); 
+
+Order order = Order.Create(options);
+```
+
+### Create a customer
+```cs
+Dictionary<string, object> options = new Dictionary<string,object>();
+
+options.Add("name", "customer name"); 
+options.Add("contact", "9999999999"); 
+options.Add("email", "foo@example.com"); 
+options.Add("fail_existing", 0); 
+
+Customer customer = Customer.Create(options);
+```
+
 Development
 -------
 * Open solution in visual studio 2013, it should build fine
