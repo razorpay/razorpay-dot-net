@@ -82,6 +82,11 @@ namespace Razorpay.Api
             headers.Add(key, value);
         }
 
+        public void setBaseUrl(string url)
+        {
+            baseUrl = url;
+        }
+
         public static string BaseUrl
         {
             get

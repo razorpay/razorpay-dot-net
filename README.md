@@ -27,6 +27,11 @@ Usage
 RazorpayClient client = new RazorpayClient(key, secret);
 ```
 
+By default, the client makes requests to endpoints using `https://api.razorpay.com/v1/` as the base URL. You can change this if needed.
+```cs
+client.setBaseUrl("https://prod-api-static.razorpay.com/v1/");
+```
+
 ### Get Payments
 ```cs
 Dictionary<string, object> options = new Dictionary<string,object>();
