@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.Net;
 
 namespace Razorpay.Api
 {
     public class RazorpayClient
     {
         protected const string version = "3.0.0";
-        protected const string baseUrl = "https://api.razorpay.com/v1/";
+        protected static string baseUrl = "https://api.razorpay.com/v1/";
         protected static string key = null;
         protected static string secret = null;
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
@@ -26,6 +27,7 @@ namespace Razorpay.Api
         {
             RazorpayClient.Key = key;
             RazorpayClient.Secret = secret;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
         }
 
         public static string Key
@@ -88,6 +90,11 @@ namespace Razorpay.Api
             {
                 return baseUrl;
             }
+        }
+
+        public void setBaseUrl(string base_url)
+        {
+            baseUrl = base_url;
         }
 
         public static string Version
