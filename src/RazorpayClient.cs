@@ -27,7 +27,7 @@ namespace Razorpay.Api
         {
             RazorpayClient.Key = key;
             RazorpayClient.Secret = secret;
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
         }
 
         public static string Key
