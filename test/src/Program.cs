@@ -6,40 +6,41 @@ namespace RazorpayClientTest
     {
         public static void Main(string[] args)
         {
-            // Getting the Key ID and Key Secret from user input
+            // Getting the Key ID, Key Secret and Base Url from user input            
             string key = args[0];
             string secret = args[1];
+            string baseUrl = args[2];
 
-            RunClientTestCases(key, secret);
+            RunClientTestCases(key, secret, baseUrl);
 
-            RunAllPaymentTests(key, secret);
+            RunAllPaymentTests(key, secret, baseUrl);
 
-            RunAllRefundTests(key, secret);
+            RunAllRefundTests(key, secret, baseUrl);
 
-            RunAllOrderTests(key, secret);
+            RunAllOrderTests(key, secret, baseUrl);
 
-            RunAllUtilsTests(key, secret);
+            RunAllUtilsTests(key, secret, baseUrl);
 
-            RunAllCustomerTests(key, secret);
+            RunAllCustomerTests(key, secret, baseUrl);
 
-            RunAllInvoiceTests(key, secret);
+            RunAllInvoiceTests(key, secret, baseUrl);
 
-            RunAllCardTests(key, secret);
+            RunAllCardTests(key, secret, baseUrl);
 
-            RunAllTransferTests(key, secret);
+            RunAllTransferTests(key, secret, baseUrl);
 
-            RunAllPlanTests(key, secret);
+            RunAllPlanTests(key, secret, baseUrl);
 
-            RunAllSubscriptionTests(key, secret);
+            RunAllSubscriptionTests(key, secret, baseUrl);
 
-            RunAllAddonTests(key, secret);
+            RunAllAddonTests(key, secret, baseUrl);
 
-            RunAllVirtualAccountTests(key, secret);
+            RunAllVirtualAccountTests(key, secret, baseUrl);
         }
 
-        public static void RunClientTestCases(string key, string secret)
+        public static void RunClientTestCases(string key, string secret, string baseUrl)
         {
-            ClientTestCases.Init(key, secret);
+            ClientTestCases.Init(key, secret, baseUrl);
 
             ClientTestCases.TestGetKey(key);
 
@@ -54,9 +55,9 @@ namespace RazorpayClientTest
             ClientTestCases.TestGetVersion();
         }
 
-        public static void RunAllPaymentTests(string key, string secret)
+        public static void RunAllPaymentTests(string key, string secret, string baseUrl)
         {
-            PaymentTestCases.Init(key, secret);
+            PaymentTestCases.Init(key, secret, baseUrl);
 
             PaymentTestCases.GetAllPaymentsTest();
 
@@ -73,9 +74,9 @@ namespace RazorpayClientTest
             PaymentTestCases.TestGetRefundById();
         }
 
-        public static void RunAllRefundTests(string key, string secret)
+        public static void RunAllRefundTests(string key, string secret, string baseUrl)
         {
-            RefundTestCases.Init(key, secret);
+            RefundTestCases.Init(key, secret, baseUrl);
 
             RefundTestCases.FetchAllRefundsTest();
 
@@ -84,9 +85,9 @@ namespace RazorpayClientTest
             RefundTestCases.CreateRefundTest();
         }
 
-        public static void RunAllOrderTests(string key, string secret)
+        public static void RunAllOrderTests(string key, string secret, string baseUrl)
         {
-            OrderTestCases.Init(key, secret);
+            OrderTestCases.Init(key, secret, baseUrl);
 
             OrderTestCases.TestCreateOrder();
 
@@ -97,9 +98,9 @@ namespace RazorpayClientTest
             OrderTestCases.TestGetPaymentsByOrder();
         }
 
-        public static void RunAllUtilsTests(string key, string secret)
+        public static void RunAllUtilsTests(string key, string secret, string baseUrl)
         {
-            UtilsTestCases.Init(key, secret);
+            UtilsTestCases.Init(key, secret, baseUrl);
 
             UtilsTestCases.VerifyPaymentSignatureTest();
 
@@ -110,9 +111,9 @@ namespace RazorpayClientTest
             UtilsTestCases.FailedVerifyWebhookSignatureTest();
         }
 
-        public static void RunAllCustomerTests(string key, string secret)
+        public static void RunAllCustomerTests(string key, string secret, string baseUrl)
         {
-            CustomerTestCases.Init(key, secret);
+            CustomerTestCases.Init(key, secret, baseUrl);
 
             CustomerTestCases.CreateCustomerTest();
 
@@ -127,25 +128,25 @@ namespace RazorpayClientTest
             CustomerTestCases.DeleteTokenByIdTest();
         }
 
-        public static void RunAllInvoiceTests(string key, string secret)
+        public static void RunAllInvoiceTests(string key, string secret, string baseUrl)
         {
-            InvoiceTestCases.Init(key, secret);
+            InvoiceTestCases.Init(key, secret, baseUrl);
 
             InvoiceTestCases.CreateInvoiceTest();
 
             InvoiceTestCases.FetchInvoiceTest();
         }
 
-        public static void RunAllCardTests(string key, string secret)
+        public static void RunAllCardTests(string key, string secret, string baseUrl)
         {
-            CardTestCases.Init(key, secret);
+            CardTestCases.Init(key, secret, baseUrl);
 
             CardTestCases.FetchCardByIdTest();
         }
 
-        public static void RunAllTransferTests(string key, string secret)
+        public static void RunAllTransferTests(string key, string secret, string baseUrl)
         {
-            TransferTestCases.Init(key, secret);
+            TransferTestCases.Init(key, secret, baseUrl);
 
             TransferTestCases.CreatePaymentTransferTest();
 
@@ -162,9 +163,9 @@ namespace RazorpayClientTest
             TransferTestCases.PatchTransferByIdTest();
         }
 
-        public static void RunAllPlanTests(string key, string secret)
+        public static void RunAllPlanTests(string key, string secret, string baseUrl)
         {
-            PlanTestCases.Init(key, secret);
+            PlanTestCases.Init(key, secret, baseUrl);
 
             PlanTestCases.PlanFetchTest();
 
@@ -173,9 +174,9 @@ namespace RazorpayClientTest
             PlanTestCases.PlanFetchAllTest();
         }
 
-        public static void RunAllSubscriptionTests(string key, string secret)
+        public static void RunAllSubscriptionTests(string key, string secret, string baseUrl)
         {
-            SubscriptionTestCases.Init(key, secret);
+            SubscriptionTestCases.Init(key, secret, baseUrl);
 
             SubscriptionTestCases.CreateSubscriptionTest();
 
@@ -186,9 +187,9 @@ namespace RazorpayClientTest
             SubscriptionTestCases.CancelCreatedSubscriptionTest();
         }
 
-        public static void RunAllAddonTests(string key, string secret)
+        public static void RunAllAddonTests(string key, string secret, string baseUrl)
         {
-            AddonTestCases.Init(key, secret);
+            AddonTestCases.Init(key, secret, baseUrl);
 
             AddonTestCases.CreateAddonTest();
 
@@ -197,9 +198,9 @@ namespace RazorpayClientTest
             AddonTestCases.DeleteAddonTest();
         }
 
-        public static void RunAllVirtualAccountTests(string key, string secret)
+        public static void RunAllVirtualAccountTests(string key, string secret, string baseUrl)
         {
-            VirtualAccountTestCases.Init(key, secret);
+            VirtualAccountTestCases.Init(key, secret, baseUrl);
 
             VirtualAccountTestCases.CreateVirtualAccountTest();
 

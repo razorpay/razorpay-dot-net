@@ -72,7 +72,7 @@ namespace RazorpayClientTest
             Dictionary<string, object> options = new Dictionary<string, object>();
             options.Add("amount", "100");
 
-            Payment paymentCaptured = new Payment((string) payment["id"]).Capture(options);
+            Payment paymentCaptured = new Payment((string)payment["id"]).Capture(options);
 
             return paymentCaptured;
         }
@@ -81,7 +81,7 @@ namespace RazorpayClientTest
         {
             List<Payment> payments = TestGetAllPayments();
             Payment paymentCaptured = FindPaymentWithStatus("captured", payments);
-            Refund refund = new Payment((string) paymentCaptured["id"]).Refund();
+            Refund refund = new Payment((string)paymentCaptured["id"]).Refund();
 
             return refund;
         }
@@ -93,7 +93,7 @@ namespace RazorpayClientTest
 
             Dictionary<string, object> data = new Dictionary<string, object>();
             data.Add("amount", "100");
-            Refund refund = new Payment((string) paymentCaptured["id"]).Refund(data);
+            Refund refund = new Payment((string)paymentCaptured["id"]).Refund(data);
 
             return refund;
         }
@@ -102,7 +102,7 @@ namespace RazorpayClientTest
         {
             List<Payment> payments = TestGetAllPayments();
             Payment paymentRefunded = FindPaymentWithStatus("refunded", payments);
-            List<Refund> refunds = new Payment((string) paymentRefunded["id"]).AllRefunds();
+            List<Refund> refunds = new Payment((string)paymentRefunded["id"]).AllRefunds();
             return refunds;
         }
 
@@ -118,7 +118,7 @@ namespace RazorpayClientTest
 
             Refund refund = (Refund)refunds[0];
 
-            return Helper.client.Refund.Fetch((string) refund["id"]);
+            return Helper.client.Refund.Fetch((string)refund["id"]);
         }
 
         public static Refund TestCreateDirectRefund()
@@ -200,7 +200,7 @@ namespace RazorpayClientTest
 
             attributes.Add("razorpay_payment_id", "pay_1234567890");
             attributes.Add("razorpay_order_id", "order_123456789");
-            attributes.Add("razorpay_signature", "this_hash_will_fail_signature_validation");   
+            attributes.Add("razorpay_signature", "this_hash_will_fail_signature_validation");
 
             Utils.verifyPaymentSignature(attributes);
         }
@@ -239,7 +239,7 @@ namespace RazorpayClientTest
 
         public static Customer TestFetchCustomer(Customer customer)
         {
-            string id = (string) customer["id"];
+            string id = (string)customer["id"];
 
             return Helper.client.Customer.Fetch(id);
         }
@@ -255,7 +255,7 @@ namespace RazorpayClientTest
             data.Add("name", name);
             data.Add("email", string.Format("{0}@gmail.com", name));
             data.Add("contact", number);
-            
+
             return customer.Edit(data);
         }
 
@@ -571,13 +571,14 @@ namespace RazorpayClientTest
             string characters = string.Empty;
 
             characters = (alphaNumeric == true) ? alphaNum : num;
-            
+
             StringBuilder result = new StringBuilder(length);
 
-            for (int i = 0; i < length; i++) {
+            for (int i = 0; i < length; i++)
+            {
                 result.Append(characters[random.Next(characters.Length)]);
             }
             return result.ToString();
-        }   
+        }
     }
 }

@@ -5,11 +5,13 @@ namespace Razorpay.Api
     public class RazorpayClient
     {
         protected const string version = "3.0.0";
-        protected const string baseUrl = "https://api.razorpay.com/v1/";
-        protected static string key = null;
-        protected static string secret = null;
+
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         protected static Dictionary<string, string> headers = new Dictionary<string, string>();
+
+        private static string key = null;
+        private static string secret = null;
+        private static string baseUrl = "https://api.razorpay.com/v1/";
         private Payment payment = null;
         private Order order = null;
         private Refund refund = null;
@@ -22,10 +24,19 @@ namespace Razorpay.Api
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
 
+        
         public RazorpayClient(string key, string secret)
         {
             RazorpayClient.Key = key;
             RazorpayClient.Secret = secret;
+        }
+        
+        public RazorpayClient(string key, string secret, string baseUrl)
+        {
+            RazorpayClient.Key = key;
+            RazorpayClient.Secret = secret;
+            RazorpayClient.BaseUrl = baseUrl;
+
         }
 
         public static string Key
@@ -49,6 +60,18 @@ namespace Razorpay.Api
             private set
             {
                 secret = value;
+            }
+        }
+
+        public static string BaseUrl
+        {
+            get
+            {
+                return baseUrl;
+            }
+            private set
+            {
+                baseUrl = value;
             }
         }
 
@@ -80,14 +103,6 @@ namespace Razorpay.Api
         public void addHeader(string key, string value)
         {
             headers.Add(key, value);
-        }
-
-        public static string BaseUrl
-        {
-            get
-            {
-                return baseUrl;
-            }
         }
 
         public static string Version

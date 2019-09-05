@@ -6,9 +6,9 @@ namespace RazorpayClientTest
 {
     class SubscriptionTestCases
     {
-        public static void Init(string key, string secret)
+        public static void Init(string key, string secret, string baseUrl)
         {
-            Helper.client = new RazorpayClient(key, secret);
+            Helper.client = new RazorpayClient(key, secret, baseUrl);
         }
 
         public static void CreateSubscriptionTest()
@@ -18,7 +18,7 @@ namespace RazorpayClientTest
             Assert.NotNull(subscription);
         }
 
-        public static void FetchSubscriptionTest()       
+        public static void FetchSubscriptionTest()
         {
             Subscription subscription = Helper.TestFetchSubscription();
 

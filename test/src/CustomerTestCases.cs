@@ -6,9 +6,9 @@ namespace RazorpayClientTest
 {
     class CustomerTestCases
     {
-        public static void Init(string key, string secret)
+        public static void Init(string key, string secret, string baseUrl)
         {
-            Helper.client = new RazorpayClient(key, secret);
+            Helper.client = new RazorpayClient(key, secret, baseUrl);
         }
 
         public static void CreateCustomerTest()
@@ -25,7 +25,7 @@ namespace RazorpayClientTest
 
             Customer fetchedCustomer = Helper.TestFetchCustomer(customer);
 
-            Assert.IsTrue(customer["id"] == (string) fetchedCustomer["id"]);
+            Assert.IsTrue(customer["id"] == (string)fetchedCustomer["id"]);
         }
 
         public static void EditCustomerTest()
@@ -36,7 +36,7 @@ namespace RazorpayClientTest
             Customer editedCustomer = Helper.TestEditCustomer(customer);
 
             Assert.AreNotSame(null, editedCustomer);
-            Assert.IsFalse(name == (string) editedCustomer["name"]);
+            Assert.IsFalse(name == (string)editedCustomer["name"]);
         }
 
         public static void GetCustomerTokenTest()

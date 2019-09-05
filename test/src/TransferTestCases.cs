@@ -6,9 +6,9 @@ namespace RazorpayClientTest
 {
     class TransferTestCases
     {
-        public static void Init(string key, string secret)
+        public static void Init(string key, string secret, string baseUrl)
         {
-            Helper.client = new RazorpayClient(key, secret);
+            Helper.client = new RazorpayClient(key, secret, baseUrl);
         }
 
         public static void CreatePaymentTransferTest()

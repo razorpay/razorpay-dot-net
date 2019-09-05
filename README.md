@@ -24,7 +24,7 @@ Usage
 -----
 ### Initialize
 ```cs
-RazorpayClient client = new RazorpayClient(key, secret);
+RazorpayClient client = new RazorpayClient(key, secret, baseUrl);
 ```
 
 ### Get Payments
