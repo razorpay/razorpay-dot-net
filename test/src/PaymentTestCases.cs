@@ -6,9 +6,9 @@ namespace RazorpayClientTest
 {
     public class PaymentTestCases
     {
-        public static void Init(string key, string secret, string baseUrl)
+        public static void Init(string key, string secret)
         {
-            Helper.client = new RazorpayClient(key, secret, baseUrl);
+            Helper.client = new RazorpayClient(key, secret);
         }
 
         public static void GetAllPaymentsTest()

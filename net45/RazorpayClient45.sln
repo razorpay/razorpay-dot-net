@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RazorpayClient45", "RazorpayClient45.csproj", "{062285FD-C192-4AE4-82E9-B9E907B66D01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{062285FD-C192-4AE4-82E9-B9E907B66D01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{062285FD-C192-4AE4-82E9-B9E907B66D01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{062285FD-C192-4AE4-82E9-B9E907B66D01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{062285FD-C192-4AE4-82E9-B9E907B66D01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

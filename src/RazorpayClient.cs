@@ -4,14 +4,15 @@ namespace Razorpay.Api
 {
     public class RazorpayClient
     {
-        protected const string version = "3.0.0";
+        const string CurrentVersion = "3.0.0";
+        protected const string DefaultBaseUrl = "https://api.razorpay.com/v1/";
 
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         protected static Dictionary<string, string> headers = new Dictionary<string, string>();
 
         private static string key = null;
         private static string secret = null;
-        private static string baseUrl = "https://api.razorpay.com/v1/";
+        private static string baseUrl = null;
         private Payment payment = null;
         private Order order = null;
         private Refund refund = null;
@@ -30,13 +31,13 @@ namespace Razorpay.Api
             RazorpayClient.Key = key;
             RazorpayClient.Secret = secret;
         }
+
         
-        public RazorpayClient(string key, string secret, string baseUrl)
+        public RazorpayClient(string baseUrl, string key, string secret)
         {
+            RazorpayClient.BaseUrl = baseUrl;
             RazorpayClient.Key = key;
             RazorpayClient.Secret = secret;
-            RazorpayClient.BaseUrl = baseUrl;
-
         }
 
         public static string Key
@@ -67,6 +68,10 @@ namespace Razorpay.Api
         {
             get
             {
+                if (baseUrl == null)
+                {
+                    baseUrl = DefaultBaseUrl;
+                }
                 return baseUrl;
             }
             private set
@@ -109,7 +114,7 @@ namespace Razorpay.Api
         {
             get
             {
-                return version;
+                return CurrentVersion;
             }
         }
 

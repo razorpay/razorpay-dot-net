@@ -24,7 +24,11 @@ Usage
 -----
 ### Initialize
 ```cs
-RazorpayClient client = new RazorpayClient(key, secret, baseUrl);
+RazorpayClient client = new RazorpayClient(key, secret); 
+```
+                          OR
+```cs
+RazorpayClient client = new RazorpayClient(baseUrl, key, secret); 
 ```
 
 ### Get Payments
