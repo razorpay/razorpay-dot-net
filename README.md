@@ -70,6 +70,11 @@ List<Refund> refunds = payment.getAllRefunds();
 Refund refund = payment.fetchRefund(id);
 ```
 
+### Get Order using Id
+```cs
+Order order = client.Order.Fetch(id);
+```
+
 ### Accessing the payment attributes
 ```cs
 paymentAmount = payment["amount"];
