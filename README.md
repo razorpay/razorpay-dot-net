@@ -75,6 +75,17 @@ Refund refund = payment.fetchRefund(id);
 paymentAmount = payment["amount"];
 ```
 
+### Create a customer
+```cs
+Dictionary<string, object> options = new Dictionary<string, object>();
+options.Add("name", "customer name"); 
+options.Add("email", "foo@example.com");
+options.Add("contact", "9999999999");
+options.Add("fail_existing", 0); //To return the existing customer_id 
+
+Customer customer = client.Customer.Create(options);
+```
+
 Development
 -------
 * Open solution in visual studio 2013, it should build fine
