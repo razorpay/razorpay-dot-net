@@ -70,9 +70,25 @@ List<Refund> refunds = payment.getAllRefunds();
 Refund refund = payment.fetchRefund(id);
 ```
 
+### Get Order using Id
+```cs
+Order order = client.Order.Fetch(id);
+```
+
 ### Accessing the payment attributes
 ```cs
 paymentAmount = payment["amount"];
+```
+
+### Create a customer
+```cs
+Dictionary<string, object> options = new Dictionary<string, object>();
+options.Add("name", "customer name"); 
+options.Add("email", "foo@example.com");
+options.Add("contact", "9999999999");
+options.Add("fail_existing", 0); //To return the existing customer_id 
+
+Customer customer = client.Customer.Create(options);
 ```
 
 Development
