@@ -244,6 +244,19 @@ namespace RazorpayClientTest
             return Helper.client.Customer.Fetch(id);
         }
 
+        public static List<Customer> TestGetAllCustomer()
+        {
+            Dictionary<string, object> options = new Dictionary<string, object>();
+
+            DateTime endTime = DateTime.UtcNow;
+            DateTime startTime = endTime.Add(TimeSpan.FromHours(-1800));
+            options.Add("from", Utils.ToUnixTimestamp(startTime));
+            options.Add("to", Utils.ToUnixTimestamp(endTime));
+
+            List<Customer> customers = Helper.client.Customer.All(options);
+            return customers;
+        }
+
         public static Customer TestEditCustomer(Customer customer)
         {
             // new Customer(id).Edit(data); -> makes things non-uniform
