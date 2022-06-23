@@ -30,7 +30,7 @@ namespace Razorpay.Api
             HttpMethod.Post, HttpMethod.Put, HttpMethod.Patch
         };
 
-        protected Entity Fetch(string id)
+        protected Entity Fetch(string id, Dictionary<string, object> options = null)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -40,7 +40,7 @@ namespace Razorpay.Api
 
             string entityUrl = GetEntityUrl();
             string relativeUrl = string.Format("{0}/{1}", entityUrl, id);
-            List<Entity> entitiesList = Request(relativeUrl, HttpMethod.Get, null);
+            List<Entity> entitiesList = Request(relativeUrl, HttpMethod.Get, options);
             return entitiesList[0];
         }
 

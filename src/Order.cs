@@ -4,9 +4,9 @@ namespace Razorpay.Api
 {
     public class Order : Entity
     {
-        new public Order Fetch(string id)
+        new public Order Fetch(string id, Dictionary<string, object> options = null)
         {
-            return (Order)base.Fetch(id);
+            return (Order)base.Fetch(id, options);
         }
 
         new public List<Order> All(Dictionary<string, object> options = null)
@@ -39,6 +39,13 @@ namespace Razorpay.Api
             }
 
             return payments;
+        }
+
+        public Order Edit(Dictionary<string, object> data) 
+        {
+            string relativeUrl = string.Format("orders/{0}", this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Patch, data);
+            return (Order)entities[0];
         }
     }
 }
