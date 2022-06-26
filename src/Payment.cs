@@ -87,5 +87,38 @@ namespace Razorpay.Api
 
             return transfers;
         }
+
+        public Payment Edit(Dictionary<string, object> data) 
+        {
+            string relativeUrl = string.Format("{0}/{1}/", GetEntityUrl(), this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.PATCH, data);
+            return (Payment)entities[0];
+        }
+
+        public Card FetchCardDetails(string cardId)
+        {
+            string relativeUrl = string.Format("{0}/{1}/card", GetEntityUrl(), cardId);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+            return (Card)entities[0];
+        }
+
+        public List<Payment> FetchPaymentDowntime()
+        {
+            string relativeUrl = string.Format("{0}/downtimes", GetEntityUrl());
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+            List<Payment> payments = new List<Payment>();
+            foreach (Entity entity in entities)
+            {
+                payments.Add(entity as Payment);
+            }
+            return payments;
+        }
+
+        public Payment FetchPaymentDowntimeById(string downtimeId)
+        {
+            string relativeUrl = string.Format("{0}/downtimes/{1}", GetEntityUrl(), downtimeId);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+            return (Payment)entities[0];
+        }
     }
 }

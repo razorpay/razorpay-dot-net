@@ -52,5 +52,30 @@ namespace RazorpayClientTest
             Refund refund = Helper.TestGetRefundById();
             Assert.AreNotSame(null, refund);
         }
+
+        public static void TestFetchCardDetails()
+        {
+            Card card = Helper.TestFetchCardDetails();
+            Assert.NotNull(card);
+        }
+
+        public static void TestGetAllDowntime()
+        {
+            List <Payment> results = Helper.TestGetAllDowntime();
+            Assert.AreNotSame(null, results);
+        }
+
+        public static void TestFetchPaymentDowntimeById()
+        {
+            Payment result = Helper.TestFetchPaymentDowntimeById();
+            Assert.AreNotSame(null, result);
+        }
+
+        public static void TestEditPayment()
+        {
+            Payment result = Helper.TestEditPayment();
+            Assert.AreNotSame(null, result);
+        }
+
     }
 }

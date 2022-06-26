@@ -71,6 +71,14 @@ namespace RazorpayClientTest
             PaymentTestCases.TestGetRefunds();
 
             PaymentTestCases.TestGetRefundById();
+
+            PaymentTestCases.TestFetchCardDetails();
+
+            PaymentTestCases.TestFetchPaymentDowntimeById();
+
+            PaymentTestCases.TestGetAllDowntime();
+
+            PaymentTestCases.TestEditPayment();
         }
 
         public static void RunAllRefundTests(string key, string secret)

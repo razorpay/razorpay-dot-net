@@ -53,6 +53,29 @@ namespace RazorpayClientTest
             return result;
         }
 
+        public static Card TestFetchCardDetails()
+        {
+            string id = "card_IOyKpfPnR38mDK";
+
+            return Helper.client.Payment.FetchCardDetails(id);
+        }
+
+        public static List<Payment> TestGetAllDowntime()
+        {
+            List<Payment> result = Helper.client.Payment.FetchPaymentDowntime();
+            return result;
+        }
+
+        public static Payment TestFetchPaymentDowntimeById()
+        {
+            string downtimeId = "down_JkqlUZNvZszExg";
+
+            Payment result = new Payment().FetchPaymentDowntimeById(downtimeId);
+
+            return result;
+            
+        }
+
         public static Payment TestGetPaymentById()
         {
             List<Payment> result = TestGetAllPayments();
@@ -60,6 +83,22 @@ namespace RazorpayClientTest
             string paymentId = testEntity["id"].ToString();
 
             Payment payment = Helper.client.Payment.Fetch(paymentId);
+
+            return payment;
+        }
+
+        public static Payment TestEditPayment()
+        {
+            List<Payment> result = TestGetAllPayments();
+            Payment testEntity = result[0];
+            string paymentId = testEntity["id"].ToString();
+
+            Dictionary<string, object> request = new Dictionary<string, object>();
+            Dictionary<string, object> notes = new Dictionary<string, object>();
+            notes.Add("key1","value1");
+            request.Add("notes", notes);
+
+            Payment payment = Helper.client.Payment.Fetch(paymentId).Edit(request);
 
             return payment;
         }
