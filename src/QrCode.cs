@@ -51,7 +51,7 @@ namespace Razorpay.Api
             List<QrCode> QrCode = new List<QrCode>();
             foreach (Entity entity in entities)
             {
-                QrCode.Add(entity as QrCode);
+                QrCode.Add(entity as QrCode); 
             }
             return QrCode;
         }
