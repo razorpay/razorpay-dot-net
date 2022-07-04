@@ -117,6 +117,9 @@
     <Compile Include="..\src\HttpMethod.cs">
       <Link>HttpMethod.cs</Link>
     </Compile>
+     <Compile Include="..\src\QrCode.cs">
+      <Link>QrCode.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
