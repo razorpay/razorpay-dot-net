@@ -49,8 +49,3 @@ jobs:
           -d '{ "state" : "success" , "context" : "github/security-status-check" , "description" : "github/security-status-check", "target_url" : "https://github.com/${{ github.repository }}" }' \
           https://api.github.com/repos/${{ github.repository }}/statuses/${{ env.githubCommit }}
           exit 0
-
-  scan-dependencies:
-    uses: razorpay/security-action/.github/workflows/dependency-scanner.yml@master
-    with:
-      DEPENDABOT_PATH: ".github/dependabot.yml"
