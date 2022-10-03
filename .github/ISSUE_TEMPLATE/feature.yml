@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         ### Thank you for taking the time to suggest a new feature!
-        We kindly ask that you search to see if an issue [already exists](https://github.com/razorpay/razorpay-node/issues?q=is%3Aissue+sort%3Acreated-desc+) for your feature.
+        We kindly ask that you search to see if an issue [already exists](https://github.com/razorpay/razorpay-dot-net/issues?q=is%3Aissue+sort%3Acreated-desc+) for your feature.
         We are also happy to accept contributions from our users.
   - type: textarea
     id: description
