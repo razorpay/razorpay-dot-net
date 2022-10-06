@@ -12,7 +12,7 @@ namespace Razorpay.Api
     {
         private List<HttpMethod> JsonifyInput = new List<HttpMethod>()
         {
-            HttpMethod.Post, HttpMethod.Put, HttpMethod.Patch
+            HttpMethod.Post, HttpMethod.Put, HttpMethod.PATCH
         };
 
         public string MakeRequest(string relativeUrl, HttpMethod method, string data)

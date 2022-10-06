@@ -12,6 +12,7 @@ namespace Razorpay.Api
         private static Dictionary<string, string> Entities = new Dictionary<string, string>()
         {
             {"payment", "Razorpay.Api.Payment"},
+            {"payment.downtime", "Razorpay.Api.Payment"},
             {"refund", "Razorpay.Api.Refund"},
             {"order", "Razorpay.Api.Order"},
             {"customer", "Razorpay.Api.Customer"},
@@ -27,10 +28,10 @@ namespace Razorpay.Api
         };
         private static List<HttpMethod> JsonifyInput = new List<HttpMethod>()
         {
-            HttpMethod.Post, HttpMethod.Put, HttpMethod.Patch
+            HttpMethod.Post, HttpMethod.Put, HttpMethod.PATCH
         };
 
-        protected Entity Fetch(string id)
+        protected Entity Fetch(string id, Dictionary<string, object> options = null)
         {
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -40,7 +41,7 @@ namespace Razorpay.Api
 
             string entityUrl = GetEntityUrl();
             string relativeUrl = string.Format("{0}/{1}", entityUrl, id);
-            List<Entity> entitiesList = Request(relativeUrl, HttpMethod.Get, null);
+            List<Entity> entitiesList = Request(relativeUrl, HttpMethod.Get, options);
             return entitiesList[0];
         }
 
