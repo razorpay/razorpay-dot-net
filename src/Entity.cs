@@ -27,7 +27,7 @@ namespace Razorpay.Api
         };
         private static List<HttpMethod> JsonifyInput = new List<HttpMethod>()
         {
-            HttpMethod.Post, HttpMethod.Put, HttpMethod.Patch
+            HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH
         };
 
         protected Entity Fetch(string id)
@@ -40,14 +40,14 @@ namespace Razorpay.Api
 
             string entityUrl = GetEntityUrl();
             string relativeUrl = string.Format("{0}/{1}", entityUrl, id);
-            List<Entity> entitiesList = Request(relativeUrl, HttpMethod.Get, null);
+            List<Entity> entitiesList = Request(relativeUrl, HttpMethod.GET, null);
             return entitiesList[0];
         }
 
         protected List<Entity> All(Dictionary<string, object> options = null)
         {
             string entityUrl = GetEntityUrl();
-            return Request(entityUrl, HttpMethod.Get, options);
+            return Request(entityUrl, HttpMethod.GET, options);
         }
 
         protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options)
@@ -55,7 +55,7 @@ namespace Razorpay.Api
             client = new RestClient();
             string postData = string.Empty;
 
-            if ((verb == HttpMethod.Get) && (options != null))
+            if ((verb == HttpMethod.GET) && (options != null))
             {
                 string queryString = QueryString(options);
 
@@ -68,7 +68,7 @@ namespace Razorpay.Api
 
             string responseStr = client.MakeRequest(relativeUrl, verb, postData);
 
-            if (verb == HttpMethod.Delete)
+            if (verb == HttpMethod.DELETE)
             {
                 return null;
             }

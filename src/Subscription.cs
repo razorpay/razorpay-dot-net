@@ -28,21 +28,21 @@ namespace Razorpay.Api
         public Subscription Create(Dictionary<string, object> data)
         {
             string relativeUrl = GetEntityUrl();
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
             return (Subscription)entities[0];
         }
 
         public Subscription Cancel()
         {
             string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/cancel";
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, null);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, null);
             return (Subscription)entities[0];
         }
 
         public Addon createAddon(Dictionary<string, object> data = null)
         {
             string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/addons";
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
             return (Addon)entities[0];
         }
     }

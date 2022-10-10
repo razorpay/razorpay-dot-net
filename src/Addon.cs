@@ -18,7 +18,7 @@ namespace Razorpay.Api
 
         public List<Addon> All()
         {
-            List<Entity> entities = Request(GetEntityUrl(), HttpMethod.Get, null);
+            List<Entity> entities = Request(GetEntityUrl(), HttpMethod.GET, null);
 
             List<Addon> addons = new List<Addon>();
 
@@ -33,7 +33,7 @@ namespace Razorpay.Api
         public void Delete()
         {
             string relativeUrl = GetEntityUrl() + "/" + this["id"];
-            Request(relativeUrl, HttpMethod.Delete, null);
+            Request(relativeUrl, HttpMethod.DELETE, null);
         }
     }
 }

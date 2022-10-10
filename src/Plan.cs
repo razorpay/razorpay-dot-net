@@ -23,7 +23,7 @@ namespace Razorpay.Api
         public Plan Create(Dictionary<string, object> data = null)
         {
             string relativeUrl = GetEntityUrl();
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
             return (Plan)entities[0];
         }
     }
