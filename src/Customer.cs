@@ -17,21 +17,21 @@ namespace Razorpay.Api
         public Customer Create(Dictionary<string, object> data)
         {
             string relativeUrl = GetEntityUrl();
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
             return (Customer)entities[0];
         }
            
         public Customer Edit(Dictionary<string, object> data) 
         {
             string relativeUrl = string.Format("{0}/{1}", GetEntityUrl(), this["id"]);
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Put, data);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.PUT, data);
             return (Customer)entities[0];
         }
 
         public Token Token(string tokenId) 
         {
             string relativeUrl = string.Format("{0}/{1}/tokens/{2}", GetEntityUrl(), this["id"], tokenId);
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null);
             return (Token)entities[0];
         }
 
@@ -41,7 +41,7 @@ namespace Razorpay.Api
         public List<Token> Tokens() 
         {
             string relativeUrl = string.Format("{0}/{1}/tokens", GetEntityUrl(), this["id"]);
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null);
 
             List<Token> tokens = new List<Token>();
 
@@ -56,7 +56,7 @@ namespace Razorpay.Api
         public void DeleteToken(string tokenId)
         {
             string relativeUrl = string.Format("{0}/{1}/tokens/{2}", GetEntityUrl(), this["id"], tokenId);
-            Request(relativeUrl, HttpMethod.Delete, null);
+            Request(relativeUrl, HttpMethod.DELETE, null);
         }
     }
 }

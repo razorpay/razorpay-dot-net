@@ -4,7 +4,7 @@ namespace Razorpay.Api
 {
     public class RazorpayClient
     {
-        const string CurrentVersion = "3.0.1";
+        const string CurrentVersion = "3.0.2";
         protected const string DefaultBaseUrl = "https://api.razorpay.com/v1/";
 
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();

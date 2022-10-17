@@ -14,14 +14,14 @@ namespace Razorpay.Api
         new public VirtualAccount Fetch(string id)
         {
             string relativeUrl = string.Format("virtual_accounts/{0}", id);
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null);
             return (VirtualAccount)entities[0];
         }
 
         new public List<VirtualAccount> All(Dictionary<string, object> options = null)
         {
             string relativeUrl = "virtual_accounts";
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null);
 
             List<VirtualAccount> virtualaccounts = new List<VirtualAccount>();
             
@@ -35,14 +35,14 @@ namespace Razorpay.Api
         public VirtualAccount Create(Dictionary<string, object> data = null)
         {
             string relativeUrl = "virtual_accounts";
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
             return (VirtualAccount)entities[0];
         }
 
         public VirtualAccount Edit(Dictionary<string, object> data = null) 
         {
             string relativeUrl = string.Format("virtual_accounts/{0}", this["id"]);
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Patch, data);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.PATCH, data);
             return (VirtualAccount)entities[0];
         }
 
@@ -56,7 +56,7 @@ namespace Razorpay.Api
         public List<Payment> Payments()
         {
             string relativeUrl = string.Format("virtual_accounts/{0}/payments", this["id"]);
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Get, null);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null);
 
             List<Payment> payments = new List<Payment>();
             foreach (Entity entity in entities)

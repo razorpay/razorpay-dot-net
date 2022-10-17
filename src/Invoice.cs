@@ -12,7 +12,7 @@ namespace Razorpay.Api
         public Invoice Create(Dictionary<string, object> data)
         {
             string relativeUrl = GetEntityUrl();
-            List<Entity> entities = Request(relativeUrl, HttpMethod.Post, data);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
             return (Invoice)entities[0];
         }
     }
