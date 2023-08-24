@@ -69,8 +69,7 @@ namespace Razorpay.Api
                 postData = JsonConvert.SerializeObject(options);
             }
 
-            string responseStr = client.MakeRequest(relativeUrl, verb, postData);
-            
+            string responseStr = client.MakeRequest(relativeUrl, verb, postData);            
             if (verb == HttpMethod.DELETE)
             {
                 return null;
@@ -118,7 +117,6 @@ namespace Razorpay.Api
         private Entity ParseEntity(dynamic response)
         {
             Entity entity = null;
-
             string responseEntity = (string) response["entity"];
 
             if (Entities.ContainsKey(responseEntity) == true)
