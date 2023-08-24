@@ -39,7 +39,8 @@ namespace Razorpay.Api
             }
 
             string entityUrl = GetEntityUrl();
-            string relativeUrl = string.Format("{0}/{1}", entityUrl, id);
+            string versionUrl = GetUrlVersion();
+            string relativeUrl = string.Format("{0}/{1}/{2}", versionUrl, entityUrl, id);
             List<Entity> entitiesList = Request(relativeUrl, HttpMethod.GET, null);
             return entitiesList[0];
         }
@@ -47,7 +48,9 @@ namespace Razorpay.Api
         protected List<Entity> All(Dictionary<string, object> options = null)
         {
             string entityUrl = GetEntityUrl();
-            return Request(entityUrl, HttpMethod.GET, options);
+            string versionUrl = GetUrlVersion();
+            string relativeUrl = string.Format("{0}/{1}", versionUrl, entityUrl);
+            return Request(relativeUrl, HttpMethod.GET, options);
         }
 
         protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options)
@@ -67,7 +70,7 @@ namespace Razorpay.Api
             }
 
             string responseStr = client.MakeRequest(relativeUrl, verb, postData);
-
+            
             if (verb == HttpMethod.DELETE)
             {
                 return null;
@@ -115,7 +118,7 @@ namespace Razorpay.Api
         private Entity ParseEntity(dynamic response)
         {
             Entity entity = null;
-            
+
             string responseEntity = (string) response["entity"];
 
             if (Entities.ContainsKey(responseEntity) == true)
@@ -136,6 +139,11 @@ namespace Razorpay.Api
         protected string GetEntityUrl()
         {
             return this.GetType().Name.ToLower() + "s";
+        }
+
+        protected string GetUrlVersion(string version = "v1")
+        {
+            return String.Format("/{0}", version);
         }
 
         public dynamic this[string key]
