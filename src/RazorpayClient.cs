@@ -5,7 +5,7 @@ namespace Razorpay.Api
     public class RazorpayClient
     {
         const string CurrentVersion = "3.0.2";
-        protected const string DefaultBaseUrl = "https://api.razorpay.com/v1/";
+        protected const string DefaultBaseUrl = "https://api.razorpay.com";
 
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         protected static Dictionary<string, string> headers = new Dictionary<string, string>();
@@ -25,7 +25,7 @@ namespace Razorpay.Api
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
 
-        
+
         public RazorpayClient(string key, string secret)
         {
             RazorpayClient.Key = key;
