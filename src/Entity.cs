@@ -24,6 +24,8 @@ namespace Razorpay.Api
             {"subscription", "Razorpay.Api.Subscription"},
             {"virtual_account", "Razorpay.Api.VirtualAccount"},
             {"addon", "Razorpay.Api.Addon"},
+            {"settlement", "Razorpay.Api.Settlement" },
+            {"settlement.ondemand", "Razorpay.Api.Settlement" },
         };
         private static List<HttpMethod> JsonifyInput = new List<HttpMethod>()
         {
