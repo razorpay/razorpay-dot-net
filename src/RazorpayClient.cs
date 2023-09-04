@@ -24,7 +24,7 @@ namespace Razorpay.Api
         private Plan plan = null;
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
-
+        private Iin iin = null;
 
         public RazorpayClient(string key, string secret)
         {
@@ -247,6 +247,18 @@ namespace Razorpay.Api
                     virtualaccount = new VirtualAccount();
                 }
                 return virtualaccount;
+            }
+        }
+
+        public Iin Iin
+        {
+            get
+            {
+                if (iin == null)
+                {
+                    iin = new Iin();
+                }
+                return iin;
             }
         }
     }
