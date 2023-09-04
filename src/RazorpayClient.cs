@@ -24,7 +24,7 @@ namespace Razorpay.Api
         private Plan plan = null;
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
-
+        private QrCode qrcode = null;
 
         public RazorpayClient(string key, string secret)
         {
@@ -247,6 +247,18 @@ namespace Razorpay.Api
                     virtualaccount = new VirtualAccount();
                 }
                 return virtualaccount;
+            }
+        }
+
+        public QrCode QrCode
+        {
+            get
+            {
+                if (qrcode == null)
+                {
+                    qrcode = new QrCode();
+                }
+                return qrcode;
             }
         }
     }
