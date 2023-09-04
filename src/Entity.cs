@@ -24,6 +24,7 @@ namespace Razorpay.Api
             {"subscription", "Razorpay.Api.Subscription"},
             {"virtual_account", "Razorpay.Api.VirtualAccount"},
             {"addon", "Razorpay.Api.Addon"},
+            {"product", "Razorpay.Api.Product"}
         };
         private static List<HttpMethod> JsonifyInput = new List<HttpMethod>()
         {
@@ -55,6 +56,7 @@ namespace Razorpay.Api
 
         protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options)
         {
+            Console.WriteLine(relativeUrl);
             client = new RestClient();
             string postData = string.Empty;
 
