@@ -22,14 +22,14 @@ namespace Razorpay.Api
 
         public Order Create(Dictionary<string, object> data)
         {
-            string relativeUrl = GetEntityUrl();
+            string relativeUrl = string.Format("{0}/{1}", GetUrlVersion(), GetEntityUrl());
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
             return (Order)entities[0];
         }
 
         public List<Payment> Payments()
         {
-            string relativeUrl = GetEntityUrl() + "/" + this["id"] + "/payments";
+            string relativeUrl = string.Format("{0}/{1}/{2}/{3}", GetUrlVersion(), GetEntityUrl(), this["id"], "payments");
             List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null);
 
             List<Payment> payments = new List<Payment>();
@@ -39,6 +39,13 @@ namespace Razorpay.Api
             }
 
             return payments;
+        }
+
+        public Order Edit(Dictionary<string, object> data)
+        {
+            string relativeUrl = string.Format("{0}/{1}/{2}", GetUrlVersion(), GetEntityUrl(), this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.PATCH, data);
+            return (Order)entities[0];
         }
     }
 }
