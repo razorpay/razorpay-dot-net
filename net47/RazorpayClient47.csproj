@@ -116,9 +116,6 @@
     <Compile Include="..\src\VirtualAccount.cs">
       <Link>VirtualAccount.cs</Link>
     </Compile>
-    <Compile Include="..\src\FundAccount.cs">
-      <Link>FundAccount.cs</Link>
-    </Compile>
     <Compile Include="..\src\Item.cs">
       <Link>Item.cs</Link>
     </Compile>
