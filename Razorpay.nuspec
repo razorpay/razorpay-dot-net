@@ -11,10 +11,10 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Razoropay SDK for .Net</description>
     <releaseNotes>Razorpay SDK for .Net v3</releaseNotes>
-    <copyright>Copyright 2015</copyright>
+    <copyright>Copyright 2015 - 2023</copyright>
     <tags>Razorpay</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="[11.0.2,13.0.3)" />
+      <dependency id="Newtonsoft.Json" version="13.0.3" />
     </dependencies>
   </metadata>
   <files>
