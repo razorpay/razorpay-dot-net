@@ -20,6 +20,6 @@
   <files>
     <file src="net40/Razorpay.dll" target="lib/net40/Razorpay.dll" />
     <file src="net45/Razorpay.dll" target="lib/net45/Razorpay.dll" />
-	<file src="net47/Razorpay.dll" target="lib/net47/Razorpay.dll" />
+	  <file src="net47/Razorpay.dll" target="lib/net47/Razorpay.dll" />
   </files>
 </package>
