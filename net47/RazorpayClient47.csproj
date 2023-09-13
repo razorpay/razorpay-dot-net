@@ -116,17 +116,9 @@
     <Compile Include="..\src\VirtualAccount.cs">
       <Link>VirtualAccount.cs</Link>
     </Compile>
-    <Compile Include="..\src\FundAccount.cs">
-      <Link>FundAccount.cs</Link>
+    <Compile Include="..\src\Webhook.cs">
+      <Link>Webhook.cs</Link>
     </Compile>
-    <Compile Include="..\src\Item.cs">
-      <Link>Item.cs</Link>
-    </Compile>
-	</Compile>
-	 <Compile Include="..\src\Webhook.cs">
-		<Link>Webhook.cs</Link>
-	</Compile>  
-	  <Compile Include="Class.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\src\HttpMethod.cs">
       <Link>HttpMethod.cs</Link>
