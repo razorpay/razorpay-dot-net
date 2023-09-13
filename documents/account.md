@@ -98,9 +98,9 @@ Account payment = client.Account.Create(accountRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| email*        | string      | The sub-merchant's business email address.  |
-| phone*          | integer      | The sub-merchant's business phone number. The minimum length is 8 characters and the maximum length is 15.                       |
-| legal_business_name*      | string | The name of the sub-merchant's business. For example, Acme Corp. The minimum length is 4 characters and the maximum length is 200.          |
+| email  (mandatory)        | string      | The sub-merchant's business email address.  |
+| phone  (mandatory)          | integer      | The sub-merchant's business phone number. The minimum length is 8 characters and the maximum length is 15.                       |
+| legal_business_name  (mandatory)      | string | The name of the sub-merchant's business. For example, Acme Corp. The minimum length is 4 characters and the maximum length is 200.          |
 | customer_facing_business_name | string | The sub-merchant billing label as it appears on the Razorpay Dashboard. The minimum length is 1 character and the maximum length is 255. |
 | business_type         | string      | The type of business operated by the sub-merchant.Possible value is `proprietorship`, `partnership`, `private_limited`, `public_limited`, `llp`, `ngo`, `trust`, `society`, `not_yet_registered`, `huf` |
 | reference_id         | string      |  Partner's external account reference id. The minimum length is 1 character and the maximum length is 512. |
@@ -108,7 +108,7 @@ Account payment = client.Account.Create(accountRequest);
 | legal_info         | object      | All keys listed [here](hhttps://razorpay.com/docs/api/partners/account-onboarding/#create-an-account) are supported |
 | brand         | object      | All keys listed [here](https://razorpay.com/docs/api/partners/account-onboarding/#create-an-account) are supported |
 | notes | object  | A key-value pair  |
-| contact_name* | string  | The name of the contact. The minimum length is 4 and the maximum length is 255 characters. |
+| contact_name (mandatory) | string  | The name of the contact. The minimum length is 4 and the maximum length is 255 characters. |
 | contact_info | object  | All keys listed [here](https://razorpay.com/docs/api/partners/account-onboarding/#create-an-account) are supported |     
 | apps | object  | All keys listed [here](https://razorpay.com/docs/api/partners/account-onboarding/#create-an-account) are supported |     
 
@@ -116,7 +116,7 @@ Account payment = client.Account.Create(accountRequest);
 **Response:**
 ```json
 {
-  "id": "acc_GRWKk7qQsLnDjX",
+  "id": "acc_ua2tBezhcEBvap",
   "type": "standard",
   "status": "created",
   "email": "gauriagain.kumar@example.org",
@@ -199,7 +199,7 @@ Account payment = client.Account.Create(accountRequest);
 
 ### Edit Account
 ```C#
-string accountId = "acc_GP4lfNA0iIMn5B";
+string accountId = "acc_ua2tBezhcEBvap";
 
 Dictionary<string, object> accountRequest = new Dictionary<string, object>();
 accountRequest.Add("customer_facing_business_name", "Example");
@@ -218,14 +218,14 @@ Account account = client.Account.Fetch(accountId).Edit(accountRequest);
 | legal_info         | object      | All keys listed [here](hhttps://razorpay.com/docs/api/partners/account-onboarding/#update-an-account) are supported |
 | brand         | object      | All keys listed [here](https://razorpay.com/docs/api/partners/account-onboarding/#update-an-account) are supported |
 | notes | object  | A key-value pair  |
-| contact_name* | string  | The name of the contact. The minimum length is 4 and the maximum length is 255 characters. |
+| contact_name (mandatory) | string  | The name of the contact. The minimum length is 4 and the maximum length is 255 characters. |
 | contact_info | object  | All keys listed [here](https://razorpay.com/docs/api/partners/account-onboarding/#update-an-account) are supported |     
 | apps | object  | All keys listed [here](https://razorpay.com/docs/api/partners/account-onboarding/#update-an-account) are supported |     
 
 **Response:**
 ```json
 {
-  "id": "acc_GP4lfNA0iIMn5B",
+  "id": "acc_ua2tBezhcEBvap",
   "type": "standard",
   "status": "created",
   "email": "gauri@example.org",
@@ -256,7 +256,7 @@ Account account = client.Account.Fetch(accountId).Edit(accountRequest);
 
 ### Delete an account
 ```C#
-string accountId = "acc_GP4lfNA0iIMn5B";
+string accountId = "acc_ua2tBezhcEBvap";
 
 Account account = client.Account.Fetch(accountId).Delete();
 
@@ -266,12 +266,12 @@ Account account = client.Account.Fetch(accountId).Delete();
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| accountId* | string   | The unique identifier of a sub-merchant account that must be deleted.  |
+| accountId (mandatory) | string   | The unique identifier of a sub-merchant account that must be deleted.  |
 
 **Response:**
 ```json
 {
-  "id": "acc_GXQAkO2MrvBYg4",
+  "id": "acc_ua2tBezhcEBvap",
   "type": "standard",
   "status": "suspended",
   "email": "gaurav.kumar@acme.org",
@@ -304,7 +304,7 @@ Account account = client.Account.Fetch(accountId).Delete();
   "created_at": 1612425180,
   "suspended_at": 1612425235,
   "phone": "9000090000",
-  "reference_id": "account_COdeRandom",
+  "reference_id": "account_CodeRandom",
   "business_type": "partnership",
   "legal_business_name": "Acme Corp Pvt Ltd",
   "customer_facing_business_name": "Acme",
@@ -357,7 +357,7 @@ Account account = client.Account.Fetch(accountId).Delete();
 
 ### Fetch an account
 ```C#
-string accountId = "acc_GP4lfNA0iIMn5B";
+string accountId = "acc_ua2tBezhcEBvap";
 
 Account account = client.Account.Fetch(accountId);
 ```
@@ -366,12 +366,12 @@ Account account = client.Account.Fetch(accountId);
 
 | Name        | Type        | Description                                 |
 |-------------|-------------|---------------------------------------------|
-| accountId* | string      | The unique identifier of a sub-merchant account generated by Razorpay.  |
+| accountId (mandatory) | string      | The unique identifier of a sub-merchant account generated by Razorpay.  |
 
 **Response:**
 ```json
 {
-  "id": "acc_GP4lfNA0iIMn5B",
+  "id": "acc_ua2tBezhcEBvap",
   "type": "standard",
   "status": "created",
   "email": "gauri@example.org",
