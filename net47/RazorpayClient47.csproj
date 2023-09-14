@@ -116,6 +116,8 @@
     <Compile Include="..\src\VirtualAccount.cs">
       <Link>VirtualAccount.cs</Link>
     </Compile>
+    <Compile Include="..\src\Stakeholder.cs">
+      <Link>Stakeholder.cs</Link>
     <Compile Include="..\src\Webhook.cs">
       <Link>Webhook.cs</Link>
     </Compile>
