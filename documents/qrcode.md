@@ -24,9 +24,9 @@ QrCode qrcode = client.QrCode.Create(qrRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| type*          | string | The type of QR code i.e, `upi_qr`/`bharat_qr`                                  |
+| type (mandatory)          | string | The type of QR code i.e, `upi_qr`/`bharat_qr`                                  |
 | name          | string | Label entered to identify the QR code.                              |
-| usage*          | string | Indicates if the QR code should be allowed to accept single payment or multiple payments i.e, `single_use`/`multiple_use`     |
+| usage (mandatory)          | string | Indicates if the QR code should be allowed to accept single payment or multiple payments i.e, `single_use`/`multiple_use`     |
 | fixed_amount          | boolean | Indicates if the QR should accept payments of specific amounts or any amount. |
 | payment_amount(* mandatory if fixed_amount is true)          | integer | Indicates if the QR should accept payments of specific amounts or any amount. |
 | customer_id          | string | Unique identifier of the customer the QR code is linked with |
@@ -37,7 +37,7 @@ QrCode qrcode = client.QrCode.Create(qrRequest);
 **Response:**
 ```json
 {
-  "id": "qr_HMsVL8HOpbMcjU",
+  "id": "qr_Z6t7VFTb9xHeOs",
   "entity": "qr_code",
   "created_at": 1623660301,
   "name": "Store_1",
@@ -53,7 +53,7 @@ QrCode qrcode = client.QrCode.Create(qrRequest);
   "notes": {
     "purpose": "Test UPI QR code notes"
   },
-  "customer_id": "cust_HKsR5se84c5LTO",
+  "customer_id": "cust_Z6t7VFTb9xHeOs",
   "close_by": 1681615838
 }
 ```
@@ -92,9 +92,9 @@ QrCode qrcode = client.QrCode.Create(qrRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| type*          | string | The type of QR code i.e, `upi_qr`/`bharat_qr`                                  |
+| type (mandatory)          | string | The type of QR code i.e, `upi_qr`/`bharat_qr`                                  |
 | name          | string | Label entered to identify the QR code.                              |
-| usage*          | string | Indicates if the QR code should be allowed to accept single payment or multiple payments i.e, `single_use`/`multiple_use`     |
+| usage (mandatory)          | string | Indicates if the QR code should be allowed to accept single payment or multiple payments i.e, `single_use`/`multiple_use`     |
 | fixed_amount          | boolean | Indicates if the QR should accept payments of specific amounts or any amount. |
 | payment_amount(* mandatory if fixed_amount is true)          | integer | Indicates if the QR should accept payments of specific amounts or any amount. |
 | customer_id          | string | Unique identifier of the customer the QR code is linked with |
@@ -106,7 +106,7 @@ QrCode qrcode = client.QrCode.Create(qrRequest);
 **Response:**
 ```json
 {
-  "id": "qr_HMsVL8HOpbMcjU",
+  "id": "qr_Z6t7VFTb9xHeOs",
   "entity": "qr_code",
   "created_at": 1623660301,
   "name": "Store_1",
@@ -162,7 +162,7 @@ List<QrCode> paymentlink = client.QrCode.All(paramRequest);
   "count": 1,
   "items": [
     {
-      "id": "qr_HO2jGkWReVBMNu",
+      "id": "qr_Z6t7VFTb9xHeOs",
       "entity": "qr_code",
       "created_at": 1623914648,
       "name": "Store_1",
@@ -178,7 +178,7 @@ List<QrCode> paymentlink = client.QrCode.All(paramRequest);
       "notes": {
         "purpose": "Test UPI QR code notes"
       },
-      "customer_id": "cust_HKsR5se84c5LTO",
+      "customer_id": "cust_Z6t7VFTb9xHeOs",
       "close_by": 1681615838,
       "closed_at": null,
       "close_reason": null
@@ -192,7 +192,7 @@ List<QrCode> paymentlink = client.QrCode.All(paramRequest);
 ### Fetch a Qr code
 
 ```C#
-string qrCodeId = "qr_HO2r1MDprYtWRT";
+string qrCodeId = "qr_Z6t7VFTb9xHeOs";
 
 QrCode qrcode = client.QrCode.Fetch(qrCodeId);
 ```
@@ -206,7 +206,7 @@ QrCode qrcode = client.QrCode.Fetch(qrCodeId);
 **Response:**
 ```json
 {
-  "id": "qr_HO2r1MDprYtWRT",
+  "id": "qr_Z6t7VFTb9xHeOs",
   "entity": "qr_code",
   "created_at": 1623915088,
   "name": "Store_1",
@@ -222,7 +222,7 @@ QrCode qrcode = client.QrCode.Fetch(qrCodeId);
   "notes": {
     "purpose": "Test UPI QR code notes"
   },
-  "customer_id": "cust_HKsR5se84c5LTO",
+  "customer_id": "cust_Z6t7VFTb9xHeOs",
   "close_by": 1681615838,
   "closed_at": null,
   "close_reason": null
@@ -254,7 +254,7 @@ List<QrCode> paymentlink = client.QrCode.All(paramRequest);
   "count": 1,
   "items": [
     {
-      "id": "qr_HMsgvioW64f0vh",
+      "id": "qr_Z6t7VFTb9xHeOs",
       "entity": "qr_code",
       "created_at": 1623660959,
       "name": "Store_1",
@@ -270,7 +270,7 @@ List<QrCode> paymentlink = client.QrCode.All(paramRequest);
       "notes": {
         "purpose": "Test UPI QR code notes"
       },
-      "customer_id": "cust_HKsR5se84c5LTO",
+      "customer_id": "cust_Z6t7VFTb9xHeOs",
       "close_by": 1681615838
     }
   ]
@@ -282,7 +282,7 @@ List<QrCode> paymentlink = client.QrCode.All(paramRequest);
 
 ```C#
 Dictionary<string, object> paramRequest = new Dictionary<string, object>();
-params.Add("payment_id","pay_FVmAstJWfsD3SO");
+params.Add("payment_id","pay_Z6t7VFTb9xHeOs");
 
 List<QrCode> paymentlink = client.QrCode.All(paramRequest);
 ```
@@ -300,7 +300,7 @@ List<QrCode> paymentlink = client.QrCode.All(paramRequest);
   "count": 1,
   "items": [
     {
-      "id": "qr_HMsqRoeVwKbwAF",
+      "id": "qr_Z6t7VFTb9xHeOs",
       "entity": "qr_code",
       "created_at": 1623661499,
       "name": "Fresh Groceries",
@@ -326,7 +326,7 @@ List<QrCode> paymentlink = client.QrCode.All(paramRequest);
 ### Fetch Payments for a QR Code
 
 ```C#
-string qrCodeId = "qr_HMsVL8HOpbMcjU";
+string qrCodeId = "qr_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> paramRequest = new Dictionary<string, object>();
 paramRequest.Add("count","1");
@@ -351,7 +351,7 @@ List<Payment> qrcode = client.QrCode.FetchAllPayments(qrCodeId, paramRequest);
   "count": 1,
   "items": [
     {
-      "id": "pay_HMtDKn3TnF4D8x",
+      "id": "pay_Z6t7VFTb9xHeOs",
       "entity": "payment",
       "amount": 500,
       "currency": "INR",
@@ -370,7 +370,7 @@ List<Payment> qrcode = client.QrCode.FetchAllPayments(qrCodeId, paramRequest);
       "vpa": "gauri.kumari@okhdfcbank",
       "email": "gauri.kumari@example.com",
       "contact": "+919999999999",
-      "customer_id": "cust_HKsR5se84c5LTO",
+      "customer_id": "cust_Z6t7VFTb9xHeOs",
       "notes": [],
       "fee": 0,
       "tax": 0,
@@ -392,7 +392,7 @@ List<Payment> qrcode = client.QrCode.FetchAllPayments(qrCodeId, paramRequest);
 ### Close a QR Code
 
 ```C#
-string qrCodeId = "qr_HMsVL8HOpbMcjU";
+string qrCodeId = "qr_Z6t7VFTb9xHeOs";
 
 QrCode qrcode = client.QrCode.Fetch(qrCodeId).Close();
 ```
@@ -406,7 +406,7 @@ QrCode qrcode = client.QrCode.Fetch(qrCodeId).Close();
 **Response:**
 ```json
 {
-  "id": "qr_HMsVL8HOpbMcjU",
+  "id": "qr_Z6t7VFTb9xHeOs",
   "entity": "qr_code",
   "created_at": 1623660301,
   "name": "Store_1",
@@ -422,7 +422,7 @@ QrCode qrcode = client.QrCode.Fetch(qrCodeId).Close();
   "notes": {
     "purpose": "Test UPI QR code notes"
   },
-  "customer_id": "cust_HKsR5se84c5LTO",
+  "customer_id": "cust_Z6t7VFTb9xHeOs",
   "close_by": 1681615838,
   "closed_at": 1623660445,
   "close_reason": "on_demand"
