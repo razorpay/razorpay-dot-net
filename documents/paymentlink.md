@@ -64,8 +64,8 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|upi_link*          | boolean | boolean Must be set to true   //   to creating UPI Payment Link only                                     |
-|amount*        | integer  | Amount to be paid using the Payment Link.                     |
+|upi_link (mandatory)          | boolean | boolean Must be set to true   //   to creating UPI Payment Link only                                     |
+|amount (mandatory)        | integer  | Amount to be paid using the Payment Link.                     |
 |currency           | string  |  A three-letter ISO code for the currency in which you want to accept the payment. For example, INR.                     |
 |accept_partial        | boolean  | Indicates whether customers can make partial payments using the Payment Link. Possible values: true - Customer can make partial payments. false (default) - Customer cannot make partial payments. // UPI Payment Link is not supported partial payment  |
 |description           | string  | A brief description of the Payment Link                     |
@@ -108,7 +108,7 @@ For fetch all payment link response please click [here](https://razorpay.com/doc
 ### Fetch specific payment link
 
 ```C#
-string paymentLinkId = "plink_FMbhpT6nqDjDei";
+string paymentLinkId = "plink_Z6t7VFTb9xHeOs";
 
 PaymentLink paymentlink = client.PaymentLink.Fetch(paymentLinkId);
 ```
@@ -117,7 +117,7 @@ PaymentLink paymentlink = client.PaymentLink.Fetch(paymentLinkId);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| paymentLinkId*          | string |  Unique identifier of the Payment Link.                         |
+| paymentLinkId (mandatory)          | string |  Unique identifier of the Payment Link.                         |
 
 **Response:**
 
@@ -128,7 +128,7 @@ For fetch specific payment link response please click [here](https://razorpay.co
 ### Update payment link
 
 ```C#
-string paymentLinkId = "plink_FMbhpT6nqDjDei";
+string paymentLinkId = "plink_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> paymentLinkRequest = new Dictionary<string, object>();
 paymentLinkRequest.Add("reference_id","TS35");
@@ -145,7 +145,7 @@ PaymentLink paymentlink = client.PaymentLink.Fetch(paymentLinkId).Edit(paymentLi
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| paymentLinkId*          | string | The unique identifier of the Payment Link that needs to be updated.                         |
+| paymentLinkId (mandatory)          | string | The unique identifier of the Payment Link that needs to be updated.                         |
 | accept_partial         | boolean | Indicates whether customers can make partial payments using the Payment Link. Possible values: true - Customer can make partial payments. false (default) - Customer cannot make partial payments.                         |
 | reference_id          | string | Adds a unique reference number to an existing link.                         |
 | expire_by         | integer | Timestamp, in Unix format, when the payment links should expire.                         |
@@ -160,7 +160,7 @@ For updating payment link response please click [here](https://razorpay.com/docs
 ### Cancel a payment link
 
 ```C#
-string paymentLinkId = "plink_FMbhpT6nqDjDei";
+string paymentLinkId = "plink_Z6t7VFTb9xHeOs";
 
 PaymentLink paymentlink = client.PaymentLink.Fetch(paymentLinkId).Cancel();
 ```
@@ -169,7 +169,7 @@ PaymentLink paymentlink = client.PaymentLink.Fetch(paymentLinkId).Cancel();
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| paymentLinkId*          | string | Unique identifier of the Payment Link.                         |
+| paymentLinkId (mandatory)         | string | Unique identifier of the Payment Link.                         |
 
 **Response:**
 
@@ -179,7 +179,7 @@ For canceling payment link response please click [here](https://razorpay.com/doc
 ### Send notification
 
 ```C#
-string paymentLinkId = "plink_FMbhpT6nqDjDei";
+string paymentLinkId = "plink_Z6t7VFTb9xHeOs";
 
 string  = "email";
 
@@ -190,8 +190,8 @@ PaymentLink paymentlink = client.PaymentLink.Fetch(paymentLinkId).NotifyBy(mediu
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| paymentLinkId*          | string | Unique identifier of the Payment Link that should be resent.                         |
-| medium*          | string | `sms`/`email`,Medium through which the Payment Link must be resent. Allowed values are:           |
+| paymentLinkId (mandatory)          | string | Unique identifier of the Payment Link that should be resent.                         |
+| medium (mandatory)          | string | `sms`/`email`,Medium through which the Payment Link must be resent. Allowed values are:           |
 
 **Response:**
 ```json
@@ -249,8 +249,8 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|amount*        | integer  | Amount to be paid using the Payment Link.                     |
-|options*           | object  | All parameters listed [here](https://razorpay.com/docs/api/payments/payment-links/transfer-payments/#response-parameters) are supported     |
+|amount (mandatory)        | integer  | Amount to be paid using the Payment Link.                     |
+|options (mandatory)           | object  | All parameters listed [here](https://razorpay.com/docs/api/payments/payment-links/transfer-payments/#response-parameters) are supported     |
 
 **Response:**
 ```json
@@ -273,7 +273,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
   "expire_by": 0,
   "expired_at": 0,
   "first_min_partial_amount": 0,
-  "id": "plink_FMbhpT6nqDjDei",
+  "id": "plink_Z6t7VFTb9xHeOs",
   "notes": null,
   "notify": {
     "email": true,
@@ -327,7 +327,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|amount*        | integer  | Amount to be paid using the Payment Link.                     |
+|amount (mandatory)        | integer  | Amount to be paid using the Payment Link.                     |
 |currency           | string  |  A three-letter ISO code for the currency in which you want to accept the payment. For example, INR.                     |
 |description           | string  | A brief description of the Payment Link                     |
 |reference_id           | string  | AReference number tagged to a Payment Link.                      |
@@ -354,7 +354,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
   "expire_by": 0,
   "expired_at": 0,
   "first_min_partial_amount": 0,
-  "id": "plink_FdLt0WBldRyE5t",
+  "id": "plink_Z6t7VFTb9xHeOs",
   "notes": null,
   "notify": {
     "email": true,
@@ -399,7 +399,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|amount*        | integer  | Amount to be paid using the Payment Link.                     |
+|amount (mandatory)        | integer  | Amount to be paid using the Payment Link.                     |
 |accept_partial        | boolean  |  Indicates whether customers can make partial payments using the Payment Link. Possible values:true - Customer can make partial payments.false (default) - Customer cannot make partial payments.                     |
 |currency           | string  |  A three-letter ISO code for the currency in which you want to accept the payment. For example, INR.                     |
 |description           | string  | A brief description of the Payment Link                     |
@@ -515,7 +515,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|amount*        | integer  | Amount to be paid using the Payment Link.                     |
+|amount (mandatory)        | integer  | Amount to be paid using the Payment Link.                     |
 |accept_partial        | boolean  |  Indicates whether customers can make partial payments using the Payment Link. Possible values:true - Customer can make partial payments.false (default) - Customer cannot make partial payments.                     |
 |currency           | string  |  A three-letter ISO code for the currency in which you want to accept the payment. For example, INR.                     |
 |description           | string  | A brief description of the Payment Link                     |
@@ -546,7 +546,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
   "expire_by": 0,
   "expired_at": 0,
   "first_min_partial_amount": 100,
-  "id": "plink_FL4vbXVKfW7PAz",
+  "id": "plink_Z6t7VFTb9xHeOs",
   "notes": null,
   "notify": {
     "email": true,
@@ -604,7 +604,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|amount*        | integer  | Amount to be paid using the Payment Link.                     |
+|amount (mandatory)       | integer  | Amount to be paid using the Payment Link.                     |
 |currency           | string  |  A three-letter ISO code for the currency in which you want to accept the payment. For example, INR.                     |
 |accept_partial        | boolean  |  Indicates whether customers can make partial payments using the Payment Link. Possible values:true - Customer can make partial payments.false (default) - Customer cannot make partial payments.                     |
 |first_min_partial_amount        | integer  | Minimum amount, in currency subunits, that must be paid by the customer as the first partial payment.  |
@@ -636,7 +636,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
   "expire_by": 0,
   "expired_at": 0,
   "first_min_partial_amount": 100,
-  "id": "plink_FL3M2gJFs1Jkma",
+  "id": "plink_Z6t7VFTb9xHeOs",
   "notes": null,
   "notify": {
     "email": true,
@@ -699,7 +699,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|amount*        | integer  | Amount to be paid using the Payment Link.                     |
+|amount (mandatory)        | integer  | Amount to be paid using the Payment Link.                     |
 |currency           | string  |  A three-letter ISO code for the currency in which you want to accept the payment. For example, INR.                     |
 |accept_partial        | boolean  |  Indicates whether customers can make partial payments using the Payment Link. Possible values:true - Customer can make partial payments.false (default) - Customer cannot make partial payments.                     |
 |first_min_partial_amount        | integer | Minimum amount, in currency subunits, that must be paid by the customer as the first partial payment.  |
@@ -759,7 +759,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|amount*        | integer  | Amount to be paid using the Payment Link.                     |
+|amount (mandatory)        | integer  | Amount to be paid using the Payment Link.                     |
 |currency           | string  |  A three-letter ISO code for the currency in which you want to accept the payment. For example, INR.                     |
 |accept_partial        | boolean  |  Indicates whether customers can make partial payments using the Payment Link. Possible values:true - Customer can make partial payments.false (default) - Customer cannot make partial payments.                     |
 |first_min_partial_amount        | integer  | Minimum amount, in currency subunits, that must be paid by the customer as the first partial payment. |
@@ -790,7 +790,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
   "expire_by": 0,
   "expired_at": 0,
   "first_min_partial_amount": 100,
-  "id": "plink_FL3YbdvN2Cj6gh",
+  "id": "plink_Z6t7VFTb9xHeOs",
   "notes": null,
   "notify": {
     "email": true,
@@ -851,7 +851,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|amount*        | integer  | Amount to be paid using the Payment Link.                     |
+|amount (mandatory)        | integer  | Amount to be paid using the Payment Link.                     |
 |currency           | string  |  A three-letter ISO code for the currency in which you want to accept the payment. For example, INR.                     |
 |accept_partial        | boolean  |  Indicates whether customers can make partial payments using the Payment Link. Possible values:true - Customer can make partial payments.false (default) - Customer cannot make partial payments.                     |
 |first_min_partial_amount        | integer  | Minimum amount, in currency subunits, that must be paid by the customer as the first partial payment.  |
@@ -882,7 +882,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
   "expire_by": 0,
   "expired_at": 0,
   "first_min_partial_amount": 100,
-  "id": "plink_FL4GA1t6FBcaVR",
+  "id": "plink_Z6t7VFTb9xHeOs",
   "notes": null,
   "notify": {
     "email": true,
@@ -942,7 +942,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|amount*        | integer  | Amount to be paid using the Payment Link.                     |
+|amount (mandatory)        | integer  | Amount to be paid using the Payment Link.                     |
 |currency           | string  |  A three-letter ISO code for the currency in which you want to accept the payment. For example, INR.                     |
 |accept_partial        | boolean  |  Indicates whether customers can make partial payments using the Payment Link. Possible values:true - Customer can make partial payments.false (default) - Customer cannot make partial payments.                     |
 |first_min_partial_amount        | integer  | Minimum amount, in currency subunits, that must be paid by the customer as the first partial payment.  |
@@ -972,7 +972,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
   "expire_by": 0,
   "expired_at": 0,
   "first_min_partial_amount": 100,
-  "id": "plink_FL3Oncr7XxXFf6",
+  "id": "plink_Z6t7VFTb9xHeOs",
   "notes": null,
   "notify": {
     "email": true,
@@ -1035,7 +1035,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|amount*        | integer  | Amount to be paid using the Payment Link.                     |
+|amount (mandatory)        | integer  | Amount to be paid using the Payment Link.                     |
 |currency           | string  |  A three-letter ISO code for the currency in which you want to accept the payment. For example, INR.                     |
 |accept_partial        | boolean  |  Indicates whether customers can make partial payments using the Payment Link. Possible values:true - Customer can make partial payments.false (default) - Customer cannot make partial payments.                     |
 |first_min_partial_amount        | integer  | Minimum amount, in currency subunits, that must be paid by the customer as the first partial payment.  |
@@ -1043,7 +1043,7 @@ PaymentLink paymentlink = client.PaymentLink.Create(paymentLinkRequest);
 |customer           | object  | name, email, contact                 |
 |notify           | object  | sms or email (boolean)                     |
 |reminder_enable       | boolean  | To disable reminders for a Payment Link, pass reminder_enable as false                     |
-|options*       | object  | All parameters listed [here](https://razorpay.com/docs/payment-links/api/new/advanced-options/customize/rename-payment-details-labels/) are supported   |
+|options (mandatory)       | object  | All parameters listed [here](https://razorpay.com/docs/payment-links/api/new/advanced-options/customize/rename-payment-details-labels/) are supported   |
 
 **Response:**
 
