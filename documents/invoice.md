@@ -51,7 +51,7 @@ Invoice invoice = client.Invoice.Create(invoiceRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|type*          | string | entity type (here its invoice)                                               |
+|type (mandatory)          | string | entity type (here its invoice)                                               |
 |description        | string  | A brief description of the invoice.                      |
 |customer_id           | string  | customer id for which invoice need be raised   |
 |draft           | string  |  Invoice is created in draft state when value is set to `1`   |
@@ -70,10 +70,10 @@ In this example, an invoice is created using existing `customer_id` and `item_id
 Dictionary<string, object> invoiceRequest = new Dictionary<string, object>();
 invoiceRequest.Add("type", "invoice");
 invoiceRequest.Add("date", "1589994898");
-invoiceRequest.Add("customer_id","cust_JDdNazagOgg9Ig");
+invoiceRequest.Add("customer_id","cust_Z6t7VFTb9xHeOs");
 List<Dictionary<string, object>> lines = new List<Dictionary<string, object>>();
 Dictionary<string, object> lineItems = new Dictionary<string, object>();
-lineItems.Add("item_id","item_J7lZCyxMVeEtYB");
+lineItems.Add("item_id","item_Z6t7VFTb9xHeOs");
 lines.Add(lineItems);
 invoiceRequest.Add("line_items",lines);
 
@@ -84,13 +84,13 @@ Invoice invoice = client.Invoice.Create(invoiceRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-|type*          | string | entity type (here its invoice)                                               |
+|type (mandatory)          | string | entity type (here its invoice)                                               |
 |description        | string  | A brief description of the invoice.                      |
 |customer_id           | string  | customer id for which invoice need be raised                     |
-| customer*     | array | All parameters listed [here](https://razorpay.com/docs/api/payments/invoices/#create-an-invoice) are supported           |
+| customer (mandatory)     | array | All parameters listed [here](https://razorpay.com/docs/api/payments/invoices/#create-an-invoice) are supported           |
 | line_items    | array | All parameters listed [here](https://razorpay.com/docs/api/payments/invoices/#create-an-invoice) are supported |
 | sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
-| currency*  (conditionally mandatory) | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
+| currency (mandatory)  (conditionally mandatory) | string  | The 3-letter ISO currency code for the payment. Currently, only `INR` is supported. |
 | email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
 | expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
 
@@ -124,7 +124,7 @@ For fetch all invoice response please click [here](https://razorpay.com/docs/api
 ### Fetch invoice
 
 ```C#
-string invoiceId = "inv_E7q0tqkxBRzdau";
+string invoiceId = "inv_Z6t7VFTb9xHeOs";
 
 Invoice invoice = client.Invoice.Fetch(invoiceId);
 ```
@@ -133,24 +133,24 @@ Invoice invoice = client.Invoice.Fetch(invoiceId);
 
 | Name       | Type    | Description                                                                  |
 |------------|---------|------------------------------------------------------------------------------|
-| invoiceId* | string | The id of the invoice to be fetched                         |
+| invoiceId (mandatory) | string | The id of the invoice to be fetched                         |
 
 **Response:**
 ```json
 {
-  "id": "inv_E7q0tqkxBRzdau",
+  "id": "inv_Z6t7VFTb9xHeOs",
   "entity": "invoice",
   "receipt": null,
   "invoice_number": null,
-  "customer_id": "cust_E7q0trFqXgExmT",
+  "customer_id": "cust_Z6t7VFTb9xHeOs",
   "customer_details": {
-    "id": "cust_E7q0trFqXgExmT",
+    "id": "cust_Z6t7VFTb9xHeOs",
     "name": "Gaurav Kumar",
     "email": "gaurav.kumar@example.com",
     "contact": "9999999999",
     "gstin": null,
     "billing_address": {
-      "id": "addr_E7q0ttqh4SGhAC",
+      "id": "addr_Z6t7VFTb9xHeOs",
       "type": "billing_address",
       "primary": true,
       "line1": "Ground & 1st Floor, SJR Cyber Laskar",
@@ -161,7 +161,7 @@ Invoice invoice = client.Invoice.Fetch(invoiceId);
       "country": "in"
     },
     "shipping_address": {
-      "id": "addr_E7q0ttKwVA1h2V",
+      "id": "addr_Z6t7VFTb9xHeOs",
       "type": "shipping_address",
       "primary": true,
       "line1": "Ground & 1st Floor, SJR Cyber Laskar",
@@ -175,10 +175,10 @@ Invoice invoice = client.Invoice.Fetch(invoiceId);
     "customer_email": "gaurav.kumar@example.com",
     "customer_contact": "9999999999"
   },
-  "order_id": "order_E7q0tvRpC0WJwg",
+  "order_id": "order_Z6t7VFTb9xHeOs",
   "line_items": [
     {
-      "id": "li_E7q0tuPNg84VbZ",
+      "id": "li_Z6t7VFTb9xHeOs",
       "item_id": null,
       "ref_id": null,
       "ref_type": null,
@@ -238,12 +238,12 @@ Invoice invoice = client.Invoice.Fetch(invoiceId);
 ### Update invoice
 
 ```C#
-string invoiceId = "inv_DAweOiQ7amIUVd";
+string invoiceId = "inv_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> invoiceRequest = new Dictionary<string, object>();
 List<Dictionary<string, object>> lines = new List<Dictionary<string, object>>();
 Dictionary<string, object> lineItems = new Dictionary<string, object>();
-lineItems.Add("id", "li_JZzL5KfAkHgEaV");
+lineItems.Add("id", "li_Z6t7VFTb9xHeOs");
 lineItems.Add("name", "Book / English August - Updated name and quantity");
 lineItems.Add("quantity", 1);
 Dictionary<string, object> lineItems1 = new Dictionary<string, object>();
@@ -265,7 +265,7 @@ Invoice invoice = client.Invoice.Fetch(invoiceId).Edit(invoiceRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| invoiceId*          | string | The id of the invoice to be fetched                         |
+| invoiceId (mandatory)          | string | The id of the invoice to be fetched                         |
 
 **Response:**
 For update invoice response please click [here](https://razorpay.com/docs/api/invoices/#update-an-invoice)
@@ -284,7 +284,7 @@ Invoice invoice = client.Invoice.Fetch(invoiceId).Issue();
 
 | Name       | Type    | Description                                                                  |
 |------------|---------|------------------------------------------------------------------------------|
-| invoiceId* | string | The id of the invoice to be issued                         |
+| invoiceId (mandatory) | string | The id of the invoice to be issued                         |
 
 **Response:**
 ```json
@@ -410,7 +410,7 @@ List<Invoice> invoice = client.Invoice.Fetch(invoiceId).Delete();
 
 | Name       | Type    | Description                                                                  |
 |------------|---------|------------------------------------------------------------------------------|
-| invoiceId* | string | The id of the invoice to be deleted                         |
+| invoiceId (mandatory) | string | The id of the invoice to be deleted                         |
 
 **Response:**
 ```
@@ -430,7 +430,7 @@ Invoice invoice = client.Invoice.Fetch(invoiceId).Cancel();
 
 | Name       | Type    | Description                                                                  |
 |------------|---------|------------------------------------------------------------------------------|
-| invoiceId* | string | The id of the invoice to be cancelled                         |
+| invoiceId (mandatory) | string | The id of the invoice to be cancelled                         |
 
 **Response:**
 ```json
@@ -547,8 +547,8 @@ Invoice invoice = client.Invoice.Fetch(invoiceId).NotifyBy(medium);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| invoiceId*          | string | The id of the invoice to be notified                         |
-| medium*          | string | `sms`/`email`, Medium through which notification should be sent.                         |
+| invoiceId (mandatory)          | string | The id of the invoice to be notified                         |
+| medium (mandatory)          | string | `sms`/`email`, Medium through which notification should be sent.                         |
 
 **Response:**
 ```json
