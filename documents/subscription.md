@@ -4,7 +4,7 @@
 
 ```c#
 Dictionary<string, object> subscriptionRequest = new Dictionary<string, object>();
-subscriptionRequest.Add("plan_id", "plan_MNXPjyCa69mofY");
+subscriptionRequest.Add("plan_id", "plan_Z6t7VFTb9xHeOs");
 subscriptionRequest.Add("total_count", 6);
 subscriptionRequest.Add("quantity", 1);
 subscriptionRequest.Add("customer_notify", 1);
@@ -31,8 +31,8 @@ Subscription subscription = client.Subscription.Create(subscriptionRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| plan_id*          | string | The unique identifier for a plan that should be linked to the subscription.|
-| total_count*   | string | The number of billing cycles for which the customer should be charged  |
+| plan_id (mandatory)          | string | The unique identifier for a plan that should be linked to the subscription.|
+| total_count (mandatory)   | string | The number of billing cycles for which the customer should be charged  |
 | customer_notify    | boolean | Indicates whether the communication to the customer would be handled by you or us |
 | quantity    | integer | The number of times the customer should be charged the plan amount per invoice |
 | start_at    | integer | The timestamp, in Unix format, for when the subscription should start. If not passed, the subscription starts immediately after the authorization payment. |
@@ -69,7 +69,7 @@ Subscription subscription = client.Subscription.Create(subscriptionRequest);
   "has_scheduled_changes": false,
   "change_scheduled_at": null,
   "source": "api",
-  "offer_id":"offer_JHD834hjbxzhd38d",
+  "offer_id":"offer_Z6t7VFTb9xHeOs",
   "remaining_count": 5
 }
 ```
@@ -79,7 +79,7 @@ Subscription subscription = client.Subscription.Create(subscriptionRequest);
 
 ```C#
 Dictionary<string, object> subscriptionRequest = new Dictionary<string, object>();
-subscriptionRequest.Add("plan_id", "plan_MTOUKtSR767pxn");
+subscriptionRequest.Add("plan_id", "plan_Z6t7VFTb9xHeOs");
 subscriptionRequest.Add("total_count", 12);
 subscriptionRequest.Add("quantity", 1);
 subscriptionRequest.Add("customer_notify", 1);
@@ -94,7 +94,7 @@ item.Add("currency", "INR");
 linesItem.Add("item", item);
 addons.Add(linesItem);
 subscriptionRequest.Add("addons", addons);
-subscriptionRequest.Add("offer_id", "offer_JTUADI4ZWBGWur");
+subscriptionRequest.Add("offer_id", "offer_Z6t7VFTb9xHeOs");
 Dictionary<string, object> notes = new Dictionary<string, object>();
 notes.Add("notes_key_1", "Tea, Earl Grey, Hot");
 notes.Add("notes_key_2", "Tea, Earl Grey… decaf.");
@@ -111,8 +111,8 @@ Subscription subscription = client.Subscription.Create(subscriptionRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| plan_id*          | string | The unique identifier for a plan that should be linked to the subscription.|
-| total_count*   | string | The number of billing cycles for which the customer should be charged  |
+| plan_id (mandatory)          | string | The unique identifier for a plan that should be linked to the subscription.|
+| total_count (mandatory)   | string | The number of billing cycles for which the customer should be charged  |
 | customer_notify    | boolean | Indicates whether the communication to the customer would be handled by you or us |
 | quantity    | integer | The number of times the customer should be charged the plan amount per invoice |
 | start_at    | integer | The timestamp, in Unix format, for when the subscription should start. If not passed, the subscription starts immediately after the authorization payment. |
@@ -150,7 +150,7 @@ Subscription subscription = client.Subscription.Create(subscriptionRequest);
   "has_scheduled_changes":false,
   "change_scheduled_at":null,
   "source": "api",
-  "offer_id":"offer_JHD834hjbxzhd38d",
+  "offer_id":"offer_Z6t7VFTb9xHeOs",
   "remaining_count":12
 }
 ```
@@ -221,14 +221,14 @@ List<Subscription> subscription = client.Subscription.All(paramRequest);
 ```C#
 String subscriptionId = "sub_00000000000001";
 
-Subscription subscription = client.Subscription.Fetch("sub_MZRuHi9SR4wpDV");
+Subscription subscription = client.Subscription.Fetch(subscriptionId);
 ```
 
 **Parameters:**
 
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
-| subscriptionId*  | string | The id of the subscription to be fetched  |
+| subscriptionId (mandatory)  | string | The id of the subscription to be fetched  |
 
 **Response:**
 ```json
@@ -281,7 +281,7 @@ Subscription subscription = client.Subscription.Fetch(subscriptionId).Cancel(par
 
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
-| subscriptionId*  | string | The id of the subscription to be cancelled  |
+| subscriptionId (mandatory)  | string | The id of the subscription to be cancelled  |
 | cancel_at_cycle_end  | boolean | Possible values:<br>0 (default): Cancel the subscription immediately. <br> 1: Cancel the subscription at the end of the current billing cycle.  |
 
 **Response:**
@@ -341,7 +341,7 @@ Subscription subscription = client.Subscription.Fetch(subscriptionId).Edit(param
 
 | Name            | Type      | Description                                      |
 |-----------------|-----------|--------------------------------------------------|
-| subscriptionId* | string | The id of the subscription to be updated  |
+| subscriptionId (mandatory) | string | The id of the subscription to be updated  |
 | params          | object | All parameters listed [here](https://razorpay.com/docs/api/subscriptions/#update-a-subscription) for update   |
 
 **Response:**
@@ -373,7 +373,7 @@ Subscription subscription = client.Subscription.Fetch(subscriptionId).Edit(param
   "has_scheduled_changes":false,
   "change_scheduled_at":null,
   "source": "api",
-  "offer_id":"offer_JHD834hjbxzhd38d",
+  "offer_id":"offer_Z6t7VFTb9xHeOs",
   "remaining_count":6
 }
 ```
@@ -392,7 +392,7 @@ Subscription subscription = client.Subscription.Fetch(subscriptionId).FetchPendi
 
 | Name            | Type      | Description                                      |
 |-----------------|-----------|--------------------------------------------------|
-| subscriptionId* | string | The id of the subscription to fetch pending update  |
+| subscriptionId (mandatory) | string | The id of the subscription to fetch pending update  |
 
 **Response:**
 ```json
@@ -494,7 +494,7 @@ Subscription subscription = client.Subscription.Fetch(subscriptionId).Pause(para
 
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
-| subscriptionId*  | string | The id of the subscription to be paused  |
+| subscriptionId (mandatory)  | string | The id of the subscription to be paused  |
 | pause_at  | string | To pause the subscription, possible values: `now`  |
 
 **Response:**
@@ -548,7 +548,7 @@ Subscription subscription = client.Subscription.Fetch(subscriptionId).Resume(par
 
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
-| subscriptionId*  | string | The id of the subscription to be resumed  |
+| subscriptionId (mandatory)  | string | The id of the subscription to be resumed  |
 | resume_at  | string | To resume the subscription, possible values: `now`  |
 
 **Response:**
@@ -592,7 +592,7 @@ Subscription subscription = client.Subscription.Fetch(subscriptionId).Resume(par
 ```C#
 
 Dictionary<string, object> param = new Dictionary<string, object>();
-param.Add("subscription_id", "sub_MZS3D9VOX73PlW");
+param.Add("subscription_id", "sub_Z6t7VFTb9xHeOs");
               
 List<Invoice> subscription = client.Invoice.All(param);
 ```
@@ -601,7 +601,7 @@ List<Invoice> subscription = client.Invoice.All(param);
 
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
-| subscriptionId*  | string | The id of the subscription to fetch invoices  |
+| subscriptionId (mandatory)  | string | The id of the subscription to fetch invoices  |
 
 **Response:**
 ```json
@@ -705,16 +705,16 @@ Subscription subscription = client.Subscription.Fetch(subscriptionId).DeleteOffe
 
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
-| subscriptionId*  | string | The id of the subscription to offer need to be deleted  |
+| subscriptionId (mandatory)  | string | The id of the subscription to offer need to be deleted  |
 | offerId*  | string | The id of the offer linked to subscription  |
 
 **Response:**
 ```json
 {
-    "id": "sub_I3GGEs7Xgmnozy",
+    "id": "sub_Z6t7VFTb9xHeOs",
     "entity": "subscription",
-    "plan_id": "plan_HuXrfsI0ZZ3peu",
-    "customer_id": "cust_I3FToKbnExwDLu",
+    "plan_id": "plan_Z6t7VFTb9xHeOs",
+    "customer_id": "cust_Z6t7VFTb9xHeOs",
     "status": "active",
     "current_start": 1632914901,
     "current_end": 1635445800,
