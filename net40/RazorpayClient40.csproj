@@ -115,6 +115,7 @@
     </Compile>
     <Compile Include="..\src\Stakeholder.cs">
       <Link>Stakeholder.cs</Link>
+    </Compile>  
     <Compile Include="..\src\Webhook.cs">
       <Link>Webhook.cs</Link>
     </Compile>    
