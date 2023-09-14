@@ -3,7 +3,7 @@
 ### Create an addon
 
 ```C#
-string subscriptionId = "sub_I55auG9GnbsR8u";
+string subscriptionId = "sub_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> addonRequest = new Dictionary<string, object>();
 Dictionary<string, object> items = new Dictionary<string, object>();
@@ -21,9 +21,9 @@ Addon addon = client.Subscription.Fetch(subscriptionId).CreateAddon(addonRequest
 
 | Name            | Type      | Description                                      |
 |-----------------|-----------|--------------------------------------------------|
-| subscriptionId* | boolean | The subscription ID to which the add-on is being added. |
-| items*          | object | Details of the add-on you want to create. |
-| quantity*       | integer | This specifies the number of units of the add-on to be charged to the customer. |
+| subscriptionId (mandatory) | boolean | The subscription ID to which the add-on is being added. |
+| items (mandatory)          | object | Details of the add-on you want to create. |
+| quantity (mandatory)       | integer | This specifies the number of units of the add-on to be charged to the customer. |
 
 **Response:**
 ```json
@@ -125,7 +125,7 @@ Addon addon = client.Addon.Fetch(addonId);
 
 | Name     | Type    | Description     |
 |----------|---------|------------------------------------|
-| addonId* | string | addon id to be fetched            |
+| addonId (mandatory) | string | addon id to be fetched            |
 
 **Response:**
 ```json
@@ -171,7 +171,7 @@ List<Addon> addon = client.Addon.Fetch(addonId).Delete();
 
 | Name     | Type    | Description                                                                  |
 |----------|---------|------------------------------------------------------------------------------|
-| addonId* | string | addon id to be deleted |
+| addonId (mandatory) | string | addon id to be deleted |
 
 **Response:**
 ```json
