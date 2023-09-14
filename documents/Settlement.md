@@ -23,7 +23,7 @@ List<Settlement> payment = client.Settlement.All();
   "count": 1,
   "items": [
     {
-      "id": "setl_DGlQ1Rj8os78Ec",
+      "id": "setl_Z6t7VFTb9xHeOs",
       "entity": "settlement",
       "amount": 9973635,
       "status": "processed",
@@ -41,7 +41,7 @@ List<Settlement> payment = client.Settlement.All();
 ### Fetch a settlement
 
 ```C#
-string settlementId = "setl_DGlQ1Rj8os78Ec";
+string settlementId = "setl_Z6t7VFTb9xHeOs";
 
 Settlement settlement = client.Settlement.Fetch(settlementId);
 ```
@@ -50,12 +50,12 @@ Settlement settlement = client.Settlement.Fetch(settlementId);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| settlementId* | string      | The id of the settlement to be fetched  |
+| settlementId (mandatory) | string      | The id of the settlement to be fetched  |
 
 **Response:**
 ```json
 {
-    "id": "setl_DGlQ1Rj8os78Ec",
+    "id": "setl_Z6t7VFTb9xHeOs",
     "entity": "settlement",
     "amount": 9973635,
     "status": "processed",
@@ -81,8 +81,8 @@ List<Settlement> settlement = client.Settlement.Reports(settlementRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| year* | integer      | The year the settlement was received in the `YYYY` format. For example, `2020`   |
-| month* | integer      | The month the settlement was received in the `MM` format. For example, `09`   |
+| year (mandatory) | integer      | The year the settlement was received in the `YYYY` format. For example, `2020`   |
+| month (mandatory) | integer      | The month the settlement was received in the `MM` format. For example, `09`   |
 | day | integer   | The day the settlement was received in the `DD` format. For example,      |
 
 **Response:**
@@ -92,7 +92,7 @@ List<Settlement> settlement = client.Settlement.Reports(settlementRequest);
   "count": 4,
   "items": [
     {
-      "entity_id": "pay_DEXrnipqTmWVGE",
+      "entity_id": "pay_Z6t7VFTb9xHeOs",
       "type": "payment",
       "debit": 0,
       "credit": 97100,
@@ -104,7 +104,7 @@ List<Settlement> settlement = client.Settlement.Reports(settlementRequest);
       "settled": true,
       "created_at": 1567692556,
       "settled_at": 1568176960,
-      "settlement_id": "setl_DGlQ1Rj8os78Ec",
+      "settlement_id": "setl_Z6t7VFTb9xHeOs",
       "posted_at": null,
       "credit_type": "default",
       "description": "Recurring Payment via Subscription",
@@ -120,7 +120,7 @@ List<Settlement> settlement = client.Settlement.Reports(settlementRequest);
       "dispute_id": null
     },
     {
-      "entity_id": "rfnd_DGRcGzZSLyEdg1",
+      "entity_id": "rfnd_Z6t7VFTb9xHeOs",
       "type": "refund",
       "debit": 242500,
       "credit": 0,
@@ -132,14 +132,14 @@ List<Settlement> settlement = client.Settlement.Reports(settlementRequest);
       "settled": true,
       "created_at": 1568107224,
       "settled_at": 1568176960,
-      "settlement_id": "setl_DGlQ1Rj8os78Ec",
+      "settlement_id": "setl_Z6t7VFTb9xHeOs",
       "posted_at": null,
       "credit_type": "default",
       "description": null,
       "notes": "{}",
-      "payment_id": "pay_DEXq1pACSqFxtS",
+      "payment_id": "pay_Z6t7VFTb9xHeOs",
       "settlement_utr": "1568176960vxp0rj",
-      "order_id": "order_DEXpmZgffXNvuI",
+      "order_id": "order_Z6t7VFTb9xHeOs",
       "order_receipt": null,
       "method": "card",
       "card_network": "MasterCard",
@@ -160,7 +160,7 @@ List<Settlement> settlement = client.Settlement.Reports(settlementRequest);
       "settled": true,
       "created_at": 1567681786,
       "settled_at": 1568176960,
-      "settlement_id": "setl_DGlQ1Rj8os78Ec",
+      "settlement_id": "setl_Z6t7VFTb9xHeOs",
       "posted_at": null,
       "credit_type": "default",
       "description": null,
@@ -188,7 +188,7 @@ List<Settlement> settlement = client.Settlement.Reports(settlementRequest);
       "settled": true,
       "created_at": 1567681786,
       "settled_at": 1568176960,
-      "settlement_id": "setl_DGlQ1Rj8os78Ec",
+      "settlement_id": "setl_Z6t7VFTb9xHeOs",
       "posted_at": null,
       "description": "test reason",
       "notes": null,
@@ -226,15 +226,15 @@ Settlement settlement = client.Settlement.Create(settlementRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| amount*| integer      | Maximum amount that can be settled  |
-| settle_full_balance* | boolean      | true or false   |
+| amount (mandatory)| integer      | Maximum amount that can be settled  |
+| settle_full_balance (mandatory) | boolean      | true or false   |
 | description | string   | The description may not be greater than 30 characters    |
 | notes   | object   | A key-value pair     |
 
 **Response:**
 ```json
 {
-  "id": "setlod_FNj7g2YS5J67Rz",
+  "id": "setlod_Z6t7VFTb9xHeOs",
   "entity": "settlement.ondemand",
   "amount_requested": 200000,
   "amount_settled": 0,
@@ -297,7 +297,7 @@ List<Settlement> settlement = client.Settlement.FetchAllDemand();
   "count": 2,
   "items": [
     {
-      "id": "setlod_FNj7g2YS5J67Rz",
+      "id": "setlod_Z6t7VFTb9xHeOs",
       "entity": "settlement.ondemand",
       "amount_requested": 200000,
       "amount_settled": 199410,
@@ -316,7 +316,7 @@ List<Settlement> settlement = client.Settlement.FetchAllDemand();
       "created_at": 1596771429
     },
     {
-      "id": "setlod_FJOp0jOWlalIvt",
+      "id": "setlod_Z6t7VFTb9xHeOs",
       "entity": "settlement.ondemand",
       "amount_requested": 300000,
       "amount_settled": 299114,
@@ -342,7 +342,7 @@ List<Settlement> settlement = client.Settlement.FetchAllDemand();
 ### Fetch on-demand settlement by ID
 
 ```C#
-string settlementId = "setlodp_FNj7g2cbvw8ueO";
+string settlementId = "setlodp_Z6t7VFTb9xHeOs";
 
 Settlement settlement = client.Settlement.FetchDemandSettlement(settlementId);
 ```
@@ -351,13 +351,13 @@ Settlement settlement = client.Settlement.FetchDemandSettlement(settlementId);
 
 | Name          | Type   | Description                       |
 |---------------|--------|-----------------------------------|
-| settlementId* | string | Settlement Id of the On-demand settlement|
+| settlementId (mandatory) | string | Settlement Id of the On-demand settlement|
 
 **Response:**
 
 ```json
 {
-  "id": "setlod_FNj7g2YS5J67Rz",
+  "id": "setlod_Z6t7VFTb9xHeOs",
   "entity": "settlement.ondemand",
   "amount_requested": 200000,
   "amount_settled": 199410,
