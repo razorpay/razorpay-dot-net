@@ -24,7 +24,8 @@ namespace Razorpay.Api
         private Plan plan = null;
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
-
+        private Stakeholder stakeholder = null;
+        private Webhook webhook = null;
 
         public RazorpayClient(string key, string secret)
         {
@@ -32,7 +33,7 @@ namespace Razorpay.Api
             RazorpayClient.Secret = secret;
         }
 
-        
+
         public RazorpayClient(string baseUrl, string key, string secret)
         {
             RazorpayClient.BaseUrl = baseUrl;
@@ -247,6 +248,31 @@ namespace Razorpay.Api
                     virtualaccount = new VirtualAccount();
                 }
                 return virtualaccount;
+            }
+        }
+
+
+        public Stakeholder Stakeholder
+        {
+            get
+            {
+                if (stakeholder == null)
+                {
+                    stakeholder = new Stakeholder();
+                }
+                return stakeholder;
+            }
+        } 
+
+        public Webhook Webhook
+        {
+            get
+            {
+                if (webhook == null)
+                {
+                    webhook = new Webhook();
+                }
+                return webhook;
             }
         }
     }
