@@ -26,7 +26,10 @@ namespace Razorpay.Api
             {"addon", "Razorpay.Api.Addon"},
             {"settlement", "Razorpay.Api.Settlement" },
             {"settlement.ondemand", "Razorpay.Api.Settlement" },
+            {"stakeholder", "Razorpay.Api.Stakeholder"},
+            {"webhook", "Razorpay.Api.Webhook"},
         };
+      
         private static List<HttpMethod> JsonifyInput = new List<HttpMethod>()
         {
             HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH
