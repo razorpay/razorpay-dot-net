@@ -24,9 +24,9 @@ Plan plan = client.Plan.Create(planRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| period*          | string | Used together with `interval` to define how often the customer should be charged.Possible values:<br>1.`daily` <br>2.`weekly`<br>3.`monthly` <br>4.`yearly`  |
-| interval*          | string | Used together with `period` to define how often the customer should be charged  |
-| items*          | object | Details of the plan. For more details please refer [here](https://razorpay.com/docs/api/subscriptions/#create-a-plan) |
+| period (mandatory)          | string | Used together with `interval` to define how often the customer should be charged.Possible values:<br>1.`daily` <br>2.`weekly`<br>3.`monthly` <br>4.`yearly`  |
+| interval (mandatory)          | string | Used together with `period` to define how often the customer should be charged  |
+| items (mandatory)          | object | Details of the plan. For more details please refer [here](https://razorpay.com/docs/api/subscriptions/#create-a-plan) |
 | notes          | object | Notes you can enter for the contact for future reference.   |
 
 **Response:**
@@ -135,7 +135,7 @@ Plan plan = client.Plan.Fetch(planId);
 
 | Name   | Type      | Description                                      |
 |--------|-----------|--------------------------------------------------|
-| planId* | string | The id of the plan to be fetched  |
+| planId (mandatory) | string | The id of the plan to be fetched  |
 
 **Response:**
 ```json
