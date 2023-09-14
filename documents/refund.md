@@ -3,7 +3,7 @@
 ### Create a normal refund
 
 ```C#
-string paymentId = "pay_FCXKPFtYfPXJPy";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> refundRequest = new Dictionary<string, object>();
 refundRequest.Add("amount", 200);
@@ -21,7 +21,7 @@ Refund refund = client.Payment.Fetch(paymentId).Refund(refundRequest);
 
 | Name       | Type        | Description                                 |
 |------------|-------------|---------------------------------------------|
-| paymentId* | string      | The id of the payment                       |
+| paymentId (mandatory) | string      | The id of the payment                       |
 | amount     | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |                       |
 | speed      | string      | Here, it must be normal                |
 | notes      | object       | A key-value pair                |
@@ -30,12 +30,12 @@ Refund refund = client.Payment.Fetch(paymentId).Refund(refundRequest);
 **Response:**
 ```json
 {
-  "id": "rfnd_FP8QHiV938haTz",
+  "id": "rfnd_Z6t7VFTb9xHeOs",
   "entity": "refund",
   "amount": 500100,
   "receipt": "Receipt No. 31",
   "currency": "INR",
-  "payment_id": "pay_FCXKPFtYfPXJPy",
+  "payment_id": "pay_Z6t7VFTb9xHeOs",
   "notes": [],
   "acquirer_data": {
     "arn": null
@@ -52,7 +52,7 @@ Refund refund = client.Payment.Fetch(paymentId).Refund(refundRequest);
 
 ```C#
 
-String paymentId = "pay_FCXKPFtYfPXJPy";
+String paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> refundRequest = new Dictionary<string, object>();
 refundRequest.Add("amount",100);
@@ -66,19 +66,19 @@ Refund refund = client.Payment.Fetch(paymentId).Refund(refundRequest);
 
 | Name       | Type        | Description                                 |
 |------------|-------------|---------------------------------------------|
-| paymentId* | string      | The id of the payment                       |
+| paymentId (mandatory) | string      | The id of the payment                       |
 | amount     | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
-| speed*     | string      | Here, it must be optimum                    |
+| speed (mandatory)     | string      | Here, it must be optimum                    |
 | receipt    | string      | A unique identifier provided by you for your internal reference. |
 
 **Response:**
 ```json
 {
-  "id": "rfnd_FP8R8EGjGbPkVb",
+  "id": "rfnd_Z6t7VFTb9xHeOs",
   "entity": "refund",
   "amount": 500100,
   "currency": "INR",
-  "payment_id": "pay_FC8MmhMBZPKDHF",
+  "payment_id": "pay_Z6t7VFTb9xHeOs",
   "notes": {
     "notes_key_1": "Tea, Earl Grey, Hot",
     "notes_key_2": "Tea, Earl Grey… decaf."
@@ -98,7 +98,7 @@ Refund refund = client.Payment.Fetch(paymentId).Refund(refundRequest);
 ### Fetch multiple refunds for a payment
 
 ```C#
-String paymentId = "pay_FIKOnlyii5QGNx";
+String paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> paramRequest = new Dictionary<string, object>();
 paramRequest.add("count","1");
@@ -110,7 +110,7 @@ List<Refund> refund = client.Payment.Fetch(paymentId).AllRefunds(paramRequest)
 
 | Name       | Type      | Description                                      |
 |------------|-----------|--------------------------------------------------|
-| paymentId* | string      | The id of the payment                       |
+| paymentId (mandatory) | string      | The id of the payment                       |
 | from       | timestamp | timestamp after which the payments were created  |
 | to         | timestamp | timestamp before which the payments were created |
 | count      | integer   | number of payments to fetch (default: 10)        |
@@ -123,11 +123,11 @@ List<Refund> refund = client.Payment.Fetch(paymentId).AllRefunds(paramRequest)
   "count": 1,
   "items": [
     {
-      "id": "rfnd_FP8DDKxqJif6ca",
+      "id": "rfnd_Z6t7VFTb9xHeOs",
       "entity": "refund",
       "amount": 300100,
       "currency": "INR",
-      "payment_id": "pay_FIKOnlyii5QGNx",
+      "payment_id": "pay_Z6t7VFTb9xHeOs",
       "notes": {
         "comment": "Comment for refund"
       },
@@ -148,9 +148,9 @@ List<Refund> refund = client.Payment.Fetch(paymentId).AllRefunds(paramRequest)
 
 ### Fetch a specific refund for a payment
 ```C#
-string paymentId = "pay_FIKOnlyii5QGNx";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
-string refundId = "rfnd_FP8DDKxqJif6ca";
+string refundId = "rfnd_Z6t7VFTb9xHeOs";
 
 Refund refund = client.Payment.Fetch(paymentId).FetchRefund(refundId);
 ```
@@ -159,17 +159,17 @@ Refund refund = client.Payment.Fetch(paymentId).FetchRefund(refundId);
 
 | Name       | Type        | Description                                 |
 |------------|-------------|---------------------------------------------|
-| paymentId* | string      | The id of the payment to be fetched        |
-| refundId*  | string      | The id of the refund to be fetched           |
+| paymentId (mandatory) | string      | The id of the payment to be fetched        |
+| refundId (mandatory)  | string      | The id of the refund to be fetched           |
 
 **Response:**
 ```json
 {
-  "id": "rfnd_FP8DDKxqJif6ca",
+  "id": "rfnd_Z6t7VFTb9xHeOs",
   "entity": "refund",
   "amount": 300100,
   "currency": "INR",
-  "payment_id": "pay_FIKOnlyii5QGNx",
+  "payment_id": "pay_Z6t7VFTb9xHeOs",
   "notes": {
     "comment": "Comment for refund"
   },
@@ -210,11 +210,11 @@ List<Refund> refund = client.Refund.All(paramRequest);
   "count": 2,
   "items": [
     {
-      "id": "rfnd_FFX6AnnIN3puqW",
+      "id": "rfnd_Z6t7VFTb9xHeOs",
       "entity": "refund",
       "amount": 88800,
       "currency": "INR",
-      "payment_id": "pay_FFX5FdEYx8jPwA",
+      "payment_id": "pay_Z6t7VFTb9xHeOs",
       "notes": {
         "comment": "Issuing an instant refund"
       },
@@ -233,7 +233,7 @@ List<Refund> refund = client.Refund.All(paramRequest);
 
 ### Fetch particular refund
 ```C#
-string refundId = "rfnd_EqWThTE7dd7utf";
+string refundId = "rfnd_Z6t7VFTb9xHeOs";
 
 Refund refund = client.Refund.Fetch(refundId);
 ```
@@ -242,16 +242,16 @@ Refund refund = client.Refund.Fetch(refundId);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-|  refundId*   | string      | The id of the refund to be fetched           |
+|  refundId (mandatory)   | string      | The id of the refund to be fetched           |
 
 **Response:**
 ```json
 {
-  "id": "rfnd_EqWThTE7dd7utf",
+  "id": "rfnd_Z6t7VFTb9xHeOs",
   "entity": "refund",
   "amount": 6000,
   "currency": "INR",
-  "payment_id": "pay_EpkFDYRirena0f",
+  "payment_id": "pay_Z6t7VFTb9xHeOs",
   "notes": {
     "comment": "Issuing an instant refund"
   },
@@ -270,7 +270,7 @@ Refund refund = client.Refund.Fetch(refundId);
 
 ### Update the refund
 ```C#
-string refundId = "rfnd_EqWThTE7dd7utf";
+string refundId = "rfnd_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> refundRequest = new Dictionary<string, object>();
 Dictionary<string, object> notes = new Dictionary<string, object>();
@@ -285,17 +285,17 @@ Refund refund = client.Refund.Fetch(refundId).Edit(refundRequest);
 
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
-| refundId*   | string    | The id of the refund to be fetched     |
-| notes* | array  | A key-value pair                                 |
+| refundId (mandatory)   | string    | The id of the refund to be fetched     |
+| notes (mandatory) | array  | A key-value pair                                 |
 
 **Response:**
 ```json
 {
-  "id": "rfnd_FP8DDKxqJif6ca",
+  "id": "rfnd_Z6t7VFTb9xHeOs",
   "entity": "refund",
   "amount": 300100,
   "currency": "INR",
-  "payment_id": "pay_FIKOnlyii5QGNx",
+  "payment_id": "pay_Z6t7VFTb9xHeOs",
   "notes": {
     "notes_key_1": "Beam me up Scotty.",
     "notes_key_2": "Engage"
