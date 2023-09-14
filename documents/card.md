@@ -19,7 +19,7 @@ Customer customer = client.Customer.Create(customerRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| name*          | string      | Name of the customer                        |
+| name (mandatory)          | string      | Name of the customer                        |
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
 | fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `0` or `1`|
@@ -49,7 +49,7 @@ Customer customer = client.Customer.Create(customerRequest);
 Dictionary<string, object> orderRequest = new Dictionary<string, object>();
 orderRequest.Add("amount", 100);
 orderRequest.Add("currency", "INR");
-orderRequest.Add("customer_id", "cust_MTXmUnTDMwopBB");
+orderRequest.Add("customer_id", "cust_Z6t7VFTb9xHeOs");
 orderRequest.Add("method", "card");
 Dictionary<string, object> token = new Dictionary<string, object>();
 token.Add("max_amount", "5000");
@@ -69,9 +69,9 @@ Order order = client.Order.Create(orderRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
-| currency*   | string  | The currency of the payment (defaults to INR)  |
-| customerId*   | string      | The id of the customer to be fetched |
+| amount (mandatory)   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
+| currency (mandatory)   | string  | The currency of the payment (defaults to INR)  |
+| customerId (mandatory)   | string      | The id of the customer to be fetched |
 | receipt      | string  | Your system order reference id.  |
 | method      | string  | Payment method used to make the registration transaction. Possible value is `card`.  |
 | token  | object  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#112-create-an-order) are supported |
@@ -89,7 +89,7 @@ Order order = client.Order.Create(orderRequest);
    "receipt":"Receipt No. 1",
    "method":"card",
    "description":null,
-   "customer_id":"cust_4xbQrmEoA5WJ01",
+   "customer_id":"cust_Z6t7VFTb9xHeOs",
    "token":{
       "max_amount":5000,
       "expire_at":2709971120,
@@ -142,10 +142,10 @@ Invoice invoice = client.Invoice.CreateRegistrationLink(registrationLinkRequest)
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
 | customer   | object      | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/cards/create-authorization-transaction/#121-create-a-registration-link) are supported |
-| type*  | object | the value is `link`. |
-| amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
-| currency*   | string  | The currency of the payment (defaults to INR)  |
-| description*  | string      | A brief description of the payment.   |
+| type (mandatory)  | object | the value is `link`. |
+| amount (mandatory)   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
+| currency (mandatory)   | string  | The currency of the payment (defaults to INR)  |
+| description (mandatory)  | string      | A brief description of the payment.   |
 | subscription_registration   | object  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#121-create-a-registration-link) are supported  |
 | receipt      | string  | Your system order reference id.  |
 | sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
@@ -156,13 +156,13 @@ Invoice invoice = client.Invoice.CreateRegistrationLink(registrationLinkRequest)
 **Response:**
 ```json
 {
-  "id": "inv_FHrXGIpd3N17DX",
+  "id": "inv_Z6t7VFTb9xHeOs",
   "entity": "invoice",
   "receipt": "Receipt No. 24",
   "invoice_number": "Receipt No. 24",
-  "customer_id": "cust_BMB3EwbqnqZ2EI",
+  "customer_id": "cust_Z6t7VFTb9xHeOs",
   "customer_details": {
-    "id": "cust_BMB3EwbqnqZ2EI",
+    "id": "cust_Z6t7VFTb9xHeOs",
     "name": "Gaurav Kumar",
     "email": "gaurav.kumar@example.com",
     "contact": "9123456780",
@@ -173,7 +173,7 @@ Invoice invoice = client.Invoice.CreateRegistrationLink(registrationLinkRequest)
     "customer_email": "gaurav.kumar@example.com",
     "customer_contact": "9123456780"
   },
-  "order_id": "order_FHrXGJNngJyEAe",
+  "order_id": "order_Z6t7VFTb9xHeOs",
   "line_items": [],
   "payment_id": null,
   "status": "issued",
@@ -219,7 +219,7 @@ Invoice invoice = client.Invoice.CreateRegistrationLink(registrationLinkRequest)
 Dictionary<string, object> orderRequest = new Dictionary<string, object>();
 orderRequest.Add("amount", 100);
 orderRequest.Add("currency", "INR");
-orderRequest.Add("customer_id", "cust_MTXmUnTDMwopBB");
+orderRequest.Add("customer_id", "cust_Z6t7VFTb9xHeOs");
 orderRequest.Add("method", "card");
 Dictionary<string, object> token = new Dictionary<string, object>();
 token.Add("max_amount", "5000");
@@ -238,9 +238,9 @@ Order order = client.Order.Create(orderRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
-| currency*   | string  | The currency of the payment (defaults to INR)  |
-| customerId*   | string      | The id of the customer to be fetched |
+| amount (mandatory)   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
+| currency (mandatory)   | string  | The currency of the payment (defaults to INR)  |
+| customerId (mandatory)   | string      | The id of the customer to be fetched |
 | method      | string  | Payment method used to make the registration transaction. Possible value is `card`.  |
 | receipt      | string  | Your system order reference id.  |
 | token  | object  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/cards/subsequent-payments/#31-create-an-order-to-charge-the-customer) are supported |
@@ -259,7 +259,7 @@ Order order = client.Order.Create(orderRequest);
    "receipt":"Receipt No. 1",
    "method":"card",
    "description":null,
-   "customer_id":"cust_4xbQrmEoA5WJ01",
+   "customer_id":"cust_Z6t7VFTb9xHeOs",
    "token":{
       "max_amount":5000,
       "expire_at":2709971120,
@@ -301,14 +301,14 @@ Payment payment = client.Payment.CreateRecurringPayment(paymentRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| email*   | string      | The customer's email address |
-| contact*   | string      | The customer's phone number |
-| amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
-| currency*   | string  | The currency of the payment (defaults to INR)  |
-| orderId*   | string      | The id of the order to be fetched |
-| customerId*   | string      | The id of the customer to be fetched |
-| tokenId*   | string      | The id of the token to be fetched |
-| recurring*   | boolean      | Possible values is `0` or `1` |
+| email (mandatory)   | string      | The customer's email address |
+| contact (mandatory)   | string      | The customer's phone number |
+| amount (mandatory)   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
+| currency (mandatory)   | string  | The currency of the payment (defaults to INR)  |
+| orderId (mandatory)   | string      | The id of the order to be fetched |
+| customerId (mandatory)   | string      | The id of the customer to be fetched |
+| tokenId (mandatory)   | string      | The id of the token to be fetched |
+| recurring (mandatory)   | boolean      | Possible values is `0` or `1` |
 | description  | string      | A brief description of the payment.   |
 | notes | object  | A key-value pair  |
 
@@ -331,7 +331,7 @@ Please refer this [doc](https://razorpay.com/docs/api/recurring-payments/cards/a
 ## Send/Resend notifications
 
 ```C#
-string invoiceId = "inv_FHrXGIpd3N17DX";
+string invoiceId = "inv_Z6t7VFTb9xHeOs";
 
 string medium = "sms";
 
@@ -341,7 +341,7 @@ Invoice invoice = client.Invoice.Fetch(invoiceId).NotifyBy(medium);
 
 | Name       | Type    | Description                                                                  |
 |------------|---------|------------------------------------------------------------------------------|
-| InvoiceId* | string      | The id of the invoice to be fetched |
+| InvoiceId (mandatory) | string      | The id of the invoice to be fetched |
 | medium*    | string      | Possible values are `sms` or `email` |
 
 **Response:**
@@ -355,7 +355,7 @@ Invoice invoice = client.Invoice.Fetch(invoiceId).NotifyBy(medium);
 ## Cancel registration link
 
 ```C#
-string invoiceId = "inv_FHrXGIpd3N17DX";
+string invoiceId = "inv_Z6t7VFTb9xHeOs";
 
 Invoice invoice = client.Invoice.Fetch(invoiceId).Cancel();
 ```
@@ -363,18 +363,18 @@ Invoice invoice = client.Invoice.Fetch(invoiceId).Cancel();
 
 | Name       | Type    | Description                                                                  |
 |------------|---------|------------------------------------------------------------------------------|
-| invoiceId* | string      | The id of the invoice to be fetched |
+| invoiceId (mandatory) | string      | The id of the invoice to be fetched |
 
 **Response:**
 ```json
 {
-    "id": "inv_FHrfRupD2ouKIt",
+    "id": "inv_Z6t7VFTb9xHeOs",
     "entity": "invoice",
     "receipt": "Receipt No. 1",
     "invoice_number": "Receipt No. 1",
-    "customer_id": "cust_BMB3EwbqnqZ2EI",
+    "customer_id": "cust_Z6t7VFTb9xHeOs",
     "customer_details": {
-        "id": "cust_BMB3EwbqnqZ2EI",
+        "id": "cust_Z6t7VFTb9xHeOs",
         "name": "Gaurav Kumar",
         "email": "gaurav.kumar@example.com",
         "contact": "9123456780",
@@ -385,7 +385,7 @@ Invoice invoice = client.Invoice.Fetch(invoiceId).Cancel();
         "customer_email": "gaurav.kumar@example.com",
         "customer_contact": "9123456780"
     },
-    "order_id": "order_FHrfRw4TZU5Q2L",
+    "order_id": "order_Z6t7VFTb9xHeOs",
     "line_items": [],
     "payment_id": null,
     "status": "cancelled",
@@ -428,7 +428,7 @@ Invoice invoice = client.Invoice.Fetch(invoiceId).Cancel();
 ## Fetch token by payment id
 
 ```C#
-string paymentId = "pay_FHfqtkRzWvxky4";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Payment payment = client.Payment.Fetch(paymentId);
 ```
@@ -436,17 +436,17 @@ Payment payment = client.Payment.Fetch(paymentId);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| paymentId*   | string      | The id of the payment to be fetched |
+| paymentId (mandatory)   | string      | The id of the payment to be fetched |
 
 **Response:**
 ```json
 {
-  "id": "pay_FHfqtkRzWvxky4",
+  "id": "pay_Z6t7VFTb9xHeOs",
   "entity": "payment",
   "amount": 100,
   "currency": "INR",
   "status": "captured",
-  "order_id": "order_FHfnswDdfu96HQ",
+  "order_id": "order_Z6t7VFTb9xHeOs",
   "invoice_id": null,
   "international": false,
   "method": "card",
@@ -454,14 +454,14 @@ Payment payment = client.Payment.Fetch(paymentId);
   "refund_status": null,
   "captured": true,
   "description": null,
-  "card_id": "card_F0zoXUp4IPPGoI",
+  "card_id": "card_Z6t7VFTb9xHeOs",
   "bank": null,
   "wallet": null,
   "vpa": null,
   "email": "gaurav.kumar@example.com",
   "contact": "+919876543210",
-  "customer_id": "cust_DtHaBuooGHTuyZ",
-  "token_id": "token_FHfn3rIiM1Z8nr",
+  "customer_id": "cust_Z6t7VFTb9xHeOs",
+  "token_id": "token_Z6t7VFTb9xHeOs",
   "notes": {
     "note_key 1": "Beam me up Scotty",
     "note_key 2": "Tea. Earl Gray. Hot."
@@ -484,7 +484,7 @@ Payment payment = client.Payment.Fetch(paymentId);
 ## Fetch tokens by customer id
 
 ```C#
-string customerId = "cust_DtHaBuooGHTuyZ";
+string customerId = "cust_Z6t7VFTb9xHeOs";
 
 List<Token> token = client.Customer.Fetch(customerId).Tokens();
 ```
@@ -492,7 +492,7 @@ List<Token> token = client.Customer.Fetch(customerId).Tokens();
 
 | Name        | Type    | Description                                                                  |
 |-------------|---------|------------------------------------------------------------------------------|
-| customerId* | string      | The id of the customer to be fetched |
+| customerId (mandatory) | string      | The id of the customer to be fetched |
 
 **Response:**
 ```json
@@ -501,7 +501,7 @@ List<Token> token = client.Customer.Fetch(customerId).Tokens();
    "count":1,
    "items":[
       {
-         "id":"token_HouA2OQR5Z2jTL",
+         "id":"token_Z6t7VFTb9xHeOs",
          "entity":"token",
          "token":"2JPRk664pZHUWG",
          "bank":null,
@@ -545,7 +545,7 @@ List<Token> token = client.Customer.Fetch(customerId).Tokens();
 ### Fetch card
 
 ```C#
-string cardId = "card_F0zoXUp4IPPGoI";
+string cardId = "card_Z6t7VFTb9xHeOs";
 
 Card card = client.Card.Fetch(cardId);
 ```
@@ -554,12 +554,12 @@ Card card = client.Card.Fetch(cardId);
 
 | Name    | Type    | Description                                                                  |
 |---------|---------|------------------------------------------------------------------------------|
-| cardId* | string | card id to be fetched                                               |
+| cardId (mandatory) | string | card id to be fetched                                               |
 
 **Response**
 ```json
 {
-    "id": "card_F0zoXUp4IPPGoI",
+    "id": "card_Z6t7VFTb9xHeOs",
     "entity": "card",
     "international": false,
     "last4": 1111,
@@ -573,7 +573,7 @@ Card card = client.Card.Fetch(cardId);
 ## Delete tokens
 
 ```C#
-string customerId = "cust_Hwq7Ba6TDXl1ga";
+string customerId = "cust_Z6t7VFTb9xHeOs";
 
 string tokenId = "token_1Aa00000000001";
 
@@ -583,8 +583,8 @@ Customer customer = client.Customer.Fetch(customerId).DeleteToken(tokenId);
 
 | Name        | Type    | Description                                                                  |
 |-------------|---------|------------------------------------------------------------------------------|
-| customerId* | string      | The id of the customer to be fetched |
-| tokenId*    | string      | The id of the token to be fetched |
+| customerId (mandatory) | string      | The id of the customer to be fetched |
+| tokenId (mandatory)    | string      | The id of the token to be fetched |
 
 **Response:**
 ```json
@@ -606,7 +606,7 @@ Card card = client.Card.RequestCardReference(cardRequest);
 
 | Name        | Type    | Description                                                                  |
 |-------------|---------|------------------------------------------------------------------------------|
-| number* | string | The card number whose PAR or network reference id should be retrieved. |
+| number (mandatory) | string | The card number whose PAR or network reference id should be retrieved. |
 | tokenised  | string | Determines if the card is saved as a token. Possible value is `true` or `false` |
 
 **Response:**
@@ -623,7 +623,7 @@ Card card = client.Card.RequestCardReference(cardRequest);
 
 ```C#
 Dictionary<string, object> cardRequest = new Dictionary<string, object>();
-cardRequest.Add("token","token_4lsdksD31GaZ09");
+cardRequest.Add("token","token_Z6t7VFTb9xHeOs");
 
 Card card = client.Card.RequestCardReference(cardRequest);
 ```
@@ -631,7 +631,7 @@ Card card = client.Card.RequestCardReference(cardRequest);
 
 | Name        | Type    | Description                                                                  |
 |-------------|---------|------------------------------------------------------------------------------|
-| token* | string | The token whose PAR or network reference id should be retrieved. |
+| token (mandatory) | string | The token whose PAR or network reference id should be retrieved. |
 
 **Response:**
 ```json
