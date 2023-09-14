@@ -21,7 +21,7 @@ Customer customer = client.Customer.Create(customerRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| name*          | string      | Name of the customer                        |
+| name (mandatory)          | string      | Name of the customer                        |
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
 | fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `0` or `1`|
@@ -63,7 +63,7 @@ Customer card = client.Customer.Fetch(customerId).Edit(customerRequest);
 
 | Name        | Type        | Description                                 |
 |-------------|-------------|---------------------------------------------|
-| CustomerId* | string      | The id of the customer to be updated  |
+| CustomerId (mandatory) | string      | The id of the customer to be updated  |
 | email       | string      | Email of the customer                       |
 | name        | string      | Name of the customer                        |
 | contact     | string      | Contact number of the customer              |
@@ -137,7 +137,7 @@ Customer customer = client.Customer.Fetch("cust_M462yViJrhNrQc");
 
 | Name        | Type        | Description                                 |
 |-------------|-------------|---------------------------------------------|
-| customerId* | string      | The id of the customer to be fetched  |
+| customerId (mandatory) | string      | The id of the customer to be fetched  |
 
 **Response:**
 ```json
