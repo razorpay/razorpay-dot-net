@@ -21,7 +21,7 @@ VirtualAccount virtualaccount = client.VirtualAccount.Create(virtualRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| receivers*    | object      | All parameters listed [here](https://razorpay.com/docs/api/payments/smart-collect/#create-virtual-account) are supported |
+| receivers (mandatory)    | object      | All parameters listed [here](https://razorpay.com/docs/api/payments/smart-collect/#create-virtual-account) are supported |
 | description  | string      | A brief description of the virtual account.                    |
 | customer_id  | string      | Unique identifier of the customer to whom the virtual account must be tagged.                    |
 | close_by  | integer      | UNIX timestamp at which the virtual account is scheduled to be automatically closed.                  |
@@ -30,7 +30,7 @@ VirtualAccount virtualaccount = client.VirtualAccount.Create(virtualRequest);
 **Response:**
 ```json
 {
-  "id":"va_DlGmm7jInLudH9",
+  "id":"va_Z6t7VFTb9xHeOs",
   "name":"Acme Corp",
   "entity":"virtual_account",
   "status":"active",
@@ -40,10 +40,10 @@ VirtualAccount virtualaccount = client.VirtualAccount.Create(virtualRequest);
     "project_name":"Banking Software"
   },
   "amount_paid":0,
-  "customer_id":"cust_CaVDm8eDRSXYME",
+  "customer_id":"cust_Z6t7VFTb9xHeOs",
   "receivers":[
     {
-      "id":"ba_DlGmm9mSj8fjRM",
+      "id":"ba_Z6t7VFTb9xHeOs",
       "entity":"bank_account",
       "ifsc":"RATN0VAAPIS",
       "bank_name": "RBL Bank",
@@ -94,8 +94,8 @@ VirtualAccount virtualaccount = client.VirtualAccount.Create(virtualRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| receivers*    | object      | Array that defines what receivers are available for this Virtual Account                        |
-| allowed_payers*  | object      | All parameters listed [here](https://razorpay.com/docs/api/smart-collect-tpv/#create-virtual-account) are supported |
+| receivers (mandatory)    | object      | Array that defines what receivers are available for this Virtual Account                        |
+| allowed_payers (mandatory)  | object      | All parameters listed [here](https://razorpay.com/docs/api/smart-collect-tpv/#create-virtual-account) are supported |
 | description  | string      | A brief description of the virtual account.                    |
 | customer_id  | string      | Unique identifier of the customer to whom the virtual account must be tagged.                    |
 | notes  | integer      | Any custom notes you might want to add to the virtual account can be entered here.                  |
@@ -103,7 +103,7 @@ VirtualAccount virtualaccount = client.VirtualAccount.Create(virtualRequest);
 **Response:**
 ```json
 {
-  "id":"va_DlGmm7jInLudH9",
+  "id":"va_Z6t7VFTb9xHeOs",
   "name":"Acme Corp",
   "entity":"virtual_account",
   "status":"active",
@@ -113,10 +113,10 @@ VirtualAccount virtualaccount = client.VirtualAccount.Create(virtualRequest);
     "project_name":"Banking Software"
   },
   "amount_paid":0,
-  "customer_id":"cust_CaVDm8eDRSXYME",
+  "customer_id":"cust_Z6t7VFTb9xHeOs",
   "receivers":[
     {
-      "id":"ba_DlGmm9mSj8fjRM",
+      "id":"ba_Z6t7VFTb9xHeOs",
       "entity":"bank_account",
       "ifsc":"RATN0VAAPIS",
       "bank_name": "RBL Bank",
@@ -128,7 +128,7 @@ VirtualAccount virtualaccount = client.VirtualAccount.Create(virtualRequest);
   "allowed_payers": [
     {
       "type": "bank_account",
-      "id":"ba_DlGmm9mSj8fjRM",
+      "id":"ba_Z6t7VFTb9xHeOs",
       "bank_account": {
         "ifsc": "UTIB0000013",
         "account_number": "914010012345679"
@@ -136,7 +136,7 @@ VirtualAccount virtualaccount = client.VirtualAccount.Create(virtualRequest);
     },
     {
       "type": "bank_account",
-      "id":"ba_Cmtnm5tSj6agUW",
+      "id":"ba_Z6t7VFTb9xHeOs",
       "bank_account": {
         "ifsc": "UTIB0000014",
         "account_number": "914010012345680"
@@ -175,7 +175,7 @@ VirtualAccount virtualaccount = instance.virtualAccounts.create(virtualRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| receivers*    | array      | Array that defines what receivers are available for this Virtual Account                        |
+| receivers (mandatory)    | array      | Array that defines what receivers are available for this Virtual Account                        |
 | description  | string      | A brief description of the payment.   |
 | amount_expected  | integer   | The maximum amount you expect to receive in this virtual account. Pass `69999` for ₹699.99.   |
 | customer_id  | string      | Unique identifier of the customer to whom the virtual account must be tagged.                    |
@@ -184,7 +184,7 @@ VirtualAccount virtualaccount = instance.virtualAccounts.create(virtualRequest);
 **Response:**
 ```json
 {
-  "id": "va_4xbQrmEoA5WJ0G",
+  "id": "va_Z6t7VFTb9xHeOs",
   "name": "Acme Corp",
   "entity": "virtual_account",
   "status": "active",
@@ -194,10 +194,10 @@ VirtualAccount virtualaccount = instance.virtualAccounts.create(virtualRequest);
     "reference_key": "reference_value"
   },
   "amount_paid": 0,
-  "customer_id": "cust_805c8oBQdBGPwS",
+  "customer_id": "cust_Z6t7VFTb9xHeOs",
   "receivers": [
     {
-      "id": "qr_4lsdkfldlteskf",
+      "id": "qr_Z6t7VFTb9xHeOs",
       "entity": "qr_code",
       "reference": "AgdeP8aBgZGckl",
       "short_url": "https://rzp.io/i/PLs03pOc"
@@ -213,7 +213,7 @@ VirtualAccount virtualaccount = instance.virtualAccounts.create(virtualRequest);
 ### Fetch virtual account by id
 
 ```C#
-string virtualId = "va_4xbQrmEoA5WJ0G";
+string virtualId = "va_Z6t7VFTb9xHeOs";
 
 VirtualAccount virtualaccount = client.VirtualAccount.Fetch(virtualId);
 ```
@@ -222,7 +222,7 @@ VirtualAccount virtualaccount = client.VirtualAccount.Fetch(virtualId);
 
 | Name       | Type        | Description                                 |
 |------------|-------------|---------------------------------------------|
-| virtualId* | string      | The id of the virtual to be updated  |
+| virtualId (mandatory) | string      | The id of the virtual to be updated  |
 
 **Response:**
 
@@ -253,7 +253,7 @@ List<VirtualAccount> virtualaccount = client.VirtualAccount.All(param);
   "count": 1,
   "items": [
     {
-      "id": "va_Di5gbNptcWV8fQ",
+      "id": "va_Z6t7VFTb9xHeOs",
       "name": "Acme Corp",
       "entity": "virtual_account",
       "status": "closed",
@@ -263,7 +263,7 @@ List<VirtualAccount> virtualaccount = client.VirtualAccount.All(param);
         "material": "teakwood"
       },
       "amount_paid": 239000,
-      "customer_id": "cust_DOMUFFiGdCaCUJ",
+      "customer_id": "cust_Z6t7VFTb9xHeOs",
       "receivers": [
         {
           "id": "ba_Di5gbQsGn0QSz3",
@@ -286,7 +286,7 @@ List<VirtualAccount> virtualaccount = client.VirtualAccount.All(param);
 
 ### Fetch payments for a virtual account
 ```C#
-string virtualId = "va_DlGmm7jInLudH9";
+string virtualId = "va_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> param = new Dictionary<string, object>();
 param.Add("count","1");
@@ -298,7 +298,7 @@ List<Payment> virtualaccount = client.VirtualAccount.Fetch(virtualId).Payments(p
 
 | Name       | Type      | Description                                      |
 |------------|-----------|--------------------------------------------------|
-| virtualId* | string    | The id of the virtual to be updated  |
+| virtualId (mandatory) | string    | The id of the virtual to be updated  |
 | from       | timestamp | timestamp after which the payments were created  |
 | to         | timestamp | timestamp before which the payments were created |
 | count      | integer   | number of payments to fetch (default: 10)        |
@@ -311,7 +311,7 @@ List<Payment> virtualaccount = client.VirtualAccount.Fetch(virtualId).Payments(p
   "count": 1,
   "items": [
     {
-      "id": "pay_Di5iqCqA1WEHq6",
+      "id": "pay_Z6t7VFTb9xHeOs",
       "entity": "payment",
       "amount": 239000,
       "currency": "INR",
@@ -330,7 +330,7 @@ List<Payment> virtualaccount = client.VirtualAccount.Fetch(virtualId).Payments(p
       "vpa": null,
       "email": "saurav.kumar@example.com",
       "contact": "+919999999999",
-      "customer_id": "cust_DOMUFFiGdCaCUJ",
+      "customer_id": "cust_Z6t7VFTb9xHeOs",
       "notes": [],
       "fee": 2820,
       "tax": 430,
@@ -346,7 +346,7 @@ List<Payment> virtualaccount = client.VirtualAccount.Fetch(virtualId).Payments(p
 
 ### Fetch payment details using id and transfer method
 ```C#
-string paymentId = "pay_CmiztqmYJPtDAu";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 BankTransfer virtualaccount = client.Payment.Fetch(paymentId).BankTransfers();
 ```
@@ -355,14 +355,14 @@ BankTransfer virtualaccount = client.Payment.Fetch(paymentId).BankTransfers();
 
 | Name       | Type      | Description                         |
 |------------|-----------|-------------------------------------|
-| paymentId* | string    | The id of the payment to be updated |
+| paymentId (mandatory) | string    | The id of the payment to be updated |
 
 **Response:**
 ```json
 {
-  "id": "bt_Di5iqCElVyRlCb",
+  "id": "bt_Z6t7VFTb9xHeOs",
   "entity": "bank_transfer",
-  "payment_id": "pay_Di5iqCqA1WEHq6",
+  "payment_id": "pay_Z6t7VFTb9xHeOs",
   "mode": "NEFT",
   "bank_reference": "157414364471",
   "amount": 239000,
@@ -375,9 +375,9 @@ BankTransfer virtualaccount = client.Payment.Fetch(paymentId).BankTransfers();
     "notes": [],
     "account_number": "765432123456789"
   },
-  "virtual_account_id": "va_Di5gbNptcWV8fQ",
+  "virtual_account_id": "va_Z6t7VFTb9xHeOs",
   "virtual_account": {
-    "id": "va_Di5gbNptcWV8fQ",
+    "id": "va_Z6t7VFTb9xHeOs",
     "name": "Acme Corp",
     "entity": "virtual_account",
     "status": "closed",
@@ -387,10 +387,10 @@ BankTransfer virtualaccount = client.Payment.Fetch(paymentId).BankTransfers();
       "material": "teakwood"
     },
     "amount_paid": 239000,
-    "customer_id": "cust_DOMUFFiGdCaCUJ",
+    "customer_id": "cust_Z6t7VFTb9xHeOs",
     "receivers": [
       {
-        "id": "ba_Di5gbQsGn0QSz3",
+        "id": "ba_Z6t7VFTb9xHeOs",
         "entity": "bank_account",
         "ifsc": "RATN0VAAPIS",
         "bank_name": "RBL Bank",
@@ -409,7 +409,7 @@ BankTransfer virtualaccount = client.Payment.Fetch(paymentId).BankTransfers();
 
 ### Refund payments made to a virtual account
 ```C#
-string paymentId = "pay_E54n391WnEAV9H";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> refundRequest = new Dictionary<string, object>();
 refundRequest.Add("amount", 100);
@@ -427,7 +427,7 @@ Refund refund = client.Payment.Fetch(paymentId).Refund(refundRequest);
 
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
-| paymentId*  | string    | The id of the payment to be updated  |
+| paymentId (mandatory)  | string    | The id of the payment to be updated  |
 |  amount       | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |                       |
 |  speed        | string      | Here, it must be normal                |
 |  notes        | array       | A key-value pair                |
@@ -436,11 +436,11 @@ Refund refund = client.Payment.Fetch(paymentId).Refund(refundRequest);
 **Response:**
 ```json
 {
-  "id": "rfnd_E6j36ZEKvsWsEn",
+  "id": "rfnd_Z6t7VFTb9xHeOs",
   "entity": "refund",
   "amount": 100,
   "currency": "INR",
-  "payment_id": "pay_E54n391WnEAV9H",
+  "payment_id": "pay_Z6t7VFTb9xHeOs",
   "notes": {
     "key_1": "value1",
     "key_2": "value2"
@@ -456,7 +456,7 @@ Refund refund = client.Payment.Fetch(paymentId).Refund(refundRequest);
 
 ### Add receiver to an existing virtual account
 ```C#
-string virtualId = "va_Di5gbNptcWV8fQ";
+string virtualId = "va_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> virtualRequest = new Dictionary<string, object>();
 List<string> types = new List<string>();
@@ -473,8 +473,8 @@ VirtualAccount refund = client.VirtualAccount.Fetch(virtualId).AddReceiver(virtu
 
 | Name       | Type      | Description                                      |
 |------------|-----------|--------------------------------------------------|
-| virtualId* | string    | The id of the virtual to be updated  |
-| types*     | object | The receiver type to be added to the virtual account. Possible values are `vpa` or `bank_account`  |
+| virtualId (mandatory) | string    | The id of the virtual to be updated  |
+| types (mandatory)     | object | The receiver type to be added to the virtual account. Possible values are `vpa` or `bank_account`  |
 | vpa        | object | This is to be passed only when `vpa` is passed as the receiver types. |
 
 **Response:**
@@ -485,7 +485,7 @@ For add receiver to an existing virtual account response please click [here](htt
 
 ### Add an Allowed Payer Account
 ```C#
-String virtualId = "va_Di5gbNptcWV8fQ";
+String virtualId = "va_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> virtualRequest = new Dictionary<string, object>();
 virtualRequest.Add("type", "bank_account");
@@ -501,14 +501,14 @@ VirtualAccount refund = client.VirtualAccount.Fetch("va_MaxCJzVjbKRBAr").AddAllo
 
 | Name          | Type      | Description                                      |
 |---------------|-----------|--------------------------------------------------|
-| virtualId*    | string    | The id of the virtual to be updated  |
-| type*        | object | The receiver type to be added to the virtual account. Possible values are `vpa` or `bank_account`  |
-| bank_account* | object | Indicates the bank account details such as `ifsc` and `account_number` |
+| virtualId (mandatory)    | string    | The id of the virtual to be updated  |
+| type (mandatory)        | object | The receiver type to be added to the virtual account. Possible values are `vpa` or `bank_account`  |
+| bank_account (mandatory) | object | Indicates the bank account details such as `ifsc` and `account_number` |
 
 **Response:**
 ```json
 {
-  "id":"va_DlGmm7jInLudH9",
+  "id":"va_Z6t7VFTb9xHeOs",
   "name":"Acme Corp",
   "entity":"virtual_account",
   "status":"active",
@@ -518,10 +518,10 @@ VirtualAccount refund = client.VirtualAccount.Fetch("va_MaxCJzVjbKRBAr").AddAllo
     "project_name":"Banking Software"
   },
   "amount_paid":0,
-  "customer_id":"cust_CaVDm8eDRSXYME",
+  "customer_id":"cust_Z6t7VFTb9xHeOs",
   "receivers":[
     {
-      "id":"ba_DlGmm9mSj8fjRM",
+      "id":"ba_Z6t7VFTb9xHeOs",
       "entity":"bank_account",
       "ifsc":"RATN0VAAPIS",
       "bank_name": "RBL Bank",
@@ -533,7 +533,7 @@ VirtualAccount refund = client.VirtualAccount.Fetch("va_MaxCJzVjbKRBAr").AddAllo
   "allowed_payers": [
     {
       "type": "bank_account",
-      "id":"ba_DlGmm9mSj8fjRM",
+      "id":"ba_Z6t7VFTb9xHeOs",
       "bank_account": {
         "ifsc": "UTIB0000013",
         "account_number": "914010012345679"
@@ -548,7 +548,7 @@ VirtualAccount refund = client.VirtualAccount.Fetch("va_MaxCJzVjbKRBAr").AddAllo
 -------------------------------------------------------------------------------------------------------
 ### Close virtual account
 ```C#
-string virtualId = "va_Di5gbNptcWV8fQ";
+string virtualId = "va_Z6t7VFTb9xHeOs";
 
 VirtualAccount virtulaccount = client.VirtualAccount.Fetch("va_MaxCJzVjbKRBAr").Close();
 ```
@@ -557,7 +557,7 @@ VirtualAccount virtulaccount = client.VirtualAccount.Fetch("va_MaxCJzVjbKRBAr").
 
 | Name       | Type      | Description                                      |
 |------------|-----------|--------------------------------------------------|
-| virtualId* | string    | The id of the virtual to be updated  |
+| virtualId (mandatory) | string    | The id of the virtual to be updated  |
 
 **Response:**
 
