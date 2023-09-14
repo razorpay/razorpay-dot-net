@@ -2,7 +2,7 @@
 
 ### Request a Product Configuration
 ```C#
-string accountId = "acc_GP4lfNA0iIMn5B";
+string accountId = "acc_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> productRequest = new Dictionary<string, object>();
 productRequest.Add("product_name", "payment_gateway");
@@ -16,7 +16,7 @@ Product product = client.Product.Create(productRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| product_name* | string   | The product(s) to be configured. Possible value is `payment_gateway`, `payment_links`  |
+| product_name (mandatory) | string   | The product(s) to be configured. Possible value is `payment_gateway`, `payment_links`  |
 | tnc_accepted        | boolean      | Pass this parameter to accept terms and conditions. Send this parameter along with the ip parameter when the tnc is accepted. Possible values is `true`  |
 | ip          | integer      | The IP address of the merchant while accepting the terms and conditions. Send this parameter along with the `tnc_accepted` parameter when the `tnc` is accepted.  |
 
@@ -91,72 +91,72 @@ Product product = client.Product.Create(productRequest);
   "requirements": [
     {
       "field_reference": "individual_proof_of_address",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/stakeholders/{stakeholderId}/documents",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/stakeholders/{stakeholderId}/documents",
       "status": "required",
       "reason_code": "document_missing"
     },
     {
       "field_reference": "individual_proof_of_identification",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/stakeholders/{stakeholderId}/documents",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/stakeholders/{stakeholderId}/documents",
       "status": "required",
       "reason_code": "document_missing"
     },
     {
       "field_reference": "business_proof_of_identification",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/documents",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/documents",
       "status": "required",
       "reason_code": "document_missing"
     },
     {
       "field_reference": "settlements.beneficiary_name",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/products/acc_prd_HEgNpywUFctQ9e",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/products/acc_prd_HEgNpywUFctQ9e",
       "status": "required",
       "reason_code": "field_missing"
     },
     {
       "field_reference": "settlements.account_number",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/products/acc_prd_HEgNpywUFctQ9e",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/products/acc_prd_HEgNpywUFctQ9e",
       "status": "required",
       "reason_code": "field_missing"
     },
     {
       "field_reference": "settlements.ifsc_code",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/products/acc_prd_HEgNpywUFctQ9e",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/products/acc_prd_HEgNpywUFctQ9e",
       "status": "required",
       "reason_code": "field_missing"
     },
     {
       "field_reference": "contact_name",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs",
       "status": "required",
       "reason_code": "field_missing"
     },
     {
       "field_reference": "name",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/stakeholders",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/stakeholders",
       "status": "required",
       "reason_code": "field_missing"
     },
     {
       "field_reference": "customer_facing_business_name",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs",
       "status": "required",
       "reason_code": "field_missing"
     },
     {
       "field_reference": "kyc.pan",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/stakeholders",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/stakeholders",
       "status": "required",
       "reason_code": "field_missing"
     }
   ],
   "tnc":{
-    "id": "tnc_IgohZaDBHRGjPv",
+    "id": "tnc_Z6t7VFTb9xHeOs",
     "accepted": true,
     "accepted_at": 1641550798
   },
-  "id": "acc_prd_HEgNpywUFctQ9e",
-  "account_id": "acc_HQVlm3bnPmccC0",
+  "id": "acc_prd_Z6t7VFTb9xHeOs",
+  "account_id": "acc_Z6t7VFTb9xHeOs",
   "product_name": "payment_gateway",
   "activation_status": "needs_clarification",
   "requested_at": 162547884
@@ -167,9 +167,9 @@ Product product = client.Product.Create(productRequest);
 
 ### Edit a Product Configuration
 ```C#
-string accountId = "acc_GP4lfNA0iIMn5B";
+string accountId = "acc_Z6t7VFTb9xHeOs";
 
-string productId = "acc_prd_HEgNpywUFctQ9e";
+string productId = "acc_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> productRequest = new Dictionary<string, object>();
 Dictionary<string, object> notifications = new Dictionary<string, object>();
@@ -228,7 +228,7 @@ Product product = client.Product.Fetch(accountId, productId).Edit(productRequest
 **Response:**
 ```json
 {
-  "id": "acc_GP4lfNA0iIMn5B",
+  "id": "acc_Z6t7VFTb9xHeOs",
   "type": "standard",
   "status": "created",
   "email": "gauri@example.org",
@@ -259,9 +259,9 @@ Product product = client.Product.Fetch(accountId, productId).Edit(productRequest
 
 ### Fetch a product configuration
 ```C#
-string accountId = "acc_GP4lfNA0iIMn5B";
+string accountId = "acc_Z6t7VFTb9xHeOs";
 
-string productId = "acc_prd_HEgNpywUFctQ9e";
+string productId = "acc_prd_Z6t7VFTb9xHeOs";
 
 Product product = client.Product.Fetch(accountId, productId)
 ```
@@ -270,8 +270,8 @@ Product product = client.Product.Fetch(accountId, productId)
 
 | Name        | Type        | Description                                 |
 |-------------|-------------|---------------------------------------------|
-| accountId* | string      | The unique identifier of a sub-merchant account generated by Razorpay.  |
-| productId* | string      | The unique identifier of a product generated by Razorpay.  |
+| accountId (mandatory) | string      | The unique identifier of a sub-merchant account generated by Razorpay.  |
+| productId (mandatory) | string      | The unique identifier of a product generated by Razorpay.  |
 
 **Response:**
 ```json
@@ -343,61 +343,61 @@ Product product = client.Product.Fetch(accountId, productId)
   "requirements": [
     {
       "field_reference": "individual_proof_of_address",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/stakeholders/{stakeholderId}/documents",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/stakeholders/{stakeholderId}/documents",
       "status": "required",
       "reason_code": "document_missing"
     },
     {
       "field_reference": "individual_proof_of_identification",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/stakeholders/{stakeholderId}/documents",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/stakeholders/{stakeholderId}/documents",
       "status": "required",
       "reason_code": "document_missing"
     },
     {
       "field_reference": "business_proof_of_identification",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/documents",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/documents",
       "status": "required",
       "reason_code": "document_missing"
     },
     {
       "field_reference": "settlements.beneficiary_name",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/products/acc_prd_HEgNpywUFctQ9e",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/products/acc_prd_HEgNpywUFctQ9e",
       "status": "required",
       "reason_code": "field_missing"
     },
     {
       "field_reference": "settlements.account_number",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/products/acc_prd_HEgNpywUFctQ9e",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/products/acc_prd_HEgNpywUFctQ9e",
       "status": "required",
       "reason_code": "field_missing"
     },
     {
       "field_reference": "settlements.ifsc_code",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/products/acc_prd_HEgNpywUFctQ9e",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/products/acc_prd_HEgNpywUFctQ9e",
       "status": "required",
       "reason_code": "field_missing"
     },
     {
       "field_reference": "contact_name",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs",
       "status": "required",
       "reason_code": "field_missing"
     },
     {
       "field_reference": "name",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/stakeholders",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/stakeholders",
       "status": "required",
       "reason_code": "field_missing"
     },
     {
       "field_reference": "customer_facing_business_name",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs",
       "status": "required",
       "reason_code": "field_missing"
     },
     {
       "field_reference": "kyc.pan",
-      "resolution_url": "/accounts/acc_HQVlm3bnPmccC0/stakeholders",
+      "resolution_url": "/accounts/acc_Z6t7VFTb9xHeOs/stakeholders",
       "status": "required",
       "reason_code": "field_missing"
     }
@@ -408,7 +408,7 @@ Product product = client.Product.Fetch(accountId, productId)
     "accepted_at": 1641550798
   },
   "id": "acc_prd_HEgNpywUFctQ9e",
-  "account_id": "acc_HQVlm3bnPmccC0",
+  "account_id": "acc_Z6t7VFTb9xHeOs",
   "product_name": "payment_gateway",
   "activation_status": "needs_clarification",
   "requested_at": 1625478849
@@ -428,7 +428,7 @@ Tnc tnc = client.Tnc.Fetch(productName)
 
 | Name        | Type        | Description                                 |
 |-------------|-------------|---------------------------------------------|
-| productName* | string      | The product family for which the relevant product to be requested for the sub-merchant. Possible value is `payments`  |
+| productName (mandatory) | string      | The product family for which the relevant product to be requested for the sub-merchant. Possible value is `payments`  |
 
 **Response:**
 ```json
