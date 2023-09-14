@@ -4,7 +4,7 @@
 
 ```C#
 Dictionary<string, object> transferParams = new Dictionary<string, object>();
-transferParams.Add("account", "acc_I0QRP7PpvaHhpB");
+transferParams.Add("account", "acc_Z6t7VFTb9xHeOs");
 transferParams.Add("amount", 100);
 transferParams.Add("currency", "INR");
 Dictionary<string, object> notes = new Dictionary<string, object>();
@@ -29,7 +29,7 @@ List<Transfer> addon = client.Payment.Fetch(paymentId).Transfer(transferRequest)
 
 | Name       | Type        | Description                                 |
 |------------|-------------|---------------------------------------------|
-| PaymentId* | string      | The id of the payment to be fetched  |
+| PaymentId (mandatory) | string      | The id of the payment to be fetched  |
 | transfers  | object     | All parameters listed [here](https://razorpay.com/docs/api/route/#create-transfers-from-payments) are supported |
 
 **Response:**
@@ -39,10 +39,10 @@ List<Transfer> addon = client.Payment.Fetch(paymentId).Transfer(transferRequest)
   "count": 1,
   "items": [
     {
-      "id": "trf_E9uhYLFLLZ2pks",
+      "id": "trf_Z6t7VFTb9xHeOs",
       "entity": "transfer",
-      "source": "pay_E8JR8E0XyjUSZd",
-      "recipient": "acc_CPRsN1LkFccllA",
+      "source": "pay_Z6t7VFTb9xHeOs",
+      "recipient": "acc_Z6t7VFTb9xHeOs",
       "amount": 100,
       "currency": "INR",
       "amount_reversed": 0,
@@ -94,15 +94,15 @@ Order order = client.Order.Create(orderRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| amount*   | integer      | The transaction amount, in paise |
-| currency*   | string  | The currency of the payment (defaults to INR)  |
+| amount (mandatory)   | integer      | The transaction amount, in paise |
+| currency (mandatory)   | string  | The currency of the payment (defaults to INR)  |
 |  receipt      | string      | A unique identifier provided by you for your internal reference. |
 | transfers   | object     | All parameters listed [here](https://razorpay.com/docs/api/route/#create-transfers-from-orders) are supported |
 
 **Response:**
 ```json
 {
-  "id": "order_E9uTczH8uWPCyQ",
+  "id": "order_Z6t7VFTb9xHeOs",
   "entity": "order",
   "amount": 2000,
   "amount_paid": 0,
@@ -116,7 +116,7 @@ Order order = client.Order.Create(orderRequest);
   "created_at": 1580217565,
   "transfers": [
     {
-      "recipient": "acc_CPRsN1LkFccllA",
+      "recipient": "acc_Z6t7VFTb9xHeOs",
       "amount": 1000,
       "currency": "INR",
       "notes": {
@@ -130,7 +130,7 @@ Order order = client.Order.Create(orderRequest);
       "on_hold_until": 1671222870
     },
     {
-      "recipient": "acc_CNo3jSI8OkFJJJ",
+      "recipient": "acc_Z6t7VFTb9xHeOs",
       "amount": 1000,
       "currency": "INR",
       "notes": {
@@ -163,17 +163,17 @@ Transfer order = client.Transfer.Create(transferRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| accountId*   | string      | The id of the account to be fetched  |
-| amount*   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
-| currency*   | string  | The currency of the payment (defaults to INR)  |
+| accountId (mandatory)   | string      | The id of the account to be fetched  |
+| amount (mandatory)   | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
+| currency (mandatory)   | string  | The currency of the payment (defaults to INR)  |
 
 **Response:**
 ```json
 {
-  "id": "trf_E9utgtfGTcpcmm",
+  "id": "trf_Z6t7VFTb9xHeOs",
   "entity": "transfer",
-  "source": "acc_CJoeHMNpi0nC7k",
-  "recipient": "acc_CPRsN1LkFccllA",
+  "source": "acc_Z6t7VFTb9xHeOs",
+  "recipient": "acc_Z6t7VFTb9xHeOs",
   "amount": 100,
   "currency": "INR",
   "amount_reversed": 0,
@@ -193,7 +193,7 @@ Transfer order = client.Transfer.Create(transferRequest);
 ### Fetch transfer for a payment
 
 ```C#
-string paymentId = "pay_E9up5WhIfMYnKW";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 List<Transfer> order = client.Payment.Fetch(paymentId).Transfers();
 ```
@@ -202,7 +202,7 @@ List<Transfer> order = client.Payment.Fetch(paymentId).Transfers();
 
 | Name       | Type        | Description                                 |
 |------------|-------------|---------------------------------------------|
-| PaymentId* | string      | The id of the payment to be fetched  |
+| PaymentId (mandatory) | string      | The id of the payment to be fetched  |
 
 **Response:**
 ```json
@@ -211,10 +211,10 @@ List<Transfer> order = client.Payment.Fetch(paymentId).Transfers();
   "count": 1,
   "items": [
     {
-      "id": "trf_EAznuJ9cDLnF7Y",
+      "id": "trf_Z6t7VFTb9xHeOs",
       "entity": "transfer",
-      "source": "pay_E9up5WhIfMYnKW",
-      "recipient": "acc_CMaomTz4o0FOFz",
+      "source": "pay_Z6t7VFTb9xHeOs",
+      "recipient": "acc_Z6t7VFTb9xHeOs",
       "amount": 1000,
       "currency": "INR",
       "amount_reversed": 100,
@@ -236,7 +236,7 @@ List<Transfer> order = client.Payment.Fetch(paymentId).Transfers();
 ### Fetch transfer for an order
 
 ```C#
-string orderId = "order_JkaIDdkgGXVcwS";
+string orderId = "order_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> request = new Dictionary<string, object>();
 request.Add("expand[]","transfers");
@@ -248,13 +248,13 @@ Order order = client.Order.Fetch(orderId, orderRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| orderId*   | string      | The id of the order to be fetched  |
-| expand*   | string    | Supported value is `status`  |
+| orderId (mandatory)   | string      | The id of the order to be fetched  |
+| expand (mandatory)   | string    | Supported value is `status`  |
 
 **Response:**
 ```json
 {
-  "id": "order_DSkl2lBNvueOly",
+  "id": "order_Z6t7VFTb9xHeOs",
   "entity": "order",
   "amount": 1000,
   "amount_paid": 1000,
@@ -271,10 +271,10 @@ Order order = client.Order.Fetch(orderId, orderRequest);
     "count": 1,
     "items": [
       {
-        "id": "trf_DSkl2lXWbiADZG",
+        "id": "trf_Z6t7VFTb9xHeOs",
         "entity": "transfer",
-        "source": "order_DSkl2lBNvueOly",
-        "recipient": "acc_CNo3jSI8OkFJJJ",
+        "source": "order_Z6t7VFTb9xHeOs",
+        "recipient": "acc_Z6t7VFTb9xHeOs",
         "amount": 500,
         "currency": "INR",
         "amount_reversed": 0,
@@ -301,7 +301,7 @@ Order order = client.Order.Fetch(orderId, orderRequest);
 ### Fetch transfer
 
 ```C#
-string transferId = "trf_E7V62rAxJ3zYMo";
+string transferId = "trf_Z6t7VFTb9xHeOs";
 
 Transfer transfer = client.Transfer.Fetch(transferId);
 ```
@@ -310,16 +310,16 @@ Transfer transfer = client.Transfer.Fetch(transferId);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| transferId*   | string      | The id of the transfer to be fetched  |
+| transferId (mandatory)   | string      | The id of the transfer to be fetched  |
 
 **Response:**
 ```json
 {
-    "id": "trf_IJOI2DHWQYwqU3",
+    "id": "trf_Z6t7VFTb9xHeOs",
     "entity": "transfer",
     "status": "created",
-    "source": "order_IJOI2CD6CNIywP",
-    "recipient": "acc_HjVXbtpSCIxENR",
+    "source": "order_Z6t7VFTb9xHeOs",
+    "recipient": "acc_Z6t7VFTb9xHeOs",
     "amount": 100,
     "currency": "INR",
     "amount_reversed": 0,
@@ -344,7 +344,7 @@ Transfer transfer = client.Transfer.Fetch(transferId);
         "reason": null,
         "field": null,
         "step": null,
-        "id": "trf_IJOI2DHWQYwqU3",
+        "id": "trf_Z6t7VFTb9xHeOs",
         "source": null,
         "metadata": null
     }
@@ -356,7 +356,7 @@ Transfer transfer = client.Transfer.Fetch(transferId);
 
 ```C#
 Dictionary<string, object> param = new Dictionary<string, object>();
-param.Add("recipient_settlement_id","setl_DHYJ3dRPqQkAgV");
+param.Add("recipient_settlement_id","setl_Z6t7VFTb9xHeOs");
 
 List<Transfer> transfer = client.Transfer.All(orderRequest);
 ```
@@ -365,7 +365,7 @@ List<Transfer> transfer = client.Transfer.All(orderRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| recipient_settlement_id*   | string    | The recipient settlement id obtained from the settlement.processed webhook payload.  |
+| recipient_settlement_id (mandatory)   | string    | The recipient settlement id obtained from the settlement.processed webhook payload.  |
 
 **Response:**
 ```json
@@ -374,11 +374,11 @@ List<Transfer> transfer = client.Transfer.All(orderRequest);
   "count": 1,
   "items": [
     {
-      "id": "trf_HWjmkReRGPhguR",
+      "id": "trf_Z6t7VFTb9xHeOs",
       "entity": "transfer",
       "status": "processed",
-      "source": "pay_HWjY9DZSMsbm5E",
-      "recipient": "acc_HWjl1kqobJzf4i",
+      "source": "pay_Z6t7VFTb9xHeOs",
+      "recipient": "acc_Z6t7VFTb9xHeOs",
       "amount": 1000,
       "currency": "INR",
       "amount_reversed": 0,
@@ -389,7 +389,7 @@ List<Transfer> transfer = client.Transfer.All(orderRequest);
       "on_hold": false,
       "on_hold_until": null,
       "settlement_status": "settled",
-      "recipient_settlement_id": "setl_HYIIk3H0J4PYdX",
+      "recipient_settlement_id": "setl_Z6t7VFTb9xHeOs",
       "created_at": 1625812996,
       "processed_at": 1625812996,
       "error": {
@@ -398,7 +398,7 @@ List<Transfer> transfer = client.Transfer.All(orderRequest);
         "reason": null,
         "field": null,
         "step": null,
-        "id": "trf_HWjmkReRGPhguR",
+        "id": "trf_Z6t7VFTb9xHeOs",
         "source": null,
         "metadata": null
       }
@@ -422,7 +422,7 @@ List<Transfer> transfer = client.Transfer.All(orderRequest);
 
 | Name          | Type        | Description                                 |
 |---------------|-------------|---------------------------------------------|
-| expand*   | string    | Supported value is `recipient_settlement`  |
+| expand (mandatory)   | string    | Supported value is `recipient_settlement`  |
 
 **Response:**
 ```json
@@ -431,10 +431,10 @@ List<Transfer> transfer = client.Transfer.All(orderRequest);
   "count": 1,
   "items": [
     {
-      "id": "trf_DGSTeXzBkEVh48",
+      "id": "trf_Z6t7VFTb9xHeOs",
       "entity": "transfer",
-      "source": "pay_DGSRhvMbOqeCe7",
-      "recipient": "acc_CMaomTz4o0FOFz",
+      "source": "pay_Z6t7VFTb9xHeOs",
+      "recipient": "acc_Z6t7VFTb9xHeOs",
       "amount": 500,
       "currency": "INR",
       "amount_reversed": 0,
@@ -443,9 +443,9 @@ List<Transfer> transfer = client.Transfer.All(orderRequest);
       "tax": 0,
       "on_hold": false,
       "on_hold_until": null,
-      "recipient_settlement_id": "setl_DHYJ3dRPqQkAgV",
+      "recipient_settlement_id": "setl_Z6t7VFTb9xHeOs",
       "recipient_settlement": {
-        "id": "setl_DHYJ3dRPqQkAgV",
+        "id": "setl_Z6t7VFTb9xHeOs",
         "entity": "settlement",
         "amount": 500,
         "status": "failed",
@@ -466,7 +466,7 @@ List<Transfer> transfer = client.Transfer.All(orderRequest);
 ### Refund payments and reverse transfer from a linked account
 
 ```C#
-string paymentId = "pay_EAdwQDe4JrhOFX";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> param = new Dictionary<string, object>();
 param.Add("amount",100);
@@ -479,18 +479,18 @@ Refund refund = client.Payment.Fetch(paymentId).Refund(param);
 
 | Name        | Type        | Description                                 |
 |-------------|-------------|---------------------------------------------|
-| paymentId*  | string      | The id of the payment to be fetched  |
-| amount*     | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
+| paymentId (mandatory)  | string      | The id of the payment to be fetched  |
+| amount (mandatory)     | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 | reverse_all | boolean    | Reverses transfer made to a linked account. Possible values:<br> * `1` - Reverses transfer made to a linked account.<br>* `0` - Does not reverse transfer made to a linked account.|
 
 **Response:**
 ```json
 {
-  "id": "rfnd_JJFNlNXPHY640A",
+  "id": "rfnd_Z6t7VFTb9xHeOs",
   "entity": "refund",
   "amount": 100,
   "currency": "INR",
-  "payment_id": "pay_JJCqynf4fQS0N1",
+  "payment_id": "pay_Z6t7VFTb9xHeOs",
   "notes": [],
   "receipt": null,
   "acquirer_data": {
@@ -508,7 +508,7 @@ Refund refund = client.Payment.Fetch(paymentId).Refund(param);
 ### Fetch payments of a linked account
 
 ```C#
-client.addHeader("X-Razorpay-Account", "acc_CPRsN1LkFccllA");
+client.addHeader("X-Razorpay-Account", "acc_Z6t7VFTb9xHeOs");
 List<Payment> payment = client.Payment.All();
 ```
 
@@ -525,7 +525,7 @@ List<Payment> payment = client.Payment.All();
   "count": 2,
   "items": [
     {
-      "id": "pay_E9uth3WhYbh9QV",
+      "id": "pay_Z6t7VFTb9xHeOs",
       "entity": "payment",
       "amount": 100,
       "currency": "INR",
@@ -559,7 +559,7 @@ List<Payment> payment = client.Payment.All();
 ### Reverse transfers from all linked accounts
 
 ```C#
-string transferId = "trf_EAznuJ9cDLnF7Y";
+string transferId = "trf_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> transferRequest = new Dictionary<string, object>();
 transferRequest.Add("amount","100");
@@ -571,21 +571,21 @@ Reversal reversal = client.Transfer.Fetch(transferId).Reversal(transferRequest);
 
 | Name        | Type        | Description                                 |
 |-------------|-------------|---------------------------------------------|
-| transferId* | string      | The id of the transfer to be fetched  |
+| transferId (mandatory) | string      | The id of the transfer to be fetched  |
 | amount      | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
 
 **Response:**
 ```json
 {
-  "id": "rvrsl_EB0BWgGDAu7tOz",
+  "id": "rvrsl_Z6t7VFTb9xHeOs",
   "entity": "reversal",
-  "transfer_id": "trf_EAznuJ9cDLnF7Y",
+  "transfer_id": "trf_Z6t7VFTb9xHeOs",
   "amount": 100,
   "fee": 0,
   "tax": 0,
   "currency": "INR",
   "notes": [],
-  "initiator_id": "CJoeHMNpi0nC7k",
+  "initiator_id": "Z6t7VFTb9xHeOs",
   "customer_refund_id": null,
   "created_at": 1580456007
 }
@@ -594,12 +594,12 @@ Reversal reversal = client.Transfer.Fetch(transferId).Reversal(transferRequest);
 
 ### Hold settlements for transfers
 ```C#
-string paymentId = "pay_EB1R2s8D4vOAKG";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> transferRequest = new Dictionary<string, object>();
 List<Dictionary<string, object>> transfers = new List<Dictionary<string, object>>();
 Dictionary<string, object> transferParams = new Dictionary<string, object>();
-transferParams.Add("account", "acc_I0QRP7PpvaHhpB");
+transferParams.Add("account", "acc_Z6t7VFTb9xHeOs");
 transferParams.Add("amount", 100);
 transferParams.Add("currency", "INR");
 transferParams.Add("on_hold", true);
@@ -613,7 +613,7 @@ List<Transfer> transfer = client.Payment.Fetch(paymentId).Transfer(transferReque
 
 | Name      | Type        | Description                                 |
 |-----------|-------------|---------------------------------------------|
-| paymentId* | string      | The id of the payment to be fetched  |
+| paymentId (mandatory) | string      | The id of the payment to be fetched  |
 | transfer  | object     | All parameters listed here https://razorpay.com/docs/api/route/#hold-settlements-for-transfers are supported |
 
 **Response:**
@@ -623,11 +623,11 @@ List<Transfer> transfer = client.Payment.Fetch(paymentId).Transfer(transferReque
   "count": 1,
   "items": [
     {
-      "id": "trf_Jfm1KCF6w1oWgy",
+      "id": "trf_Z6t7VFTb9xHeOs",
       "entity": "transfer",
       "status": "pending",
-      "source": "pay_JXPULbHbkkkS8D",
-      "recipient": "acc_I0QRP7PpvaHhpB",
+      "source": "pay_Z6t7VFTb9xHeOs",
+      "recipient": "acc_Z6t7VFTb9xHeOs",
       "amount": 100,
       "currency": "INR",
       "amount_reversed": 0,
@@ -644,7 +644,7 @@ List<Transfer> transfer = client.Payment.Fetch(paymentId).Transfer(transferReque
         "reason": null,
         "field": null,
         "step": null,
-        "id": "trf_Jfm1KCF6w1oWgy",
+        "id": "trf_Z6t7VFTb9xHeOs",
         "source": null,
         "metadata": null
       }
@@ -669,8 +669,8 @@ Transfer transfer = client.Transfer.Fetch(transferId).Edit(transferRequest);
 
 | Name          | Type    | Description                                 |
 |---------------|---------|---------------------------------------------|
-| transferId*   | string      | The id of the transfer to be fetched  |
-| on_hold*   | boolean      | Possible values is `0` or `1`  |
+| transferId (mandatory)   | string      | The id of the transfer to be fetched  |
+| on_hold (mandatory)   | boolean      | Possible values is `0` or `1`  |
 | on_hold_until   | integer      | Timestamp, in Unix, that indicates until when the settlement of the transfer must be put on hold |
 
 **Response:**
@@ -680,11 +680,11 @@ Transfer transfer = client.Transfer.Fetch(transferId).Edit(transferRequest);
     "count": 1,
     "items": [
         {
-            "id": "trf_JhemwjNekar9Za",
+            "id": "trf_Z6t7VFTb9xHeOs",
             "entity": "transfer",
             "status": "pending",
-            "source": "pay_I7watngocuEY4P",
-            "recipient": "acc_HjVXbtpSCIxENR",
+            "source": "pay_Z6t7VFTb9xHeOs",
+            "recipient": "acc_Z6t7VFTb9xHeOs",
             "amount": 100,
             "currency": "INR",
             "amount_reversed": 0,
@@ -701,7 +701,7 @@ Transfer transfer = client.Transfer.Fetch(transferId).Edit(transferRequest);
                 "reason": null,
                 "field": null,
                 "step": null,
-                "id": "trf_JhemwjNekar9Za",
+                "id": "trf_Z6t7VFTb9xHeOs",
                 "source": null,
                 "metadata": null
             }
