@@ -25,7 +25,10 @@ namespace Razorpay.Api
             {"virtual_account", "Razorpay.Api.VirtualAccount"},
             {"addon", "Razorpay.Api.Addon"},
             {"product", "Razorpay.Api.Product"}
+            {"stakeholder", "Razorpay.Api.Stakeholder"},
+            {"webhook", "Razorpay.Api.Webhook"},
         };
+      
         private static List<HttpMethod> JsonifyInput = new List<HttpMethod>()
         {
             HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH
