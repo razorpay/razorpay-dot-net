@@ -19,8 +19,8 @@ Order order = client.Order.Create(orderRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| amount*          | integer | Amount of the order to be paid                                               |
-| currency*        | string  | Currency of the order. Currently only `INR` is supported.                      |
+| amount (mandatory)          | integer | Amount of the order to be paid                                               |
+| currency (mandatory)        | string  | Currency of the order. Currently only `INR` is supported.                      |
 | receipt         | string  | Your system order reference id.                                              |
 | notes           | object  | A key-value pair |
 |partial_payment | boolean  | Indicates whether customers can make partial payments on the invoice . Possible values: true - Customer can make partial payments. false (default) - Customer cannot make partial payments. |
@@ -29,7 +29,7 @@ Order order = client.Order.Create(orderRequest);
 
 ```json
 {
-  "id": "order_EKwxwAgItmmXdp",
+  "id": "order_Z6t7VFTb9xHeOs",
   "entity": "order",
   "amount": 50000,
   "amount_paid": 0,
@@ -66,9 +66,9 @@ Order order = client.Order.Create(orderRequest);
 
 | Name            | Type    | Description                                                                  |
 |-----------------|---------|------------------------------------------------------------------------------|
-| amount*          | integer | Amount of the order to be paid                                               |
+| amount (mandatory)          | integer | Amount of the order to be paid                                               |
 | method        | string  | The payment method used to make the payment. If this parameter is not passed, customers will be able to make payments using both netbanking and UPI payment methods. Possible values is `netbanking` or `upi`|
-| currency*        | string  | Currency of the order. Currently only `INR` is supported.       |
+| currency (mandatory)        | string  | Currency of the order. Currently only `INR` is supported.       |
 | receipt         | string  | Your system order reference id.                                              |
 |bank_account | object  | All keys listed [here](https://razorpay.com/docs/payments/third-party-validation/#step-2-create-an-order) are supported |
 
@@ -76,7 +76,7 @@ Order order = client.Order.Create(orderRequest);
 
 ```json
 {
-  "id": "order_GAWN9beXgaqRyO",
+  "id": "order_Z6t7VFTb9xHeOs",
   "entity": "order",
   "amount": 500,
   "amount_paid": 0,
@@ -122,7 +122,7 @@ List<Order> order = client.Order.All(orderRequest);
   "count": 1,
   "items": [
     {
-      "id": "order_EKzX2WiEWbMxmx",
+      "id": "order_Z6t7VFTb9xHeOs",
       "entity": "order",
       "amount": 1234,
       "amount_paid": 0,
@@ -143,21 +143,21 @@ List<Order> order = client.Order.All(orderRequest);
 ### Fetch particular order
 
 ```C#
-string orderId = "order_DaaS6LOUAASb7Y";
+string orderId = "order_Z6t7VFTb9xHeOs";
 
-Order order = client.Order.Fetch("order_MZNx4gOVSzMcTQ");
+Order order = client.Order.Fetch(orderId);
 ```
 **Parameters**
 
 | Name     | Type   | Description                         |
 |----------|--------|-------------------------------------|
-| orderId* | string | The id of the order to be fetched |
+| orderId (mandatory) | string | The id of the order to be fetched |
 
 **Response:**
 
 ```json
 {
-  "id":"order_DaaS6LOUAASb7Y",
+  "id":"order_Z6t7VFTb9xHeOs",
   "entity":"order",
   "amount":2200,
   "amount_paid":0,
@@ -175,7 +175,7 @@ Order order = client.Order.Fetch("order_MZNx4gOVSzMcTQ");
 ### Fetch payments for an order
 
 ```C#
-string orderId = "order_DaaS6LOUAASb7Y";
+string orderId = "order_Z6t7VFTb9xHeOs";
 
 List<Payment> order = client.Order.Fetch(orderId).Payments();
 ```
@@ -183,7 +183,7 @@ List<Payment> order = client.Order.Fetch(orderId).Payments();
 
 | Name     | Type   | Description                         |
 |----------|--------|-------------------------------------|
-| orderId* | string | The id of the order to be retrieve payment info |
+| orderId (mandatory) | string | The id of the order to be retrieve payment info |
 
 **Response:**
 ```json
@@ -192,12 +192,12 @@ List<Payment> order = client.Order.Fetch(orderId).Payments();
   "count":1,
   "items":[
     {
-      "id":"pay_DaaSOvhgcOfzgR",
+      "id":"pay_Z6t7VFTb9xHeOs",
       "entity":"payment",
       "amount":2200,
       "currency":"INR",
       "status":"captured",
-      "order_id":"order_DaaS6LOUAASb7Y",
+      "order_id":"order_Z6t7VFTb9xHeOs",
       "invoice_id":null,
       "international":false,
       "method":"card",
@@ -205,7 +205,7 @@ List<Payment> order = client.Order.Fetch(orderId).Payments();
       "refund_status":null,
       "captured":true,
       "description":"Beans in every imaginable flavour",
-      "card_id":"card_DZon6fd8J3IcA2",
+      "card_id":"card_Z6t7VFTb9xHeOs",
       "bank":null,
       "wallet":null,
       "vpa":null,
@@ -226,7 +226,7 @@ List<Payment> order = client.Order.Fetch(orderId).Payments();
 ### Update order
 
 ```C#
-string orderId = "order_DaaS6LOUAASb7Y";
+string orderId = "order_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> orderRequest = new Dictionary<string, object>();
 Dictionary<string, object> notes = new Dictionary<string, object>();
@@ -240,13 +240,13 @@ Order order = client.Order.Fetch(orderId).Edit(orderRequest);
 
 | Name     | Type   | Description                         |
 |----------|--------|-------------------------------------|
-| orderId* | string | The id of the order to be retrieve payment info |
-| notes*   | object  | A key-value pair                    |
+| orderId (mandatory) | string | The id of the order to be retrieve payment info |
+| notes (mandatory)   | object  | A key-value pair                    |
 
 **Response:**
 ```json
 {
-  "id":"order_DaaS6LOUAASb7Y",
+  "id":"order_Z6t7VFTb9xHeOs",
   "entity":"order",
   "amount":2200,
   "amount_paid":0,
