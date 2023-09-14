@@ -5,7 +5,7 @@ namespace Razorpay.Api
     public class RazorpayClient
     {
         const string CurrentVersion = "3.0.2";
-        protected const string DefaultBaseUrl = "https://api.razorpay.com/v1/";
+        protected const string DefaultBaseUrl = "https://api.razorpay.com";
 
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         protected static Dictionary<string, string> headers = new Dictionary<string, string>();
@@ -24,15 +24,16 @@ namespace Razorpay.Api
         private Plan plan = null;
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
+        private Stakeholder stakeholder = null;
+        private Webhook webhook = null;
 
-        
         public RazorpayClient(string key, string secret)
         {
             RazorpayClient.Key = key;
             RazorpayClient.Secret = secret;
         }
 
-        
+
         public RazorpayClient(string baseUrl, string key, string secret)
         {
             RazorpayClient.BaseUrl = baseUrl;
@@ -247,6 +248,31 @@ namespace Razorpay.Api
                     virtualaccount = new VirtualAccount();
                 }
                 return virtualaccount;
+            }
+        }
+
+
+        public Stakeholder Stakeholder
+        {
+            get
+            {
+                if (stakeholder == null)
+                {
+                    stakeholder = new Stakeholder();
+                }
+                return stakeholder;
+            }
+        } 
+
+        public Webhook Webhook
+        {
+            get
+            {
+                if (webhook == null)
+                {
+                    webhook = new Webhook();
+                }
+                return webhook;
             }
         }
     }
