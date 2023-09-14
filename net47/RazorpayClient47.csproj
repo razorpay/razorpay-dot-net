@@ -119,7 +119,6 @@
     <Compile Include="..\src\BankTransfer.cs">
       <Link>BankTransfer.cs</Link>
     </Compile>
-    <Compile Include="Class.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\src\HttpMethod.cs">
       <Link>HttpMethod.cs</Link>

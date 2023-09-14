@@ -3,32 +3,32 @@
 ### Capture payment
 
 ```C#
-string paymentId = "pay_G8VQzjPLoAvm6D";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> paymentRequest = new Dictionary<string, object>();
 paymentRequest.Add("amount", 1000);
 paymentRequest.Add("currency", "INR");
         
-Payment payment = client.Payment.Fetch("pay_MTXmUZQrL6disN").Capture(paymentRequest);
+Payment payment = client.Payment.Fetch("pay_Z6t7VFTb9xHeOs").Capture(paymentRequest);
 ```
 
 **Parameters:**
 
 | Name       | Type    | Description                                                                    |
 |------------|---------|--------------------------------------------------------------------------------|
-| paymentId* | string  | Id of the payment to capture                                                   |
-| amount*    | integer | The amount to be captured (should be equal to the authorized amount, in paise) |
+| paymentId (mandatory) | string  | Id of the payment to capture                                                   |
+| amount (mandatory)    | integer | The amount to be captured (should be equal to the authorized amount, in paise) |
 | currency   | string  | The currency of the payment (defaults to INR)                                  |
 
 **Response:**
 ```json
 {
-  "id": "pay_G8VQzjPLoAvm6D",
+  "id": "pay_Z6t7VFTb9xHeOs",
   "entity": "payment",
   "amount": 1000,
   "currency": "INR",
   "status": "captured",
-  "order_id": "order_G8VPOayFxWEU28",
+  "order_id": "order_Z6t7VFTb9xHeOs",
   "invoice_id": null,
   "international": false,
   "method": "upi",
@@ -42,7 +42,7 @@ Payment payment = client.Payment.Fetch("pay_MTXmUZQrL6disN").Capture(paymentRequ
   "vpa": "gaurav.kumar@exampleupi",
   "email": "gaurav.kumar@example.com",
   "contact": "+919999999999",
-  "customer_id": "cust_DitrYCFtCIokBO",
+  "customer_id": "cust_Z6t7VFTb9xHeOs",
   "notes": [],
   "fee": 24,
   "tax": 4,
@@ -85,12 +85,12 @@ List<Payment> payment = client.Payment.All(paymentRequest);
   "count": 2,
   "items": [
     {
-      "id": "pay_G8VaL2Z68LRtDs",
+      "id": "pay_Z6t7VFTb9xHeOs",
       "entity": "payment",
       "amount": 900,
       "currency": "INR",
       "status": "captured",
-      "order_id": "order_G8VXfKDWDEOHHd",
+      "order_id": "order_Z6t7VFTb9xHeOs",
       "invoice_id": null,
       "international": false,
       "method": "netbanking",
@@ -104,7 +104,7 @@ List<Payment> payment = client.Payment.All(paymentRequest);
       "vpa": null,
       "email": "gaurav.kumar@example.com",
       "contact": "+919999999999",
-      "customer_id": "cust_DitrYCFtCIokBO",
+      "customer_id": "cust_Z6t7VFTb9xHeOs",
       "notes": [],
       "fee": 22,
       "tax": 4,
@@ -126,7 +126,7 @@ List<Payment> payment = client.Payment.All(paymentRequest);
 ### Fetch a payment
 
 ```C#
-string paymentId = "pay_G8VQzjPLoAvm6D";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Payment payment = client.Payment.Fetch(paymentId);
 ```
@@ -135,17 +135,17 @@ Payment payment = client.Payment.Fetch(paymentId);
 
 | Name       | Type   | Description                       |
 |------------|--------|-----------------------------------|
-| PaymentId* | string | Id of the payment to be retrieved |
+| PaymentId (mandatory) | string | Id of the payment to be retrieved |
 
 **Response:**
 ```json
 {
-  "id": "pay_G8VQzjPLoAvm6D",
+  "id": "pay_Z6t7VFTb9xHeOs",
   "entity": "payment",
   "amount": 1000,
   "currency": "INR",
   "status": "captured",
-  "order_id": "order_G8VPOayFxWEU28",
+  "order_id": "order_Z6t7VFTb9xHeOs",
   "invoice_id": null,
   "international": false,
   "method": "upi",
@@ -179,7 +179,7 @@ Payment payment = client.Payment.Fetch(paymentId);
 ### Fetch payments for an order
 
 ```C#                           
-string orderId = "order_DovFx48wjYEr2I";
+string orderId = "order_Z6t7VFTb9xHeOs";
 
 List<Payment> payments = client.Order.Fetch(orderId).Payments();
 ```
@@ -187,7 +187,7 @@ List<Payment> payments = client.Order.Fetch(orderId).Payments();
 
 | Name     | Type   | Description                         |
 |----------|--------|-------------------------------------|
-| orderId* | string | The id of the order to be retrieve payment info |
+| orderId (mandatory) | string | The id of the order to be retrieve payment info |
 
 **Response:**
 ```json
@@ -196,12 +196,12 @@ List<Payment> payments = client.Order.Fetch(orderId).Payments();
   "entity": "collection",
   "items": [
     {
-      "id": "pay_DovGQXOkPBJjjU",
+      "id": "pay_Z6t7VFTb9xHeOs",
       "entity": "payment",
       "amount": 600,
       "currency": "INR",
       "status": "captured",
-      "order_id": "order_DovFx48wjYEr2I",
+      "order_id": "order_Z6t7VFTb9xHeOs",
       "method": "netbanking",
       "amount_refunded": 0,
       "refund_status": null,
@@ -234,7 +234,7 @@ List<Payment> payments = client.Order.Fetch(orderId).Payments();
 ### Update a payment
 
 ```C#
-string paymentId = "pay_CBYy6tLmJTzn3Q";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> paymentRequest = new Dictionary<string, object>();
 Dictionary<string, string> notes= new Dictionary<string, string>();
@@ -249,13 +249,13 @@ Payment payment = client.Payment.Fetch(paymentId).Edit(paymentRequest);
 
 | Name       | Type    | Description                          |
 |------------|---------|--------------------------------------|
-| PaymentId* | string  | Id of the payment to update          |
-| notes*     | object  | A key-value pair                   |
+| PaymentId (mandatory) | string  | Id of the payment to update          |
+| notes (mandatory)     | object  | A key-value pair                   |
 
 **Response:**
 ```json
 {
-  "id": "pay_CBYy6tLmJTzn3Q",
+  "id": "pay_Z6t7VFTb9xHeOs",
   "entity": "payment",
   "amount": 1000,
   "currency": "INR",
@@ -321,7 +321,7 @@ For expanded card or emi details for payments response please click [here](https
 ### Fetch card details with paymentId
 
 ```C#
-string paymentId = "pay_CBYy6tLmJTzn3Q";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Card card = client.Card.FetchCardDetails(paymentId);
 ```
@@ -330,12 +330,12 @@ Card card = client.Card.FetchCardDetails(paymentId);
 
 | Name       | Type    | Description                          |
 |------------|---------|--------------------------------------|
-| paymentId* | string  | Id of the payment to update          |
+| paymentId (mandatory) | string  | Id of the payment to update          |
 
 **Response:**
 ```json
 {
-  "id": "card_6krZ6bcjoeqyV9",
+  "id": "card_Z6t7VFTb9xHeOs",
   "entity": "card",
   "name": "Gaurav",
   "last4": "3335",
@@ -363,7 +363,7 @@ For payment downtime response please click [here](https://razorpay.com/docs/api/
 ### Fetch Payment Downtime Details By Downtime Id
 
 ```C#
-string downtimeId = "down_F7LroRQAAFuswd";
+string downtimeId = "down_Z6t7VFTb9xHeOs";
 
 Payment payment = client.Payment.FetchPaymentDowntimeById(downtimeId);
 ```
@@ -372,7 +372,7 @@ Payment payment = client.Payment.FetchPaymentDowntimeById(downtimeId);
 
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| DowntimeId* | string  | Id to fetch payment downtime         |
+| DowntimeId (mandatory) | string  | Id to fetch payment downtime         |
 
 **Response:**
 For payment downtime by id response please click [here](https://razorpay.com/docs/api/payments/downtime/#fetch-payment-downtime-details-by-id)
@@ -402,12 +402,12 @@ Order order = client.Order.Create(orderRequest);
 
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| amount*          | integer | Amount of the order to be paid  |
-| currency*   | string  | The currency of the payment (defaults to INR)                                  |
-| order_id*        | string  | The unique identifier of the order created. |
-| email*        | string      | Email of the customer                       |
-| contact*      | string      | Contact number of the customer              |
-| method*      | string  | Possible value is `card`, `netbanking`, `wallet`,`emi`, `upi`, `cardless_emi`, `paylater`.  |
+| amount (mandatory)          | integer | Amount of the order to be paid  |
+| currency (mandatory)   | string  | The currency of the payment (defaults to INR)                                  |
+| order_id (mandatory)        | string  | The unique identifier of the order created. |
+| email (mandatory)        | string      | Email of the customer                       |
+| contact (mandatory)      | string      | Contact number of the customer              |
+| method (mandatory)      | string  | Possible value is `card`, `netbanking`, `wallet`,`emi`, `upi`, `cardless_emi`, `paylater`.  |
 | card      | array      | All keys listed [here](https://razorpay.com/docs/payments/payment-gateway/s2s-integration/payment-methods/#supported-payment-fields) are supported  |
 | bank      | string      | Bank code of the bank used for the payment. Required if the method is `netbanking`.|
 | bank_account | object      | All keys listed [here](https://razorpay.com/docs/payments/customers/customer-fund-account-api/#create-a-fund-account) are supported |
@@ -419,7 +419,7 @@ Order order = client.Order.Create(orderRequest);
 **Response:**
 ```json
 {
-  "id": "order_DBJOWzybf0sJbb",
+  "id": "order_Z6t7VFTb9xHeOs",
   "entity": "order",
   "amount": 50000,
   "amount_paid": 0,
@@ -458,12 +458,12 @@ Payment payment = client.Payment.CreateJsonPayment(paymentRequest);
 **Parameters:**
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| amount*          | integer | Amount of the order to be paid  |
-| currency*   | string  | The currency of the payment (defaults to INR)                                  |
-| order_id*        | string  | The unique identifier of the order created. |
-| email*        | string      | Email of the customer                       |
-| contact*      | string      | Contact number of the customer              |
-| method*      | string  | Possible value is `card`, `netbanking`, `wallet`,`emi`, `upi`, `cardless_emi`, `paylater`.  |
+| amount (mandatory)          | integer | Amount of the order to be paid  |
+| currency (mandatory)   | string  | The currency of the payment (defaults to INR)                                  |
+| order_id (mandatory)        | string  | The unique identifier of the order created. |
+| email (mandatory)        | string      | Email of the customer                       |
+| contact (mandatory)      | string      | Contact number of the customer              |
+| method (mandatory)      | string  | Possible value is `card`, `netbanking`, `wallet`,`emi`, `upi`, `cardless_emi`, `paylater`.  |
 | card      | object      | All keys listed [here](https://razorpay.com/docs/payments/payment-gateway/s2s-integration/payment-methods/#supported-payment-fields) are supported  |
 | bank      | string      | Bank code of the bank used for the payment. Required if the method is `netbanking`.|
 | bank_account | object      | All keys listed [here](https://razorpay.com/docs/payments/customers/customer-fund-account-api/#create-a-fund-account) are supported |
@@ -476,7 +476,7 @@ Payment payment = client.Payment.CreateJsonPayment(paymentRequest);
 **Response:** <br>
 ```json
 {
-  "razorpay_payment_id": "pay_FVmAstJWfsD3SO",
+  "razorpay_payment_id": "pay_Z6t7VFTb9xHeOs",
   "next": [
     {
       "action": "redirect",
@@ -484,7 +484,7 @@ Payment payment = client.Payment.CreateJsonPayment(paymentRequest);
     },
     {
       "action": "otp_generate",
-      "url": "https://api.razorpay.com/v1/payments/pay_FVmAstJWfsD3SO/otp_generate?track_id=FVmAtLUe9XZSGM&key_id=<YOUR_KEY_ID>"
+      "url": "https://api.razorpay.com/v1/payments/pay_Z6t7VFTb9xHeOs/otp_generate?track_id=FVmAtLUe9XZSGM&key_id=<YOUR_KEY_ID>"
     }
   ]
 }
@@ -497,7 +497,7 @@ Payment payment = client.Payment.CreateJsonPayment(paymentRequest);
 
 RazorpayClient instance = new RazorpayClient("key",""); // Use Only razorpay key
 
-string paymentId = "pay_JWjI5kbJKUDE1a";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Payment payment = client.Payment.OtpGenerate(paymentId);
 ```
@@ -506,7 +506,7 @@ Payment payment = client.Payment.OtpGenerate(paymentId);
 
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| paymentId*    | integer | Unique identifier of the payment                                               |
+| paymentId (mandatory)    | integer | Unique identifier of the payment                                               |
 
 Doc reference [doc](https://razorpay.com/docs/payments/payment-gateway/s2s-integration/json/v2/build-integration/cards/#otp-generation-)
 
@@ -514,15 +514,15 @@ Doc reference [doc](https://razorpay.com/docs/payments/payment-gateway/s2s-integ
 
 ```json
 {
- "razorpay_payment_id": "pay_FVmAstJWfsD3SO",
+ "razorpay_payment_id": "pay_Z6t7VFTb9xHeOs",
  "next": [
   {
    "action": "otp_submit",
-   "url": "https://api.razorpay.com/v1/payments/pay_FVmAstJWfsD3SO/otp_submit/ac2d415a8be7595de09a24b41661729fd9028fdc?key_id=<YOUR_KEY_ID>"
+   "url": "https://api.razorpay.com/v1/payments/pay_Z6t7VFTb9xHeOs/otp_submit/ac2d415a8be7595de09a24b41661729fd9028fdc?key_id=<YOUR_KEY_ID>"
   },
   {
    "action": "otp_resend",
-   "url": "https://api.razorpay.com/v1/payments/pay_FVmAstJWfsD3SO/otp_resend/json?key_id=<YOUR_KEY_ID>"
+   "url": "https://api.razorpay.com/v1/payments/pay_Z6t7VFTb9xHeOs/otp_resend/json?key_id=<YOUR_KEY_ID>"
   }
  ],
  "metadata": {
@@ -539,7 +539,7 @@ Doc reference [doc](https://razorpay.com/docs/payments/payment-gateway/s2s-integ
 ### OTP Submit
 
 ```C#
-string paymentId = "pay_JWjI5kbJKUDE1a";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Dictionary<string, object> paymentRequest = new Dictionary<string, object>();
 paymentRequest.Add("otp", "123456");
@@ -551,8 +551,8 @@ Payment payment = client.Payment.OtpSubmit(paymentId, paymentRequest);
 
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| paymentId*    | integer | Unique identifier of the payment                                               |
-| otp*    | string | The customer receives the OTP using their preferred notification medium - SMS or email |
+| paymentId (mandatory)    | integer | Unique identifier of the payment                                               |
+| otp (mandatory)    | string | The customer receives the OTP using their preferred notification medium - SMS or email |
 
 Doc reference [doc](https://razorpay.com/docs/payments/payment-gateway/s2s-integration/json/v2/build-integration/cards/#response-on-submitting-otp)
 
@@ -560,8 +560,8 @@ Doc reference [doc](https://razorpay.com/docs/payments/payment-gateway/s2s-integ
 Success
 ```json
 {
- "razorpay_payment_id": "pay_D5jmY2H6vC7Cy3",
- "razorpay_order_id": "order_9A33XWu170gUtm",
+ "razorpay_payment_id": "pay_Z6t7VFTb9xHeOs",
+ "razorpay_order_id": "order_Z6t7VFTb9xHeOs",
  "razorpay_signature": "9ef4dffbfd84f1318f6739a3ce19f9d85851857ae648f114332d8401e0949a3d"
 }
 ```
@@ -571,7 +571,7 @@ Success
 
 ```C#
 
-string paymentId = "pay_JWjI5kbJKUDE1a";
+string paymentId = "pay_Z6t7VFTb9xHeOs";
 
 Payment payment = client.Payment.OtpResend(paymentId);
 ```
@@ -580,7 +580,7 @@ Payment payment = client.Payment.OtpResend(paymentId);
 
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| paymentId*    | integer | Unique identifier of the payment                                               |
+| paymentId (mandatory)    | integer | Unique identifier of the payment                                               |
 
 Doc reference [doc](https://razorpay.com/docs/payments/payment-methods/cards/authentication/native-otp/#otp-resend)
 
@@ -592,7 +592,7 @@ Doc reference [doc](https://razorpay.com/docs/payments/payment-methods/cards/aut
     "otp_submit",
     "otp_resend"
   ],
-  "razorpay_payment_id": "pay_JWaNvYmrx75sXo"
+  "razorpay_payment_id": "pay_Z6t7VFTb9xHeOs"
 }
 ```
 -------------------------------------------------------------------------------------------------------
@@ -614,24 +614,24 @@ Payment payment = client.Payment.CreateJsonPayment(paymentRequest);
 **Parameters:**
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| amount*          | integer | Amount of the order to be paid  |
-| currency*   | string  | The currency of the payment (defaults to INR)                                  |
-| order_id*        | string  | The unique identifier of the order created. |
-| email*        | string      | Email of the customer                       |
-| contact*      | string      | Contact number of the customer              |
-| method*      | string  | Possible value is `netbanking` |
-| bank*      | string      | The customer's bank code.For example, `HDFC`.|
+| amount (mandatory)          | integer | Amount of the order to be paid  |
+| currency (mandatory)   | string  | The currency of the payment (defaults to INR)                                  |
+| order_id (mandatory)        | string  | The unique identifier of the order created. |
+| email (mandatory)        | string      | Email of the customer                       |
+| contact (mandatory)      | string      | Contact number of the customer              |
+| method (mandatory)      | string  | Possible value is `netbanking` |
+| bank (mandatory)      | string      | The customer's bank code.For example, `HDFC`.|
 
 please refer this [doc](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/netbanking#step-3-create-a-payment) for params
 
 **Response:** <br>
 ```json
 {
-  "razorpay_payment_id": "pay_GAWOYqPlvrtPSi",
+  "razorpay_payment_id": "pay_Z6t7VFTb9xHeOs",
   "next": [
     {
       "action": "redirect",
-      "url": "https://api.razorpay.com/v1/payments/pay_GAWOYqPlvrtPSi/authorize"
+      "url": "https://api.razorpay.com/v1/payments/pay_Z6t7VFTb9xHeOs/authorize"
     }
   ]
 }
@@ -647,7 +647,7 @@ paymentRequest.Add("order_id", "order_MSd9LNbSEB2Gnv");
 paymentRequest.Add("email", "gaurav.kumar@example.com");
 paymentRequest.Add("contact", "9999999999");
 paymentRequest.Add("method", "upi");
-paymentRequest.Add("customer_id", "cust_IZf3EzzGrmlpBc");
+paymentRequest.Add("customer_id", "cust_Z6t7VFTb9xHeOs");
 paymentRequest.Add("save", 1);
 paymentRequest.Add("ip", "192.168.0.103");
 paymentRequest.Add("referer", "http");
@@ -668,25 +668,25 @@ Payment payment = client.Payment.CreateUpi(paymentRequest);
 **Parameters:**
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| amount*          | integer | Amount of the order to be paid  |
-| currency*   | string  | The currency of the payment (defaults to INR)                                  |
-| order_id*        | string  | The unique identifier of the order created. |
-| email*        | string      | Email of the customer                       |
-| customer_id*   | string      | The id of the customer to be fetched |
-| contact*      | string      | Contact number of the customer              |
+| amount (mandatory)          | integer | Amount of the order to be paid  |
+| currency (mandatory)   | string  | The currency of the payment (defaults to INR)                                  |
+| order_id (mandatory)        | string  | The unique identifier of the order created. |
+| email (mandatory)        | string      | Email of the customer                       |
+| customer_id (mandatory)   | string      | The id of the customer to be fetched |
+| contact (mandatory)      | string      | Contact number of the customer              |
 | notes | object  | A key-value pair  |
 | description | string  | Descriptive text of the payment. |
 | save | boolean  |  Specifies if the VPA should be stored as tokens.Possible value is `0`, `1`  |
 | callback_url   | string      | URL where Razorpay will submit the final payment status. |
-| ip*   | string      | The client's browser IP address. For example `117.217.74.98` |
-| referer*   | string      | Value of `referer` header passed by the client's browser. For example, `https://example.com/` |
-| user_agent*   | string      | Value of `user_agent` header passed by the client's browser. For example, `Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36` |
-| upi* (for Upi only)  | object      | All keys listed [here](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/upi/collect#step-14-initiate-a-payment) are supported  |
+| ip (mandatory)   | string      | The client's browser IP address. For example `117.217.74.98` |
+| referer (mandatory)   | string      | Value of `referer` header passed by the client's browser. For example, `https://example.com/` |
+| user_agent (mandatory)   | string      | Value of `user_agent` header passed by the client's browser. For example, `Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36` |
+| upi (mandatory) (for Upi only)  | object      | All keys listed [here](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/upi/collect#step-14-initiate-a-payment) are supported  |
 
 **Response:** <br>
 ```json
 {
-  "razorpay_payment_id": "pay_EAm09NKReXi2e0"
+  "razorpay_payment_id": "pay_Z6t7VFTb9xHeOs"
 }
 ```
 -------------------------------------------------------------------------------------------------------
@@ -697,7 +697,7 @@ Payment payment = client.Payment.CreateUpi(paymentRequest);
 Dictionary<string, object> paymentRequest = new Dictionary<string, object>();
 paymentRequest.Add("amount",500);
 paymentRequest.Add("currency","INR");
-paymentRequest.Add("order_id", "order_JZluwjknyWdhnU");
+paymentRequest.Add("order_id", "order_Z6t7VFTb9xHeOs");
 paymentRequest.Add("email", "gaurav.kumar@example.com");
 paymentRequest.Add("contact", "9123456789");
 paymentRequest.Add("method", "upi");
@@ -718,25 +718,25 @@ Payment payment = client.Payment.CreateUpi(paymentRequest);
 **Parameters:**
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| amount*          | integer | Amount of the order to be paid  |
-| currency*   | string  | The currency of the payment (defaults to INR)                                  |
-| order_id*        | string  | The unique identifier of the order created. |
-| email*        | string      | Email of the customer                       |
-| customer_id*   | string      | The id of the customer to be fetched |
-| contact*      | string      | Contact number of the customer              |
+| amount (mandatory)          | integer | Amount of the order to be paid  |
+| currency (mandatory)   | string  | The currency of the payment (defaults to INR)                                  |
+| order_id (mandatory)        | string  | The unique identifier of the order created. |
+| email (mandatory)        | string      | Email of the customer                       |
+| customer_id (mandatory)   | string      | The id of the customer to be fetched |
+| contact (mandatory)      | string      | Contact number of the customer              |
 | notes | object  | A key-value pair  |
 | description | string  | Descriptive text of the payment. |
 | save | boolean  |  Specifies if the VPA should be stored as tokens.Possible value is `0`, `1`  |
 | callback_url   | string      | URL where Razorpay will submit the final payment status. |
-| ip*   | string      | The client's browser IP address. For example `117.217.74.98` |
-| referer*   | string      | Value of `referer` header passed by the client's browser. For example, `https://example.com/` |
-| user_agent*   | string      | Value of `user_agent` header passed by the client's browser. For example, `Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36` |
-| upi* (for Upi only)  | object      | All keys listed [here](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/upi/intent/#step-2-initiate-a-payment) are supported  |
+| ip (mandatory)   | string      | The client's browser IP address. For example `117.217.74.98` |
+| referer (mandatory)   | string      | Value of `referer` header passed by the client's browser. For example, `https://example.com/` |
+| user_agent (mandatory)   | string      | Value of `user_agent` header passed by the client's browser. For example, `Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.130 Safari/537.36` |
+| upi (mandatory) (for Upi only)  | object      | All keys listed [here](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/upi/intent/#step-2-initiate-a-payment) are supported  |
 
 **Response:** <br>
 ```json
 {
-  "razorpay_payment_id": "pay_CMeM6XvOPGFiF",
+  "razorpay_payment_id": "pay_Z6t7VFTb9xHeOs",
   "link": "upi://pay?pa=success@razorpay&pn=xyz&tr=xxxxxxxxxxx&tn=gourav&am=1&cu=INR&mc=xyzw"
 }
 ```
@@ -754,7 +754,7 @@ Payment payment = client.Payment.ValidateUpi(paymentRequest)
 **Parameters:**
 | Name        | Type    | Description                          |
 |-------------|---------|--------------------------------------|
-| vpa*          | string | The virtual payment address (VPA) you want to validate. For example,   `gauravkumar@exampleupi`  |
+| vpa (mandatory)          | string | The virtual payment address (VPA) you want to validate. For example,   `gauravkumar@exampleupi`  |
 
 please refer this [doc](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/upi/collect#step-13-validate-the-vpa) for params
 
@@ -780,7 +780,7 @@ Iin iin = client.Iin.Fetch(tokenIin);
 
 | Name       | Type   | Description                       |
 |------------|--------|-----------------------------------|
-| tokenIin* | string | The token IIN. |
+| tokenIin (mandatory) | string | The token IIN. |
 
 **Response:**
 ```json
