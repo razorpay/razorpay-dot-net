@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{062285FD-C192-4AE4-82E9-B9E907B66D01}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Razorpay.Api</RootNamespace>
     <AssemblyName>Razorpay</AssemblyName>
@@ -118,7 +118,7 @@
     </Compile>
     <Compile Include="..\src\Stakeholder.cs">
       <Link>Stakeholder.cs</Link>
-    </Compile>  
+    </Compile>
     <Compile Include="..\src\Webhook.cs">
       <Link>Webhook.cs</Link>
     </Compile>
