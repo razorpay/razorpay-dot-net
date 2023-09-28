@@ -99,7 +99,14 @@ namespace Razorpay.Api
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/", GetUrlVersion(),  GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.PATCH, data);
-            return (Payment)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Payment)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<Payment> FetchPaymentDowntime()
@@ -118,56 +125,112 @@ namespace Razorpay.Api
         {
             string relativeUrl = string.Format("{0}/{1}/downtimes/{2}", GetUrlVersion(), GetEntityUrl(), downtimeId);
             List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null);
-            return (Payment)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Payment)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Payment CreateJsonPayment(Dictionary<string, object> data)
         {
             string relativeUrl = string.Format("{0}/{1}/create/json", GetUrlVersion(), GetEntityUrl());
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
-            return (Payment)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Payment)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Payment CreateRecurringPayment(Dictionary<string, object> data)
         {
             string relativeUrl = string.Format("{0}/{1}/create/recurring", GetUrlVersion(), GetEntityUrl());
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
-            return (Payment)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Payment)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Payment OtpGenerate(string paymentId)
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/otp_generate", GetUrlVersion(), GetEntityUrl(), paymentId);
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, null);
-            return (Payment)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Payment)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Payment OtpResend(string paymentId)
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/otp/resend", GetUrlVersion(), GetEntityUrl(), paymentId);
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, null);
-            return (Payment)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Payment)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Payment OtpSubmit(string paymentId, Dictionary<string, object> data)
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/otp/submit", GetUrlVersion(), GetEntityUrl(), paymentId);
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
-            return (Payment)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Payment)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Payment CreateUpi(Dictionary<string, object> data)
         {
             string relativeUrl = string.Format("{0}/{1}/create/upi", GetUrlVersion(), GetEntityUrl());
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
-            return (Payment)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Payment)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Payment ValidateUpi(Dictionary<string, object> data)
         {
             string relativeUrl = string.Format("{0}/{1}/validate/vpa", GetUrlVersion(), GetEntityUrl());
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
-            return (Payment)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Payment)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
