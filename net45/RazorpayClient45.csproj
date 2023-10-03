@@ -115,6 +115,18 @@
     </Compile>
     <Compile Include="..\src\PaymentLink.cs">
       <Link>PaymentLink.cs</Link>
+    </Compile>  
+    <Compile Include="..\src\Settlement.cs">
+      <Link>Settlement.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Tnc.cs">
+      <Link>Tnc.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Item.cs">
+      <Link>Item.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Account.cs">
+      <Link>Account.cs</Link>
     </Compile>
     <Compile Include="..\src\Stakeholder.cs">
       <Link>Stakeholder.cs</Link>
