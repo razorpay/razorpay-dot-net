@@ -25,6 +25,12 @@ namespace Razorpay.Api
             {"virtual_account", "Razorpay.Api.VirtualAccount"},
             {"addon", "Razorpay.Api.Addon"},
             {"qr_code", "Razorpay.Api.QrCode"},
+            {"paymentlink", "Razorpay.Api.PaymentLink"},
+            {"settlement", "Razorpay.Api.Settlement" },
+            {"settlement.ondemand", "Razorpay.Api.Settlement" },
+            {"tnc_map", "Razorpay.Api.Tnc"},
+            {"item", "Razorpay.Api.Item" },
+            {"account", "Razorpay.Api.Account"},
             {"stakeholder", "Razorpay.Api.Stakeholder"},
             {"webhook", "Razorpay.Api.Webhook"},
         };

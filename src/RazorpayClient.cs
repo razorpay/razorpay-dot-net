@@ -25,6 +25,11 @@ namespace Razorpay.Api
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
         private QrCode qrcode = null;
+        private PaymentLink paymentlink = null;
+        private Settlement settlement = null;
+        private Tnc tnc = null;
+        private Item item = null;
+        private Account account = null;
         private Stakeholder stakeholder = null;
         private Webhook webhook = null;
 
@@ -263,6 +268,66 @@ namespace Razorpay.Api
                 return qrcode;
             }
         }
+
+        public PaymentLink PaymentLink
+        {
+            get
+            {
+                if (paymentlink == null)
+                {
+                    paymentlink = new PaymentLink();
+                }
+                return paymentlink;
+            }
+        }
+
+        public Settlement Settlement
+        {
+            get
+            {
+                if (settlement == null)
+                {
+                    settlement = new Settlement();
+                }
+                return settlement;
+            }
+        }
+
+        public Tnc Tnc
+        {
+            get
+            {
+                if (tnc == null)
+                {
+                    tnc = new Tnc();
+                }
+                return tnc;
+            }
+        }
+
+        public Item Item
+        {
+            get
+            {
+                if (item == null)
+                {
+                    item = new Item();
+                }
+                return item;
+            }
+        }  
+
+        public Account Account
+        {
+            get
+            {
+                if (account == null)
+                {
+                    account = new Account();
+                }
+                return account;
+            }
+        } 
 
         public Stakeholder Stakeholder
         {
