@@ -25,6 +25,8 @@ namespace Razorpay.Api
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
         private Tnc tnc = null;
+        private Item item = null;
+        private Account account = null;
         private Stakeholder stakeholder = null;
         private Webhook webhook = null;
 
@@ -263,6 +265,30 @@ namespace Razorpay.Api
                 return tnc;
             }
         }
+
+        public Item Item
+        {
+            get
+            {
+                if (item == null)
+                {
+                    item = new Item();
+                }
+                return item;
+            }
+        }  
+
+        public Account Account
+        {
+            get
+            {
+                if (account == null)
+                {
+                    account = new Account();
+                }
+                return account;
+            }
+        } 
 
         public Stakeholder Stakeholder
         {
