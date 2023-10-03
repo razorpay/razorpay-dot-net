@@ -24,6 +24,7 @@ namespace Razorpay.Api
             {"subscription", "Razorpay.Api.Subscription"},
             {"virtual_account", "Razorpay.Api.VirtualAccount"},
             {"addon", "Razorpay.Api.Addon"},
+            {"account", "Razorpay.Api.Account"},
             {"stakeholder", "Razorpay.Api.Stakeholder"},
             {"webhook", "Razorpay.Api.Webhook"},
         };

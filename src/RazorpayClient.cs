@@ -24,6 +24,7 @@ namespace Razorpay.Api
         private Plan plan = null;
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
+        private Account account = null;
         private Stakeholder stakeholder = null;
         private Webhook webhook = null;
 
@@ -251,6 +252,17 @@ namespace Razorpay.Api
             }
         }
 
+        public Account Account
+        {
+            get
+            {
+                if (account == null)
+                {
+                    account = new Account();
+                }
+                return account;
+            }
+        } 
 
         public Stakeholder Stakeholder
         {
