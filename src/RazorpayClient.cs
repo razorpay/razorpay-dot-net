@@ -24,6 +24,7 @@ namespace Razorpay.Api
         private Plan plan = null;
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
+        private Tnc tnc = null;
         private Item item = null;
         private Account account = null;
         private Stakeholder stakeholder = null;
@@ -250,6 +251,18 @@ namespace Razorpay.Api
                     virtualaccount = new VirtualAccount();
                 }
                 return virtualaccount;
+            }
+        }
+
+        public Tnc Tnc
+        {
+            get
+            {
+                if (tnc == null)
+                {
+                    tnc = new Tnc();
+                }
+                return tnc;
             }
         }
 
