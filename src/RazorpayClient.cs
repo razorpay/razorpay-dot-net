@@ -24,6 +24,7 @@ namespace Razorpay.Api
         private Plan plan = null;
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
+        private Settlement settlement = null;
         private Tnc tnc = null;
         private Item item = null;
         private Account account = null;
@@ -251,6 +252,18 @@ namespace Razorpay.Api
                     virtualaccount = new VirtualAccount();
                 }
                 return virtualaccount;
+            }
+        }
+
+        public Settlement Settlement
+        {
+            get
+            {
+                if (settlement == null)
+                {
+                    settlement = new Settlement();
+                }
+                return settlement;
             }
         }
 

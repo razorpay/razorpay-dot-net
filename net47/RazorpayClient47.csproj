@@ -116,6 +116,9 @@
     <Compile Include="..\src\VirtualAccount.cs">
       <Link>VirtualAccount.cs</Link>
     </Compile>
+    <Compile Include="..\src\Settlement.cs">
+      <Link>Settlement.cs</Link>
+    </Compile>  
     <Compile Include="..\src\Tnc.cs">
       <Link>Tnc.cs</Link>
     </Compile>
