@@ -24,6 +24,7 @@ namespace Razorpay.Api
         private Plan plan = null;
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
+        private FundAccount fundAccount = null;
         private Product product = null;
         private Iin iin = null;
         private QrCode qrcode = null;
@@ -256,6 +257,18 @@ namespace Razorpay.Api
                     virtualaccount = new VirtualAccount();
                 }
                 return virtualaccount;
+            }
+        }
+
+        public FundAccount FundAccount
+        {
+            get
+            {
+                if (fundAccount == null)
+                {
+                    fundAccount = new FundAccount();
+                }
+                return fundAccount;
             }
         }
 

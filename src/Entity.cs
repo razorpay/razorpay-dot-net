@@ -24,6 +24,7 @@ namespace Razorpay.Api
             {"subscription", "Razorpay.Api.Subscription"},
             {"virtual_account", "Razorpay.Api.VirtualAccount"},
             {"addon", "Razorpay.Api.Addon"},
+            {"fund_account", "Razorpay.Api.FundAccount" },
             {"product", "Razorpay.Api.Product"}
             {"iin", "Razorpay.Api.Iin"},
             {"qr_code", "Razorpay.Api.QrCode"},
