@@ -24,6 +24,7 @@ namespace Razorpay.Api
             {"subscription", "Razorpay.Api.Subscription"},
             {"virtual_account", "Razorpay.Api.VirtualAccount"},
             {"addon", "Razorpay.Api.Addon"},
+            {"paymentlink", "Razorpay.Api.PaymentLink"},
             {"settlement", "Razorpay.Api.Settlement" },
             {"settlement.ondemand", "Razorpay.Api.Settlement" },
             {"tnc_map", "Razorpay.Api.Tnc"},
