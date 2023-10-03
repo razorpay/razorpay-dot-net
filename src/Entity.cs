@@ -24,6 +24,7 @@ namespace Razorpay.Api
             {"subscription", "Razorpay.Api.Subscription"},
             {"virtual_account", "Razorpay.Api.VirtualAccount"},
             {"addon", "Razorpay.Api.Addon"},
+            {"product", "Razorpay.Api.Product"}
             {"iin", "Razorpay.Api.Iin"},
             {"qr_code", "Razorpay.Api.QrCode"},
             {"paymentlink", "Razorpay.Api.PaymentLink"},
@@ -66,6 +67,7 @@ namespace Razorpay.Api
 
         protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options)
         {
+            Console.WriteLine(relativeUrl);
             client = new RestClient();
             string postData = string.Empty;
 
