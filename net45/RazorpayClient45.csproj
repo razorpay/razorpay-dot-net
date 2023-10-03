@@ -113,6 +113,9 @@
     <Compile Include="..\src\VirtualAccount.cs">
       <Link>VirtualAccount.cs</Link>
     </Compile>
+    <Compile Include="..\src\QrCode.cs">
+      <Link>QrCode.cs</Link>
+    </Compile>
     <Compile Include="..\src\PaymentLink.cs">
       <Link>PaymentLink.cs</Link>
     </Compile>  

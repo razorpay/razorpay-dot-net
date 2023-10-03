@@ -24,6 +24,7 @@ namespace Razorpay.Api
             {"subscription", "Razorpay.Api.Subscription"},
             {"virtual_account", "Razorpay.Api.VirtualAccount"},
             {"addon", "Razorpay.Api.Addon"},
+            {"qr_code", "Razorpay.Api.QrCode"},
             {"paymentlink", "Razorpay.Api.PaymentLink"},
             {"settlement", "Razorpay.Api.Settlement" },
             {"settlement.ondemand", "Razorpay.Api.Settlement" },
