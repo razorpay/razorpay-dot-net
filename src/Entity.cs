@@ -26,6 +26,9 @@ namespace Razorpay.Api
             {"addon", "Razorpay.Api.Addon"},
             {"settlement", "Razorpay.Api.Settlement" },
             {"settlement.ondemand", "Razorpay.Api.Settlement" },
+            {"tnc_map", "Razorpay.Api.Tnc"},
+            {"item", "Razorpay.Api.Item" },
+            {"account", "Razorpay.Api.Account"},
             {"stakeholder", "Razorpay.Api.Stakeholder"},
             {"webhook", "Razorpay.Api.Webhook"},
         };
