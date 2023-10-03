@@ -16,9 +16,9 @@ namespace Razorpay.Api
             return (Addon)base.Fetch(id);
         }
 
-        public List<Addon> All()
+        public List<Addon> All(Dictionary<string, object> options = null)
         {
-            List<Entity> entities = Request(GetEntityUrl(), HttpMethod.GET, null);
+            List<Entity> entities = base.All(options);
 
             List<Addon> addons = new List<Addon>();
 
@@ -30,10 +30,16 @@ namespace Razorpay.Api
             return addons;
         }
 
-        public void Delete()
+        public List<Addon> Delete()
         {
-            string relativeUrl = GetEntityUrl() + "/" + this["id"];
-            Request(relativeUrl, HttpMethod.DELETE, null);
+            string relativeUrl = string.Format("{0}/{1}/{2}", GetUrlVersion(), GetEntityUrl(), this["id"]);
+            List<Entity> entities =  Request(relativeUrl, HttpMethod.DELETE, null);
+            List<Addon> addons = new List<Addon>();
+            foreach (Entity entity in entities)
+            {
+                addons.Add(entity as Addon);
+            }
+            return addons;
         }
     }
 }

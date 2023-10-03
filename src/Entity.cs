@@ -24,6 +24,16 @@ namespace Razorpay.Api
             {"subscription", "Razorpay.Api.Subscription"},
             {"virtual_account", "Razorpay.Api.VirtualAccount"},
             {"addon", "Razorpay.Api.Addon"},
+            {"fund_account", "Razorpay.Api.FundAccount" },
+            {"product", "Razorpay.Api.Product"}
+            {"iin", "Razorpay.Api.Iin"},
+            {"qr_code", "Razorpay.Api.QrCode"},
+            {"paymentlink", "Razorpay.Api.PaymentLink"},
+            {"settlement", "Razorpay.Api.Settlement" },
+            {"settlement.ondemand", "Razorpay.Api.Settlement" },
+            {"tnc_map", "Razorpay.Api.Tnc"},
+            {"item", "Razorpay.Api.Item" },
+            {"account", "Razorpay.Api.Account"},
             {"stakeholder", "Razorpay.Api.Stakeholder"},
             {"webhook", "Razorpay.Api.Webhook"},
         };
@@ -58,6 +68,7 @@ namespace Razorpay.Api
 
         protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options)
         {
+            Console.WriteLine(relativeUrl);
             client = new RestClient();
             string postData = string.Empty;
 
