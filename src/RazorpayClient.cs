@@ -24,6 +24,7 @@ namespace Razorpay.Api
         private Plan plan = null;
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
+        private Token token = null;
         private FundAccount fundAccount = null;
         private Product product = null;
         private Iin iin = null;
@@ -259,6 +260,18 @@ namespace Razorpay.Api
                 return virtualaccount;
             }
         }
+
+        public Token Token
+        {
+            get
+            {
+                if (token == null)
+                {
+                    token = new Token();
+                }
+                return token;
+            }
+       }
 
         public FundAccount FundAccount
         {
