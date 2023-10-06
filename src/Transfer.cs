@@ -18,14 +18,28 @@ namespace Razorpay.Api
         {
             string relativeUrl = string.Format("{0}/{1}/{2}", GetUrlVersion(), GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.PATCH, options);
-            return (Transfer)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Transfer)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Transfer Create(Dictionary<string, object> options = null)
         {
             string relativeUrl = string.Format("{0}/{1}", GetUrlVersion(), GetEntityUrl());
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, options);
-            return (Transfer)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Transfer)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         /**
@@ -35,7 +49,14 @@ namespace Razorpay.Api
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/reversals", GetUrlVersion(), GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, options);
-            return (Reversal)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Reversal)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<Reversal> Reversals(Dictionary<string, object> options = null)
