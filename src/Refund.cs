@@ -13,7 +13,14 @@ namespace Razorpay.Api
         {
             string relativeUrl = string.Format("{0}/{1}/", GetUrlVersion(), GetEntityUrl());
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
-            return (Refund)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Refund)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         new public List<Refund> All(Dictionary<string, object> options = null)
@@ -32,7 +39,14 @@ namespace Razorpay.Api
         {
             string relativeUrl = string.Format("{0}/{1}/{2}", GetUrlVersion(), GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.PATCH, data);
-            return (Refund)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Refund)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
