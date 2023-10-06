@@ -58,7 +58,14 @@ namespace Razorpay.Api
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/tokens/{3}", GetUrlVersion(), GetEntityUrl(), this["id"], tokenId);
             List<Entity> entities =  Request(relativeUrl, HttpMethod.DELETE, null);
-            return (Customer)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Customer)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<Customer> All(Dictionary<string, object> options = null)
