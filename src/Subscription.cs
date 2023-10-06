@@ -29,63 +29,126 @@ namespace Razorpay.Api
         {
             string relativeUrl = string.Format("{0}/{1}", GetUrlVersion(), GetEntityUrl());
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
-            return (Subscription)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Subscription)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Subscription Cancel(Dictionary<string, object> options = null)
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/cancel", GetUrlVersion(), GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, options);
-            return (Subscription)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Subscription)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Addon CreateAddon(Dictionary<string, object> options = null)
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/addons", GetUrlVersion(), GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, options);
-            return (Addon)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Addon)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Subscription Edit(Dictionary<string, object> data)
         {
             string relativeUrl = string.Format("{0}/{1}/{2}", GetUrlVersion(), GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.PATCH, data);
-            return (Subscription)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Subscription)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Subscription FetchPendingUpdate()
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/retrieve_scheduled_changes", GetUrlVersion(), GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null);
-            return (Subscription)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Subscription)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Subscription CancelPendingUpdate()
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/cancel_scheduled_changes", GetUrlVersion(), GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, null);
-            return (Subscription)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Subscription)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Subscription Pause(Dictionary<string, object> options = null)
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/pause", GetUrlVersion(), GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, options);
-            return (Subscription)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Subscription)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Subscription Resume(Dictionary<string, object> options = null)
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/resume", GetUrlVersion(), GetEntityUrl(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, options);
-            return (Subscription)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Subscription)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public Subscription DeleteOffer(string offerId)
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/{3}", GetUrlVersion(), GetEntityUrl(), this["id"] , offerId);
             List<Entity> entities = Request(relativeUrl, HttpMethod.DELETE, null);
-            return (Subscription)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (Subscription)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
