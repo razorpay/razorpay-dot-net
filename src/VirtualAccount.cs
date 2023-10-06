@@ -15,7 +15,14 @@ namespace Razorpay.Api
         {
             string relativeUrl = string.Format("{0}/virtual_accounts/{1}", GetUrlVersion(), id);
             List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null);
-            return (VirtualAccount)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (VirtualAccount)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         new public List<VirtualAccount> All(Dictionary<string, object> options = null)
@@ -36,21 +43,42 @@ namespace Razorpay.Api
         {
             string relativeUrl = string.Format("{0}/virtual_accounts", GetUrlVersion());
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
-            return (VirtualAccount)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (VirtualAccount)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public VirtualAccount Edit(Dictionary<string, object> data = null) 
         {
             string relativeUrl = string.Format("{0}/virtual_accounts/{1}", GetUrlVersion(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.PATCH, data);
-            return (VirtualAccount)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (VirtualAccount)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public VirtualAccount Close() 
         {
             string relativeUrl = string.Format("{0}/virtual_accounts/{1}/close", GetUrlVersion(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, null);
-            return (VirtualAccount)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (VirtualAccount)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<Payment> Payments(Dictionary<string, object> options = null)
@@ -70,14 +98,28 @@ namespace Razorpay.Api
         {
             string relativeUrl = string.Format("{0}/virtual_accounts/{1}/receivers", GetUrlVersion(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
-            return (VirtualAccount)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (VirtualAccount)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public VirtualAccount AddAllowedPayers(Dictionary<string, object> data)
         {
             string relativeUrl = string.Format("{0}/virtual_accounts/{1}/allowed_payers", GetUrlVersion(), this["id"]);
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
-            return (VirtualAccount)entities[0];
+            if (entities != null && entities.Count > 0)
+            {
+                return (VirtualAccount)entities[0];
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
