@@ -12,6 +12,7 @@ namespace Razorpay.Api
         private static Dictionary<string, string> Entities = new Dictionary<string, string>()
         {
             {"payment", "Razorpay.Api.Payment"},
+            {"payment.downtime", "Razorpay.Api.Payment" },
             {"refund", "Razorpay.Api.Refund"},
             {"order", "Razorpay.Api.Order"},
             {"customer", "Razorpay.Api.Customer"},
@@ -24,8 +25,9 @@ namespace Razorpay.Api
             {"subscription", "Razorpay.Api.Subscription"},
             {"virtual_account", "Razorpay.Api.VirtualAccount"},
             {"addon", "Razorpay.Api.Addon"},
+            {"bank_transfer","Razorpay.Api.BankTransfer"},
             {"fund_account", "Razorpay.Api.FundAccount" },
-            {"product", "Razorpay.Api.Product"}
+            {"product", "Razorpay.Api.Product"},
             {"iin", "Razorpay.Api.Iin"},
             {"qr_code", "Razorpay.Api.QrCode"},
             {"paymentlink", "Razorpay.Api.PaymentLink"},

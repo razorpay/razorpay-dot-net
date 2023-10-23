@@ -24,6 +24,7 @@ namespace Razorpay.Api
         private Plan plan = null;
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
+        private BankTransfer banktransfer = null;
         private Token token = null;
         private FundAccount fundAccount = null;
         private Product product = null;
@@ -258,6 +259,18 @@ namespace Razorpay.Api
                     virtualaccount = new VirtualAccount();
                 }
                 return virtualaccount;
+            }
+        }
+        
+        public BankTransfer BankTransfer
+        {
+            get
+            {
+                if (banktransfer == null)
+                {
+                    banktransfer = new BankTransfer();
+                }
+                return banktransfer;
             }
         }
 
