@@ -61,7 +61,7 @@ Addon addon = client.Subscription.Fetch(subscriptionId).CreateAddon(addonRequest
 
 ```C#
 Dictionary<string, object> paramRequest = new Dictionary<string, object>();
-paramRequest.put("count","1");
+paramRequest.Add("count","1");
 
 List<Addon> addon = client.Addon.All(paramRequest);
 ```

@@ -325,14 +325,14 @@ Subscription subscription = client.Subscription.Fetch(subscriptionId).Cancel(par
 
 string subscriptionId = "sub_00000000000002";
 
-Dictionary<string, object> params = new Dictionary<string, object>();
-params.Add("plan_id","plan_00000000000002");
-params.Add("offer_id","offer_JHD834hjbxzhd38d");
-params.Add("quantity",5);
-params.Add("remaining_count",5);
-params.Add("start_at",1496000432);
-params.Add("schedule_change_at","now");
-params.Add("customer_notify",1);
+Dictionary<string, object> param = new Dictionary<string, object>();
+param.Add("plan_id","plan_00000000000002");
+param.Add("offer_id","offer_JHD834hjbxzhd38d");
+param.Add("quantity",5);
+param.Add("remaining_count",5);
+param.Add("start_at",1496000432);
+param.Add("schedule_change_at","now");
+param.Add("customer_notify",1);
  
 Subscription subscription = client.Subscription.Fetch(subscriptionId).Edit(param);
 ```

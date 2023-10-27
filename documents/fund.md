@@ -11,7 +11,7 @@ bankAccount.Add("account_number","11214311215411");
 bankAccount.Add("ifsc","HDFC0000053");
 fundAccountRequest.Add("bank_account", bankAccount);
 
-FundAccount fundaccount = instance.fundAccount.create(fundAccountRequest);
+FundAccount fundaccount = client.FundAccount.Create(fundAccountRequest);
 ```
 
 **Parameters:**
@@ -45,9 +45,9 @@ FundAccount fundaccount = instance.fundAccount.create(fundAccountRequest);
 
 ```C#
 Dictionary<string, object> fundAccountRequest = new Dictionary<string, object>();
-fundAccountRequest.put("customer_id","cust_Z6t7VFTb9xHeOs");
+fundAccountRequest.Add("customer_id","cust_Z6t7VFTb9xHeOs");
 
-List<FundAccount> fundaccount = instance.fundAccount.fetchAll(fundAccountRequest);
+List<FundAccount> fundaccount = client.FundAccount.All(fundAccountRequest);
 ```
 
 **Parameters:**
