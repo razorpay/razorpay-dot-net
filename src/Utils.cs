@@ -21,6 +21,34 @@ namespace Razorpay.Api
             verifySignature(payload, expectedSignature, secret);
         }
 
+        public static void verifySubscriptionSignature(Dictionary<string, string> attributes)
+        {
+            string expectedSignature = attributes["razorpay_signature"];
+            string subscriptionId = attributes["razorpay_subscription_id"];
+            string paymentId = attributes["razorpay_payment_id"];
+
+            string payload = string.Format("{0}|{1}", paymentId, subscriptionId);
+
+            string secret = RazorpayClient.Secret;
+
+            verifySignature(payload, expectedSignature, secret);
+        }
+
+        public static void verifyPaymentLinkSignature(Dictionary<string, string> attributes)
+        {
+            string expectedSignature = attributes["razorpay_signature"];
+            string paymentLinkStatus = attributes["payment_link_status"];
+            string paymentLinkId = attributes["payment_link_id"];
+            string paymentLinkRefId = attributes["payment_link_reference_id"];
+            string paymentId = attributes["razorpay_payment_id"];
+
+            string payload = string.Format("{0}|{1}|{2}|{3}", paymentLinkId, paymentLinkRefId, paymentLinkStatus, paymentId);
+
+            string secret = RazorpayClient.Secret;
+
+            verifySignature(payload, expectedSignature, secret);
+        }
+
         public static void verifyWebhookSignature(string payload, string expectedSignature, string secret)
         {
             verifySignature(payload, expectedSignature, secret);
