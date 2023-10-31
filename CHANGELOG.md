@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 3.1.0 - 2023-10-30
+## Version 3.1.0 - 2023-10-31
   ##### feat: Added new API endpoints and implemented response feature in the Delete API.
 
 * Added Support for Account onboarding
@@ -22,6 +22,7 @@
 * Added Support for `All` on Transfers API
 * Added Support for `AddReceiver`, `AddAllowedPayers` on VirtualAccount API
 * Added Support for Webhooks API
+* Added Support for PaymentLink & Subscription verification
 * Added Documentation API's
 
 

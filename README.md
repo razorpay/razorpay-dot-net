@@ -37,11 +37,17 @@ client.addHeader(string,string);
 
 - [Account](documents/account.md)
 
+- [Cards](documents/card.md)
+
+- [Customer](documents/customers.md)
+
+- [Emandate](documents/emandate.md)
+
+- [Fund](documents/fund.md)
+
+- [Invoice](documents/invoice.md)
+
 - [Item](documents/item.md)
-
-- [Customer](documents/customer.md)
-
-- [Token](documents/token.md)
 
 - [Order](documents/order.md)
 
@@ -49,39 +55,33 @@ client.addHeader(string,string);
 
 - [Product Configuration](documents/product.md)
 
-- [Settlements](documents/Settlement.md)
+- [Paper NACH](documents/papernach.md)
 
-- [Stakeholder](documents/stakeholder.md)
-
-- [Fund](documents/fund.md)
-
-- [Refunds](documents/refund.md)
-
-- [Invoice](documents/invoice.md)
-
-- [Subscriptions](documents/subscription.md)
+- [Payment Verification](documents/paymentVerfication.md)
 
 - [Payment Links](documents/paymentlink.md)
 
-- [Smart Collect](documents/virtualAccount.md)
-
-- [Route](documents/transfers.md)
+- [Plan](documents/plan.md)
 
 - [QR Code](documents/qrcode.md)
 
-- [Emandate](documents/emandate.md)
+- [Refunds](documents/refund.md)
 
-- [Cards](documents/card.md)
-
-- [Paper NACH](documents/papernach.md)
-
-- [UPI](documents/upi.md)
+- [Route](documents/transfers.md)
 
 - [Register Emandate and Charge First Payment Together](documents/registerEmandate.md)
 
 - [Register NACH and Charge First Payment Together](documents/registerNach.md)
 
-- [Payment Verification](documents/paymentVerfication.md)
+- [Settlements](documents/Settlement.md)
+
+- [Stakeholder](documents/stakeholder.md)
+
+- [Subscriptions](documents/subscription.md)
+
+- [Token](documents/token.md)
+
+- [Smart Collect](documents/virtualAccount.md)
 
 - [Webhook](documents/webhook.md)
 ---
