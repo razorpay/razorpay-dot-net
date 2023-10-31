@@ -4,7 +4,7 @@ Razorpay client .NET Api. The api follows the following practices
 * Namespaced under Razorpay.Api .
 * Client throws exceptions instead of returning errors.
 * Options are passed as Dictionary instead of multiple arguments wherever possible.
-* All request and responses are communicated over JSON.
+* All requests and responses are communicated over JSON.
 * A minimum of .Net 4.0 is required.
 
 
@@ -95,7 +95,7 @@ client.addHeader(string,string);
 ### Compiling using Mono
 * Download the 'Newtonsoft.Json' nuget package.
 ```
-nuget install Newtonsoft.Json -Version 7.0.1 -OutputDirectory packages
+nuget install Newtonsoft.Json -Version 13.0.3 -OutputDirectory packages
 ```
 
 * Download the 'NUnit' nuget package.
@@ -112,13 +112,13 @@ mkdir bin
 * Compile the source code into a library  
 
 ```
-mcs -t:library -lib:"/usr/lib/mono/4.5" -r:"System.dll,System.Net.dll,System.Net.Http.dll,System.Core.dll,System.Xml.dll,System.Xml.Linq.dll,System.Core.dll,./packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll" -out:"bin/RazorpayClient.dll" ./src/**/*.cs -lib:/usr/lib/mono/2.0
+mcs -t:library -lib:"/usr/lib/mono/4.5" -r:"System.dll,System.Net.dll,System.Net.Http.dll,System.Core.dll,System.Xml.dll,System.Xml.Linq.dll,System.Core.dll,./packages/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll" -out:"bin/RazorpayClient.dll" ./src/**/*.cs -lib:/usr/lib/mono/2.0
 ```
 
 * copy Dependency dll
 
 ```
-cp packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll ./bin
+cp packages/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll ./bin
 cp packages/NUnit.3.6.1/lib/net45/nunit.framework.dll ./bin
 ```
 
