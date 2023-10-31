@@ -1,115 +1,101 @@
-Razorpay .NET SDK
-=================  
+# Razorpay .NET SDK
+  
 Razorpay client .NET Api. The api follows the following practices
 * Namespaced under Razorpay.Api .
 * Client throws exceptions instead of returning errors.
 * Options are passed as Dictionary instead of multiple arguments wherever possible.
-* All request and responses are communicated over JSON.
+* All requests and responses are communicated over JSON.
 * A minimum of .Net 4.0 is required.
 
-Installation
---------
-If you are using nuget package manager:
 
-`
-Install-Package Razorpay
-`
-=======
+## Installation
+
+Using the [NuGet Command Line Interface (CLI)](https://docs.microsoft.com/en-us/dotnet/core/tools/)
+
+```sh
+nuget install Razorpay
+```
 
 else  
 * Download Nuget package from [here](https://www.nuget.org/packages/Razorpay)
-* Package supports only .Net 4.0 and .net 4.5, Add the required version as reference to your project.
+* Package supports only .Net 4.0 and .net 4.7, Add the required version as reference to your project.
 
 Usage
 -----
 ### Initialize
-```cs
+```C#
 RazorpayClient client = new RazorpayClient(key, secret); 
 ```
-                          OR
-```cs
-RazorpayClient client = new RazorpayClient(baseUrl, key, secret); 
+
+#### Add custom headers to request (optional)
+```C#
+client.addHeader(string,string);
 ```
 
-### Get Payments
-```cs
-Dictionary<string, object> options = new Dictionary<string,object>();
+## Supported Resources
+- [Addon](documents/addon.md)
 
-options.Add("from", startTime); // start time is a unix timestamp, you can get unix timestamp using                                // Utils.ToUnixTimestamp  method
+- [Account](documents/account.md)
 
-List<Payment> payments = client.Payment.All(options);
-```
+- [Cards](documents/card.md)
 
+- [Customer](documents/customers.md)
 
-### Get Payment using Id
-```cs
-Payment payment = client.Payment.Fetch(id);
-```
+- [Emandate](documents/emandate.md)
 
-### Capture a payment
-```cs
-Dictionary<string, object> options = new Dictionary<string,object>();
+- [Fund](documents/fund.md)
 
-options.Add("amount", amountToBeCaptured); 
+- [Invoice](documents/invoice.md)
 
-Payment payment = payment.Capture(options);
-```
+- [Item](documents/item.md)
 
-### Refund a payment
-```cs
-Refund refund = payment.createRefund();
-```
+- [Order](documents/order.md)
 
-### Fetch All Refunds for a payment
-```cs
-List<Refund> refunds = payment.getAllRefunds();
-```
+- [Payments](documents/payment.md)
 
-### Fetch One Refund for a payment using refund id
-```cs
-Refund refund = payment.fetchRefund(id);
-```
+- [Product Configuration](documents/product.md)
 
-### Accessing the payment attributes
-```cs
-paymentAmount = payment["amount"];
-```
+- [Paper NACH](documents/papernach.md)
 
-### Create an order
-```cs
-Dictionary<string, object> options = new Dictionary<string,object>();
+- [Payment Verification](documents/paymentVerfication.md)
 
-options.Add("amount", TransactionAmount); 
-options.Add("currency", "INR"); 
-options.Add("receipt", "MerchantTransactionId"); 
-options.Add("payment_capture", 1); 
+- [Payment Links](documents/paymentlink.md)
 
-Order order = Order.Create(options);
-```
+- [Plan](documents/plan.md)
 
-### Create a customer
-```cs
-Dictionary<string, object> options = new Dictionary<string,object>();
+- [QR Code](documents/qrcode.md)
 
-options.Add("name", "customer name"); 
-options.Add("contact", "9999999999"); 
-options.Add("email", "foo@example.com"); 
-options.Add("fail_existing", 0); 
+- [Refunds](documents/refund.md)
 
-Customer customer = Customer.Create(options);
-```
+- [Route](documents/transfers.md)
 
-Development
--------
-* Open solution in visual studio 2013, it should build fine
+- [Register Emandate and Charge First Payment Together](documents/registerEmandate.md)
 
-Ubuntu
-------
+- [Register NACH and Charge First Payment Together](documents/registerNach.md)
+
+- [Settlements](documents/Settlement.md)
+
+- [Stakeholder](documents/stakeholder.md)
+
+- [Subscriptions](documents/subscription.md)
+
+- [Token](documents/token.md)
+
+- [Smart Collect](documents/virtualAccount.md)
+
+- [Webhook](documents/webhook.md)
+---
+
+## Development
+* Open solution in visual studio 2022, it should build fine
+
+## Ubuntu
+
 
 ### Compiling using Mono
 * Download the 'Newtonsoft.Json' nuget package.
 ```
-nuget install Newtonsoft.Json -Version 7.0.1 -OutputDirectory packages
+nuget install Newtonsoft.Json -Version 13.0.3 -OutputDirectory packages
 ```
 
 * Download the 'NUnit' nuget package.
@@ -126,13 +112,13 @@ mkdir bin
 * Compile the source code into a library  
 
 ```
-mcs -t:library -lib:"/usr/lib/mono/4.5" -r:"System.dll,System.Net.dll,System.Net.Http.dll,System.Core.dll,System.Xml.dll,System.Xml.Linq.dll,System.Core.dll,./packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll" -out:"bin/RazorpayClient.dll" ./src/**/*.cs -lib:/usr/lib/mono/2.0
+mcs -t:library -lib:"/usr/lib/mono/4.5" -r:"System.dll,System.Net.dll,System.Net.Http.dll,System.Core.dll,System.Xml.dll,System.Xml.Linq.dll,System.Core.dll,./packages/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll" -out:"bin/RazorpayClient.dll" ./src/**/*.cs -lib:/usr/lib/mono/2.0
 ```
 
 * copy Dependency dll
 
 ```
-cp packages/Newtonsoft.Json.7.0.1/lib/net45/Newtonsoft.Json.dll ./bin
+cp packages/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll ./bin
 cp packages/NUnit.3.6.1/lib/net45/nunit.framework.dll ./bin
 ```
 
@@ -161,4 +147,3 @@ Run xbuild (in the root directory where sln file exist)
     * yes | certmgr -ssl -m https://myget.org
     * yes | certmgr -ssl -m https://nuget.org
     * mozroots --import --sync --quiet
-
