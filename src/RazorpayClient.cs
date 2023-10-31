@@ -5,7 +5,7 @@ namespace Razorpay.Api
     public class RazorpayClient
     {
         const string CurrentVersion = "3.0.2";
-        protected const string DefaultBaseUrl = "https://api.razorpay.com/v1/";
+        protected const string DefaultBaseUrl = "https://api.razorpay.com";
 
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         protected static Dictionary<string, string> headers = new Dictionary<string, string>();
@@ -24,15 +24,27 @@ namespace Razorpay.Api
         private Plan plan = null;
         private Subscription subscription = null;
         private VirtualAccount virtualaccount = null;
-
-        
+        private BankTransfer banktransfer = null;
+        private Token token = null;
+        private FundAccount fundAccount = null;
+        private Product product = null;
+        private Iin iin = null;
+        private QrCode qrcode = null;
+        private PaymentLink paymentlink = null;
+        private Settlement settlement = null;
+        private Tnc tnc = null;
+        private Item item = null;
+        private Account account = null;
+        private Stakeholder stakeholder = null;
+        private Webhook webhook = null;
+      
         public RazorpayClient(string key, string secret)
         {
             RazorpayClient.Key = key;
             RazorpayClient.Secret = secret;
         }
 
-        
+
         public RazorpayClient(string baseUrl, string key, string secret)
         {
             RazorpayClient.BaseUrl = baseUrl;
@@ -247,6 +259,162 @@ namespace Razorpay.Api
                     virtualaccount = new VirtualAccount();
                 }
                 return virtualaccount;
+            }
+        }
+        
+        public BankTransfer BankTransfer
+        {
+            get
+            {
+                if (banktransfer == null)
+                {
+                    banktransfer = new BankTransfer();
+                }
+                return banktransfer;
+            }
+        }
+
+        public Token Token
+        {
+            get
+            {
+                if (token == null)
+                {
+                    token = new Token();
+                }
+                return token;
+            }
+       }
+
+        public FundAccount FundAccount
+        {
+            get
+            {
+                if (fundAccount == null)
+                {
+                    fundAccount = new FundAccount();
+                }
+                return fundAccount;
+            }
+        }
+
+        public Product Product
+        {
+            get
+            {
+                if (product == null)
+                {
+                    product = new Product();
+                }
+                return product;
+            }
+        }
+
+        public Iin Iin
+        {
+            get
+            {
+                if (iin == null)
+                {
+                    iin = new Iin();
+                }
+                return iin;
+            }
+        }
+
+        public QrCode QrCode
+        {
+            get
+            {
+                if (qrcode == null)
+                {
+                    qrcode = new QrCode();
+                }
+                return qrcode;
+            }
+        }
+
+        public PaymentLink PaymentLink
+        {
+            get
+            {
+                if (paymentlink == null)
+                {
+                    paymentlink = new PaymentLink();
+                }
+                return paymentlink;
+            }
+        }
+
+        public Settlement Settlement
+        {
+            get
+            {
+                if (settlement == null)
+                {
+                    settlement = new Settlement();
+                }
+                return settlement;
+            }
+        }
+
+        public Tnc Tnc
+        {
+            get
+            {
+                if (tnc == null)
+                {
+                    tnc = new Tnc();
+                }
+                return tnc;
+            }
+        }
+
+        public Item Item
+        {
+            get
+            {
+                if (item == null)
+                {
+                    item = new Item();
+                }
+                return item;
+            }
+        }  
+
+        public Account Account
+        {
+            get
+            {
+                if (account == null)
+                {
+                    account = new Account();
+                }
+                return account;
+            }
+        } 
+
+        public Stakeholder Stakeholder
+        {
+            get
+            {
+                if (stakeholder == null)
+                {
+                    stakeholder = new Stakeholder();
+                }
+                return stakeholder;
+            }
+        } 
+
+        public Webhook Webhook
+        {
+            get
+            {
+                if (webhook == null)
+                {
+                    webhook = new Webhook();
+                }
+                return webhook;
             }
         }
     }

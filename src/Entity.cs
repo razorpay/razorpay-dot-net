@@ -12,6 +12,7 @@ namespace Razorpay.Api
         private static Dictionary<string, string> Entities = new Dictionary<string, string>()
         {
             {"payment", "Razorpay.Api.Payment"},
+            {"payment.downtime", "Razorpay.Api.Payment" },
             {"refund", "Razorpay.Api.Refund"},
             {"order", "Razorpay.Api.Order"},
             {"customer", "Razorpay.Api.Customer"},
@@ -24,7 +25,21 @@ namespace Razorpay.Api
             {"subscription", "Razorpay.Api.Subscription"},
             {"virtual_account", "Razorpay.Api.VirtualAccount"},
             {"addon", "Razorpay.Api.Addon"},
+            {"bank_transfer","Razorpay.Api.BankTransfer"},
+            {"fund_account", "Razorpay.Api.FundAccount" },
+            {"product", "Razorpay.Api.Product"},
+            {"iin", "Razorpay.Api.Iin"},
+            {"qr_code", "Razorpay.Api.QrCode"},
+            {"paymentlink", "Razorpay.Api.PaymentLink"},
+            {"settlement", "Razorpay.Api.Settlement" },
+            {"settlement.ondemand", "Razorpay.Api.Settlement" },
+            {"tnc_map", "Razorpay.Api.Tnc"},
+            {"item", "Razorpay.Api.Item" },
+            {"account", "Razorpay.Api.Account"},
+            {"stakeholder", "Razorpay.Api.Stakeholder"},
+            {"webhook", "Razorpay.Api.Webhook"},
         };
+      
         private static List<HttpMethod> JsonifyInput = new List<HttpMethod>()
         {
             HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH
@@ -39,7 +54,8 @@ namespace Razorpay.Api
             }
 
             string entityUrl = GetEntityUrl();
-            string relativeUrl = string.Format("{0}/{1}", entityUrl, id);
+            string versionUrl = GetUrlVersion();
+            string relativeUrl = string.Format("{0}/{1}/{2}", versionUrl, entityUrl, id);
             List<Entity> entitiesList = Request(relativeUrl, HttpMethod.GET, null);
             return entitiesList[0];
         }
@@ -47,11 +63,14 @@ namespace Razorpay.Api
         protected List<Entity> All(Dictionary<string, object> options = null)
         {
             string entityUrl = GetEntityUrl();
-            return Request(entityUrl, HttpMethod.GET, options);
+            string versionUrl = GetUrlVersion();
+            string relativeUrl = string.Format("{0}/{1}", versionUrl, entityUrl);
+            return Request(relativeUrl, HttpMethod.GET, options);
         }
 
         protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options)
         {
+            Console.WriteLine(relativeUrl);
             client = new RestClient();
             string postData = string.Empty;
 
@@ -68,12 +87,16 @@ namespace Razorpay.Api
 
             string responseStr = client.MakeRequest(relativeUrl, verb, postData);
 
+            dynamic response = JsonConvert.DeserializeObject(responseStr);
+
             if (verb == HttpMethod.DELETE)
             {
-                return null;
+                string type = Entities[this.GetType().Name.ToLower().ToString()];
+                Entity entity = (Entity)FormatterServices.GetUninitializedObject(Type.GetType(type));
+                entity.Attributes = response;
+                List<Entity> en = new List<Entity>() { entity };
+                return en;
             }
-
-            dynamic response = JsonConvert.DeserializeObject(responseStr);
 
             List<Entity> entities = Build(response);
 
@@ -114,15 +137,23 @@ namespace Razorpay.Api
         // iF HttpMethod = delete, return
         private Entity ParseEntity(dynamic response)
         {
-            Entity entity = null;
-            
-            string responseEntity = (string) response["entity"];
+            Entity entity;
+            string responseEntity;
+
+            if (!response.ContainsKey("entity"))
+            {
+                responseEntity = this.GetType().Name.ToLower();
+            }
+            else
+            {
+                responseEntity = (string)response["entity"];
+            }
 
             if (Entities.ContainsKey(responseEntity) == true)
             {
                 string type = Entities[responseEntity];
 
-                entity = (Entity) FormatterServices.GetUninitializedObject(Type.GetType(type));
+                entity = (Entity)FormatterServices.GetUninitializedObject(Type.GetType(type));
             }
             else
             {
@@ -136,6 +167,11 @@ namespace Razorpay.Api
         protected string GetEntityUrl()
         {
             return this.GetType().Name.ToLower() + "s";
+        }
+
+        protected string GetUrlVersion(string version = "v1")
+        {
+            return String.Format("/{0}", version);
         }
 
         public dynamic this[string key]
