@@ -33,8 +33,6 @@ namespace Razorpay.Api
             return createResponse(request);
         }
 
-
-
         private HttpWebRequest createRequest(string relativeUrl, HttpMethod method, string host)
         {
             string baseUrl;
