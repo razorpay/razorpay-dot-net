@@ -153,6 +153,10 @@
     <Compile Include="..\src\HttpMethod.cs">
       <Link>HttpMethod.cs</Link>
     </Compile>
+    <Compile Include="OAuthTokenClient.cs" />
+    <Compile Include="PayloadValidator.cs" />
+    <Compile Include="ValidationConfig.cs" />
+    <Compile Include="ValidationType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

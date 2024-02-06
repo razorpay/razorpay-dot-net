@@ -70,6 +70,11 @@ namespace Razorpay.Api
 
         protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options)
         {
+            return Request(relativeUrl, verb, options, "API");
+        }
+
+        protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options, string host)
+        {
             Console.WriteLine(relativeUrl);
             client = new RestClient();
             string postData = string.Empty;
@@ -85,7 +90,7 @@ namespace Razorpay.Api
                 postData = JsonConvert.SerializeObject(options);
             }
 
-            string responseStr = client.MakeRequest(relativeUrl, verb, postData);
+            string responseStr = client.MakeRequest(relativeUrl, verb, postData, host);
 
             dynamic response = JsonConvert.DeserializeObject(responseStr);
 
