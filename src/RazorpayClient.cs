@@ -39,6 +39,7 @@ namespace Razorpay.Api
         private Account account = null;
         private Stakeholder stakeholder = null;
         private Webhook webhook = null;
+        private OAuthTokenClient oAuthTokenClient = null;
 
         public RazorpayClient(string accessToken)
         {
@@ -434,6 +435,18 @@ namespace Razorpay.Api
                     webhook = new Webhook();
                 }
                 return webhook;
+            }
+        }
+        
+        public OAuthTokenClient OAuthTokenClient
+        {
+            get
+            {
+                if (oAuthTokenClient == null)
+                {
+                    oAuthTokenClient = new OAuthTokenClient();
+                }
+                return oAuthTokenClient;
             }
         }
     }

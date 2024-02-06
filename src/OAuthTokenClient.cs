@@ -7,9 +7,9 @@ namespace Razorpay.Api
 {
     public class OAuthTokenClient : Entity
     {
-        private readonly string AUTH_HOSTNAME = "auth.razorpay.com";
         private readonly string CLIENT_ID = "client_id";
         private readonly string CLIENT_SECRET = "client_secret";
+        private readonly string CODE = "code";
         private readonly string GRANT_TYPE = "grant_type";
         private readonly string REFRESH_TOKEN = "refresh_token";
         private readonly string TOKEN = "token";
@@ -40,8 +40,7 @@ namespace Razorpay.Api
             string scopesArray = scopes.Length > 0 ?
                 "&scope[]=" + string.Join("&scope[]=", scopes) : "";
 
-            string authorizeUrl = "https://"
-                                  + AUTH_HOSTNAME
+            string authorizeUrl = RazorpayClient.DefaultAuthUrl
                                   + "/authorize"
                                   + "?response_type=code"
                                   + "&client_id=" + clientId
@@ -55,16 +54,18 @@ namespace Razorpay.Api
         public OAuthTokenClient GetAccessToken(Dictionary<string, object> data)
         {
             ValidateAccessTokenRequest(data);
+            data.Add(GRANT_TYPE, "authorization_code");
             string relativeUrl = "/token";
-            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data, "AUTH");
             return (OAuthTokenClient)entities[0];
         }
 
         public OAuthTokenClient RefreshToken(Dictionary<string, object> data)
         {
             ValidateRefreshTokenRequest(data);
+            data.Add(GRANT_TYPE, "refresh_token");
             string relativeUrl = "/token";
-            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data, "AUTH");
             return (OAuthTokenClient)entities[0];
         }
 
@@ -72,7 +73,7 @@ namespace Razorpay.Api
         {
             ValidateRevokeTokenRequest(data);
             string relativeUrl = "/revoke";
-            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data, "AUTH");
             return (OAuthTokenClient)entities[0];
         }
 
@@ -115,7 +116,8 @@ namespace Razorpay.Api
                 new ValidationConfig(CLIENT_ID, new List<ValidationType> { ValidationType.ID }),
                 new ValidationConfig(CLIENT_SECRET, new List<ValidationType> { ValidationType.NON_EMPTY_STRING }),
                 new ValidationConfig(REDIRECT_URI, new List<ValidationType> { ValidationType.NON_EMPTY_STRING, ValidationType.URL }),
-                new ValidationConfig(MODE, new List<ValidationType> { ValidationType.NON_EMPTY_STRING })
+                new ValidationConfig(CODE, new List<ValidationType> { ValidationType.NON_EMPTY_STRING}),
+                new ValidationConfig(MODE, new List<ValidationType> { ValidationType.MODE })
             };
         }
 
