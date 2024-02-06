@@ -156,16 +156,16 @@
     <Compile Include="..\src\HttpMethod.cs">
       <Link>HttpMethod.cs</Link>
     </Compile>
-    <Compile Include="OAuthTokenClient.cs" >
+    <Compile Include="..\src\OAuthTokenClient.cs" >
       <Link>OAuthTokenClient.cs</Link>
     </Compile> 
-    <Compile Include="PayloadValidator.cs" >
+    <Compile Include="..\src\PayloadValidator.cs" >
       <Link>PayloadValidator.cs</Link>
     </Compile> 
-    <Compile Include="ValidationConfig.cs" >
+    <Compile Include="..\src\ValidationConfig.cs" >
       <Link>ValidationConfig.cs</Link>
     </Compile> 
-    <Compile Include="ValidationType.cs" >
+    <Compile Include="..\src\ValidationType.cs" >
       <Link>ValidationType.cs</Link>
     </Compile> 
   </ItemGroup>

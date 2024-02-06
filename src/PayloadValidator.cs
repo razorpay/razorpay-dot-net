@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Razorpay.Api.Errors;
+
 namespace Razorpay.Api
 {
     public class PayloadValidator
@@ -45,7 +48,7 @@ namespace Razorpay.Api
             if (!new List<string> { "test", "live" }.Contains(mode))
             {
                 string errorMessage = "Invalid value provided for field {0}";
-                throw new RazorpayException(string.Format(errorMessage, field));
+                throw new BadRequestError(string.Format(errorMessage, field), "BAD_REQUEST_ERROR", 400);
             }
         }
 
@@ -54,7 +57,7 @@ namespace Razorpay.Api
             if (!payload.ContainsKey(field) || payload[field] == null)
             {
                 string errorMessage = "Field {0} cannot be null";
-                throw new RazorpayException(string.Format(errorMessage, field));
+                throw new BadRequestError(string.Format(errorMessage, field), "BAD_REQUEST_ERROR", 400);
             }
         }
 
@@ -63,7 +66,7 @@ namespace Razorpay.Api
             if (string.IsNullOrWhiteSpace((string)payload[field]))
             {
                 string errorMessage = "Field {0} cannot be empty";
-                throw new RazorpayException(string.Format(errorMessage, field));
+                throw new BadRequestError(string.Format(errorMessage, field), "BAD_REQUEST_ERROR", 400);
             }
         }
 
@@ -74,7 +77,7 @@ namespace Razorpay.Api
             if (!System.Text.RegularExpressions.Regex.IsMatch(url, urlRegex))
             {
                 string errorMessage = "Field {0} is not a valid URL";
-                throw new RazorpayException(string.Format(errorMessage, field));
+                throw new BadRequestError(string.Format(errorMessage, field), "BAD_REQUEST_ERROR", 400);
             }
         }
 
@@ -87,7 +90,7 @@ namespace Razorpay.Api
             if (!System.Text.RegularExpressions.Regex.IsMatch(value, idRegex))
             {
                 string errorMessage = "Field {0} is not a valid ID";
-                throw new RazorpayException(string.Format(errorMessage, field));
+                throw new BadRequestError(string.Format(errorMessage, field), "BAD_REQUEST_ERROR", 400);
             }
         }
     }
