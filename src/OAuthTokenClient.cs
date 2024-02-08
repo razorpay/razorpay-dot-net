@@ -7,28 +7,28 @@ namespace Razorpay.Api
 {
     public class OAuthTokenClient : Entity
     {
-        private readonly string CLIENT_ID = "client_id";
-        private readonly string CLIENT_SECRET = "client_secret";
-        private readonly string CODE = "code";
-        private readonly string GRANT_TYPE = "grant_type";
-        private readonly string REFRESH_TOKEN = "refresh_token";
-        private readonly string TOKEN = "token";
-        private readonly string TOKEN_TYPE_HINT = "token_type_hint";
-        private readonly string REDIRECT_URI = "redirect_uri";
-        private readonly string SCOPES = "scopes";
-        private readonly string STATE = "state";
-        private readonly string MODE = "mode";
+        private readonly string clientId = "client_id";
+        private readonly string clientSecret = "client_secret";
+        private readonly string code = "code";
+        private readonly string grantType = "grant_type";
+        private readonly string refreshToken = "refresh_token";
+        private readonly string token = "token";
+        private readonly string tokenTypeHint = "token_type_hint";
+        private readonly string redirectUri = "redirect_uri";
+        private readonly string scopes = "scopes";
+        private readonly string state = "state";
+        private readonly string mode = "mode";
 
         private readonly PayloadValidator payloadValidator;
 
         public OAuthTokenClient()
         {
-            this.payloadValidator = new PayloadValidator();
+            payloadValidator = new PayloadValidator();
         }
 
         public string GetAuthUrl(Dictionary<string, object> data)
         {
-            ValidateAuthURLRequest(data);
+            ValidateAuthUrlRequest(data);
 
             string clientId = (string)data["client_id"];
             string redirectUri = (string)data["redirect_uri"];
@@ -54,18 +54,18 @@ namespace Razorpay.Api
         public OAuthTokenClient GetAccessToken(Dictionary<string, object> data)
         {
             ValidateAccessTokenRequest(data);
-            data.Add(GRANT_TYPE, "authorization_code");
+            data.Add(grantType, "authorization_code");
             string relativeUrl = "/token";
-            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data, "AUTH");
+            List<Entity> entities = AuthRequest(relativeUrl, HttpMethod.POST, data);
             return (OAuthTokenClient)entities[0];
         }
 
         public OAuthTokenClient RefreshToken(Dictionary<string, object> data)
         {
             ValidateRefreshTokenRequest(data);
-            data.Add(GRANT_TYPE, "refresh_token");
+            data.Add(grantType, "refresh_token");
             string relativeUrl = "/token";
-            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data, "AUTH");
+            List<Entity> entities = AuthRequest(relativeUrl, HttpMethod.POST, data);
             return (OAuthTokenClient)entities[0];
         }
 
@@ -73,14 +73,18 @@ namespace Razorpay.Api
         {
             ValidateRevokeTokenRequest(data);
             string relativeUrl = "/revoke";
-            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data, "AUTH");
+            List<Entity> entities = AuthRequest(relativeUrl, HttpMethod.POST, data);
             return (OAuthTokenClient)entities[0];
         }
 
-
-        private void ValidateAuthURLRequest(Dictionary<string, object> request)
+        public virtual List<Entity> AuthRequest(string relativeUrl, HttpMethod verb, Dictionary<string, object> data)
         {
-            payloadValidator.Validate(request, GetValidationsForAuthRequestURL());
+            return Request(relativeUrl, verb, data, "AUTH");
+        }
+
+        private void ValidateAuthUrlRequest(Dictionary<string, object> request)
+        {
+            payloadValidator.Validate(request, GetValidationsForAuthRequestUrl());
         }
 
         private void ValidateAccessTokenRequest(Dictionary<string, object> request)
@@ -98,14 +102,14 @@ namespace Razorpay.Api
             payloadValidator.Validate(request, GetValidationsForRevokeTokenRequest());
         }
 
-        private List<ValidationConfig> GetValidationsForAuthRequestURL()
+        private List<ValidationConfig> GetValidationsForAuthRequestUrl()
         {
             return new List<ValidationConfig>
             {
-                new ValidationConfig(CLIENT_ID, new List<ValidationType> { ValidationType.ID }),
-                new ValidationConfig(REDIRECT_URI, new List<ValidationType> { ValidationType.NON_EMPTY_STRING, ValidationType.URL }),
-                new ValidationConfig(SCOPES, new List<ValidationType> { ValidationType.NON_NULL }),
-                new ValidationConfig(STATE, new List<ValidationType> { ValidationType.NON_EMPTY_STRING })
+                new ValidationConfig(clientId, new List<ValidationType> { ValidationType.ID }),
+                new ValidationConfig(redirectUri, new List<ValidationType> { ValidationType.NON_EMPTY_STRING, ValidationType.URL }),
+                new ValidationConfig(scopes, new List<ValidationType> { ValidationType.NON_NULL }),
+                new ValidationConfig(state, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING })
             };
         }
 
@@ -113,11 +117,11 @@ namespace Razorpay.Api
         {
             return new List<ValidationConfig>
             {
-                new ValidationConfig(CLIENT_ID, new List<ValidationType> { ValidationType.ID }),
-                new ValidationConfig(CLIENT_SECRET, new List<ValidationType> { ValidationType.NON_EMPTY_STRING }),
-                new ValidationConfig(REDIRECT_URI, new List<ValidationType> { ValidationType.NON_EMPTY_STRING, ValidationType.URL }),
-                new ValidationConfig(CODE, new List<ValidationType> { ValidationType.NON_EMPTY_STRING}),
-                new ValidationConfig(MODE, new List<ValidationType> { ValidationType.MODE })
+                new ValidationConfig(clientId, new List<ValidationType> { ValidationType.ID }),
+                new ValidationConfig(clientSecret, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING }),
+                new ValidationConfig(redirectUri, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING, ValidationType.URL }),
+                new ValidationConfig(code, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING}),
+                new ValidationConfig(mode, new List<ValidationType> { ValidationType.MODE })
             };
         }
 
@@ -125,9 +129,9 @@ namespace Razorpay.Api
         {
             return new List<ValidationConfig>
             {
-                new ValidationConfig(CLIENT_ID, new List<ValidationType> { ValidationType.ID }),
-                new ValidationConfig(CLIENT_SECRET, new List<ValidationType> { ValidationType.NON_EMPTY_STRING }),
-                new ValidationConfig(REFRESH_TOKEN, new List<ValidationType> { ValidationType.NON_EMPTY_STRING })
+                new ValidationConfig(clientId, new List<ValidationType> { ValidationType.ID }),
+                new ValidationConfig(clientSecret, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING }),
+                new ValidationConfig(refreshToken, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING })
             };
         }
 
@@ -135,10 +139,10 @@ namespace Razorpay.Api
         {
             return new List<ValidationConfig>
             {
-                new ValidationConfig(CLIENT_ID, new List<ValidationType> { ValidationType.ID }),
-                new ValidationConfig(CLIENT_SECRET, new List<ValidationType> { ValidationType.NON_EMPTY_STRING }),
-                new ValidationConfig(TOKEN, new List<ValidationType> { ValidationType.NON_EMPTY_STRING }),
-                new ValidationConfig(TOKEN_TYPE_HINT, new List<ValidationType> { ValidationType.NON_EMPTY_STRING })
+                new ValidationConfig(clientId, new List<ValidationType> { ValidationType.ID }),
+                new ValidationConfig(clientSecret, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING }),
+                new ValidationConfig(token, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING }),
+                new ValidationConfig(tokenTypeHint, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING })
             };
         }
     }

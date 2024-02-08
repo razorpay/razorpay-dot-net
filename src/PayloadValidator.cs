@@ -63,7 +63,7 @@ namespace Razorpay.Api
 
         private void ValidateNonEmptyString(Dictionary<string, object> payload, string field)
         {
-            if (string.IsNullOrWhiteSpace((string)payload[field]))
+            if (payload.ContainsKey(field) && string.IsNullOrWhiteSpace((string)payload[field]))
             {
                 string errorMessage = "Field {0} cannot be empty";
                 throw new BadRequestError(string.Format(errorMessage, field), "BAD_REQUEST_ERROR", 400);

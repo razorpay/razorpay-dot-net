@@ -10,8 +10,8 @@ namespace Razorpay.Api
 
         public ValidationConfig(string fieldName, List<ValidationType> validations)
         {
-            FieldName = fieldName ?? throw new ArgumentNullException(nameof(fieldName));
-            Validations = validations ?? throw new ArgumentNullException(nameof(validations));
+            FieldName = fieldName;
+            Validations = validations;
         }
     }
 }

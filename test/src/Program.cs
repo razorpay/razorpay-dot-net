@@ -35,6 +35,10 @@ namespace RazorpayClientTest
             RunAllAddonTests(key, secret);
 
             RunAllVirtualAccountTests(key, secret);
+
+            RunAllOAuthClientTests();
+            
+            RunAllOAuthPaymentTests(key);
         }
 
         public static void RunClientTestCases(string key, string secret)
@@ -212,6 +216,40 @@ namespace RazorpayClientTest
             VirtualAccountTestCases.VirtualAccountPaymentsTest();
 
             VirtualAccountTestCases.FetchAllVirtualAccountTest();
+        }
+        
+        public static void RunAllOAuthClientTests()
+        {
+            OAuthClientTestCases.Init();
+            
+            OAuthClientTestCases.GetAuthUrlTest();
+            
+            OAuthClientTestCases.RequestValidationFailureForGetAuthUrlTest();
+            
+            OAuthClientTestCases.GetAccessTokenTest();
+            
+            OAuthClientTestCases.RequestValidationFailureForGetAccessTokenTest();
+            
+            OAuthClientTestCases.RefreshTokenTest();
+            
+            OAuthClientTestCases.RequestValidationFailureForRefreshTokenTest();
+            
+            OAuthClientTestCases.RevokeTokenTest();
+            
+            OAuthClientTestCases.RequestValidationFailureForRevokeTokenTest();
+        }
+        
+        public static void RunAllOAuthPaymentTests(string accessToken)
+        {
+            PaymentOAuthTestCases.Init(accessToken);
+
+            PaymentOAuthTestCases.GetAllPaymentsTest();
+
+            PaymentOAuthTestCases.GetPaymentById();
+
+            PaymentOAuthTestCases.CapturePayment();
+            
+            PaymentOAuthTestCases.RefundPayment();
         }
     }
 }

@@ -28,6 +28,9 @@
     <ExternalConsole>true</ExternalConsole>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq, Version=4.17.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Moq.4.17.2\lib\net45\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="nunit.framework">
@@ -53,6 +56,8 @@
     <Compile Include="..\src\SubscriptionTestCases.cs" />
     <Compile Include="..\src\VirtualAccountTestCases.cs" />
     <Compile Include="..\src\PlanTestCases.cs" />
+    <Compile Include="..\src\OAuthClientTestCases.cs" />
+    <Compile Include="..\src\PaymentOAuthTestCases.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\net45\RazorpayClient45.csproj">

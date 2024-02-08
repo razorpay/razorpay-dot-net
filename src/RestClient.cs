@@ -58,15 +58,15 @@ namespace Razorpay.Api
             string userAgent = string.Format("{0} {1}", RazorpayClient.Version, getAppDetailsUa());
             request.UserAgent = "razorpay-dot-net/" + userAgent;
 
-            if(RazorpayClient.AccessToken != null)
-            {
-                request.Headers["Authorization"] = "Bearer " + RazorpayClient.AccessToken;
-            }
-            else
+            if (RazorpayClient.Key != null && RazorpayClient.Secret != null)
             {
                 string authString = string.Format("{0}:{1}", RazorpayClient.Key, RazorpayClient.Secret);
                 request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(
                     Encoding.UTF8.GetBytes(authString));
+            } 
+            else if (RazorpayClient.AccessToken != null)
+            {
+                request.Headers["Authorization"] = "Bearer " + RazorpayClient.AccessToken;
             }
 
             foreach (KeyValuePair<string, string> header in RazorpayClient.Headers)
