@@ -83,6 +83,44 @@ namespace Razorpay.Api
 
             return HashEncode(hashHmac.ComputeHash(bytes));
         }
+        
+        public static string GenerateOnboardingSignature(Dictionary<string, object> attributes, string secret)
+        {
+            string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(attributes);
+            return Encrypt(jsonString, secret);
+        }
+        
+        public static string Encrypt(string dataToEncrypt, string secret)
+        {
+            byte[] iv = Encoding.UTF8.GetBytes(secret);
+            using (Aes aesAlg = Aes.Create())
+            {
+                aesAlg.Key = iv;
+                aesAlg.Mode = CipherMode.CBC;
+                aesAlg.Padding = PaddingMode.None;
+
+                try
+                {
+                    ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
+                    byte[] encryptedBytes = encryptor.TransformFinalBlock(Encoding.UTF8.GetBytes(dataToEncrypt), 0, dataToEncrypt.Length);
+                    return BytesToHex(encryptedBytes);
+                }
+                catch (Exception e)
+                {
+                    throw new BadRequestError(e.Message, "BAD_REQUEST_ERROR", 400);
+                }
+            }
+        }
+        
+        public static string BytesToHex(byte[] bytes)
+        {
+            StringBuilder hexBuilder = new StringBuilder(bytes.Length * 2);
+            foreach (byte b in bytes)
+            {
+                hexBuilder.AppendFormat("{0:x2}", b);
+            }
+            return hexBuilder.ToString();
+        }
 
         private static byte[] StringEncode(string text)
         {
