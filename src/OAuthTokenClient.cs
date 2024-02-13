@@ -36,19 +36,29 @@ namespace Razorpay.Api
             string[] scopes = (data["scopes"] as List<object>)
                           ?.OfType<string>()
                           .ToArray();
+            
+            var uriBuilder = new UriBuilder(RazorpayClient.DefaultAuthUrl);
+            uriBuilder.Path += "authorize";
+            
+            var queryParams = new List<string>();
+            queryParams.Add($"response_type=code");
+            queryParams.Add($"client_id={Uri.EscapeDataString(clientId)}");
+            queryParams.Add($"redirect_uri={Uri.EscapeDataString(redirectUri)}");
+            if (scopes != null && scopes.Length > 0)
+            {
+                queryParams.Add($"scope[]={string.Join("&scope[]=", scopes.Select(Uri.EscapeDataString))}");
+            }
+            queryParams.Add($"state={Uri.EscapeDataString(state)}");
 
-            string scopesArray = scopes.Length > 0 ?
-                "&scope[]=" + string.Join("&scope[]=", scopes) : "";
+            if (data.ContainsKey("onboarding_signature"))
+            {
+                string onboardingSignature = (string)data["onboarding_signature"];
+                queryParams.Add( $"&onboarding_signature={Uri.EscapeDataString(onboardingSignature)}");
+            }
+    
+            uriBuilder.Query = string.Join("&", queryParams);
 
-            string authorizeUrl = RazorpayClient.DefaultAuthUrl
-                                  + "/authorize"
-                                  + "?response_type=code"
-                                  + "&client_id=" + clientId
-                                  + "&redirect_uri=" + redirectUri
-                                  + scopesArray
-                                  + "&state=" + state;
-
-            return authorizeUrl;
+            return uriBuilder.Uri.ToString();
         }
 
         public OAuthTokenClient GetAccessToken(Dictionary<string, object> data)

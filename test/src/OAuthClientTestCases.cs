@@ -1,3 +1,4 @@
+using System;
 using NUnit.Framework;
 using Razorpay.Api;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ namespace RazorpayClientTest
                 { "scopes", new List<object> { "read_write" } }
             };
 
-            string expectedAuthURL = "https://auth.razorpay.com/authorize?response_type=code&client_id=8DXCMTshWSWECc&redirect_uri=https://example.com/razorpay_callback&scope[]=read_write&state=NOBYtv8r6c75ex6WZ";
+            string expectedAuthURL = "https://auth.razorpay.com/authorize?response_type=code&client_id=8DXCMTshWSWECc&redirect_uri=https:%2F%2Fexample.com%2Frazorpay_callback&scope[]=read_write&state=NOBYtv8r6c75ex6WZ";
             string authURL = oAuthTokenClient.GetAuthUrl(request);
             Assert.AreEqual(expectedAuthURL, authURL);
         }
