@@ -18,12 +18,13 @@ namespace RazorpayClientTest
         
         public static void GetAuthUrlTest()
         {
+            oAuthTokenClient = new OAuthTokenClient();
             var request = new Dictionary<string, object>
             {
                 { "client_id", "8DXCMTshWSWECc" },
                 { "redirect_uri", "https://example.com/razorpay_callback" },
                 { "state", "NOBYtv8r6c75ex6WZ" },
-                { "scopes", new List<object> { "read_write" } }
+                { "scopes", new List<string> { "read_write" } }
             };
 
             string expectedAuthURL = "https://auth.razorpay.com/authorize?response_type=code&client_id=8DXCMTshWSWECc&redirect_uri=https:%2F%2Fexample.com%2Frazorpay_callback&scope[]=read_write&state=NOBYtv8r6c75ex6WZ";

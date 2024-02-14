@@ -30,7 +30,7 @@ namespace Razorpay.Api
                 }
             }
 
-            return createResponse(request);
+            return createResponse(request, host);
         }
 
         private HttpWebRequest createRequest(string relativeUrl, HttpMethod method, string host)
@@ -103,7 +103,7 @@ namespace Razorpay.Api
             return appsDetailsUa;
         }
 
-        private string createResponse(HttpWebRequest request) 
+        private string createResponse(HttpWebRequest request, string host) 
         {
             var responseValue = string.Empty;
             HttpWebResponse response = null;
@@ -122,7 +122,7 @@ namespace Razorpay.Api
             {
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
-                    HandleErrors(response, responseValue);
+                    HandleErrors(response, responseValue, host);
                 }
             }
 
@@ -144,7 +144,7 @@ namespace Razorpay.Api
             return responseValue;
         }
 
-        private void HandleErrors(HttpWebResponse webResponse, string response)
+        private void HandleErrors(HttpWebResponse webResponse, string response, string host)
         {
             int statusCode = (int)webResponse.StatusCode;
             dynamic data = null;
@@ -156,6 +156,18 @@ namespace Razorpay.Api
             {
                 data = JsonConvert.DeserializeObject(response);
                 errorCode = data["error"]["code"];
+                if (host.Equals("AUTH"))
+                {
+                    if (statusCode >= 400 && statusCode < 500)
+                    {
+                        errorCode = ErrorCodes.BAD_REQUEST_ERROR.ToString();
+                    }
+                    else if (statusCode >= 500)
+                    {
+                        errorCode = ErrorCodes.SERVER_ERROR.ToString();
+                    }
+                }
+                
                 Enum.Parse(typeof(ErrorCodes), errorCode);
                 description = data["error"]["description"];
                 field = data["error"]["field"];

@@ -9,6 +9,7 @@ namespace Razorpay.Api
         NON_EMPTY_STRING,
         URL,
         ID,
-        MODE
+        MODE,
+        TOKEN_GRANT
     }
 }

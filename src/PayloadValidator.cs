@@ -36,6 +36,9 @@ namespace Razorpay.Api
                 case ValidationType.MODE:
                     ValidateMode(payload, field);
                     break;
+                case ValidationType.TOKEN_GRANT:
+                    ValidateTokenType(payload, field);
+                    break;
                 default:
                     break;
             }
@@ -43,12 +46,32 @@ namespace Razorpay.Api
 
         private void ValidateMode(Dictionary<string, object> payload, string field)
         {
-            ValidateNonNull(payload, field);
+            if (!payload.ContainsKey(field))
+            {
+                return;
+            }
             string mode = (string)payload[field];
             if (!new List<string> { "test", "live" }.Contains(mode))
             {
                 string errorMessage = "Invalid value provided for field {0}";
                 throw new BadRequestError(string.Format(errorMessage, field), "BAD_REQUEST_ERROR", 400);
+            }
+        }
+
+        private void ValidateTokenType(Dictionary<string, object> payload, string field)
+        {
+            ValidateNonNull(payload, field);
+            string grantType = (string)payload[field];
+            switch (grantType)
+            {
+                case "authorization_code":
+                    ValidateNonNull(payload, "code");
+                    break;
+                case "refresh_token":
+                    ValidateNonNull(payload, "refresh_token");
+                    break;
+                default:
+                    break;
             }
         }
 

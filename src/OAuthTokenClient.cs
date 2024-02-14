@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml;
 
 namespace Razorpay.Api
 {
@@ -33,7 +32,7 @@ namespace Razorpay.Api
             string clientId = (string)data["client_id"];
             string redirectUri = (string)data["redirect_uri"];
             string state = (string)data["state"];
-            string[] scopes = (data["scopes"] as List<object>)
+            string[] scopes = (data["scopes"] as List<string>)
                           ?.OfType<string>()
                           .ToArray();
             
@@ -64,7 +63,6 @@ namespace Razorpay.Api
         public OAuthTokenClient GetAccessToken(Dictionary<string, object> data)
         {
             ValidateAccessTokenRequest(data);
-            data.Add(grantType, "authorization_code");
             string relativeUrl = "/token";
             List<Entity> entities = AuthRequest(relativeUrl, HttpMethod.POST, data);
             return (OAuthTokenClient)entities[0];
@@ -72,8 +70,8 @@ namespace Razorpay.Api
 
         public OAuthTokenClient RefreshToken(Dictionary<string, object> data)
         {
-            ValidateRefreshTokenRequest(data);
             data.Add(grantType, "refresh_token");
+            ValidateRefreshTokenRequest(data);
             string relativeUrl = "/token";
             List<Entity> entities = AuthRequest(relativeUrl, HttpMethod.POST, data);
             return (OAuthTokenClient)entities[0];
@@ -131,7 +129,8 @@ namespace Razorpay.Api
                 new ValidationConfig(clientSecret, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING }),
                 new ValidationConfig(redirectUri, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING, ValidationType.URL }),
                 new ValidationConfig(code, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING}),
-                new ValidationConfig(mode, new List<ValidationType> { ValidationType.MODE })
+                new ValidationConfig(mode, new List<ValidationType> { ValidationType.MODE }),
+                new ValidationConfig(grantType, new List<ValidationType> { ValidationType.TOKEN_GRANT })
             };
         }
 
@@ -141,7 +140,8 @@ namespace Razorpay.Api
             {
                 new ValidationConfig(clientId, new List<ValidationType> { ValidationType.ID }),
                 new ValidationConfig(clientSecret, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING }),
-                new ValidationConfig(refreshToken, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING })
+                new ValidationConfig(refreshToken, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING }),
+                new ValidationConfig(grantType, new List<ValidationType> { ValidationType.TOKEN_GRANT })
             };
         }
 
