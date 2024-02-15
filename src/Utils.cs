@@ -3,6 +3,10 @@ using System.Text;
 using Razorpay.Api.Errors;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Org.BouncyCastle.Crypto;
+using Org.BouncyCastle.Crypto.Parameters;
+using Org.BouncyCastle.Crypto.Engines;
+using Org.BouncyCastle.Crypto.Modes;
 
 namespace Razorpay.Api
 {
@@ -92,23 +96,27 @@ namespace Razorpay.Api
         
         public static string Encrypt(string dataToEncrypt, string secret)
         {
-            byte[] iv = Encoding.UTF8.GetBytes(secret);
-            using (Aes aesAlg = Aes.Create())
+            try
             {
-                aesAlg.Key = iv;
-                aesAlg.Mode = CipherMode.CBC;
-                aesAlg.Padding = PaddingMode.None;
+                byte[] keyBytes = Encoding.UTF8.GetBytes(secret.Substring(0, 16));
+                KeyParameter key = new KeyParameter(keyBytes);
+                byte[] iv = new byte[12];
+                Array.Copy(keyBytes, 0, iv, 0, 12);
 
-                try
-                {
-                    ICryptoTransform encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);
-                    byte[] encryptedBytes = encryptor.TransformFinalBlock(Encoding.UTF8.GetBytes(dataToEncrypt), 0, dataToEncrypt.Length);
-                    return BytesToHex(encryptedBytes);
-                }
-                catch (Exception e)
-                {
-                    throw new BadRequestError(e.Message, "BAD_REQUEST_ERROR", 400);
-                }
+                GcmBlockCipher cipher = new GcmBlockCipher(new AesEngine());
+                AeadParameters parameters = new AeadParameters(key, 128, iv);
+
+                cipher.Init(true, parameters);
+
+                byte[] encryptedData = new byte[cipher.GetOutputSize(Encoding.UTF8.GetByteCount(dataToEncrypt))];
+                int len = cipher.ProcessBytes(Encoding.UTF8.GetBytes(dataToEncrypt), 0, Encoding.UTF8.GetByteCount(dataToEncrypt), encryptedData, 0);
+                cipher.DoFinal(encryptedData, len);
+
+                return BytesToHex(encryptedData);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
             }
         }
         

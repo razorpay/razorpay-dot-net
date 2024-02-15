@@ -1,0 +1,2 @@
+/Users/shwatang.agarwal/razorpay-dot-net/net47/obj/Debug/RazorpayClient47.csproj.AssemblyReference.cache
+/Users/shwatang.agarwal/razorpay-dot-net/net47/obj/Debug/RazorpayClient47.csproj.CoreCompileInputs.cache
