@@ -52,7 +52,7 @@ namespace Razorpay.Api
             if (data.ContainsKey("onboarding_signature"))
             {
                 string onboardingSignature = (string)data["onboarding_signature"];
-                queryParams.Add( $"&onboarding_signature={Uri.EscapeDataString(onboardingSignature)}");
+                queryParams.Add( $"onboarding_signature={Uri.EscapeDataString(onboardingSignature)}");
             }
     
             uriBuilder.Query = string.Join("&", queryParams);
@@ -127,8 +127,8 @@ namespace Razorpay.Api
             {
                 new ValidationConfig(clientId, new List<ValidationType> { ValidationType.ID }),
                 new ValidationConfig(clientSecret, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING }),
-                new ValidationConfig(redirectUri, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING, ValidationType.URL }),
-                new ValidationConfig(code, new List<ValidationType> { ValidationType.NON_NULL, ValidationType.NON_EMPTY_STRING}),
+                new ValidationConfig(redirectUri, new List<ValidationType> { ValidationType.NON_EMPTY_STRING, ValidationType.URL }),
+                new ValidationConfig(code, new List<ValidationType> { ValidationType.NON_EMPTY_STRING}),
                 new ValidationConfig(mode, new List<ValidationType> { ValidationType.MODE }),
                 new ValidationConfig(grantType, new List<ValidationType> { ValidationType.TOKEN_GRANT })
             };

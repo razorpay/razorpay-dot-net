@@ -66,6 +66,7 @@ namespace Razorpay.Api
             {
                 case "authorization_code":
                     ValidateNonNull(payload, "code");
+                    ValidateNonNull(payload, "redirect_uri");
                     break;
                 case "refresh_token":
                     ValidateNonNull(payload, "refresh_token");
