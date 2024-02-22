@@ -27,7 +27,7 @@ namespace Razorpay.Api
 
         public string GetAuthUrl(Dictionary<string, object> data)
         {
-            ValidateAuthUrlRequest(data);
+            payloadValidator.Validate(data, GetValidationsForAuthRequestUrl());
 
             string clientId = (string)data["client_id"];
             string redirectUri = (string)data["redirect_uri"];
@@ -62,7 +62,7 @@ namespace Razorpay.Api
 
         public OAuthTokenClient GetAccessToken(Dictionary<string, object> data)
         {
-            ValidateAccessTokenRequest(data);
+            payloadValidator.Validate(data, GetValidationsForAccessTokenRequest());
             string relativeUrl = "/token";
             List<Entity> entities = AuthRequest(relativeUrl, HttpMethod.POST, data);
             return (OAuthTokenClient)entities[0];
@@ -71,7 +71,7 @@ namespace Razorpay.Api
         public OAuthTokenClient RefreshToken(Dictionary<string, object> data)
         {
             data.Add(grantType, "refresh_token");
-            ValidateRefreshTokenRequest(data);
+            payloadValidator.Validate(data, GetValidationsForRefreshTokenRequest());
             string relativeUrl = "/token";
             List<Entity> entities = AuthRequest(relativeUrl, HttpMethod.POST, data);
             return (OAuthTokenClient)entities[0];
@@ -79,7 +79,7 @@ namespace Razorpay.Api
 
         public OAuthTokenClient RevokeToken(Dictionary<string, object> data)
         {
-            ValidateRevokeTokenRequest(data);
+            payloadValidator.Validate(data, GetValidationsForRevokeTokenRequest());
             string relativeUrl = "/revoke";
             List<Entity> entities = AuthRequest(relativeUrl, HttpMethod.POST, data);
             return (OAuthTokenClient)entities[0];
@@ -88,26 +88,6 @@ namespace Razorpay.Api
         public virtual List<Entity> AuthRequest(string relativeUrl, HttpMethod verb, Dictionary<string, object> data)
         {
             return Request(relativeUrl, verb, data, "AUTH");
-        }
-
-        private void ValidateAuthUrlRequest(Dictionary<string, object> request)
-        {
-            payloadValidator.Validate(request, GetValidationsForAuthRequestUrl());
-        }
-
-        private void ValidateAccessTokenRequest(Dictionary<string, object> request)
-        {
-            payloadValidator.Validate(request, GetValidationsForAccessTokenRequest());
-        }
-
-        private void ValidateRefreshTokenRequest(Dictionary<string, object> request)
-        {
-            payloadValidator.Validate(request, GetValidationsForRefreshTokenRequest());
-        }
-
-        private void ValidateRevokeTokenRequest(Dictionary<string, object> request)
-        {
-            payloadValidator.Validate(request, GetValidationsForRevokeTokenRequest());
         }
 
         private List<ValidationConfig> GetValidationsForAuthRequestUrl()
