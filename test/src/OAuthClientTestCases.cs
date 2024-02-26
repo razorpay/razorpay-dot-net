@@ -21,7 +21,7 @@ namespace RazorpayClientTest
             oAuthTokenClient = new OAuthTokenClient();
             var request = new Dictionary<string, object>
             {
-                { "client_id", "8DXCMTshWSWECc" },
+                { "client_id", "7rLhG3dsQqFeAd" },
                 { "redirect_uri", "https://example.com/razorpay_callback" },
                 { "state", "NOBYtv8r6c75ex6WZ" },
                 { "scopes", new List<string> { "read_write" } }
@@ -36,7 +36,7 @@ namespace RazorpayClientTest
         {
             var request = new Dictionary<string, object>
             {
-                { "client_id", "8DXCMTshWSWECc" },
+                { "client_id", "7rLhG3dsQqFeAd" },
                 { "redirect_uri", "https://example.com/razorpay_callback" },
                 { "scopes", new List<object> { "read_write" } }
             };
@@ -53,7 +53,7 @@ namespace RazorpayClientTest
 
             var data = new Dictionary<string, object>
             {
-                { "client_id", "N5nMGqje1uI7xW" },
+                { "client_id", "7rLhG3dsQqFeAd" },
                 { "client_secret", "AESSECRETKEY" },
                 { "redirect_uri", "http://example.com/razorpay_callback" },
                 { "code", "def50200d844dc80cc44dce2c665d07a374d76802" },
@@ -70,7 +70,7 @@ namespace RazorpayClientTest
         {
             var request = new Dictionary<string, object>
             {
-                { "client_id", "N5nMGqje1uI7xW" },
+                { "client_id", "7rLhG3dsQqFeAd" },
                 { "client_secret", "AESSECRETKEY" },
                 { "redirect_uri", "http://example.com/razorpay_callback" },
                 { "code", "def50200d844dc80cc44dce2c665d07a374d76802" },
@@ -89,7 +89,7 @@ namespace RazorpayClientTest
 
             var data = new Dictionary<string, object>
             {
-                { "client_id", "N5nMGqje1uI7xW" },
+                { "client_id", "7rLhG3dsQqFeAd" },
                 { "client_secret", "SECRETKEY" },
                 { "refresh_token", "REFRESHTOKEN" }
             };
@@ -104,7 +104,7 @@ namespace RazorpayClientTest
         {
             var request = new Dictionary<string, object>
             {
-                { "client_id", "N5nMGqje1uI7xW" },
+                { "client_id", "7rLhG3dsQqFeAd" },
                 { "client_secret", "AESSECRETKEY" }
             };
 
@@ -120,7 +120,7 @@ namespace RazorpayClientTest
 
             var data = new Dictionary<string, object>
             {
-                { "client_id", "N5nMGqje1uI7xW" },
+                { "client_id", "7rLhG3dsQqFeAd" },
                 { "client_secret", "SECRETKEY" },
                 { "token", "ACCESSTOKEN" },
                 { "token_type_hint", "access_token" }
@@ -136,7 +136,7 @@ namespace RazorpayClientTest
         {
             var request = new Dictionary<string, object>
             {
-                { "client_id", "N5nMGqje1uI7xW" },
+                { "client_id", "7rLhG3dsQqFeAd" },
                 { "client_secret", "AESSECRETKEY" },
                 { "token_type_hint", "access_token" }
             };

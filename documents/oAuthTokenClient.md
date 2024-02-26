@@ -1,7 +1,7 @@
 ## OAuth Token Client
 
 ### Generate Authorize Url
-```java
+```C#
 // Initialize client
 OAuthTokenClient oAuth = new OAuthTokenClient();
 
@@ -10,6 +10,12 @@ authUrlRequest.Add("client_id","<YOUR_CLIENT_ID>");
 authUrlRequest.Add("redirect_uri","https://example.com/razorpay_callback");
 authUrlRequest.Add("scopes", new List<string> {"read_only", "rx_read_write"});
 authUrlRequest.Add("state","NOBYtv8r6c75ex6WZ");
+
+Dictionary<string, object> attributes = new Dictionary<string, object>();
+attributes.Add("submerchant_id", "<SUBMERCHANT_MID>");
+attributes.Add("timestamp", DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+string onboardingSignature = Utils.GenerateOnboardingSignature(attributes, "<YOUR_CLIENT_SECRET>");
+authUrlRequest.Add("onboarding_signature",onboardingSignature);
 
 String authUrl = oAuth.GetAuthUrl(authUrlRequest);
 ```
@@ -33,7 +39,7 @@ String authUrl = oAuth.GetAuthUrl(authUrlRequest);
 -------------------------------------------------------------------------------------------------------
 
 ### Get Access token
-```java
+```C#
 Dictionary<string, object> accessTokenRequest = new Dictionary<string, object>();
 accessTokenRequest.Add("client_id","<YOUR_CLIENT_ID>");
 accessTokenRequest.Add("client_secret","<YOUR_CLIENT_SECRET>");
@@ -59,22 +65,22 @@ OAuthTokenClient oAuthTokenClient = oAuth.GetAccessToken(accessTokenRequest);
 **Response:**
 ```json
 {
-  "public_token": "rzp_test_oauth_9xu1rkZqoXlClS",
+  "public_token": "rzp_test_oauth_8xu1rkZqiXlClS",
   "token_type": "Bearer",
   "expires_in": 7862400,
-  "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IkY1Z0NQYkhhRzRjcUpnIn0.eyJhdWQiOiJGNFNNeEgxanMxbkpPZiIsImp0aSI6IkY1Z0NQYkhhRzRjcUpnIiwiaWF0IjoxNTkyODMxMDExLCJuYmYiOjE1OTI4MzEwMTEsInN1YiI6IiIsImV4cCI6MTYwMDc3OTgxMSwidXNlcl9pZCI6IkYycVBpejJEdzRPRVFwIiwibWVyY2hhbnRfaWQiOiJGMnFQaVZ3N0lNV01GSyIsInNjb3BlcyI6WyJyZWFkX29ubHkiXX0.Wwqt5czhoWpVzP5_aoiymKXoGj-ydo-4A_X2jf_7rrSvk4pXdqzbA5BMrHxPdPbeFQWV6vsnsgbf99Q3g-W4kalHyH67LfAzc3qnJ-mkYDkFY93tkeG-MCco6GJW-Jm8xhaV9EPUak7z9J9jcdluu9rNXYMtd5qxD8auyRYhEgs",
-  "refresh_token": "def50200f42e07aded65a323f6c53181d802cc797b62cc5e78dd8038d6dff253e5877da9ad32f463a4da0ad895e3de298cbce40e162202170e763754122a6cb97910a1f58e2378ee3492dc295e1525009cccc45635308cce8575bdf373606c453ebb5eb2bec062ca197ac23810cf9d6cf31fbb9fcf5b7d4de9bf524c89a4aa90599b0151c9e4e2fa08acb6d2fe17f30a6cfecdfd671f090787e821f844e5d36f5eacb7dfb33d91e83b18216ad0ebeba2bef7721e10d436c3984daafd8654ed881c581d6be0bdc9ebfaee0dc5f9374d7184d60aae5aa85385690220690e21bc93209fb8a8cc25a6abf1108d8277f7c3d38217b47744d7",
+  "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IkVhZzBjYmNlMWE3ZTZkIn0.eyJhdWQiOiIzN2pPS3pWZlpqY2hhZ3YiLCJqdGkiOiJFYWcwY2JjZTFhN2U2ZCIsImlhdCI6MTY0NDU3NDAwOSwibmJmIjoxNjQ0NTc0MDA5LCJzdWIiOiJkZXZpY2VzIiwiZXhwIjoxNjQ0NTc3NjA5LCJ1c2VyX2lkIjoiZWRnZWxpc3QiLCJtZXJjaGFudF9pZCI6ImF0bGFzc2V0cyIsInNjb3BlcyI6WyJyZWFkX3VzZXIiXX0.VdE91z_Tm6MABosdSoswqZ2F7-e9QrCQL7Zy24UOnNhe2Y-5y8TGHoTcz5sfe5RvAHHtFv2vyLJ8sXs8foQj2I4pWbWjWSzID9C_RphW7M0M-8-tVd7bEDmwR3fbhAXS4VgQXNIsAmpfPHUXg-QhDqCnpNwLnv1BKrP94wtK85j2",
+  "refresh_token": "6J7bVX5Ry8brnQ4sV7zA2dW8cP6aX3eW2cV3sZ4rT8dX9eP4yG7hC4jD6dN5fT9qG4tV7bV4cR5gY6rT7eR2hC3nE4tW3yB9bV3bE2cR6cP6fT5fT9kG5yG6qG4dP6aX3dN5yG7dW8gN5cP6gM6yG7rQ4eX9rT8jD6dM6hC4bV3bE2cR5gY6rT7eR2hC3nE4tW3yB9bV3bE2cR6cP6fT5fT9kG5yG6qG4dP6aX3dN5yG7dW8gN5cP6gM6yG7rQ4eX9rT8",
   "razorpay_account_id": "acc_Dhk2qDbmu6FwZH"
 }
 ```
 -------------------------------------------------------------------------------------------------------
 
 ### Get Access token using refresh token
-```java
+```C#
 JSONObject refreshTokenRequest = new JSONObject();
 refreshTokenRequest.Add("client_id","<YOUR_CLIENT_ID>");
 refreshTokenRequest.Add("client_secret","<YOUR_CLIENT_SECRET>");
-refreshTokenRequest.Add("refresh_token","def5020096e1c470c901d34cd60fa53abdaf3662sa0");
+refreshTokenRequest.Add("refresh_token","J7bVX5Ry8brnQ4sV7zA2dW8cP6aX3eW2cV3sZ4rT8dX");
 
 OAuthTokenClient oAuthTokenClient = oAuth.RefreshToken(refreshTokenRequest);
 ```
@@ -102,11 +108,11 @@ OAuthTokenClient oAuthTokenClient = oAuth.RefreshToken(refreshTokenRequest);
 -------------------------------------------------------------------------------------------------------
 
 ### Revoke a token
-```java
+```C#
 JSONObject revokeTokenRequest = new JSONObject();
 revokeTokenRequest.Add("client_id","<YOUR_CLIENT_ID>");
 revokeTokenRequest.Add("client_secret","<YOUR_CLIENT_SECRET>");
-revokeTokenRequest.Add("token","eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJKQTFwODVudE1ySEpoQSIsImp0aSI6IkpPZkd0aHFDTmhqQUhTIiwiaWF0IjoxNjUxMTI0NTU0LCJuYmYiOjE2NTExMjQ1NTQsInN1YiI6IiIsImV4cCI6MTY1ODk4Njk1MiwidXNlcl9pZCI6bnVsbCwibWVyY2hhbnRfaWQiOiJKOWpoSTdzZkM1S1V0NiIsInNjb3BlcyI6WyJyZWFkX3dyaXRlIl19.h1oL_Tik642Q18DdyEnIVziW1kgw6k09K8ALuI4uWQBH3jE4R8p1e6ysQq-Et4E_MZd7ADfC1W6kFwe3PXlkLC6emaZAKESZghbtTBM6RYnhieErAOcD7ytc0P8c75aNRlC6MWwlWaH20OFYuSay7iGFyw2jp4by4xDFlYweVLc");
+revokeTokenRequest.Add("token","eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IkVhZzBjYmNlMWE3ZTZkIn0.eyJhdWQiOiIzN2pPS3pWZlpqY2hhZ3YiLCJqdGkiOiJFYWcwY2JjZTFhN2U2ZCIsImlhdCI6MTY0NDU3NDAwOSwibmJmIjoxNjQ0NTc0MDA5LCJzdWIiOiJkZXZpY2VzIiwiZXhwIjoxNjQ0NTc3NjA5LCJ1c2VyX2lkIjoiZWRnZWxpc3QiLCJtZXJjaGFudF9pZCI6ImF0bGFzc2V0cyIsInNjb3BlcyI6WyJyZWFkX3VzZXIiXX0.VdE91z_Tm6MABosdSoswqZ2F7-e9QrCQL7Zy24UOnNhe2Y-5y8TGHoTcz5sfe5RvAHHtFv2vyLJ8sXs8foQj2I4pWbWjWSzID9C_RphW7M0M-8-tVd7bEDmwR3fbhAXS4VgQXNIsAmpfPHUXg-QhDqCnpNwLnv1BKrP94wtK85j2");
 revokeTokenRequest.Add("token_type_hint","access_token");
 
 OAuthTokenClient oAuthTokenClient = oAuth.RevokeToken(revokeTokenRequest);
