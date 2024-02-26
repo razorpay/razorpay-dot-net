@@ -1,5 +1,14 @@
 # Changelog
 
+## Version 3.1.1 - 2024-02-27
+##### feat: Added support for OAuth APIs and using access token for authentication mechanism.
+
+* Added Support for Oauth APIs
+* Added support for access token based authentication mechanism
+* Added support for onboarding signature generation
+* Updated Documentation
+
+
 ## Version 3.1.0 - 2023-10-31
   ##### feat: Added new API endpoints and implemented response feature in the Delete API.
 
