@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Razorpay</id>
-    <version>3.1.0</version>
+    <version>3.1.1</version>
     <authors>razorpay</authors>
     <owners>razorpay</owners>
     <licenseUrl>https://github.com/razorpay/razorpay-dot-net/blob/master/licence.txt</licenseUrl>
@@ -15,6 +15,7 @@
     <tags>Razorpay</tags>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="13.0.3" />
+      <dependency id="Portable.BouncyCastle" version="1.9.0" />
     </dependencies>
   </metadata>
   <files>
