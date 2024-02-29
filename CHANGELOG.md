@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 3.1.1 - 2024-02-27
+## Version 3.1.1 - 2024-02-29
 ##### feat: Added support for OAuth APIs and using access token for authentication mechanism.
 
 * Added Support for Oauth APIs

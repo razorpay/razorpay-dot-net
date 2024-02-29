@@ -115,9 +115,9 @@ client.addHeader(string,string);
 nuget install Newtonsoft.Json -Version 13.0.3 -OutputDirectory packages
 ```
 
-* Download the 'BouncyCastle' nuget package.
+* Download the 'Portable.BouncyCastle' nuget package.
 ```
-nuget install BouncyCastle -Version 1.8.9 -OutputDirectory packages
+nuget install Portable.BouncyCastle -Version 1.9.0 -OutputDirectory packages
 ```
 
 * Download the 'NUnit' nuget package.
@@ -134,21 +134,21 @@ mkdir bin
 * Compile the source code into a library  
 
 ```
-mcs -t:library -lib:"/usr/lib/mono/4.5" -r:"System.dll,System.Net.dll,System.Net.Http.dll,System.Core.dll,System.Xml.dll,System.Xml.Linq.dll,System.Core.dll,./packages/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll,./packages/BouncyCastle.1.8.9/lib/BouncyCastle.Crypto.dll" -out:"bin/RazorpayClient.dll" ./src/**/*.cs -lib:/usr/lib/mono/2.0
+mcs -t:library -lib:"/usr/lib/mono/4.5" -r:"System.dll,System.Net.dll,System.Net.Http.dll,System.Core.dll,System.Xml.dll,System.Xml.Linq.dll,System.Core.dll,./packages/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll,./packages/Portable.BouncyCastle.1.9.0/lib/net45/BouncyCastle.Crypto.dll" -out:"bin/RazorpayClient.dll" ./src/**/*.cs -lib:/usr/lib/mono/2.0
 ```
 
 * copy Dependency dll
 
 ```
 cp packages/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll ./bin
-cp packages/BouncyCastle.1.8.9/lib/BouncyCastle.Crypto.dll ./bin
+cp packages/Portable.BouncyCastle.1.9.0/lib/net45/BouncyCastle.Crypto.dll ./bin
 cp packages/NUnit.3.6.1/lib/net45/nunit.framework.dll ./bin
 ```
 
 * Compile test exe
 
 ```
-mcs -t:exe -lib:"/usr/lib/mono/4.5,./bin" -r:"RazorpayClient.dll,Newtonsoft.Json.dll,nunit.framework.dll" -out:"bin/RazorpayApiTest.exe" ./test/*.cs
+mcs -t:exe -lib:"/usr/lib/mono/4.5,./bin" -r:"RazorpayClient.dll,Newtonsoft.Json.dll,BouncyCastle.Crypto.dll,nunit.framework.dll" -out:"bin/RazorpayApiTest.exe" ./test/*.cs
 ```
 
 * Run Test exe  
