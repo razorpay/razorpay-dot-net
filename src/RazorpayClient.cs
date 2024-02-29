@@ -6,6 +6,7 @@ namespace Razorpay.Api
     {
         const string CurrentVersion = "3.0.2";
         protected const string DefaultBaseUrl = "https://api.razorpay.com";
+        public const string DefaultAuthUrl = "https://auth.razorpay.com";
 
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         protected static Dictionary<string, string> headers = new Dictionary<string, string>();
@@ -13,6 +14,7 @@ namespace Razorpay.Api
         private static string key = null;
         private static string secret = null;
         private static string baseUrl = null;
+        private static string accessToken = null;
         private Payment payment = null;
         private Order order = null;
         private Refund refund = null;
@@ -37,7 +39,13 @@ namespace Razorpay.Api
         private Account account = null;
         private Stakeholder stakeholder = null;
         private Webhook webhook = null;
-      
+        private OAuthTokenClient oAuthTokenClient = null;
+
+        public RazorpayClient(string accessToken)
+        {
+            RazorpayClient.AccessToken = accessToken;
+        }
+
         public RazorpayClient(string key, string secret)
         {
             RazorpayClient.Key = key;
@@ -89,6 +97,18 @@ namespace Razorpay.Api
             private set
             {
                 baseUrl = value;
+            }
+        }
+
+        public static string AccessToken
+        {
+            get
+            {
+                return accessToken;
+            }
+            private set
+            {
+                accessToken = value;
             }
         }
 
@@ -415,6 +435,18 @@ namespace Razorpay.Api
                     webhook = new Webhook();
                 }
                 return webhook;
+            }
+        }
+        
+        public OAuthTokenClient OAuthTokenClient
+        {
+            get
+            {
+                if (oAuthTokenClient == null)
+                {
+                    oAuthTokenClient = new OAuthTokenClient();
+                }
+                return oAuthTokenClient;
             }
         }
     }

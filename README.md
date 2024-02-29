@@ -22,9 +22,24 @@ else
 
 Usage
 -----
-### Initialize
+
+`RazorpayClient` can be instantiated via two ways:
+
+### Using Private Auth
+Instantiate `RazorpayClient` with `key_id` & `key_secret`. You can obtain the keys from the dashboard app https://dashboard.razorpay.com/#/app/keys
 ```C#
 RazorpayClient client = new RazorpayClient(key, secret); 
+```
+
+#### Add custom headers to request (optional)
+```C#
+client.addHeader(string,string);
+```
+
+### Using Access Token
+Instantiate `RazorpayClient` with `access_token`. The `access_token` can be obtained only in case if you are a platform partner. For more information, refer page - https://razorpay.com/docs/partners/platform/.
+```C#
+RazorpayClient client = new RazorpayClient(access_token); 
 ```
 
 #### Add custom headers to request (optional)
@@ -84,6 +99,8 @@ client.addHeader(string,string);
 - [Smart Collect](documents/virtualAccount.md)
 
 - [Webhook](documents/webhook.md)
+
+- [OAuth Token Client](documents/oAuthTokenClient.md)
 ---
 
 ## Development

@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>packages\Portable.BouncyCastle.1.9.0\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -153,6 +156,18 @@
     <Compile Include="..\src\HttpMethod.cs">
       <Link>HttpMethod.cs</Link>
     </Compile>
+    <Compile Include="..\src\OAuthTokenClient.cs" >
+      <Link>OAuthTokenClient.cs</Link>
+    </Compile> 
+    <Compile Include="..\src\PayloadValidator.cs" >
+      <Link>PayloadValidator.cs</Link>
+    </Compile> 
+    <Compile Include="..\src\ValidationConfig.cs" >
+      <Link>ValidationConfig.cs</Link>
+    </Compile> 
+    <Compile Include="..\src\ValidationType.cs" >
+      <Link>ValidationType.cs</Link>
+    </Compile> 
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

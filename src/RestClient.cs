@@ -15,9 +15,9 @@ namespace Razorpay.Api
             HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH
         };
 
-        public string MakeRequest(string relativeUrl, HttpMethod method, string data)
+        public string MakeRequest(string relativeUrl, HttpMethod method, string data, string host)
         {
-            HttpWebRequest request = createRequest(relativeUrl, method);
+            HttpWebRequest request = createRequest(relativeUrl, method, host);
 
             if (JsonifyInput.Contains(method) == true) 
             {
@@ -30,12 +30,27 @@ namespace Razorpay.Api
                 }
             }
 
-            return createResponse(request);
+            return createResponse(request, host);
         }
 
-        private HttpWebRequest createRequest(string relativeUrl, HttpMethod method)
+        private HttpWebRequest createRequest(string relativeUrl, HttpMethod method, string host)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(RazorpayClient.BaseUrl + relativeUrl);
+            string baseUrl;
+
+            switch (host)
+            {
+                case "API":
+                    baseUrl = RazorpayClient.BaseUrl;
+                    break;
+                case "AUTH":
+                    baseUrl = RazorpayClient.DefaultAuthUrl;
+                    break;
+                default:
+                    baseUrl = RazorpayClient.BaseUrl;
+                    break;
+            }
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(baseUrl + relativeUrl);
             request.Method = method.ToString();
             request.ContentLength = 0;
             request.ContentType = "application/json";
@@ -43,9 +58,16 @@ namespace Razorpay.Api
             string userAgent = string.Format("{0} {1}", RazorpayClient.Version, getAppDetailsUa());
             request.UserAgent = "razorpay-dot-net/" + userAgent;
 
-            string authString = string.Format("{0}:{1}", RazorpayClient.Key, RazorpayClient.Secret);
-            request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(
-                Encoding.UTF8.GetBytes(authString));
+            if (RazorpayClient.Key != null && RazorpayClient.Secret != null)
+            {
+                string authString = string.Format("{0}:{1}", RazorpayClient.Key, RazorpayClient.Secret);
+                request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(
+                    Encoding.UTF8.GetBytes(authString));
+            } 
+            else if (RazorpayClient.AccessToken != null)
+            {
+                request.Headers["Authorization"] = "Bearer " + RazorpayClient.AccessToken;
+            }
 
             foreach (KeyValuePair<string, string> header in RazorpayClient.Headers)
             {
@@ -81,7 +103,7 @@ namespace Razorpay.Api
             return appsDetailsUa;
         }
 
-        private string createResponse(HttpWebRequest request) 
+        private string createResponse(HttpWebRequest request, string host) 
         {
             var responseValue = string.Empty;
             HttpWebResponse response = null;
@@ -100,7 +122,7 @@ namespace Razorpay.Api
             {
                 if (response.StatusCode != HttpStatusCode.OK)
                 {
-                    HandleErrors(response, responseValue);
+                    HandleErrors(response, responseValue, host);
                 }
             }
 
@@ -122,7 +144,7 @@ namespace Razorpay.Api
             return responseValue;
         }
 
-        private void HandleErrors(HttpWebResponse webResponse, string response)
+        private void HandleErrors(HttpWebResponse webResponse, string response, string host)
         {
             int statusCode = (int)webResponse.StatusCode;
             dynamic data = null;
@@ -134,6 +156,18 @@ namespace Razorpay.Api
             {
                 data = JsonConvert.DeserializeObject(response);
                 errorCode = data["error"]["code"];
+                if (host.Equals("AUTH"))
+                {
+                    if (statusCode >= 400 && statusCode < 500)
+                    {
+                        errorCode = ErrorCodes.BAD_REQUEST_ERROR.ToString();
+                    }
+                    else if (statusCode >= 500)
+                    {
+                        errorCode = ErrorCodes.SERVER_ERROR.ToString();
+                    }
+                }
+                
                 Enum.Parse(typeof(ErrorCodes), errorCode);
                 description = data["error"]["description"];
                 field = data["error"]["field"];
