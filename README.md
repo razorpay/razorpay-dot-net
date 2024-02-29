@@ -134,14 +134,14 @@ mkdir bin
 * Compile the source code into a library  
 
 ```
-mcs -t:library -lib:"/usr/lib/mono/4.5" -r:"System.dll,System.Net.dll,System.Net.Http.dll,System.Core.dll,System.Xml.dll,System.Xml.Linq.dll,System.Core.dll,./packages/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll,./packages/Portable.BouncyCastle.1.9.0/lib/net45/BouncyCastle.Crypto.dll" -out:"bin/RazorpayClient.dll" ./src/**/*.cs -lib:/usr/lib/mono/2.0
+mcs -t:library -lib:"/usr/lib/mono/4.5" -r:"System.dll,System.Net.dll,System.Net.Http.dll,System.Core.dll,System.Xml.dll,System.Xml.Linq.dll,System.Core.dll,./packages/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll,./packages/Portable.BouncyCastle.1.9.0/lib/net40/BouncyCastle.Crypto.dll" -out:"bin/RazorpayClient.dll" ./src/**/*.cs -lib:/usr/lib/mono/2.0
 ```
 
 * copy Dependency dll
 
 ```
 cp packages/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll ./bin
-cp packages/Portable.BouncyCastle.1.9.0/lib/net45/BouncyCastle.Crypto.dll ./bin
+cp packages/Portable.BouncyCastle.1.9.0/lib/net40/BouncyCastle.Crypto.dll ./bin
 cp packages/NUnit.3.6.1/lib/net45/nunit.framework.dll ./bin
 ```
 
