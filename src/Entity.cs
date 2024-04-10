@@ -39,6 +39,7 @@ namespace Razorpay.Api
             {"stakeholder", "Razorpay.Api.Stakeholder"},
             {"webhook", "Razorpay.Api.Webhook"},
             {"oauthtokenclient", "Razorpay.Api.OAuthTokenClient"},
+            {"bank_account", "Razorpay.Api.BankAccount"},
         };
       
         private static List<HttpMethod> JsonifyInput = new List<HttpMethod>()
