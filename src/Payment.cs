@@ -232,6 +232,20 @@ namespace Razorpay.Api
                 return null;
             }
         }
+
+        public Payment ExpandedDetails(Dictionary<string, object> data)
+        {
+            string relativeUrl = string.Format("{0}/{1}/{2}", GetUrlVersion(), GetEntityUrl(), this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.GET, data);
+            if (entities != null && entities.Count > 0)
+            {
+                return (Payment)entities[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
 
