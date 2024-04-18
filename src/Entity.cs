@@ -15,6 +15,7 @@ namespace Razorpay.Api
             {"payment.downtime", "Razorpay.Api.Payment" },
             {"refund", "Razorpay.Api.Refund"},
             {"order", "Razorpay.Api.Order"},
+            {"order.fulfillment", "Razorpay.Api.Order"},
             {"customer", "Razorpay.Api.Customer"},
             {"invoice", "Razorpay.Api.Invoice"},
             {"token", "Razorpay.Api.Token"},
