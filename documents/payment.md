@@ -769,10 +769,10 @@ please refer this [doc](https://razorpay.com/docs/payments/third-party-validatio
 -------------------------------------------------------------------------------------------------------
 ### Fetch payment methods (Third party validation)
 
-```java
-RazorpayClient instance  = new RazorpayClient("key",""); // Use only razorpay key
+```C#
+RazorpayClient client  = new RazorpayClient("key",""); // Use only razorpay key
 
-Methods response = instance.payments.get("methods",null);
+Method methods = client.Method.Fetch();
 ```
 
 **Response:** <br>
