@@ -767,6 +767,18 @@ please refer this [doc](https://razorpay.com/docs/payments/third-party-validatio
 }
 ```
 -------------------------------------------------------------------------------------------------------
+### Fetch payment methods (Third party validation)
+
+```java
+RazorpayClient instance  = new RazorpayClient("key",""); // Use only razorpay key
+
+Methods response = instance.payments.get("methods",null);
+```
+
+**Response:** <br>
+please refer this [doc](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/methods-api/#fetch-payment-methods) for response
+
+-------------------------------------------------------------------------------------------------------
 
 ### Token IIN API
 
