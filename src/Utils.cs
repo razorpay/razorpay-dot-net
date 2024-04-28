@@ -3,7 +3,6 @@ using System.Text;
 using Razorpay.Api.Errors;
 using System.Collections.Generic;
 using System.Security.Cryptography;
-using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.Crypto.Engines;
 using Org.BouncyCastle.Crypto.Modes;
@@ -12,7 +11,7 @@ namespace Razorpay.Api
 {
     public class Utils
     {
-        public static void verifyPaymentSignature(Dictionary<string, string> attributes)
+        public static bool verifyPaymentSignature(Dictionary<string, string> attributes)
         {
             string expectedSignature = attributes["razorpay_signature"];
             string orderId = attributes["razorpay_order_id"];
@@ -22,10 +21,10 @@ namespace Razorpay.Api
 
             string secret = RazorpayClient.Secret;
 
-            verifySignature(payload, expectedSignature, secret);
+            return verifySignature(payload, expectedSignature, secret);
         }
 
-        public static void verifySubscriptionSignature(Dictionary<string, string> attributes)
+        public static bool verifySubscriptionSignature(Dictionary<string, string> attributes)
         {
             string expectedSignature = attributes["razorpay_signature"];
             string subscriptionId = attributes["razorpay_subscription_id"];
@@ -35,10 +34,10 @@ namespace Razorpay.Api
 
             string secret = RazorpayClient.Secret;
 
-            verifySignature(payload, expectedSignature, secret);
+            return verifySignature(payload, expectedSignature, secret);
         }
 
-        public static void verifyPaymentLinkSignature(Dictionary<string, string> attributes)
+        public static bool verifyPaymentLinkSignature(Dictionary<string, string> attributes)
         {
             string expectedSignature = attributes["razorpay_signature"];
             string paymentLinkStatus = attributes["payment_link_status"];
@@ -50,12 +49,12 @@ namespace Razorpay.Api
 
             string secret = RazorpayClient.Secret;
 
-            verifySignature(payload, expectedSignature, secret);
+            return verifySignature(payload, expectedSignature, secret);
         }
 
-        public static void verifyWebhookSignature(string payload, string expectedSignature, string secret)
+        public static bool verifyWebhookSignature(string payload, string expectedSignature, string secret)
         {
-            verifySignature(payload, expectedSignature, secret);
+            return verifySignature(payload, expectedSignature, secret);
         }
 
         public static long ToUnixTimestamp(DateTime inputTime)
@@ -65,7 +64,7 @@ namespace Razorpay.Api
             return (long)diff.TotalSeconds;
         }
 
-        private static void verifySignature(string payload, string expectedSignature, string secret)
+        private static bool verifySignature(string payload, string expectedSignature, string secret)
         {
             string actualSignature = getActualSignature(payload, secret);
 
@@ -75,6 +74,8 @@ namespace Razorpay.Api
             {
                 throw new SignatureVerificationError("Invalid signature passed");
             }
+
+            return verified;
         }
 
         private static string getActualSignature(string payload, string secret)
