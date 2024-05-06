@@ -93,7 +93,7 @@ Dispute dispute = client.Dispute.Fetch(disputeId);
 }
 ```
 -------------------------------------------------------------------------------------------------------
-### Accpet a Dispute
+### Accept a Dispute
 
 ```C#
 String disputeId = "disp_0000000000000";
