@@ -394,7 +394,7 @@ Settlement settlement = client.Settlement.FetchDemandSettlement(settlementId, pa
 
 | Name          | Type   | Description                       |
 |---------------|--------|-----------------------------------|
-| settlementId (mandatory) | string | Settlement Id of the On-demand settlement|
+| settlementId* | string | Settlement Id of the On-demand settlement|
 | expand[] | string | Pass this if you want to fetch payout details as part of the response for a specific instant settlements. Possible value is `ondemand_payouts`|
 
 **Response:**
