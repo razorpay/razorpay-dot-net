@@ -162,19 +162,19 @@ string customerId = "cust_N5mywh91sXB69O";
 
 Dictionary<string, object> customerRequest = new Dictionary<string, object>();
 customerRequest.Add("ifsc_code", "UTIB0000194");
-customerRequest.Add("account_number", "916010082985661");
+customerRequest.Add("account_number", "9160100000000001");
 customerRequest.Add("beneficiary_name", "Pratheek");
 customerRequest.Add("beneficiary_address1", "address 1");
 customerRequest.Add("beneficiary_address2", "address 2");
 customerRequest.Add("beneficiary_address3", "address 3");
 customerRequest.Add("beneficiary_address4", "address 4");
 customerRequest.Add("beneficiary_email", "random@email.com");
-customerRequest.Add("beneficiary_mobile", "8762489310");
+customerRequest.Add("beneficiary_mobile", "9999999999");
 customerRequest.Add("beneficiary_city", "Bangalore");
 customerRequest.Add("beneficiary_state", "KA");
 customerRequest.Add("beneficiary_country", "IN");
 
-BankAccount refund = client.Customer.Fetch(customerId).DeleteBankAccount(customerRequest);
+BankAccount refund = client.Customer.Fetch(customerId).AddBankAccount(customerRequest);
 ```
 
 **Parameters:**
