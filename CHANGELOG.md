@@ -1,5 +1,12 @@
 # Changelog
 
+## Version 3.1.2 - 2024-05-10
+##### feat: Added new API endpoints
+- Added support for `AddBankAccount`, `DeleteBankAccount`, `RequestEligibilityCheck` & `FetchEligibility` on customer
+- Added support for [Dispute](https://razorpay.com/docs/api/disputes/)
+- Added support for `ViewRtoReview` & `EditFulfillment` on order
+- Added support for fetch all IINs Supporting native otps & fetch all IINs with business sub-type using `All`
+
 ## Version 3.1.1 - 2024-02-29
 ##### feat: Added support for OAuth APIs and using access token for authentication mechanism.
 
