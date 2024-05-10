@@ -117,7 +117,6 @@ namespace Razorpay.Api
         public Customer FetchEligibility(string eligiblityId)
         {
             string relativeUrl = string.Format("{0}/{1}/eligibility/{2}", GetUrlVersion(), GetEntityUrl(), eligiblityId);
-            Console.WriteLine(relativeUrl);
             List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null);
             if (entities != null && entities.Count > 0)
             {
