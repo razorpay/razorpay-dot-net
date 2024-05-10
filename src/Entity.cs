@@ -77,7 +77,6 @@ namespace Razorpay.Api
 
         protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options, string host)
         {
-            Console.WriteLine(relativeUrl);
             client = new RestClient();
             string postData = string.Empty;
 
