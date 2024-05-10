@@ -70,5 +70,34 @@ namespace Razorpay.Api
                 return null;
             }
         }
+
+        public Order ViewRtoReview(Dictionary<string, object> data=null)
+        {
+            string relativeUrl = string.Format("{0}/{1}/{2}/rto_review", GetUrlVersion(), GetEntityUrl(), this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
+            if (entities != null && entities.Count > 0)
+            {
+                return (Order)entities[0];
+            }
+            else
+            {
+                return null;
+            }            
+        }
+
+        
+        public Order EditFulFillment(Dictionary<string, object> data)
+        {
+            string relativeUrl = string.Format("{0}/{1}/{2}/fulfillment", GetUrlVersion(), GetEntityUrl(), this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
+            if (entities != null && entities.Count > 0)
+            {
+                return (Order)entities[0];
+            }
+            else
+            {
+                return null;
+            }            
+        }
     }
 }

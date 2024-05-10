@@ -264,7 +264,78 @@ Order order = client.Order.Fetch(orderId).Edit(orderRequest);
 }
 ```
 -------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------
 
+### View RTO/Risk Reasons
+
+```C#
+string orderId = "order_DaaS6LOUAASb7Y";
+
+Order order = client.Order.Fetch(orderId).ViewRtoReview();
+```
+**Parameters**
+
+| Name     | Type   | Description                                                             |
+|----------|--------|-------------------------------------------------------------------------|
+| orderId* | string | The unique identifier of an order to access the rto_review information. |
+
+**Response:**
+```json
+{
+  "risk_tier": "high",
+  "rto_reasons": [
+    {
+      "reason": "short_shipping_address",
+      "description": "Short shipping address",
+      "bucket": "address"
+    },
+    {
+      "reason": "address_pincode_state_mismatch",
+      "description": "Incorrect pincode state entered",
+      "bucket": "address"
+    }
+  ]
+}
+```
+-------------------------------------------------------------------------------------------------------
+
+### Update the Fulfillment Details
+
+```C#
+string orderId = "order_DaaS6LOUAASb7Y";
+
+Dictionary<string, object> param = new Dictionary<string, object>();
+Dictionary<string, object> shipping = new Dictionary<string, object>();
+param.Add("payment_method", "upi");
+shipping.Add("waybill","12345678");
+shipping.Add("status","rto");
+shipping.Add("provider","Bluedart");
+param.Add("shipping", shipping);
+
+Order order = client.Order.Fetch(orderId).EditFulFillment(param);
+```
+**Parameters**
+
+| Name           | Type   | Description                                                                                                                                                                                   |
+|----------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| orderId*       | string | The unique identifier of an order to access the fulfillment information.                                                                                                                      |
+| payment_method | string | Payment Method opted by the customer to complete the payment. Possible values is `upi`, `card`, `wallet`, `netbanking`, `cod`, `emi`, `cardless_emi`, `paylater`, `recurring`, `other`.       |
+| shipping       | object | Contains the shipping data. [here](https://razorpay.com/docs/payments/magic-checkout/rto-intelligence/#step-3-update-the-fulfillment-details) are supported                                   |
+
+**Response:**
+```json
+{
+  "entity": "order.fulfillment",
+  "order_id": "EKwxwAgItXXXX",
+  "payment_method": "upi",
+  "shipping": {
+    "waybill": "123456789",
+    "status": "rto",
+    "provider": "Bluedart"
+  }
+}
+```
+-------------------------------------------------------------------------------------------------------
 
 **PN: * indicates mandatory fields**
 <br>
