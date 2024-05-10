@@ -39,6 +39,7 @@ namespace Razorpay.Api
         private Account account = null;
         private Stakeholder stakeholder = null;
         private Webhook webhook = null;
+        private BankAccount bankaccount = null;
         private OAuthTokenClient oAuthTokenClient = null;
         private Dispute dispute = null;
 
@@ -460,6 +461,18 @@ namespace Razorpay.Api
                     dispute = new Dispute();
                 }
                 return dispute;
+            }
+        }  
+
+        public BankAccount BankAccount
+        {
+            get
+            {
+                if (bankaccount == null)
+                {
+                    bankaccount = new BankAccount();
+                }
+                return bankaccount;
             }
         }
     }

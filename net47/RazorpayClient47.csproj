@@ -158,6 +158,9 @@
     <Compile Include="..\src\Dispute.cs">
       <Link>Dispute.cs</Link>
     </Compile>
+    <Compile Include="..\src\BankAccount.cs">
+      <Link>BankAccount.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="..\src\HttpMethod.cs">
       <Link>HttpMethod.cs</Link>

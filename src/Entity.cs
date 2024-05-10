@@ -40,6 +40,7 @@ namespace Razorpay.Api
             {"webhook", "Razorpay.Api.Webhook"},
             {"oauthtokenclient", "Razorpay.Api.OAuthTokenClient"},
             {"dispute", "Razorpay.Api.Dispute"},
+            {"bank_account", "Razorpay.Api.BankAccount"},
         };
       
         private static List<HttpMethod> JsonifyInput = new List<HttpMethod>()
@@ -77,7 +78,6 @@ namespace Razorpay.Api
 
         protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options, string host)
         {
-            Console.WriteLine(relativeUrl);
             client = new RestClient();
             string postData = string.Empty;
 
