@@ -51,10 +51,10 @@ namespace Razorpay.Api
             return items;
         }
 
-        public Settlement FetchDemandSettlement(string id)
+        public Settlement FetchDemandSettlement(string id, Dictionary<string, object> option = null)
         {
             string relativeUrl = string.Format("{0}/{1}/ondemand/{2}", GetUrlVersion(), GetEntityUrl(), id);
-            List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.GET, option);
             return (Settlement)entities[0];
         }
     }
