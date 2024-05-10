@@ -379,6 +379,69 @@ Settlement settlement = client.Settlement.FetchDemandSettlement(settlementId);
 
 -------------------------------------------------------------------------------------------------------
 
+### Fetch Instant Settlement With ID With Payout Details
+
+```C#
+Dictionary<string, object> param = new Dictionary<string, object>();
+param.Add("expand[]", "ondemand_payouts")
+
+string settlementId = "setlodp_Z6t7VFTb9xHeOs";
+
+Settlement settlement = client.Settlement.FetchDemandSettlement(settlementId, param);
+```
+
+**Parameters:**
+
+| Name          | Type   | Description                       |
+|---------------|--------|-----------------------------------|
+| settlementId* | string | Settlement Id of the On-demand settlement|
+| expand[] | string | Pass this if you want to fetch payout details as part of the response for a specific instant settlements. Possible value is `ondemand_payouts`|
+
+**Response:**
+
+```json
+{
+  "id": "setlod_FNj7g2YS5J67Rz",
+  "entity": "settlement.ondemand",
+  "amount_requested": 200000,
+  "amount_settled": 199410,
+  "amount_pending": 0,
+  "amount_reversed": 0,
+  "fees": 590,
+  "tax": 90,
+  "currency": "INR",
+  "settle_full_balance": false,
+  "status": "processed",
+  "description": "Need this to buy stock.",
+  "notes": {
+    "notes_key_1": "Tea, Earl Grey, Hot",
+    "notes_key_2": "Tea, Earl Grey, decaf."
+  },
+  "created_at": 1596771429,
+  "ondemand_payouts": {
+    "entity": "collection",
+    "count": 1,
+    "items": [
+      {
+        "id": "setlodp_FNj7g2cbvw8ueO",
+        "entity": "settlement.ondemand_payout",
+        "initiated_at": 1596771430,
+        "processed_at": 1596778752,
+        "reversed_at": null,
+        "amount": 200000,
+        "amount_settled": 199410,
+        "fees": 590,
+        "tax": 90,
+        "utr": "022011173948",
+        "status": "processed",
+        "created_at": 1596771429
+      }
+    ]
+  }
+}
+```
+-------------------------------------------------------------------------------------------------------
+
 **PN: * indicates mandatory fields**
 <br>
 <br>

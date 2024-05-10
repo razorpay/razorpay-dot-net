@@ -78,5 +78,54 @@ namespace Razorpay.Api
             }
             return customers;
         }
+
+        public BankAccount AddBankAccount(Dictionary<string, object> data)
+        {
+            string relativeUrl = string.Format("{0}/{1}/{2}/bank_account", GetUrlVersion(), GetEntityUrl(), this["id"]);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
+            return (BankAccount)entities[0];
+        }
+
+        public Customer DeleteBankAccount(string bankAccountId)
+        {
+            string relativeUrl = string.Format("{0}/{1}/{2}/bank_account/{3}", GetUrlVersion(), GetEntityUrl(), this["id"], bankAccountId);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.DELETE, null);
+            if (entities != null && entities.Count > 0)
+            {
+                return (Customer)entities[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Customer RequestEligibilityCheck(Dictionary<string, object> data)
+        {
+            string relativeUrl = string.Format("{0}/{1}/eligibility", GetUrlVersion(), GetEntityUrl());
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
+            if (entities != null && entities.Count > 0)
+            {
+                return (Customer)entities[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Customer FetchEligibility(string eligiblityId)
+        {
+            string relativeUrl = string.Format("{0}/{1}/eligibility/{2}", GetUrlVersion(), GetEntityUrl(), eligiblityId);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null);
+            if (entities != null && entities.Count > 0)
+            {
+                return (Customer)entities[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }
