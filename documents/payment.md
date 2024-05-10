@@ -767,6 +767,18 @@ please refer this [doc](https://razorpay.com/docs/payments/third-party-validatio
 }
 ```
 -------------------------------------------------------------------------------------------------------
+### Fetch payment methods (Third party validation)
+
+```C#
+RazorpayClient client  = new RazorpayClient("key",""); // Use only razorpay key
+
+Method methods = client.Method.Fetch();
+```
+
+**Response:** <br>
+please refer this [doc](https://razorpay.com/docs/payments/third-party-validation/s2s-integration/methods-api/#fetch-payment-methods) for response
+
+-------------------------------------------------------------------------------------------------------
 
 ### Token IIN API
 

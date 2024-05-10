@@ -41,6 +41,7 @@ namespace Razorpay.Api
         private Webhook webhook = null;
         private BankAccount bankaccount = null;
         private OAuthTokenClient oAuthTokenClient = null;
+        private Method method = null;
         private Dispute dispute = null;
 
         public RazorpayClient(string accessToken)
@@ -451,6 +452,18 @@ namespace Razorpay.Api
                 return oAuthTokenClient;
             }
         }
+
+        public Method Method
+        {
+            get
+            {
+                if (method == null)
+                {
+                    method = new Method();
+                }
+                return method;
+            }
+        }   
 
         public Dispute Dispute
         {

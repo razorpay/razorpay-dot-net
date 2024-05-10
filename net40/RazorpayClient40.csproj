@@ -152,6 +152,9 @@
     <Compile Include="..\src\Webhook.cs">
       <Link>Webhook.cs</Link>
     </Compile>
+    <Compile Include="..\src\Method.cs">
+      <Link>Method.cs</Link>
+    </Compile>
     <Compile Include="..\src\Dispute.cs">
       <Link>Dispute.cs</Link>
     </Compile>
