@@ -41,7 +41,6 @@ namespace Razorpay.Api
         public Dispute Accept(Dictionary<string, object> data = null)
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/accept", GetUrlVersion(), GetEntityUrl(), this["id"]);
-            Console.WriteLine(relativeUrl);
             List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data);
             return (Dispute)entities[0];
         }
