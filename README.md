@@ -101,6 +101,8 @@ client.addHeader(string,string);
 - [Webhook](documents/webhook.md)
 
 - [OAuth Token Client](documents/oAuthTokenClient.md)
+
+- [Dispute](documents/dispute.md)
 ---
 
 ## Development
