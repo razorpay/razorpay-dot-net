@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Razorpay</id>
-    <version>3.1.2</version>
+    <version>3.1.3</version>
     <authors>razorpay</authors>
     <owners>razorpay</owners>
     <licenseUrl>https://github.com/razorpay/razorpay-dot-net/blob/master/licence.txt</licenseUrl>
@@ -22,5 +22,6 @@
     <file src="net40/bin/Release/Razorpay.dll" target="lib/net40/Razorpay.dll" />
     <file src="net45/bin/Release/Razorpay.dll" target="lib/net45/Razorpay.dll" />
     <file src="net47/bin/Release/Razorpay.dll" target="lib/net47/Razorpay.dll" />
+	  <file src="net48/bin/Release/Razorpay.dll" target="lib/net48/Razorpay.dll" />
   </files>
 </package>
