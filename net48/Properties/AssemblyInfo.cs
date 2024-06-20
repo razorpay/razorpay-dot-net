@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Razorpay SDK for .Net")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Razorpay Software Private Limited")]
-[assembly: AssemblyProduct("RazorpayClient48")]
+[assembly: AssemblyProduct("Razorpay.API")]
 [assembly: AssemblyCopyright("Copyright © 2015 - 2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
