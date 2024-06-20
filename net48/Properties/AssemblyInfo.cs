@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RazorpayClient48")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Razorpay")]
+[assembly: AssemblyDescription("Razorpay SDK for .Net")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Razorpay Software Private Limited")]
 [assembly: AssemblyProduct("RazorpayClient48")]
-[assembly: AssemblyCopyright("Copyright ©  2024")]
+[assembly: AssemblyCopyright("Copyright © 2015 - 2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
