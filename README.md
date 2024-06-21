@@ -18,7 +18,7 @@ nuget install Razorpay
 
 else  
 * Download Nuget package from [here](https://www.nuget.org/packages/Razorpay)
-* Package supports only .Net 4.0 and .net 4.7, Add the required version as reference to your project.
+* Package supports only .Net 4.0 and .net 4.8, Add the required version as reference to your project.
 
 Usage
 -----
