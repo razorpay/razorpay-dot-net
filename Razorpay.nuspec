@@ -22,6 +22,6 @@
     <file src="net40/bin/Release/Razorpay.dll" target="lib/net40/Razorpay.dll" />
     <file src="net45/bin/Release/Razorpay.dll" target="lib/net45/Razorpay.dll" />
     <file src="net47/bin/Release/Razorpay.dll" target="lib/net47/Razorpay.dll" />
-	  <file src="net48/bin/Release/Razorpay.dll" target="lib/net48/Razorpay.dll" />
+    <file src="net48/bin/Release/Razorpay.dll" target="lib/net48/Razorpay.dll" />
   </files>
 </package>
