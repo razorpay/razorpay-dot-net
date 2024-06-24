@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 3.1.3 - 2024-07-24
+##### feat: Added Support for .net4.8
+
 ## Version 3.1.2 - 2024-05-10
 ##### feat: Added new API endpoints
 - Added support for `AddBankAccount`, `DeleteBankAccount`, `RequestEligibilityCheck` & `FetchEligibility` on customer
