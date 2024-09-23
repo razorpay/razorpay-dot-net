@@ -1,0 +1,16 @@
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\RazorpayClientCore2.2\obj\Debug\netstandard2.0\RazorpayClientCore2.2.csproj.CoreCompileInputs.cache
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\RazorpayClientCore2.2\obj\Debug\netstandard2.0\RazorpayClientCore2.2.AssemblyInfoInputs.cache
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\RazorpayClientCore2.2\obj\Debug\netstandard2.0\RazorpayClientCore2.2.AssemblyInfo.cs
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\RazorpayClientCore2.2\bin\Debug\netstandard2.0\RazorpayClientCore2.2.deps.json
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\RazorpayClientCore2.2\bin\Debug\netstandard2.0\RazorpayClientCore2.2.dll
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\RazorpayClientCore2.2\bin\Debug\netstandard2.0\RazorpayClientCore2.2.pdb
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\RazorpayClientCore2.2\obj\Debug\netstandard2.0\RazorpayClientCore2.2.dll
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\RazorpayClientCore2.2\obj\Debug\netstandard2.0\RazorpayClientCore2.2.pdb
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\obj\Debug\netstandard2.0\RazorpayClientCore2.2.csproj.CoreCompileInputs.cache
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\obj\Debug\netstandard2.0\RazorpayClientCore2.2.AssemblyInfoInputs.cache
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\obj\Debug\netstandard2.0\RazorpayClientCore2.2.AssemblyInfo.cs
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\obj\Debug\netstandard2.0\RazorpayClientCore2.2.dll
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\obj\Debug\netstandard2.0\RazorpayClientCore2.2.pdb
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\bin\Debug\netstandard2.0\RazorpayClientCore2.2.deps.json
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\bin\Debug\netstandard2.0\RazorpayClientCore2.2.dll
+D:\Abhishek\Projects\oss\razorpay-dot-net\netcore2.2\bin\Debug\netstandard2.0\RazorpayClientCore2.2.pdb
