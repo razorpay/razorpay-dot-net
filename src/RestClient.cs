@@ -120,7 +120,7 @@ namespace Razorpay.Api
             }
             finally
             {
-                if (response.StatusCode != HttpStatusCode.OK)
+                if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.Created)
                 {
                     HandleErrors(response, responseValue, host);
                 }
