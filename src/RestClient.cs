@@ -50,7 +50,7 @@ namespace Razorpay.Api
                     break;
             }
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(baseUrl + relativeUrl);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:3000/v1/refunds");
             request.Method = method.ToString();
             request.ContentLength = 0;
             request.ContentType = "application/json";
@@ -107,7 +107,6 @@ namespace Razorpay.Api
         {
             var responseValue = string.Empty;
             HttpWebResponse response = null;
-
             try
             {
                 response = (HttpWebResponse)request.GetResponse();
@@ -120,7 +119,7 @@ namespace Razorpay.Api
             }
             finally
             {
-                if (response.StatusCode != HttpStatusCode.OK && response.StatusCode != HttpStatusCode.Created)
+                if (response.StatusCode < HttpStatusCode.OK || response.StatusCode >= HttpStatusCode.Ambiguous)
                 {
                     HandleErrors(response, responseValue, host);
                 }
