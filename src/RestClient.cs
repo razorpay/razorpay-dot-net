@@ -50,7 +50,7 @@ namespace Razorpay.Api
                     break;
             }
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:3000/v1/refunds");
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(baseUrl + relativeUrl);
             request.Method = method.ToString();
             request.ContentLength = 0;
             request.ContentType = "application/json";
