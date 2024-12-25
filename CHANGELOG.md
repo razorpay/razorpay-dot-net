@@ -1,5 +1,8 @@
 # Changelog
 
+## Version 3.1.4 - 2024-12-26
+##### bugfix: Adjusted HTTP response handling to validate success using the range 200 < 300, ensuring proper handling of all 2xx success codes.
+
 ## Version 3.1.3 - 2024-07-24
 ##### feat: Added Support for .net4.8
 
