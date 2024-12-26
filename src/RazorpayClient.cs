@@ -4,7 +4,7 @@ namespace Razorpay.Api
 {
     public class RazorpayClient
     {
-        const string CurrentVersion = "3.1.3";
+        const string CurrentVersion = "3.1.4";
         protected const string DefaultBaseUrl = "https://api.razorpay.com";
         public const string DefaultAuthUrl = "https://auth.razorpay.com";
 
