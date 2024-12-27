@@ -107,7 +107,6 @@ namespace Razorpay.Api
         {
             var responseValue = string.Empty;
             HttpWebResponse response = null;
-
             try
             {
                 response = (HttpWebResponse)request.GetResponse();
@@ -120,7 +119,7 @@ namespace Razorpay.Api
             }
             finally
             {
-                if (response.StatusCode != HttpStatusCode.OK)
+                if (response.StatusCode < HttpStatusCode.OK || response.StatusCode >= HttpStatusCode.Ambiguous)
                 {
                     HandleErrors(response, responseValue, host);
                 }

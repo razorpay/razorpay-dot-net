@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Razorpay</id>
-    <version>3.1.3</version>
+    <version>3.1.4</version>
     <authors>razorpay</authors>
     <owners>razorpay</owners>
     <licenseUrl>https://github.com/razorpay/razorpay-dot-net/blob/master/licence.txt</licenseUrl>
