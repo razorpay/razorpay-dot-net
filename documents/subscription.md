@@ -7,7 +7,7 @@ Dictionary<string, object> subscriptionRequest = new Dictionary<string, object>(
 subscriptionRequest.Add("plan_id", "plan_Z6t7VFTb9xHeOs");
 subscriptionRequest.Add("total_count", 6);
 subscriptionRequest.Add("quantity", 1);
-subscriptionRequest.Add("customer_notify", 1);
+subscriptionRequest.Add("customer_notify", true);
 subscriptionRequest.Add("start_at", 1580453311);
 subscriptionRequest.Add("expire_by", 1580626111);
 Dictionary<string, object> linesItem = new Dictionary<string, object>();
@@ -82,7 +82,7 @@ Dictionary<string, object> subscriptionRequest = new Dictionary<string, object>(
 subscriptionRequest.Add("plan_id", "plan_Z6t7VFTb9xHeOs");
 subscriptionRequest.Add("total_count", 12);
 subscriptionRequest.Add("quantity", 1);
-subscriptionRequest.Add("customer_notify", 1);
+subscriptionRequest.Add("customer_notify", true);
 subscriptionRequest.Add("start_at", 1580453311);
 subscriptionRequest.Add("expire_by", 1580626111);
 List<Dictionary<string, object>> addons = new List<Dictionary<string, object>>();
@@ -119,7 +119,7 @@ Subscription subscription = client.Subscription.Create(subscriptionRequest);
 | expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
 | addons    | object | Object that contains details of any upfront amount you want to collect as part of the authorization transaction. |
 | notes          | object | Notes you can enter for the contact for future reference.   |
-| notify_info          | object | The customer's email and phone number to which notifications are to be sent. (PN: Use this object only if you have set the `customer_notify` parameter to 1. That is, Razorpay sends notifications to the customer.)  |
+| notify_info          | object | The customer's email and phone number to which notifications are to be sent. (PN: Use this object only if you have set the `customer_notify` parameter to true. That is, Razorpay sends notifications to the customer.)  |
 | offer_id   | string | The unique identifier of the offer that is linked to the subscription. |
 
 **Response:**
@@ -272,7 +272,7 @@ Subscription subscription = client.Subscription.Fetch(subscriptionId);
 String subscriptionId = "sub_00000000000001";
 
 Dictionary<string, object> param = new Dictionary<string, object>();
-param.Add("cancel_at_cycle_end", 1);
+param.Add("cancel_at_cycle_end", true);
 
 Subscription subscription = client.Subscription.Fetch(subscriptionId).Cancel(param);
 ```
@@ -282,7 +282,7 @@ Subscription subscription = client.Subscription.Fetch(subscriptionId).Cancel(par
 | Name  | Type      | Description                                      |
 |-------|-----------|--------------------------------------------------|
 | subscriptionId (mandatory)  | string | The id of the subscription to be cancelled  |
-| cancel_at_cycle_end  | boolean | Possible values:<br>0 (default): Cancel the subscription immediately. <br> 1: Cancel the subscription at the end of the current billing cycle.  |
+| cancel_at_cycle_end  | boolean | Possible values:<br>false (default): Cancel the subscription immediately. <br> true: Cancel the subscription at the end of the current billing cycle.  |
 
 **Response:**
 ```json
@@ -332,7 +332,7 @@ param.Add("quantity",5);
 param.Add("remaining_count",5);
 param.Add("start_at",1496000432);
 param.Add("schedule_change_at","now");
-param.Add("customer_notify",1);
+param.Add("customer_notify", true);
  
 Subscription subscription = client.Subscription.Fetch(subscriptionId).Edit(param);
 ```

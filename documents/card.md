@@ -6,7 +6,7 @@ Dictionary<string, object> customerRequest = new Dictionary<string, object>();
 customerRequest.Add("name", "Gaurav Kumar");
 customerRequest.Add("contact", "9123456780");
 customerRequest.Add("email", "gaurav.kumar@example.com");
-customerRequest.Add("fail_existing", "0");
+customerRequest.Add("fail_existing", true);
 Dictionary<string, object> notes = new Dictionary<string, object>();
 notes.Add("notes_key_1", "Tea, Earl Grey, Hot");
 notes.Add("notes_key_2", "Tea, Earl Grey… decaf.");
@@ -22,7 +22,7 @@ Customer customer = client.Customer.Create(customerRequest);
 | name (mandatory)          | string      | Name of the customer                        |
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
-| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `0` or `1`|
+| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `true` or `false`|
 | notes         | object      | A key-value pair                            |
 
 **Response:**
@@ -126,8 +126,8 @@ subscriptionRegistration.Add("max_amount", 500);
 subscriptionRegistration.Add("expire_at", 1609423824);
 registrationLinkRequest.Add("subscription_registration", subscriptionRegistration);
 registrationLinkRequest.Add("receipt", "Receipt No. #18d");
-registrationLinkRequest.Add("email_notify", 1);
-registrationLinkRequest.Add("sms_notify", 1);
+registrationLinkRequest.Add("email_notify", true);
+registrationLinkRequest.Add("sms_notify", true);
 registrationLinkRequest.Add("expire_by", 1580479824);
 Dictionary<string, object> notes = new Dictionary<string, object>();
 notes.Add("notes_key_1", "Tea, Earl Grey, Hot");
@@ -148,8 +148,8 @@ Invoice invoice = client.Invoice.CreateRegistrationLink(registrationLinkRequest)
 | description (mandatory)  | string      | A brief description of the payment.   |
 | subscription_registration   | object  | All keys listed [here](https://razorpay.com/docs/api/recurring-payments/cards/authorization-transaction/#121-create-a-registration-link) are supported  |
 | receipt      | string  | Your system order reference id.  |
-| sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : 1)  |
-| email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
+| sms_notify  | boolean  | SMS notifications are to be sent by Razorpay (default : true)  |
+| email_notify | boolean  | Email notifications are to be sent by Razorpay (default : true)  |
 | expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
 | notes | array  | A key-value pair  |
 
@@ -288,7 +288,7 @@ paymentRequest.Add("currency", "INR");
 paymentRequest.Add("order_id", "order_MZ35KPxZaqxfXq");
 paymentRequest.Add("customer_id", "cust_KUyah9o60OPhfj");
 paymentRequest.Add("token", "token_MZ37MsnhLNH4tN");
-paymentRequest.Add("recurring", 1);
+paymentRequest.Add("recurring", true);
 paymentRequest.Add("description", "Creating recurring payment for Gaurav Kumar");
 Dictionary<string, object> notes = new Dictionary<string, object>();
 notes.Add("notes_key_1", "Tea, Earl Grey, Hot");
@@ -308,7 +308,7 @@ Payment payment = client.Payment.CreateRecurringPayment(paymentRequest);
 | orderId (mandatory)   | string      | The id of the order to be fetched |
 | customerId (mandatory)   | string      | The id of the customer to be fetched |
 | tokenId (mandatory)   | string      | The id of the token to be fetched |
-| recurring (mandatory)   | boolean      | Possible values is `0` or `1` |
+| recurring (mandatory)   | boolean      | Possible values is `true` or `false` |
 | description  | string      | A brief description of the payment.   |
 | notes | object  | A key-value pair  |
 

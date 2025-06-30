@@ -7,7 +7,7 @@ Dictionary<string, object> customerRequest = new Dictionary<string, object>();
 customerRequest.Add("name", "Gaurav Kumar");
 customerRequest.Add("contact", "9123456780");
 customerRequest.Add("email", "gaurav.kumar@example.com");
-customerRequest.Add("fail_existing", "0");
+customerRequest.Add("fail_existing", true);
 customerRequest.Add("gstin", "29XAbbA4369J1PA");
 Dictionary<string, object> notes = new Dictionary<string, object>();
 notes.Add("notes_key_1", "Tea, Earl Grey, Hot");
@@ -24,7 +24,7 @@ Customer customer = client.Customer.Create(customerRequest);
 | name (mandatory)          | string      | Name of the customer                        |
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
-| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `0` or `1`|
+| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `true` or `false`|
 | gstin         | string      | Customer's GST number, if available. For example, 29XAbbA4369J1PA  |
 | notes         | object      | A key-value pair                            |
 
