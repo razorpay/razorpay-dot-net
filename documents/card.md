@@ -6,7 +6,7 @@ Dictionary<string, object> customerRequest = new Dictionary<string, object>();
 customerRequest.Add("name", "Gaurav Kumar");
 customerRequest.Add("contact", "9123456780");
 customerRequest.Add("email", "gaurav.kumar@example.com");
-customerRequest.Add("fail_existing", true);
+customerRequest.Add("fail_existing", "1");
 Dictionary<string, object> notes = new Dictionary<string, object>();
 notes.Add("notes_key_1", "Tea, Earl Grey, Hot");
 notes.Add("notes_key_2", "Tea, Earl Grey… decaf.");
@@ -22,7 +22,7 @@ Customer customer = client.Customer.Create(customerRequest);
 | name (mandatory)          | string      | Name of the customer                        |
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
-| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `true` or `false`|
+| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `1` or `0`|
 | notes         | object      | A key-value pair                            |
 
 **Response:**
