@@ -469,7 +469,7 @@ String paymentId = "pay_EAdwQDe4JrhOFX";
 
 Dictionary<string, object> param = new Dictionary<string, object>();
 param.Add("amount",100);
-param.Add("reverse_all",1);
+param.Add("reverse_all", true);
 
 Refund transfer = client.Payment.Fetch("pay_MZS53duPD7FNd1").Refund(param);
 ```
@@ -480,7 +480,7 @@ Refund transfer = client.Payment.Fetch("pay_MZS53duPD7FNd1").Refund(param);
 |-------------|-------------|---------------------------------------------|
 | paymentId (mandatory)  | string      | The id of the payment to be fetched  |
 | amount (mandatory)     | integer      | The amount to be captured (should be equal to the authorized amount, in paise) |
-| reverse_all | boolean    | Reverses transfer made to a linked account. Possible values:<br> * `1` - Reverses transfer made to a linked account.<br>* `0` - Does not reverse transfer made to a linked account.|
+| reverse_all | boolean    | Reverses transfer made to a linked account. Possible values:<br> * `true` - Reverses transfer made to a linked account.<br>* `false` - Does not reverse transfer made to a linked account.|
 
 **Response:**
 ```json
@@ -670,7 +670,7 @@ Transfer transfer = client.Transfer.Fetch(transferId).Edit(transferRequest);
 | Name          | Type    | Description                                 |
 |---------------|---------|---------------------------------------------|
 | transferId (mandatory)   | string      | The id of the transfer to be fetched  |
-| on_hold (mandatory)   | boolean      | Possible values is `0` or `1`  |
+| on_hold (mandatory)   | boolean      | Possible values is `true` or `false`  |
 | on_hold_until   | integer      | Timestamp, in Unix, that indicates until when the settlement of the transfer must be put on hold |
 
 **Response:**

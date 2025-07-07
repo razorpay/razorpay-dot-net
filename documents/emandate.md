@@ -6,7 +6,7 @@ Dictionary<string, object> customerRequest = new Dictionary<string, object>();
 customerRequest.Add("name", "Gaurav Kumar");
 customerRequest.Add("contact", "9123456780");
 customerRequest.Add("email", "gaurav.kumar@example.com");
-customerRequest.Add("fail_existing", "0");
+customerRequest.Add("fail_existing", "1");
 customerRequest.Add("gstin", "29XAbbA4369J1PA");
 Dictionary<string, object> notes = new Dictionary<string, object>();
 notes.Add("notes_key_1", "Tea, Earl Grey, Hot");
@@ -23,7 +23,7 @@ Customer customer = client.Customer.Create(customerRequest);
 | name*          | string      | Name of the customer                        |
 | email        | string      | Email of the customer                       |
 | contact      | string      | Contact number of the customer              |
-| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `0` or `1`|
+| fail_existing | string | If a customer with the same details already exists, the request throws an exception by default. Possible value is `1` or `0`|
 | notes         | object      | A key-value pair                            |
 
 **Response:**
@@ -129,8 +129,8 @@ bankAccount.Add("ifsc_code","HDFC0001233");
 subscriptionRegistration.Add("bank_account",bankAccount);
 registrationLinkRequest.Add("subscription_registration", subscriptionRegistration);
 registrationLinkRequest.Add("receipt", "Receipt No. 1");
-registrationLinkRequest.Add("email_notify", 1);
-registrationLinkRequest.Add("sms_notify", 1);
+registrationLinkRequest.Add("email_notify", true);
+registrationLinkRequest.Add("sms_notify", true);
 registrationLinkRequest.Add("expire_by", 1580479824);
 Dictionary<string, object> notes = new Dictionary<string, object>();
 notes.Add("notes_key_1","Tea, Earl Grey, Hot");
@@ -150,7 +150,7 @@ Invoice invoice = client.Invoice.CreateRegistrationLink(registrationLinkRequest)
 | amount*         | integer  | The payment amount in the smallest currency sub-unit.                 |
 | description*    | string  | A description that appears on the hosted page. For example, `12:30 p.m. Thali meals (Gaurav Kumar`).                                                             |
 | subscription_registration  | array  | All parameters listed [here](https://razorpay.com/docs/api/payments/recurring-payments/emandate/create-authorization-transaction/#121-create-a-registration-link) are supported  |
-| email_notify | boolean  | Email notifications are to be sent by Razorpay (default : 1)  |
+| email_notify | boolean  | Email notifications are to be sent by Razorpay (default : true)  |
 | expire_by    | integer | The timestamp, in Unix format, till when the customer can make the authorization payment. |
 | receipt      | string  | Your system order reference id.  |
 | notes           | object  | A key-value pair  |
@@ -450,7 +450,7 @@ paymentRequest.Add("currency", "INR");
 paymentRequest.Add("order_id", "order_1Aa00000000002");
 paymentRequest.Add("customer_id", "cust_1Aa00000000001");
 paymentRequest.Add("token", "token_1Aa00000000001");
-paymentRequest.Add("recurring", 1);
+paymentRequest.Add("recurring", true);
 paymentRequest.Add("description", "Creating recurring payment for Gaurav Kumar");
 Dictionary<string, object> notes = new Dictionary<string, object>();
 paymentRequest.Add("notes_key_1","Tea, Earl Grey, Hot");
@@ -470,7 +470,7 @@ Payment payment = client.Payment.CreateRecurringPayment(paymentRequest);
 | order_id*       | string  | The unique identifier of the order created. |
 | customer_id*      | string  | The `customer_id` for the customer you want to charge.  |
 | token*       | string  | The `token_id` generated when the customer successfully completes the authorization payment. Different payment instruments for the same customer have different `token_id`.|
-| recurring*       | string  | Determines if recurring payment is enabled or not. Possible values:<br>* `1` - Recurring is enabled.* `0` - Recurring is not enabled.|
+| recurring*       | string  | Determines if recurring payment is enabled or not. Possible values:<br>* `true` - Recurring is enabled.* `false` - Recurring is not enabled.|
 | description       | string  | A user-entered description for the payment.|
 | notes        | object  | Key-value pair that can be used to store additional information about the entity. Maximum 15 key-value pairs, 256 characters (maximum) each. |
 

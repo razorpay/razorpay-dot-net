@@ -440,17 +440,31 @@ Order order = client.Order.Create(orderRequest);
 Dictionary<string, object> paymentRequest = new Dictionary<string, object>();
 paymentRequest.Add("amount", 100);
 paymentRequest.Add("currency", "INR");
+paymentRequest.Add("contact", "9000090000");
 paymentRequest.Add("email", "gaurav.kumar@example.com");
-paymentRequest.Add("contact", "9123456789");
-paymentRequest.Add("order_id", "order_MScdJxfAb4NFbD");
+paymentRequest.Add("order_id", "order_DPzFe1Q1dEOKed");
 paymentRequest.Add("method", "card");
+
 Dictionary<string, object> card = new Dictionary<string, object>();
-card.Add("number", "4854980604708430");
-card.Add("cvv", "123");
-card.Add("expiry_month", "12");
-card.Add("expiry_year", "25");
-card.Add("name", "Gaurav Kumar");
+card.Add("number", "4386289407660153");
+card.Add("name", "Gaurav");
+card.Add("expiry_month", 11);
+card.Add("expiry_year", 30);
+card.Add("cvv", 100);
 paymentRequest.Add("card", card);
+
+Dictionary<string, object> authentication = new Dictionary<string, object>();
+authentication.Add("authentication_channel", "browser");
+paymentRequest.Add("authentication", authentication);
+
+Dictionary<string, object> browser = new Dictionary<string, object>();
+browser.Add("java_enabled", false);
+browser.Add("javascript_enabled", false);
+browser.Add("timezone_offset", 11);
+browser.Add("color_depth", 23);
+browser.Add("screen_width", 23);
+browser.Add("screen_height", 100);
+paymentRequest.Add("browser", browser);
 
 Payment payment = client.Payment.CreateJsonPayment(paymentRequest);
 ```
@@ -648,7 +662,7 @@ paymentRequest.Add("email", "gaurav.kumar@example.com");
 paymentRequest.Add("contact", "9999999999");
 paymentRequest.Add("method", "upi");
 paymentRequest.Add("customer_id", "cust_Z6t7VFTb9xHeOs");
-paymentRequest.Add("save", 1);
+paymentRequest.Add("save", true);
 paymentRequest.Add("ip", "192.168.0.103");
 paymentRequest.Add("referer", "http");
 paymentRequest.Add("user_agent", "Mozilla/5.0");
@@ -676,7 +690,7 @@ Payment payment = client.Payment.CreateUpi(paymentRequest);
 | contact (mandatory)      | string      | Contact number of the customer              |
 | notes | object  | A key-value pair  |
 | description | string  | Descriptive text of the payment. |
-| save | boolean  |  Specifies if the VPA should be stored as tokens.Possible value is `0`, `1`  |
+| save | boolean  |  Specifies if the VPA should be stored as tokens.Possible value is `true` or `false`  |
 | callback_url   | string      | URL where Razorpay will submit the final payment status. |
 | ip (mandatory)   | string      | The client's browser IP address. For example `117.217.74.98` |
 | referer (mandatory)   | string      | Value of `referer` header passed by the client's browser. For example, `https://example.com/` |
