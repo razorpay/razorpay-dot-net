@@ -63,7 +63,8 @@ namespace Razorpay.Api
             }
 
             // Use the correct endpoint format: device/activity/{activity_id} (no leading slash)
-            string relativeUrl = string.Format("device/activity/{0}", activityId);
+            // Build the relative URL using the same entity path helper for consistency
+            string relativeUrl = string.Format("{0}/{1}", GetEntityUrl(), activityId);
             List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null, "POS");
             return (DeviceActivity)entities[0];
         }
