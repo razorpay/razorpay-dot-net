@@ -69,7 +69,7 @@ namespace Razorpay.Api
                 if (RazorpayClient.Key != null)
                 {
                     request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(
-                        Encoding.UTF8.GetBytes(RazorpayClient.Key + ":"));
+                        Encoding.UTF8.GetBytes(RazorpayClient.Key));
                 }
             }
             else
