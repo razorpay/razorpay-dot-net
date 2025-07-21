@@ -3,10 +3,9 @@
 *.suo
 *.user
 .vs
-bin/
-obj/
-packages/
-TestResults/
+bin
+packages
+TestResults
 /net40/obj
 /net45/obj
 /net40/bin

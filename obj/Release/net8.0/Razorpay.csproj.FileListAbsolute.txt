@@ -1,0 +1,13 @@
+/Users/manish.soni/GolandProjects/razorpay-dot-net/bin/Release/net8.0/Razorpay.deps.json
+/Users/manish.soni/GolandProjects/razorpay-dot-net/bin/Release/net8.0/Razorpay.dll
+/Users/manish.soni/GolandProjects/razorpay-dot-net/bin/Release/net8.0/Razorpay.pdb
+/Users/manish.soni/GolandProjects/razorpay-dot-net/obj/Release/net8.0/Razorpay.csproj.AssemblyReference.cache
+/Users/manish.soni/GolandProjects/razorpay-dot-net/obj/Release/net8.0/Razorpay.GeneratedMSBuildEditorConfig.editorconfig
+/Users/manish.soni/GolandProjects/razorpay-dot-net/obj/Release/net8.0/Razorpay.AssemblyInfoInputs.cache
+/Users/manish.soni/GolandProjects/razorpay-dot-net/obj/Release/net8.0/Razorpay.AssemblyInfo.cs
+/Users/manish.soni/GolandProjects/razorpay-dot-net/obj/Release/net8.0/Razorpay.csproj.CoreCompileInputs.cache
+/Users/manish.soni/GolandProjects/razorpay-dot-net/obj/Release/net8.0/Razorpay.sourcelink.json
+/Users/manish.soni/GolandProjects/razorpay-dot-net/obj/Release/net8.0/Razorpay.dll
+/Users/manish.soni/GolandProjects/razorpay-dot-net/obj/Release/net8.0/refint/Razorpay.dll
+/Users/manish.soni/GolandProjects/razorpay-dot-net/obj/Release/net8.0/Razorpay.pdb
+/Users/manish.soni/GolandProjects/razorpay-dot-net/obj/Release/net8.0/ref/Razorpay.dll

@@ -1,0 +1,66 @@
+{
+  "version": 2,
+  "dgSpecHash": "mgBLgoGBNVQ=",
+  "success": true,
+  "projectFilePath": "/Users/manish.soni/GolandProjects/razorpay-dot-net/Razorpay.csproj",
+  "expectedPackageFiles": [
+    "/Users/manish.soni/.nuget/packages/bouncycastle.cryptography/2.2.1/bouncycastle.cryptography.2.2.1.nupkg.sha512",
+    "/Users/manish.soni/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
+    "/Users/manish.soni/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "/Users/manish.soni/.nuget/packages/microsoft.netframework.referenceassemblies/1.0.3/microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
+    "/Users/manish.soni/.nuget/packages/microsoft.netframework.referenceassemblies.net48/1.0.3/microsoft.netframework.referenceassemblies.net48.1.0.3.nupkg.sha512",
+    "/Users/manish.soni/.nuget/packages/netstandard.library/2.0.3/netstandard.library.2.0.3.nupkg.sha512",
+    "/Users/manish.soni/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/Users/manish.soni/.nuget/packages/microsoft.netcore.app.ref/8.0.18/microsoft.netcore.app.ref.8.0.18.nupkg.sha512",
+    "/Users/manish.soni/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.18/microsoft.aspnetcore.app.ref.8.0.18.nupkg.sha512",
+    "/Users/manish.soni/.nuget/packages/microsoft.netcore.app.ref/6.0.36/microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "/Users/manish.soni/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.36/microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'BouncyCastle.Cryptography' 2.2.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-8xfc-gm6g-vgpv",
+      "projectPath": "/Users/manish.soni/GolandProjects/razorpay-dot-net/Razorpay.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/manish.soni/GolandProjects/razorpay-dot-net/Razorpay.csproj",
+      "libraryId": "BouncyCastle.Cryptography",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.8",
+        ".NETStandard,Version=v2.0",
+        "net6.0",
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'BouncyCastle.Cryptography' 2.2.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-m44j-cfrm-g8qc",
+      "projectPath": "/Users/manish.soni/GolandProjects/razorpay-dot-net/Razorpay.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/manish.soni/GolandProjects/razorpay-dot-net/Razorpay.csproj",
+      "libraryId": "BouncyCastle.Cryptography",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.8",
+        ".NETStandard,Version=v2.0",
+        "net6.0",
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1902",
+      "level": "Warning",
+      "message": "Package 'BouncyCastle.Cryptography' 2.2.1 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-v435-xc8x-wvr9",
+      "projectPath": "/Users/manish.soni/GolandProjects/razorpay-dot-net/Razorpay.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/manish.soni/GolandProjects/razorpay-dot-net/Razorpay.csproj",
+      "libraryId": "BouncyCastle.Cryptography",
+      "targetGraphs": [
+        ".NETFramework,Version=v4.8",
+        ".NETStandard,Version=v2.0",
+        "net6.0",
+        "net8.0"
+      ]
+    }
+  ]
+}
