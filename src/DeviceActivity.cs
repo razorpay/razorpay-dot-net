@@ -22,31 +22,8 @@ namespace Razorpay.Api
         /// <returns>DeviceActivity object</returns>
         public DeviceActivity Create(Dictionary<string, object> data)
         {
-            // Set the communication mode header if provided
-            if (data.ContainsKey("communication_mode"))
-            {
-                string communicationMode = data["communication_mode"].ToString();
-                if (communicationMode != "wired" && communicationMode != "wireless")
-                {
-                    throw new System.ArgumentException("communication_mode must be 'wired' or 'wireless'");
-                }
-                
-                // The header should already be set in the calling code, but ensure it's set
-                if (!RazorpayClient.Headers.ContainsKey("X-Communication-Mode"))
-                {
-                    RazorpayClient.Headers["X-Communication-Mode"] = communicationMode;
-                }
-            }
-
-            // Remove communication_mode from data as it's not part of the request body
-            var requestData = new Dictionary<string, object>(data);
-            if (requestData.ContainsKey("communication_mode"))
-            {
-                requestData.Remove("communication_mode");
-            }
-
             string relativeUrl = string.Format("{0}/{1}", GetUrlVersion(), GetEntityUrl());
-            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, requestData, "POS");
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data, "POS");
             return (DeviceActivity)entities[0];
         }
 
