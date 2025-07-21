@@ -7,6 +7,7 @@ namespace Razorpay.Api
         const string CurrentVersion = "3.1.4";
         protected const string DefaultBaseUrl = "https://api.razorpay.com";
         public const string DefaultAuthUrl = "https://auth.razorpay.com";
+        public const string DefaultPosUrl = "http://localhost:8080";
 
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         protected static Dictionary<string, string> headers = new Dictionary<string, string>();
@@ -43,6 +44,7 @@ namespace Razorpay.Api
         private OAuthTokenClient oAuthTokenClient = null;
         private Method method = null;
         private Dispute dispute = null;
+        private DeviceActivity deviceActivity = null;
 
         public RazorpayClient(string accessToken)
         {
@@ -100,6 +102,14 @@ namespace Razorpay.Api
             private set
             {
                 baseUrl = value;
+            }
+        }
+
+        public static string PosUrl
+        {
+            get
+            {
+                return DefaultPosUrl;
             }
         }
 
@@ -486,6 +496,18 @@ namespace Razorpay.Api
                     bankaccount = new BankAccount();
                 }
                 return bankaccount;
+            }
+        }
+
+        public DeviceActivity DeviceActivity
+        {
+            get
+            {
+                if (deviceActivity == null)
+                {
+                    deviceActivity = new DeviceActivity();
+                }
+                return deviceActivity;
             }
         }
     }

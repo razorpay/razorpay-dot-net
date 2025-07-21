@@ -45,12 +45,17 @@ namespace Razorpay.Api
                 case "AUTH":
                     baseUrl = RazorpayClient.DefaultAuthUrl;
                     break;
+                case "POS":
+                    baseUrl = RazorpayClient.PosUrl;
+                    break;
                 default:
                     baseUrl = RazorpayClient.BaseUrl;
                     break;
             }
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(baseUrl + relativeUrl);
+            // Ensure proper URL construction with path separator
+            string fullUrl = baseUrl.TrimEnd('/') + "/" + relativeUrl.TrimStart('/');
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(fullUrl);
             request.Method = method.ToString();
             request.ContentLength = 0;
             request.ContentType = "application/json";
@@ -58,15 +63,28 @@ namespace Razorpay.Api
             string userAgent = string.Format("{0} {1}", RazorpayClient.Version, getAppDetailsUa());
             request.UserAgent = "razorpay-dot-net/" + userAgent;
 
-            if (RazorpayClient.Key != null && RazorpayClient.Secret != null)
+            if (host == "POS")
             {
-                string authString = string.Format("{0}:{1}", RazorpayClient.Key, RazorpayClient.Secret);
-                request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(
-                    Encoding.UTF8.GetBytes(authString));
-            } 
-            else if (RazorpayClient.AccessToken != null)
+                // For POS APIs, use only the key (not key:secret)
+                if (RazorpayClient.Key != null)
+                {
+                    request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(
+                        Encoding.UTF8.GetBytes(RazorpayClient.Key + ":"));
+                }
+            }
+            else
             {
-                request.Headers["Authorization"] = "Bearer " + RazorpayClient.AccessToken;
+                // For other APIs, use the standard key:secret format
+                if (RazorpayClient.Key != null && RazorpayClient.Secret != null)
+                {
+                    string authString = string.Format("{0}:{1}", RazorpayClient.Key, RazorpayClient.Secret);
+                    request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(
+                        Encoding.UTF8.GetBytes(authString));
+                } 
+                else if (RazorpayClient.AccessToken != null)
+                {
+                    request.Headers["Authorization"] = "Bearer " + RazorpayClient.AccessToken;
+                }
             }
 
             foreach (KeyValuePair<string, string> header in RazorpayClient.Headers)

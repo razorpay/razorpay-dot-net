@@ -3,9 +3,10 @@
 *.suo
 *.user
 .vs
-bin
-packages
-TestResults
+bin/
+obj/
+packages/
+TestResults/
 /net40/obj
 /net45/obj
 /net40/bin
@@ -14,3 +15,9 @@ TestResults
 /test/net40/bin
 /test/net45/obj
 /test/net45/bin
+.idea/
+
+# Temporary files and packages
+*.zip
+RazorpaySDK_*
+RazorpayWindowsSDK-*
