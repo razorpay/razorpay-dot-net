@@ -10,7 +10,7 @@ namespace Razorpay.Api
             this["id"] = activityId;
         }
 
-        new public DeviceActivity Fetch(string id)
+        public DeviceActivity FetchDeviceActivity(string id)
         {
             string relativeUrl = string.Format("{0}/{1}/{2}", GetUrlVersion(), GetEntityUrl(), id);
             List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null, "POS");
