@@ -10,13 +10,6 @@ namespace Razorpay.Api
             this["id"] = activityId;
         }
 
-        public DeviceActivity FetchDeviceActivity(string id)
-        {
-            string relativeUrl = string.Format("{0}/{1}/{2}", GetUrlVersion(), GetEntityUrl(), id);
-            List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null, "POS");
-            return (DeviceActivity)entities[0];
-        }
-
         /// <summary>
         /// Create a new device activity for POS gateway
         /// </summary>
@@ -38,7 +31,7 @@ namespace Razorpay.Api
         {
             if (string.IsNullOrWhiteSpace(activityId))
             {
-                throw new System.ArgumentNullException("activityId", "Activity ID cannot be null or empty");
+                throw new System.ArgumentException("Activity ID cannot be null or empty", "activityId");
             }
 
             // Use the correct endpoint format: device/activity/{activity_id}
