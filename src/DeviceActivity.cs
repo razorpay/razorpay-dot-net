@@ -12,7 +12,9 @@ namespace Razorpay.Api
 
         new public DeviceActivity Fetch(string id)
         {
-            return (DeviceActivity)base.Fetch(id);
+            string relativeUrl = string.Format("{0}/{1}/{2}", GetUrlVersion(), GetEntityUrl(), id);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null, "POS");
+            return (DeviceActivity)entities[0];
         }
 
         /// <summary>
@@ -39,9 +41,9 @@ namespace Razorpay.Api
                 throw new System.ArgumentNullException("activityId", "Activity ID cannot be null or empty");
             }
 
-            // Use the correct endpoint format: device/activity/{activity_id} (no leading slash)
+            // Use the correct endpoint format: device/activity/{activity_id}
             // Build the relative URL using the same entity path helper for consistency
-            string relativeUrl = string.Format("{0}/{1}", GetEntityUrl(), activityId);
+            string relativeUrl = string.Format("{0}/{1}/{2}", GetUrlVersion(), GetEntityUrl(), activityId);
             List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null, "POS");
             return (DeviceActivity)entities[0];
         }
@@ -53,7 +55,7 @@ namespace Razorpay.Api
         /// <returns>Entity URL for device activities</returns>
         protected new string GetEntityUrl()
         {
-            return "devices/activity";
+            return "device/activity";
         }
     }
 } 
