@@ -7,7 +7,7 @@ namespace Razorpay.Api
         const string CurrentVersion = "3.1.4";
         protected const string DefaultBaseUrl = "https://api.razorpay.com";
         public const string DefaultAuthUrl = "https://auth.razorpay.com";
-        public const string DefaultPosUrl = "http://localhost:8080";
+        public const string DefaultPosUrl = "https://localhost:8080";
 
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         protected static Dictionary<string, string> headers = new Dictionary<string, string>();
