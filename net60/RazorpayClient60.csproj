@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Razorpay.Api</RootNamespace>
+    <AssemblyName>Razorpay</AssemblyName>
+    <Version>3.1.4</Version>
+    <Authors>Razorpay</Authors>
+    <Company>Razorpay</Company>
+    <Product>Razorpay .NET SDK</Product>
+    <Description>Razorpay .NET SDK with POS Gateway Integration</Description>
+    <Copyright>Copyright © Razorpay 2024</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/razorpay/razorpay-dotnet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/razorpay/razorpay-dotnet</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <LangVersion>latest</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="BouncyCastle.Cryptography" Version="2.4.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\src\**\*.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+</Project> 
