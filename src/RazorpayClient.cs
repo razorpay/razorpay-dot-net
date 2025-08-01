@@ -8,7 +8,6 @@ namespace Razorpay.Api
         const string CurrentVersion = "3.2.0";
         protected const string DefaultBaseUrl = "https://api.razorpay.com";
         public const string DefaultAuthUrl = "https://auth.razorpay.com";
-        public static readonly string DefaultPosUrl = Environment.GetEnvironmentVariable("RAZORPAY_POS_URL") ?? "https://pos.example.com";
 
         protected static List<Dictionary<string, string>> appsDetails = new List<Dictionary<string, string>>();
         protected static Dictionary<string, string> headers = new Dictionary<string, string>();
@@ -103,14 +102,6 @@ namespace Razorpay.Api
             private set
             {
                 baseUrl = value;
-            }
-        }
-
-        public static string PosUrl
-        {
-            get
-            {
-                return DefaultPosUrl;
             }
         }
 
