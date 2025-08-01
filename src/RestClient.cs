@@ -74,7 +74,6 @@ namespace Razorpay.Api
         {
             if (authType == AuthType.Public)
             {
-                // For POS and AUTH APIs, use only the key (not key:secret)
                 if (RazorpayClient.Key != null)
                 {
                     return "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(RazorpayClient.Key));
