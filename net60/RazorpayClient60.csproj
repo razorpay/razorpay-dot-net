@@ -4,7 +4,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Razorpay.Api</RootNamespace>
     <AssemblyName>Razorpay</AssemblyName>
-    <Version>3.1.4</Version>
+    <Version>3.2.0</Version>
     <Authors>Razorpay</Authors>
     <Company>Razorpay</Company>
     <Product>Razorpay .NET SDK</Product>

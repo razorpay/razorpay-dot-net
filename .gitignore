@@ -1,16 +1,6 @@
-*.DS_Store
-*.userprefs
-*.suo
-*.user
-.vs
-bin
-packages
-TestResults
-/net40/obj
-/net45/obj
-/net40/bin
-/net45/bin
-/test/net40/obj
-/test/net40/bin
-/test/net45/obj
-/test/net45/bin
+# IDE and build output
+.idea/
+net48/obj/
+net60/obj/
+bin/
+obj/

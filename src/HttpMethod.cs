@@ -10,4 +10,10 @@ namespace Razorpay.Api
         PUT,
         PATCH,
     }
+
+    public enum AuthType
+    {
+        Public,
+        Private
+    }
 }

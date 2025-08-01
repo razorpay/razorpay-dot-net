@@ -5,7 +5,7 @@ namespace Razorpay.Api
 {
     public class RazorpayClient
     {
-        const string CurrentVersion = "3.1.4";
+        const string CurrentVersion = "3.2.0";
         protected const string DefaultBaseUrl = "https://api.razorpay.com";
         public const string DefaultAuthUrl = "https://auth.razorpay.com";
         public static readonly string DefaultPosUrl = Environment.GetEnvironmentVariable("RAZORPAY_POS_URL") ?? "https://pos.example.com";
