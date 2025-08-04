@@ -1,0 +1,72 @@
+name: Publish NuGet Package
+
+on:
+  push:
+    tags:
+      - 'v*' # Run only on version tags, e.g., v3.2.0
+
+jobs:
+  build-and-pack:
+    runs-on: windows-latest  # Windows is required to build .NET Framework projects
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          # Use a .NET SDK version capable of building all targets
+          dotnet-version: '6.0.x'
+
+      - name: Restore and Build .NET Framework 4.0
+        run: dotnet build ./net40/RazorpayClient40.sln --configuration Release
+
+      - name: Restore and Build .NET Framework 4.5
+        run: dotnet build ./net45/RazorpayClient45.sln --configuration Release
+
+      - name: Restore and Build .NET Framework 4.7
+        run: dotnet build ./net47/RazorpayClient47.sln --configuration Release
+
+      - name: Restore and Build .NET Framework 4.8
+        run: dotnet build ./net48/RazorpayClient48.sln --configuration Release
+      
+      - name: Restore and Build .NET 6.0
+        run: dotnet build ./net60/RazorpayClient60.sln --configuration Release
+
+      - name: Get version from tag
+        id: get_version
+        run: |
+          $VERSION = "${{ github.ref_name }}".Substring(1)
+          echo "VERSION=$VERSION" >> $env:GITHUB_ENV
+        shell: pwsh
+
+      - name: Pack NuGet package
+        # Use the .nuspec file to control packaging.
+        # Pass the version from the Git tag to override the version in the .nuspec
+        run: dotnet pack Razorpay.nuspec --configuration Release --output ./nupkgs /p:PackageVersion=${{ env.VERSION }}
+
+      - name: Upload NuGet package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nupkg
+          path: ./nupkgs/*.nupkg
+
+  # publish-nuget:
+  #   needs: build-and-pack
+  #   runs-on: ubuntu-latest
+    
+  #   steps:
+  #     - name: Download NuGet package artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: nupkg
+  #         path: ./nupkgs
+
+  #     - name: Setup .NET SDK
+  #       uses: actions/setup-dotnet@v4
+  #       with:
+  #         dotnet-version: '6.0.x'
+
+  #     - name: Push to NuGet
+  #       run: dotnet nuget push "./nupkgs/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
