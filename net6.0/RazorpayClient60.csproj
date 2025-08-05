@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <RootNamespace>Razorpay.Api</RootNamespace>
+    <RootNamespace>Razorpay</RootNamespace>
     <AssemblyName>Razorpay</AssemblyName>
     <Version>3.2.0</Version>
     <Authors>Razorpay</Authors>
@@ -21,7 +21,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="BouncyCastle.Cryptography" Version="2.4.0" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\src\**\*.cs" />
