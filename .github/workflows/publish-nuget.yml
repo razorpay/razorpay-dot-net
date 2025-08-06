@@ -16,11 +16,19 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4
         with:
-          # Use a .NET SDK version capable of building all targets
           dotnet-version: '8.0.x'
 
-      - name: Setup MSBuild
-        uses: microsoft/setup-msbuild@v1.1
+      - name: Install legacy .NET Framework Developer Packs
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri "https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901954-DevPack.exe" -OutFile "dotnet45.exe"
+          Start-Process -FilePath ".\dotnet45.exe" -ArgumentList "/q /norestart" -Wait
+          
+          Invoke-WebRequest -Uri "https://download.microsoft.com/download/D/D/3/DD35CC3A-495A-405D-9855-794092B4826F/NDP472-DevPack-ENU.exe" -OutFile "dotnet47.exe"
+          Start-Process -FilePath ".\dotnet47.exe" -ArgumentList "/q /norestart" -Wait
+
+          Invoke-WebRequest -Uri "https://download.microsoft.com/download/8/B/4/8B43450C-433F-452A-87F8-8B401954C34C/ndp48-devpack-enu.exe" -OutFile "dotnet48.exe"
+          Start-Process -FilePath ".\dotnet48.exe" -ArgumentList "/q /norestart" -Wait
 
       - name: Restore and Build .NET Framework 4.5
         run: msbuild ./net45/RazorpayClient45.sln /t:Restore,Build /p:Configuration=Release
