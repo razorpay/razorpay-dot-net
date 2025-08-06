@@ -21,9 +21,6 @@ jobs:
       - name: Install legacy .NET Framework Developer Packs
         shell: pwsh
         run: |
-          Invoke-WebRequest -Uri "https://download.microsoft.com/download/F/1/0/F101102E-88D3-4BE5-9058-421498455B37/sdksetup.exe" -OutFile "sdksetup.exe"
-          Start-Process -FilePath ".\sdksetup.exe" -ArgumentList "/q /features +NetFx40Tools" -Wait
-
           Invoke-WebRequest -Uri "https://download.microsoft.com/download/E/2/1/E21644B5-2DF2-47C2-91BD-63C560427900/NDP452-KB2901954-DevPack.exe" -OutFile "dotnet45.exe"
           Start-Process -FilePath ".\dotnet45.exe" -ArgumentList "/q /norestart" -Wait
           
@@ -32,9 +29,6 @@ jobs:
 
           Invoke-WebRequest -Uri "https://download.microsoft.com/download/8/B/4/8B43450C-433F-452A-87F8-8B401954C34C/ndp48-devpack-enu.exe" -OutFile "dotnet48.exe"
           Start-Process -FilePath ".\dotnet48.exe" -ArgumentList "/q /norestart" -Wait
-
-      - name: Restore and Build .NET Framework 4.0
-        run: msbuild ./net40/RazorpayClient40.sln /t:Restore,Build /p:Configuration=Release
 
       - name: Restore and Build .NET Framework 4.5
         run: msbuild ./net45/RazorpayClient45.sln /t:Restore,Build /p:Configuration=Release
