@@ -49,9 +49,7 @@ jobs:
         shell: pwsh
 
       - name: Pack NuGet package
-        # Use the .nuspec file to control packaging.
-        # Pass the version from the Git tag to override the version in the .nuspec
-        run: dotnet pack Razorpay.nuspec --configuration Release --output ./nupkgs /p:PackageVersion=${{ env.VERSION }}
+        run: nuget pack Razorpay.nuspec -Version ${{ env.VERSION }} -OutputDirectory ./nupkgs
 
       - name: Upload NuGet package artifact
         uses: actions/upload-artifact@v4
