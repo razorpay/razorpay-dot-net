@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-pack:
-    runs-on: windows-2019  # Use Windows 2019 for broad .NET Framework compatibility
+    runs-on: windows-latest  # Use the latest supported Windows runner
 
     steps:
       - name: Checkout repository
@@ -18,6 +18,11 @@ jobs:
         with:
           # Use a .NET SDK version capable of building all targets
           dotnet-version: '8.0.x'
+
+      - name: Install .NET Framework Developer Packs
+        uses: dependabot-pr/setup-vstools@v1
+        with:
+          dotnet-versions: '4.0,4.5,4.7,4.8'
 
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.1
