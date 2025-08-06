@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           # Use a .NET SDK version capable of building all targets
-          dotnet-version: '6.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Restore and Build .NET Framework 4.0
         run: dotnet build ./net40/RazorpayClient40.sln --configuration Release
@@ -32,7 +32,10 @@ jobs:
         run: dotnet build ./net48/RazorpayClient48.sln --configuration Release
       
       - name: Restore and Build .NET 6.0
-        run: dotnet build ./net60/RazorpayClient60.sln --configuration Release
+        run: dotnet build ./net6.0/RazorpayClient60.sln --configuration Release
+
+      - name: Restore and Build .NET 8.0
+        run: dotnet build ./net8.0/RazorpayClient80.sln --configuration Release
 
       - name: Get version from tag
         id: get_version
@@ -52,21 +55,21 @@ jobs:
           name: nupkg
           path: ./nupkgs/*.nupkg
 
-  # publish-nuget:
-  #   needs: build-and-pack
-  #   runs-on: ubuntu-latest
+  publish-nuget:
+    needs: build-and-pack
+    runs-on: ubuntu-latest
     
-  #   steps:
-  #     - name: Download NuGet package artifact
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: nupkg
-  #         path: ./nupkgs
+    steps:
+      - name: Download NuGet package artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nupkg
+          path: ./nupkgs
 
-  #     - name: Setup .NET SDK
-  #       uses: actions/setup-dotnet@v4
-  #       with:
-  #         dotnet-version: '6.0.x'
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
 
-  #     - name: Push to NuGet
-  #       run: dotnet nuget push "./nupkgs/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
+      - name: Push to NuGet
+        run: dotnet nuget push "./nupkgs/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
