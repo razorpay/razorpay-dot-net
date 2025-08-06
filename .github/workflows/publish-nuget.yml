@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-pack:
-    runs-on: windows-latest  # Windows is required to build .NET Framework projects
+    runs-on: windows-2019  # Use Windows 2019 for broad .NET Framework compatibility
 
     steps:
       - name: Checkout repository
