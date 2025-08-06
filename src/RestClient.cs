@@ -15,9 +15,9 @@ namespace Razorpay.Api
             HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH
         };
 
-        public string MakeRequest(string relativeUrl, HttpMethod method, string data, string host)
+        public string MakeRequest(string relativeUrl, HttpMethod method, string data, string host, AuthType authType)
         {
-            HttpWebRequest request = createRequest(relativeUrl, method, host);
+            HttpWebRequest request = createRequest(relativeUrl, method, host, authType);
 
             if (JsonifyInput.Contains(method) == true) 
             {
@@ -33,7 +33,7 @@ namespace Razorpay.Api
             return createResponse(request, host);
         }
 
-        private HttpWebRequest createRequest(string relativeUrl, HttpMethod method, string host)
+        private HttpWebRequest createRequest(string relativeUrl, HttpMethod method, string host, AuthType authType)
         {
             string baseUrl;
 
@@ -50,7 +50,9 @@ namespace Razorpay.Api
                     break;
             }
 
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(baseUrl + relativeUrl);
+            // Ensure proper URL construction with path separator
+            string fullUrl = baseUrl.TrimEnd('/') + "/" + relativeUrl.TrimStart('/');
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(fullUrl);
             request.Method = method.ToString();
             request.ContentLength = 0;
             request.ContentType = "application/json";
@@ -58,16 +60,7 @@ namespace Razorpay.Api
             string userAgent = string.Format("{0} {1}", RazorpayClient.Version, getAppDetailsUa());
             request.UserAgent = "razorpay-dot-net/" + userAgent;
 
-            if (RazorpayClient.Key != null && RazorpayClient.Secret != null)
-            {
-                string authString = string.Format("{0}:{1}", RazorpayClient.Key, RazorpayClient.Secret);
-                request.Headers["Authorization"] = "Basic " + Convert.ToBase64String(
-                    Encoding.UTF8.GetBytes(authString));
-            } 
-            else if (RazorpayClient.AccessToken != null)
-            {
-                request.Headers["Authorization"] = "Bearer " + RazorpayClient.AccessToken;
-            }
+            request.Headers["Authorization"] = GetAuthorizationHeader(authType);
 
             foreach (KeyValuePair<string, string> header in RazorpayClient.Headers)
             {
@@ -75,6 +68,31 @@ namespace Razorpay.Api
             }
 
             return request;
+        }
+
+        private string GetAuthorizationHeader(AuthType authType)
+        {
+            if (authType == AuthType.Public)
+            {
+                if (RazorpayClient.Key != null)
+                {
+                    return "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(RazorpayClient.Key));
+                }
+            }
+            else
+            {
+                // For other APIs, use the standard key:secret format
+                if (RazorpayClient.Key != null && RazorpayClient.Secret != null)
+                {
+                    string authString = string.Format("{0}:{1}", RazorpayClient.Key, RazorpayClient.Secret);
+                    return "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(authString));
+                }
+                else if (RazorpayClient.AccessToken != null)
+                {
+                    return "Bearer " + RazorpayClient.AccessToken;
+                }
+            }
+            return null;
         }
 
         private static string getAppDetailsUa()

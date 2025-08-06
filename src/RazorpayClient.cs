@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 
 namespace Razorpay.Api
 {
     public class RazorpayClient
     {
-        const string CurrentVersion = "3.1.4";
+        const string CurrentVersion = "3.2.0";
         protected const string DefaultBaseUrl = "https://api.razorpay.com";
         public const string DefaultAuthUrl = "https://auth.razorpay.com";
 
@@ -43,6 +44,7 @@ namespace Razorpay.Api
         private OAuthTokenClient oAuthTokenClient = null;
         private Method method = null;
         private Dispute dispute = null;
+        private DeviceActivity deviceActivity = null;
 
         public RazorpayClient(string accessToken)
         {
@@ -486,6 +488,18 @@ namespace Razorpay.Api
                     bankaccount = new BankAccount();
                 }
                 return bankaccount;
+            }
+        }
+
+        public DeviceActivity DeviceActivity
+        {
+            get
+            {
+                if (deviceActivity == null)
+                {
+                    deviceActivity = new DeviceActivity();
+                }
+                return deviceActivity;
             }
         }
     }
