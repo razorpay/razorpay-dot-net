@@ -26,8 +26,16 @@ jobs:
 
       - name: Restore Legacy NuGet Packages
         run: |
+          nuget restore ./net40/RazorpayClient40.sln
+          nuget restore ./net45/RazorpayClient45.sln
           nuget restore ./net47/RazorpayClient47.sln
           nuget restore ./net48/RazorpayClient48.sln
+
+      - name: Build .NET Framework 4.0
+        run: msbuild ./net40/RazorpayClient40.sln /p:Configuration=Release
+
+      - name: Build .NET Framework 4.5
+        run: msbuild ./net45/RazorpayClient45.sln /p:Configuration=Release
 
       - name: Build .NET Framework 4.7
         run: msbuild ./net47/RazorpayClient47.sln /p:Configuration=Release
