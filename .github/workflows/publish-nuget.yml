@@ -19,17 +19,8 @@ jobs:
           # Use a .NET SDK version capable of building all targets
           dotnet-version: '8.0.x'
 
-      - name: Install .NET 4.0 Developer Tools via Windows 7.1 SDK
-        shell: pwsh
-        run: |
-          Invoke-WebRequest -Uri "https://download.microsoft.com/download/F/1/0/F101102E-88D3-4BE5-9058-421498455B37/sdksetup.exe" -OutFile "sdksetup.exe"
-          Start-Process -FilePath ".\sdksetup.exe" -ArgumentList "/q /features +NetFx40Tools" -Wait
-
       - name: Setup MSBuild
         uses: microsoft/setup-msbuild@v1.1
-
-      - name: Restore and Build .NET Framework 4.0
-        run: msbuild ./net40/RazorpayClient40.sln /t:Restore,Build /p:Configuration=Release
 
       - name: Restore and Build .NET Framework 4.5
         run: msbuild ./net45/RazorpayClient45.sln /t:Restore,Build /p:Configuration=Release
