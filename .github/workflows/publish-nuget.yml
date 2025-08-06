@@ -18,6 +18,9 @@ jobs:
         with:
           dotnet-version: '8.0.x'
 
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+
       - name: Restore and Build .NET Framework 4.7
         run: msbuild ./net47/RazorpayClient47.sln /t:Restore,Build /p:Configuration=Release
 
