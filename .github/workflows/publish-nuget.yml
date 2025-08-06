@@ -65,21 +65,21 @@ jobs:
           name: nupkg
           path: ./nupkgs/*.nupkg
 
-  publish-nuget:
-    needs: build-and-pack
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Download NuGet package artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: nupkg
-          path: ./nupkgs
-
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.0.x'
-
-      - name: Push to NuGet
-        run: dotnet nuget push "./nupkgs/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
+#  publish-nuget:
+#    needs: build-and-pack
+#    runs-on: ubuntu-latest
+#    
+#    steps:
+#      - name: Download NuGet package artifact
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: nupkg
+#          path: ./nupkgs
+#
+#      - name: Setup .NET SDK
+#        uses: actions/setup-dotnet@v4
+#        with:
+#          dotnet-version: '8.0.x'
+#
+#      - name: Push to NuGet
+#        run: dotnet nuget push "./nupkgs/*.nupkg" --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
