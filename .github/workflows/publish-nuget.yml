@@ -19,6 +19,9 @@ jobs:
           # Use a .NET SDK version capable of building all targets
           dotnet-version: '8.0.x'
 
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.1
+
       - name: Restore and Build .NET Framework 4.0
         run: dotnet build ./net40/RazorpayClient40.sln --configuration Release
 
