@@ -23,16 +23,16 @@ jobs:
         uses: microsoft/setup-msbuild@v1.1
 
       - name: Restore and Build .NET Framework 4.0
-        run: dotnet build ./net40/RazorpayClient40.sln --configuration Release
+        run: msbuild ./net40/RazorpayClient40.sln /t:Restore,Build /p:Configuration=Release
 
       - name: Restore and Build .NET Framework 4.5
-        run: dotnet build ./net45/RazorpayClient45.sln --configuration Release
+        run: msbuild ./net45/RazorpayClient45.sln /t:Restore,Build /p:Configuration=Release
 
       - name: Restore and Build .NET Framework 4.7
-        run: dotnet build ./net47/RazorpayClient47.sln --configuration Release
+        run: msbuild ./net47/RazorpayClient47.sln /t:Restore,Build /p:Configuration=Release
 
       - name: Restore and Build .NET Framework 4.8
-        run: dotnet build ./net48/RazorpayClient48.sln --configuration Release
+        run: msbuild ./net48/RazorpayClient48.sln /t:Restore,Build /p:Configuration=Release
       
       - name: Restore and Build .NET 6.0
         run: dotnet build ./net6.0/RazorpayClient60.sln --configuration Release
