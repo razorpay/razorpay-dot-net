@@ -24,14 +24,16 @@ jobs:
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1
 
-      - name: Restore NuGet Packages
-        run: nuget restore
+      - name: Restore Legacy NuGet Packages
+        run: |
+          nuget restore ./net47/RazorpayClient47.sln
+          nuget restore ./net48/RazorpayClient48.sln
 
-      - name: Restore and Build .NET Framework 4.7
-        run: msbuild ./net47/RazorpayClient47.sln /t:Build /p:Configuration=Release
+      - name: Build .NET Framework 4.7
+        run: msbuild ./net47/RazorpayClient47.sln /p:Configuration=Release
 
-      - name: Restore and Build .NET Framework 4.8
-        run: msbuild ./net48/RazorpayClient48.sln /t:Build /p:Configuration=Release
+      - name: Build .NET Framework 4.8
+        run: msbuild ./net48/RazorpayClient48.sln /p:Configuration=Release
       
       - name: Restore and Build .NET 6.0
         run: dotnet build ./net6.0/RazorpayClient60.sln --configuration Release
