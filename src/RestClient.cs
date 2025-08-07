@@ -17,7 +17,12 @@ namespace Razorpay.Api
 
         public string MakeRequest(string relativeUrl, HttpMethod method, string data, string host, AuthType authType)
         {
-            HttpWebRequest request = createRequest(relativeUrl, method, host, authType);
+            return MakeRequest(relativeUrl, method, data, host, authType, (string)null);
+        }
+
+        public string MakeRequest(string relativeUrl, HttpMethod method, string data, string host, AuthType authType, string mode)
+        {
+            HttpWebRequest request = createRequest(relativeUrl, method, host, authType, mode);
 
             if (JsonifyInput.Contains(method) == true) 
             {
@@ -33,7 +38,14 @@ namespace Razorpay.Api
             return createResponse(request, host);
         }
 
+
+
         private HttpWebRequest createRequest(string relativeUrl, HttpMethod method, string host, AuthType authType)
+        {
+            return createRequest(relativeUrl, method, host, authType, (string)null);
+        }
+
+        private HttpWebRequest createRequest(string relativeUrl, HttpMethod method, string host, AuthType authType, string mode)
         {
             string baseUrl;
 
@@ -65,6 +77,12 @@ namespace Razorpay.Api
             foreach (KeyValuePair<string, string> header in RazorpayClient.Headers)
             {
                 request.Headers[header.Key] = header.Value;
+            }
+
+            // Automatically add X-Razorpay-Device-Mode header for DeviceActivity APIs (AuthType.Public with mode)
+            if (authType == AuthType.Public && !string.IsNullOrEmpty(mode))
+            {
+                request.Headers["X-Razorpay-Device-Mode"] = mode;
             }
 
             return request;

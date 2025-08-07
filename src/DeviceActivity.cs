@@ -13,26 +13,30 @@ namespace Razorpay.Api
         /// <summary>
         /// Create a new device activity for POS gateway
         /// </summary>
+        /// <param name="mode">Device connection mode (wired/wireless)</param>
         /// <param name="data">Dictionary containing device activity data in the format expected by rzp-pos-gateway</param>
         /// <returns>DeviceActivity object</returns>
-        public DeviceActivity Create(Dictionary<string, object> data)
+        public DeviceActivity Create(string mode, Dictionary<string, object> data)
         {
             string relativeUrl = string.Format("{0}/{1}", GetUrlVersion(), GetEntityUrl());
-            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data, "API", AuthType.Public);
+            
+            List<Entity> entities = Request(relativeUrl, HttpMethod.POST, data, "API", AuthType.Public, mode);
             return (DeviceActivity)entities[0];
         }
 
         /// <summary>
         /// Get the status of a device activity
         /// </summary>
+        /// <param name="mode">Device connection mode (wired/wireless)</param>
         /// <param name="activityId">Activity ID to fetch status for</param>
         /// <returns>DeviceActivity object with current status</returns>
-        public DeviceActivity GetStatus(string activityId)
+        public DeviceActivity GetStatus(string mode, string activityId)
         {
             // Use the correct endpoint format: devices/activity/{activity_id}
             // Build the relative URL using the same entity path helper for consistency
             string relativeUrl = string.Format("{0}/{1}/{2}", GetUrlVersion(), GetEntityUrl(), activityId);
-            List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null, "API", AuthType.Public);
+
+            List<Entity> entities = Request(relativeUrl, HttpMethod.GET, null, "API", AuthType.Public, mode);
             return (DeviceActivity)entities[0];
         }
 

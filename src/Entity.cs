@@ -76,10 +76,10 @@ namespace Razorpay.Api
 
         protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options)
         {
-            return Request(relativeUrl, verb, options, "API");
+            return Request(relativeUrl, verb, options, "API", AuthType.Private, null);
         }
 
-        protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options, string host, AuthType authType = AuthType.Private)
+        protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options, string host, AuthType authType = AuthType.Private, string mode = null)
         {
             client = new RestClient();
             string postData = string.Empty;
@@ -95,7 +95,7 @@ namespace Razorpay.Api
                 postData = JsonConvert.SerializeObject(options);
             }
 
-            string responseStr = client.MakeRequest(relativeUrl, verb, postData, host, authType);
+            string responseStr = client.MakeRequest(relativeUrl, verb, postData, host, authType, mode);
 
             dynamic response = JsonConvert.DeserializeObject(responseStr);
 
