@@ -13,12 +13,14 @@
     <releaseNotes>Razorpay SDK for .Net v3</releaseNotes>
     <copyright>Copyright 2015 - 2023</copyright>
     <tags>Razorpay</tags>
+    <readme>README.md</readme>
     <dependencies>
       <dependency id="Newtonsoft.Json" version="13.0.3" />
       <dependency id="Portable.BouncyCastle" version="1.9.0" />
     </dependencies>
   </metadata>
   <files>
+    <file src="README.md" target="" />
     <file src="net40/bin/Release/Razorpay.dll" target="lib/net40/Razorpay.dll" />
     <file src="net45/bin/Release/Razorpay.dll" target="lib/net45/Razorpay.dll" />
     <file src="net47/bin/Release/Razorpay.dll" target="lib/net47/Razorpay.dll" />
