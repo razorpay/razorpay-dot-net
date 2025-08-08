@@ -43,6 +43,7 @@ namespace Razorpay.Api
             {"methods","Razorpay.Api.Method"},
             {"dispute", "Razorpay.Api.Dispute"},
             {"bank_account", "Razorpay.Api.BankAccount"},
+            {"devices.activity", "Razorpay.Api.DeviceActivity"},
         };
       
         private static List<HttpMethod> JsonifyInput = new List<HttpMethod>()
@@ -75,10 +76,10 @@ namespace Razorpay.Api
 
         protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options)
         {
-            return Request(relativeUrl, verb, options, "API");
+            return Request(relativeUrl, verb, options, "API", AuthType.Private, (DeviceMode?)null);
         }
 
-        protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options, string host)
+        protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options, string host, AuthType authType = AuthType.Private, DeviceMode? mode = null)
         {
             client = new RestClient();
             string postData = string.Empty;
@@ -94,7 +95,7 @@ namespace Razorpay.Api
                 postData = JsonConvert.SerializeObject(options);
             }
 
-            string responseStr = client.MakeRequest(relativeUrl, verb, postData, host);
+            string responseStr = client.MakeRequest(relativeUrl, verb, postData, host, authType, mode);
 
             dynamic response = JsonConvert.DeserializeObject(responseStr);
 
