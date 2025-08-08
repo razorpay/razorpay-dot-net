@@ -3,6 +3,22 @@ using System.Collections.Generic;
 
 namespace Razorpay.Api
 {
+    /// <summary>
+    /// Device connection mode for POS gateway operations
+    /// </summary>
+    public enum DeviceMode
+    {
+        /// <summary>
+        /// Wired device connection
+        /// </summary>
+        Wired,
+        
+        /// <summary>
+        /// Wireless device connection
+        /// </summary>
+        Wireless
+    }
+
     public class DeviceActivity : Entity 
     {
         public DeviceActivity(string activityId = "")
@@ -13,10 +29,10 @@ namespace Razorpay.Api
         /// <summary>
         /// Create a new device activity for POS gateway
         /// </summary>
-        /// <param name="mode">Device connection mode (wired/wireless)</param>
+        /// <param name="mode">Device connection mode</param>
         /// <param name="data">Dictionary containing device activity data in the format expected by rzp-pos-gateway</param>
         /// <returns>DeviceActivity object</returns>
-        public DeviceActivity Create(string mode, Dictionary<string, object> data)
+        public DeviceActivity Create(DeviceMode mode, Dictionary<string, object> data)
         {
             string relativeUrl = string.Format("{0}/{1}", GetUrlVersion(), GetEntityUrl());
             
@@ -27,10 +43,10 @@ namespace Razorpay.Api
         /// <summary>
         /// Get the status of a device activity
         /// </summary>
-        /// <param name="mode">Device connection mode (wired/wireless)</param>
+        /// <param name="mode">Device connection mode</param>
         /// <param name="activityId">Activity ID to fetch status for</param>
         /// <returns>DeviceActivity object with current status</returns>
-        public DeviceActivity GetStatus(string mode, string activityId)
+        public DeviceActivity GetStatus(DeviceMode mode, string activityId)
         {
             // Use the correct endpoint format: devices/activity/{activity_id}
             // Build the relative URL using the same entity path helper for consistency

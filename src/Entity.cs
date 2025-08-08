@@ -76,10 +76,10 @@ namespace Razorpay.Api
 
         protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options)
         {
-            return Request(relativeUrl, verb, options, "API", AuthType.Private, null);
+            return Request(relativeUrl, verb, options, "API", AuthType.Private, (DeviceMode?)null);
         }
 
-        protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options, string host, AuthType authType = AuthType.Private, string mode = null)
+        protected List<Entity> Request(string relativeUrl, HttpMethod verb, Dictionary<string, object> options, string host, AuthType authType = AuthType.Private, DeviceMode? mode = null)
         {
             client = new RestClient();
             string postData = string.Empty;
