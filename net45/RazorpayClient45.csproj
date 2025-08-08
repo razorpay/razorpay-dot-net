@@ -92,6 +92,12 @@
     <Compile Include="..\src\Customer.cs">
       <Link>Customer.cs</Link>
     </Compile>
+    <Compile Include="..\src\DeviceActivity.cs">
+      <Link>DeviceActivity.cs</Link>
+    </Compile>
+    <Compile Include="..\src\DeviceMode.cs">
+      <Link>DeviceMode.cs</Link>
+    </Compile>
     <Compile Include="..\src\Transfer.cs">
       <Link>Transfer.cs</Link>
     </Compile>
@@ -145,6 +151,9 @@
     </Compile>
     <Compile Include="..\src\Account.cs">
       <Link>Account.cs</Link>
+    </Compile>
+    <Compile Include="..\src\AuthType.cs">
+      <Link>AuthType.cs</Link>
     </Compile>
     <Compile Include="..\src\Stakeholder.cs">
       <Link>Stakeholder.cs</Link>

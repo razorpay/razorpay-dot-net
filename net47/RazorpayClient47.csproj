@@ -122,6 +122,9 @@
     <Compile Include="..\src\AuthType.cs">
       <Link>AuthType.cs</Link>
     </Compile>
+    <Compile Include="..\src\DeviceMode.cs">
+      <Link>DeviceMode.cs</Link>
+    </Compile>
     <Compile Include="..\src\VirtualAccount.cs">
       <Link>VirtualAccount.cs</Link>
     </Compile>
