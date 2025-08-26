@@ -29,6 +29,17 @@ namespace Razorpay.Api
             return (Customer)entities[0];
         }
 
+        public List<Customer> All(Dictionary<string, object> options = null)
+        {
+            List<Entity> entities = base.All(options);
+            List<Customer> customers = new List<Customer>();
+            foreach (Entity entity in entities)
+            {
+                customers.Add(entity as Customer);
+            }
+            return customers;
+        }        
+
         public Token Token(string tokenId) 
         {
             string relativeUrl = string.Format("{0}/{1}/{2}/tokens/{3}", GetUrlVersion(), GetEntityUrl(), this["id"], tokenId);
