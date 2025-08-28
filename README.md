@@ -56,6 +56,8 @@ client.addHeader(string,string);
 
 - [Customer](documents/customers.md)
 
+- [Device Activity](documents/deviceActivity.md)
+
 - [Emandate](documents/emandate.md)
 
 - [Fund](documents/fund.md)
