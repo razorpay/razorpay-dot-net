@@ -1,0 +1,80 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- Multi-targeting: Support multiple .NET versions -->
+    <TargetFrameworks>net40;net45;net47;net48;netstandard2.0;net6.0;net8.0</TargetFrameworks>
+    
+    <!-- Assembly Information -->
+    <RootNamespace>Razorpay.Api</RootNamespace>
+    <AssemblyName>Razorpay</AssemblyName>
+    <AssemblyTitle>Razorpay .NET SDK</AssemblyTitle>
+    <AssemblyDescription>Official Razorpay .NET SDK for payment processing</AssemblyDescription>
+    <AssemblyCompany>Razorpay</AssemblyCompany>
+    <AssemblyProduct>Razorpay .NET SDK</AssemblyProduct>
+    <AssemblyCopyright>Copyright © Razorpay 2015-2024</AssemblyCopyright>
+    <AssemblyVersion>3.2.0.0</AssemblyVersion>
+    <FileVersion>3.2.0.0</FileVersion>
+    
+    <!-- Package Information -->
+    <PackageId>Razorpay</PackageId>
+    <PackageVersion>3.2.0</PackageVersion>
+    <Authors>razorpay</Authors>
+    <Owners>razorpay</Owners>
+    <Description>Razorpay SDK for .NET - Official payment processing library</Description>
+    <PackageProjectUrl>https://github.com/razorpay/razorpay-dot-net</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/razorpay/razorpay-dot-net/blob/master/licence.txt</PackageLicenseUrl>
+    <PackageIconUrl>https://razorpay.com/favicon.png</PackageIconUrl>
+    <PackageTags>Razorpay;Payment;Gateway;API;SDK</PackageTags>
+    <PackageReleaseNotes>Added .NET Standard 2.0 support for broader compatibility</PackageReleaseNotes>
+    
+    <!-- Build Configuration -->
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <!-- Source Files are automatically included by SDK-style projects -->
+  <!-- Exclude old project directories and test files -->
+  <ItemGroup>
+    <Compile Remove="net40/**" />
+    <Compile Remove="net45/**" />
+    <Compile Remove="net47/**" />
+    <Compile Remove="net48/**" />
+    <Compile Remove="net6.0/**" />
+    <Compile Remove="net8.0/**" />
+    <Compile Remove="test/**" />
+    <None Remove="net40/**" />
+    <None Remove="net45/**" />
+    <None Remove="net47/**" />
+    <None Remove="net48/**" />
+    <None Remove="net6.0/**" />
+    <None Remove="net8.0/**" />
+    <None Remove="test/**" />
+  </ItemGroup>
+
+  <!-- Package Dependencies -->
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
+  </ItemGroup>
+
+  <!-- Framework-specific dependencies -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40' OR '$(TargetFramework)' == 'net45' OR '$(TargetFramework)' == 'net47' OR '$(TargetFramework)' == 'net48'">
+    <!-- .NET Framework specific packages -->
+    <Reference Include="Microsoft.CSharp" />
+    <PackageReference Include="System.IO.FileSystem" Version="4.3.0" Condition="'$(TargetFramework)' == 'net47' OR '$(TargetFramework)' == 'net48'" />
+    <PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" Condition="'$(TargetFramework)' == 'net47' OR '$(TargetFramework)' == 'net48'" />
+  </ItemGroup>
+
+  <!-- .NET Standard 2.0 specific dependencies -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+  </ItemGroup>
+
+  <!-- Modern .NET specific dependencies -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0' OR '$(TargetFramework)' == 'net8.0'">
+    <!-- Modern .NET specific packages if needed -->
+  </ItemGroup>
+
+</Project>
