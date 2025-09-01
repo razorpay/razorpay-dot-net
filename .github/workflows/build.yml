@@ -134,15 +134,14 @@ jobs:
   #       echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
   #       echo "Publishing version: $VERSION"
         
-  #   - name: Publish to NuGet
-      run: |
-        if [ -n "${{ secrets.NUGET_API_KEY }}" ]; then
-          echo "Publishing to NuGet..."
-          dotnet nuget push ./packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
-          echo "✅ Published version ${{ steps.get_version.outputs.VERSION }} to NuGet"
-        else
-          echo "❌ NuGet API key not configured, skipping publish"
-          exit 1
-        fi
-      env:
-        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+     #     run: |
+   #       if [ -n "${{ secrets.NUGET_API_KEY }}" ]; then
+   #         echo "Publishing to NuGet..."
+   #         dotnet nuget push ./packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+   #         echo "✅ Published version ${{ steps.get_version.outputs.VERSION }} to NuGet"
+   #       else
+   #         echo "❌ NuGet API key not configured, skipping publish"
+   #         exit 1
+   #       fi
+   #     env:
+   #       NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
