@@ -106,7 +106,37 @@ client.addHeader(string,string);
 ---
 
 ## Development
-* Open solution in visual studio 2022, it should build fine
+
+### Quick Start
+The project now uses a unified multi-targeting approach. Simply:
+
+```bash
+# Restore dependencies
+dotnet restore
+
+# Build all target frameworks
+dotnet build --configuration Release
+
+# Create NuGet package
+dotnet pack --configuration Release
+```
+
+### Target Frameworks Supported
+- .NET Framework 4.0, 4.5, 4.7, 4.8
+- .NET Standard 2.0 ⭐ (New - maximum compatibility)
+- .NET 6.0, 8.0
+
+### IDE Support
+* **Visual Studio 2022**: Open `Razorpay.sln` - it will build all target frameworks
+* **VS Code**: Use the integrated terminal with the dotnet CLI commands above
+* **JetBrains Rider**: Full multi-targeting support
+
+### CI/CD
+The project includes GitHub Actions workflow that:
+- Builds all target frameworks on both Linux and Windows
+- Runs tests (if available)
+- Creates NuGet packages
+- Publishes to NuGet on master branch (if configured)
 
 ## Ubuntu
 

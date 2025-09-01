@@ -1,0 +1,137 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ master, main, develop ]
+  pull_request:
+    branches: [ master, main, develop ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Multi-Target
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.0.x
+          8.0.x
+        
+    - name: Setup .NET Framework (Mono)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y mono-complete mono-devel
+        
+    - name: Restore dependencies
+      run: dotnet restore Razorpay.sln
+      
+    - name: Build solution
+      run: dotnet build Razorpay.sln --configuration Release --no-restore
+      
+    - name: Run tests (if any)
+      run: |
+        if [ -d "test" ] && [ "$(find test -name '*.csproj' | wc -l)" -gt 0 ]; then
+          dotnet test Razorpay.sln --configuration Release --no-build --verbosity normal
+        else
+          echo "No test projects found, skipping tests"
+        fi
+      continue-on-error: true
+      
+    - name: Create NuGet package
+      run: dotnet pack Razorpay.sln --configuration Release --no-build --output ./packages
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: |
+          bin/Release/**/*.dll
+          packages/*.nupkg
+          packages/*.snupkg
+        retention-days: 30
+        
+    - name: Upload NuGet package
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-package
+        path: packages/*.nupkg
+        retention-days: 90
+
+  build-windows:
+    name: Build on Windows (.NET Framework)
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.0.x
+          8.0.x
+          
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+      
+    - name: Restore dependencies
+      run: dotnet restore Razorpay.sln
+      
+    - name: Build solution
+      run: dotnet build Razorpay.sln --configuration Release --no-restore
+      
+    - name: Verify .NET Framework builds
+      run: |
+        Write-Host "Checking .NET Framework builds..."
+        Get-ChildItem -Path "bin/Release" -Filter "*.dll" -Recurse | ForEach-Object {
+          Write-Host "Built: $($_.FullName)"
+        }
+        
+        # Verify all target frameworks were built
+        $frameworks = @("net40", "net45", "net47", "net48", "netstandard2.0", "net6.0", "net8.0")
+        foreach ($fw in $frameworks) {
+          $dllPath = "bin/Release/$fw/Razorpay.dll"
+          if (Test-Path $dllPath) {
+            Write-Host "✅ $fw build successful"
+          } else {
+            Write-Host "❌ $fw build failed - DLL not found at $dllPath"
+            exit 1
+          }
+        }
+      shell: powershell
+
+  publish:
+    name: Publish Package
+    needs: [build, build-windows]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    
+    steps:
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-package
+        path: ./packages
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Publish to NuGet (if configured)
+      run: |
+        if [ -n "${{ secrets.NUGET_API_KEY }}" ]; then
+          echo "Publishing to NuGet..."
+          dotnet nuget push ./packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+        else
+          echo "NuGet API key not configured, skipping publish"
+        fi
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
