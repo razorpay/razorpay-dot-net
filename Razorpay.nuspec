@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Razorpay</id>
-    <version>3.2.0</version>
+    <version>3.3.0</version>
     <authors>razorpay</authors>
     <owners>razorpay</owners>
     <licenseUrl>https://github.com/razorpay/razorpay-dot-net/blob/master/licence.txt</licenseUrl>
@@ -10,7 +10,7 @@
     <iconUrl>https://razorpay.com/favicon.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Razoropay SDK for .Net</description>
-    <releaseNotes>Razorpay SDK for .Net v3</releaseNotes>
+    <releaseNotes>v3.3.0: Added .NET Standard 2.0 support for maximum compatibility across .NET ecosystem. Unified multi-targeting solution.</releaseNotes>
     <copyright>Copyright 2015 - 2023</copyright>
     <tags>Razorpay</tags>
     <readme>README.md</readme>

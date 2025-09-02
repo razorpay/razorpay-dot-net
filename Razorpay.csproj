@@ -12,12 +12,12 @@
     <AssemblyCompany>Razorpay</AssemblyCompany>
     <AssemblyProduct>Razorpay .NET SDK</AssemblyProduct>
     <AssemblyCopyright>Copyright © Razorpay 2015-2024</AssemblyCopyright>
-    <AssemblyVersion>3.2.0.0</AssemblyVersion>
-    <FileVersion>3.2.0.0</FileVersion>
+    <AssemblyVersion>3.3.0.0</AssemblyVersion>
+    <FileVersion>3.3.0.0</FileVersion>
     
     <!-- Package Information -->
     <PackageId>Razorpay</PackageId>
-    <PackageVersion>3.2.0</PackageVersion>
+    <PackageVersion>3.3.0</PackageVersion>
     <Authors>razorpay</Authors>
     <Owners>razorpay</Owners>
     <Description>Razorpay SDK for .NET - Official payment processing library</Description>
@@ -25,7 +25,7 @@
     <PackageLicenseUrl>https://github.com/razorpay/razorpay-dot-net/blob/master/licence.txt</PackageLicenseUrl>
     <PackageIconUrl>https://razorpay.com/favicon.png</PackageIconUrl>
     <PackageTags>Razorpay;Payment;Gateway;API;SDK</PackageTags>
-    <PackageReleaseNotes>Added .NET Standard 2.0 support for broader compatibility</PackageReleaseNotes>
+    <PackageReleaseNotes>Added .NET Standard 2.0 support for maximum compatibility across .NET ecosystem. Supports .NET Framework 4.7+, .NET Core 2.0+, .NET 5+, and modern .NET 6.0+</PackageReleaseNotes>
     
     <!-- Build Configuration -->
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
