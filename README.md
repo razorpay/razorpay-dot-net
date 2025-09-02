@@ -18,7 +18,8 @@ nuget install Razorpay
 
 else  
 * Download Nuget package from [here](https://www.nuget.org/packages/Razorpay)
-* Package supports .Net 4.0 - .Net 4.8, add the required version as reference to your project.
+* **Package supports .NET Framework 4.7+, .NET Standard 2.0, .NET 6.0+**
+* **For .NET Framework 4.0/4.5**: Manual compilation required (see Legacy Framework Support section below)
 
 Usage
 -----
@@ -126,8 +127,10 @@ dotnet pack --configuration Release
 - .NET Standard 2.0 ⭐ (New - maximum compatibility)
 - .NET 6.0, 8.0
 
+> **📢 Important Note:** We do not provide pre-built DLLs for .NET Framework 4.0 and 4.5 in our NuGet package. These frameworks are legacy (2010-2012) and most applications have migrated to newer versions. However, you can still use Razorpay with these frameworks by compiling the source code manually.
+
 ### Legacy Framework Support (.NET 4.0, 4.5)
-For .NET Framework 4.0 and 4.5 support, you can manually compile the source code:
+**Not included in NuGet package** - For .NET Framework 4.0 and 4.5 support, you can manually compile the source code:
 
 #### Manual Compilation for .NET 4.0/4.5
 ```bash
