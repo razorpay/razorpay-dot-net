@@ -11,13 +11,13 @@
     <AssemblyDescription>Official Razorpay .NET SDK for payment processing</AssemblyDescription>
     <AssemblyCompany>Razorpay</AssemblyCompany>
     <AssemblyProduct>Razorpay .NET SDK</AssemblyProduct>
-    <AssemblyCopyright>Copyright © Razorpay 2015-2024</AssemblyCopyright>
-    <AssemblyVersion>3.3.0.0</AssemblyVersion>
-    <FileVersion>3.3.0.0</FileVersion>
+    <AssemblyCopyright>Copyright © Razorpay 2015-2025</AssemblyCopyright>
+    <AssemblyVersion>3.3.1.0</AssemblyVersion>
+    <FileVersion>3.3.1.0</FileVersion>
     
     <!-- Package Information -->
     <PackageId>Razorpay</PackageId>
-    <PackageVersion>3.3.0</PackageVersion>
+    <PackageVersion>3.3.1</PackageVersion>
     <Authors>razorpay</Authors>
     <Owners>razorpay</Owners>
     <Description>Razorpay SDK for .NET - Official payment processing library</Description>
@@ -26,6 +26,7 @@
     <PackageIconUrl>https://razorpay.com/favicon.png</PackageIconUrl>
     <PackageTags>Razorpay;Payment;Gateway;API;SDK</PackageTags>
     <PackageReleaseNotes>Added .NET Standard 2.0 support for maximum compatibility across .NET ecosystem. Supports .NET Framework 4.7+, .NET Core 2.0+, .NET 5+, and modern .NET 6.0+</PackageReleaseNotes>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     
     <!-- Build Configuration -->
     <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
@@ -39,6 +40,11 @@
   <ItemGroup>
     <Compile Remove="test/**" />
     <None Remove="test/**" />
+  </ItemGroup>
+
+  <!-- Include README in package -->
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <!-- Package Dependencies -->
