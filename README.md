@@ -122,9 +122,27 @@ dotnet pack --configuration Release
 ```
 
 ### Target Frameworks Supported
-- .NET Framework 4.0, 4.5, 4.7, 4.8
+- .NET Framework 4.7, 4.8
 - .NET Standard 2.0 ⭐ (New - maximum compatibility)
 - .NET 6.0, 8.0
+
+### Legacy Framework Support (.NET 4.0, 4.5)
+For .NET Framework 4.0 and 4.5 support, you can manually compile the source code:
+
+#### Manual Compilation for .NET 4.0/4.5
+```bash
+# 1. Install required NuGet packages
+nuget install Newtonsoft.Json -Version 13.0.3 -OutputDirectory packages
+nuget install Portable.BouncyCastle -Version 1.9.0 -OutputDirectory packages
+
+# 2. Compile for .NET 4.0
+csc /target:library /out:Razorpay-net40.dll /reference:packages/Newtonsoft.Json.13.0.3/lib/net40/Newtonsoft.Json.dll /reference:packages/Portable.BouncyCastle.1.9.0/lib/net40/BouncyCastle.Crypto.dll /reference:System.dll /reference:System.Core.dll /reference:System.Net.dll /reference:System.Net.Http.dll /reference:Microsoft.CSharp.dll src/**/*.cs
+
+# 3. Compile for .NET 4.5  
+csc /target:library /out:Razorpay-net45.dll /reference:packages/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll /reference:packages/Portable.BouncyCastle.1.9.0/lib/net40/BouncyCastle.Crypto.dll /reference:System.dll /reference:System.Core.dll /reference:System.Net.dll /reference:System.Net.Http.dll /reference:Microsoft.CSharp.dll src/**/*.cs
+```
+
+**Note:** .NET Standard 2.0 provides better compatibility and is recommended over .NET Framework 4.0/4.5.
 
 ### IDE Support
 * **Visual Studio 2022**: Open `Razorpay.sln` - it will build all target frameworks
