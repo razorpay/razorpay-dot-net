@@ -18,7 +18,8 @@ nuget install Razorpay
 
 else  
 * Download Nuget package from [here](https://www.nuget.org/packages/Razorpay)
-* Package supports .Net 4.0 - .Net 4.8, add the required version as reference to your project.
+* **Package supports .NET Framework 4.7+, .NET Standard 2.0, .NET 6.0+**
+* **For .NET Framework 4.0/4.5**: Manual compilation required (see Legacy Framework Support section below)
 
 Usage
 -----
@@ -108,7 +109,57 @@ client.addHeader(string,string);
 ---
 
 ## Development
-* Open solution in visual studio 2022, it should build fine
+
+### Quick Start
+The project now uses a unified multi-targeting approach. Simply:
+
+```bash
+# Restore dependencies
+dotnet restore
+
+# Build all target frameworks
+dotnet build --configuration Release
+
+# Create NuGet package
+dotnet pack --configuration Release
+```
+
+### Target Frameworks Supported
+- .NET Framework 4.7, 4.8
+- .NET Standard 2.0 ⭐ (New - maximum compatibility)
+- .NET 6.0, 8.0
+
+> **📢 Important Note:** We do not provide pre-built DLLs for .NET Framework 4.0 and 4.5 in our NuGet package. These frameworks are legacy (2010-2012) and most applications have migrated to newer versions. However, you can still use Razorpay with these frameworks by compiling the source code manually.
+
+### Legacy Framework Support (.NET 4.0, 4.5)
+**Not included in NuGet package** - For .NET Framework 4.0 and 4.5 support, you can manually compile the source code:
+
+#### Manual Compilation for .NET 4.0/4.5
+```bash
+# 1. Install required NuGet packages
+nuget install Newtonsoft.Json -Version 13.0.3 -OutputDirectory packages
+nuget install Portable.BouncyCastle -Version 1.9.0 -OutputDirectory packages
+
+# 2. Compile for .NET 4.0
+csc /target:library /out:Razorpay-net40.dll /reference:packages/Newtonsoft.Json.13.0.3/lib/net40/Newtonsoft.Json.dll /reference:packages/Portable.BouncyCastle.1.9.0/lib/net40/BouncyCastle.Crypto.dll /reference:System.dll /reference:System.Core.dll /reference:System.Net.dll /reference:System.Net.Http.dll /reference:Microsoft.CSharp.dll src/**/*.cs
+
+# 3. Compile for .NET 4.5  
+csc /target:library /out:Razorpay-net45.dll /reference:packages/Newtonsoft.Json.13.0.3/lib/net45/Newtonsoft.Json.dll /reference:packages/Portable.BouncyCastle.1.9.0/lib/net40/BouncyCastle.Crypto.dll /reference:System.dll /reference:System.Core.dll /reference:System.Net.dll /reference:System.Net.Http.dll /reference:Microsoft.CSharp.dll src/**/*.cs
+```
+
+**Note:** .NET Standard 2.0 provides better compatibility and is recommended over .NET Framework 4.0/4.5.
+
+### IDE Support
+* **Visual Studio 2022**: Open `Razorpay.sln` - it will build all target frameworks
+* **VS Code**: Use the integrated terminal with the dotnet CLI commands above
+* **JetBrains Rider**: Full multi-targeting support
+
+### CI/CD
+The project includes GitHub Actions workflow that:
+- Builds all target frameworks on both Linux and Windows
+- Runs tests (if available)
+- Creates NuGet packages
+- Publishes to NuGet on master branch (if configured)
 
 ## Ubuntu
 

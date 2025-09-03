@@ -1,0 +1,118 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ master ]
+    tags:
+      - 'v*' # Run on version tags for releases
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    name: Build on Windows (Primary)
+    runs-on: windows-latest  # Native Windows for .NET Framework safety
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET SDK
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.0.x
+          8.0.x
+        
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+        
+    - name: Restore dependencies
+      run: dotnet restore Razorpay.sln
+      
+    - name: Build solution (Native Windows)
+      run: dotnet build Razorpay.sln --configuration Release --no-restore
+      
+    - name: Verify all target frameworks
+      run: |
+        Write-Host "Verifying .NET Framework builds on native Windows..."
+        $frameworks = @("net47", "net48", "netstandard2.0", "net6.0", "net8.0")
+        $allBuilt = $true
+        
+        foreach ($fw in $frameworks) {
+          $dllPath = "bin/Release/$fw/Razorpay.dll"
+          if (Test-Path $dllPath) {
+            $size = (Get-Item $dllPath).Length
+            Write-Host "✅ $fw`: $size bytes (Native Windows Build)" -ForegroundColor Green
+          } else {
+            Write-Host "❌ $fw`: DLL not found" -ForegroundColor Red
+            $allBuilt = $false
+          }
+        }
+        
+        if (-not $allBuilt) {
+          Write-Host "❌ Some frameworks failed to build!" -ForegroundColor Red
+          exit 1
+        }
+      shell: powershell
+      
+    - name: Create NuGet package (Windows)
+      run: dotnet pack Razorpay.sln --configuration Release --no-build --output ./packages
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-artifacts
+        path: |
+          bin/Release/**/*.dll
+          packages/*.nupkg
+          packages/*.snupkg
+        retention-days: 30
+        
+    - name: Upload NuGet package
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-package
+        path: packages/*.nupkg
+        retention-days: 90
+
+
+
+  publish:
+    name: Publish Package
+    needs: build-windows
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v') # Only publish on version tags like v3.3.0
+    
+    steps:
+    - name: Download Windows build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: nuget-package
+        path: ./packages
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: Get version from tag
+      id: get_version
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/v}
+        echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+        echo "Publishing version: $VERSION"
+        
+    - name: Publish to NuGet
+      run: |
+        if [ -n "${{ secrets.NUGET_API_KEY }}" ]; then
+          echo "Publishing to NuGet..."
+          dotnet nuget push ./packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
+          echo "✅ Published version ${{ steps.get_version.outputs.VERSION }} to NuGet"
+        else
+          echo "❌ NuGet API key not configured, skipping publish"
+          exit 1
+        fi
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
