@@ -12,12 +12,12 @@
     <AssemblyCompany>Razorpay</AssemblyCompany>
     <AssemblyProduct>Razorpay .NET SDK</AssemblyProduct>
     <AssemblyCopyright>Copyright © Razorpay 2015-2025</AssemblyCopyright>
-    <AssemblyVersion>3.3.1.0</AssemblyVersion>
-    <FileVersion>3.3.1.0</FileVersion>
+    <AssemblyVersion>3.3.2.0</AssemblyVersion>
+    <FileVersion>3.3.2.0</FileVersion>
     
     <!-- Package Information -->
     <PackageId>Razorpay</PackageId>
-    <PackageVersion>3.3.1</PackageVersion>
+    <PackageVersion>3.3.2</PackageVersion>
     <Authors>razorpay</Authors>
     <Owners>razorpay</Owners>
     <Description>Razorpay SDK for .NET - Official payment processing library</Description>
