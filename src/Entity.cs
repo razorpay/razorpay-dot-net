@@ -43,7 +43,7 @@ namespace Razorpay.Api
             {"methods","Razorpay.Api.Method"},
             {"dispute", "Razorpay.Api.Dispute"},
             {"bank_account", "Razorpay.Api.BankAccount"},
-            {"devices.activity", "Razorpay.Api.DeviceActivity"},
+            {"device.activity", "Razorpay.Api.DeviceActivity"},
         };
       
         private static List<HttpMethod> JsonifyInput = new List<HttpMethod>()
