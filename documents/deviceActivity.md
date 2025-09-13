@@ -5,7 +5,7 @@
 ```csharp
 var activityData = new Dictionary<string, object>
 {
-    ["device_id"] = "2841158834",            // Required for DeviceMode.Wired, optional for DeviceMode.Wireless
+    ["device_id"] = "2841158834",            // Required for DeviceMode.Wireless, optional for DeviceMode.Wired
     ["action"] = "initiate_checkout",        // Required: Action type
     ["notes"] = new Dictionary<string, object>  // Optional: Additional notes
     {
@@ -18,14 +18,14 @@ var activityData = new Dictionary<string, object>
         ["amount"] = 19900,                  // Required: Amount in paise (₹199.00)
         ["currency"] = "INR",                // Required: Currency code
         ["description"] = "POS Transaction", // Required: Transaction description
-        ["type"] = "in_person",              // Required: Transaction type
+        ["type"] = "in_person",              // Optional: Transaction type
         ["order_id"] = "order_R7vqkfqG3Iw02m", // Required: Order reference
-        ["method"] = "upi",                  // Required: "upi"|"card"|"netbanking"|"wallet"
         ["prefill"] = new Dictionary<string, object>  // Optional: Customer prefill data
         {
             ["name"] = "Gaurav Kumar",
             ["email"] = "gaurav.kumar@example.com",
-            ["contact"] = "9000090000"
+            ["contact"] = "9000090000",
+            ["method"] = "upi"                // Optional: "upi"|"card"|"netbanking"|"wallet"
         }
     }
 };
@@ -33,11 +33,33 @@ var activityData = new Dictionary<string, object>
 DeviceActivity response = client.DeviceActivity.Create(DeviceMode.Wired, activityData);
 ```
 
+**Example without prefill (all fields optional):**
+
+```csharp
+var minimalActivityData = new Dictionary<string, object>
+{
+    ["device_id"] = "2841158834",
+    ["action"] = "initiate_checkout",
+    ["initiate_checkout"] = new Dictionary<string, object>
+    {
+        ["name"] = "Acme Corp",
+        ["amount"] = 19900,
+        ["currency"] = "INR", 
+        ["description"] = "POS Transaction",
+        ["type"] = "in_person",
+        ["order_id"] = "order_R7vqkfqG3Iw02m"
+        // prefill is optional and can be omitted entirely
+    }
+};
+
+DeviceActivity response = client.DeviceActivity.Create(DeviceMode.Wired, minimalActivityData);
+```
+
 **Parameters:**
 
 | Name          | Type   | Description                                                                    |
 |---------------|--------|--------------------------------------------------------------------------------|
-| device_id     | string | Device identifier. Required for wired mode, optional for wireless mode        |
+| device_id     | string | Device identifier. Required for wireless mode, optional for wired mode        |
 | action*       | string | Action type. Possible values: `initiate_checkout`, `close_checkout`           |
 | notes         | object | A key-value pair for additional information                                    |
 | initiate_checkout* | object | Required when action is `initiate_checkout`. Contains checkout details       |
@@ -53,8 +75,16 @@ DeviceActivity response = client.DeviceActivity.Create(DeviceMode.Wired, activit
 | description*  | string | Transaction description                                                        |
 | type*         | string | Transaction type (e.g., "in_person")                                          |
 | order_id*     | string | Order reference ID                                                             |
-| method*       | string | Payment method: "upi", "card", "netbanking", "wallet"                         |
-| prefill       | object | Optional customer prefill data (name, email, contact)                         |
+| prefill       | object | Optional customer prefill data (name, email, contact, method)                 |
+
+**prefill Object Parameters:**
+
+| Name          | Type   | Description                                                                    |
+|---------------|--------|--------------------------------------------------------------------------------|
+| name          | string | Optional customer name                                                         |
+| email         | string | Optional customer email address                                                |
+| contact       | string | Optional customer contact number                                               |
+| method        | string | Optional payment method: "upi", "card", "netbanking", "wallet"                |
 
 **Success Response:**
 
@@ -89,7 +119,8 @@ var amount = initiateCheckout["amount"];            // 19900
     "prefill": {
       "name": "Gaurav Kumar",
       "email": "gaurav.kumar@example.com",
-      "contact": "9000090000"
+      "contact": "9000090000",
+      "method": "upi"
     }
   },
   "status": "processing",
@@ -130,7 +161,7 @@ DeviceActivity response = client.DeviceActivity.Create(DeviceMode.Wireless, clos
 
 | Name          | Type   | Description                                                                    |
 |---------------|--------|--------------------------------------------------------------------------------|
-| device_id     | string | Device identifier. Required for wired mode, optional for wireless mode        |
+| device_id     | string | Device identifier. Required for wireless mode, optional for wired mode        |
 | action*       | string | Action type: `close_checkout`                                                  |
 | DeviceMode*   | enum   | Device communication mode. Values: `DeviceMode.Wired`, `DeviceMode.Wireless` |
 
@@ -183,12 +214,12 @@ Device Activity APIs use **public authentication** (access token). The SDK autom
 
 ### Wired Mode
 - **DeviceMode**: `DeviceMode.Wired`
-- **device_id**: Required
+- **device_id**: Optional
 - Direct device connection
 
 ### Wireless Mode  
 - **DeviceMode**: `DeviceMode.Wireless`
-- **device_id**: Optional
+- **device_id**: Required
 - Wireless device communication
 
 ---
@@ -225,7 +256,7 @@ catch (ServerError ex)
 | Error | Description | Solution |
 |-------|-------------|----------|
 | `BadRequestError` | Invalid DeviceMode parameter | Use only `DeviceMode.Wired` or `DeviceMode.Wireless` |
-| `BadRequestError` | Missing device_id in wired mode | Include device_id when using wired mode |
+| `BadRequestError` | Missing device_id in wireless mode | Include device_id when using wireless mode |
 | `GatewayError` | Network connectivity issues | Check connection and retry |
 
 **API Error Responses:**
@@ -271,12 +302,12 @@ class Program
                     ["description"] = "POS Transaction",
                     ["type"] = "in_person",
                     ["order_id"] = "order_R7vqkfqG3Iw02m",
-                    ["method"] = "upi",
                     ["prefill"] = new Dictionary<string, object>
                     {
                         ["name"] = "Gaurav Kumar",
                         ["email"] = "gaurav.kumar@example.com",
-                        ["contact"] = "9000090000"
+                        ["contact"] = "9000090000",
+                        ["method"] = "upi"
                     }
                 }
             };
@@ -341,7 +372,10 @@ var checkoutData = new Dictionary<string, object>
         ["description"] = "POS Transaction",
         ["type"] = "in_person",
         ["order_id"] = order["id"],
-        ["method"] = "upi"
+        ["prefill"] = new Dictionary<string, object>
+        {
+            ["method"] = "upi"
+        }
     }
 };
 
