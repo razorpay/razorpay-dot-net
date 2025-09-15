@@ -14,7 +14,7 @@ var activityData = new Dictionary<string, object>
     },
     ["initiate_checkout"] = new Dictionary<string, object>  // Required for initiate_checkout
     {
-        ["name"] = "Acme Corp",              // Required: Business name
+        ["name"] = "Acme Corp",              // Optional: Business name
         ["amount"] = 19900,                  // Required: Amount in paise (₹199.00)
         ["currency"] = "INR",                // Required: Currency code
         ["description"] = "POS Transaction", // Required: Transaction description
@@ -25,7 +25,7 @@ var activityData = new Dictionary<string, object>
             ["name"] = "Gaurav Kumar",
             ["email"] = "gaurav.kumar@example.com",
             ["contact"] = "9000090000",
-            ["method"] = "upi"                // Optional: "upi"|"card"|"netbanking"|"wallet"
+            ["method"] = "upi"                // Optional: "upi"|"card"
         }
     }
 };
@@ -84,7 +84,7 @@ DeviceActivity response = client.DeviceActivity.Create(DeviceMode.Wired, minimal
 | name          | string | Optional customer name                                                         |
 | email         | string | Optional customer email address                                                |
 | contact       | string | Optional customer contact number                                               |
-| method        | string | Optional payment method: "upi", "card", "netbanking", "wallet"                |
+| method        | string | Optional payment method: "upi", "card"
 
 **Success Response:**
 
