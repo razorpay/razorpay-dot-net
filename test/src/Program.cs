@@ -118,6 +118,8 @@ namespace RazorpayClientTest
         {
             CustomerTestCases.Init(key, secret);
 
+            CustomerTestCases.GetAllCustomersTest();
+
             CustomerTestCases.CreateCustomerTest();
 
             CustomerTestCases.FetchCustomerTest();

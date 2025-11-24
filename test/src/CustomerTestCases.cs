@@ -28,6 +28,12 @@ namespace RazorpayClientTest
             Assert.IsTrue(customer["id"] == (string)fetchedCustomer["id"]);
         }
 
+        public static void GetAllCustomersTest()
+        {
+            List<Customer> result = Helper.TestGetAllCustomer();
+            Assert.AreNotSame(null, result);
+        }
+
         public static void EditCustomerTest()
         {
             Customer customer = Helper.TestCreateCustomer();
