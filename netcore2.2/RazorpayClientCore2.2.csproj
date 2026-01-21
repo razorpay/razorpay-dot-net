@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>RazorpayClientCore2._2</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\src\Errors\BadRequestError.cs" Link="Errors\BadRequestError.cs" />
+    <Compile Include="..\src\Errors\BaseError.cs" Link="Errors\BaseError.cs" />
+    <Compile Include="..\src\Errors\ErrorCodes.cs" Link="Errors\ErrorCodes.cs" />
+    <Compile Include="..\src\Errors\GatewayError.cs" Link="Errors\GatewayError.cs" />
+    <Compile Include="..\src\Errors\ServerError.cs" Link="Errors\ServerError.cs" />
+    <Compile Include="..\src\Errors\SignatureVerificationError.cs" Link="Errors\SignatureVerificationError.cs" />
+    <Compile Include="..\src\Addon.cs" Link="Addon.cs" />
+    <Compile Include="..\src\Card.cs" Link="Card.cs" />
+    <Compile Include="..\src\Customer.cs" Link="Customer.cs" />
+    <Compile Include="..\src\Entity.cs" Link="Entity.cs" />
+    <Compile Include="..\src\HttpMethod.cs" Link="HttpMethod.cs" />
+    <Compile Include="..\src\Invoice.cs" Link="Invoice.cs" />
+    <Compile Include="..\src\Order.cs" Link="Order.cs" />
+    <Compile Include="..\src\Payment.cs" Link="Payment.cs" />
+    <Compile Include="..\src\Plan.cs" Link="Plan.cs" />
+    <Compile Include="..\src\RazorpayClient.cs" Link="RazorpayClient.cs" />
+    <Compile Include="..\src\Refund.cs" Link="Refund.cs" />
+    <Compile Include="..\src\RestClient.cs" Link="RestClient.cs" />
+    <Compile Include="..\src\Reversal.cs" Link="Reversal.cs" />
+    <Compile Include="..\src\Subscription.cs" Link="Subscription.cs" />
+    <Compile Include="..\src\Token.cs" Link="Token.cs" />
+    <Compile Include="..\src\Transfer.cs" Link="Transfer.cs" />
+    <Compile Include="..\src\Utils.cs" Link="Utils.cs" />
+    <Compile Include="..\src\VirtualAccount.cs" Link="VirtualAccount.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.6.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+</Project>
