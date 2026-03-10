@@ -385,6 +385,28 @@ Token token = client.Token.ProcessPaymentOnAlternatePAorPG(productRequest);
 ```
 -------------------------------------------------------------------------------------------------------
 
+### Cancel token
+
+```C#
+Customer customer = client.Customer.CancelToken("<customerId>", "tokenId");
+```
+
+**Parameters:**
+
+| Name         | Type   | Description                                                                 |
+| ------------ | ------ | --------------------------------------------------------------------------- |
+| customerId*  | string | The unique identifier of the customer with whom the token is linked.        |
+| tokenId*     | string | The unique identifier of the token that is to be cancelled.                 |
+
+**Response:**
+```json
+{ 
+  "status": "cancellation_initiated"
+}
+```
+
+-------------------------------------------------------------------------------------------------------
+
 **PN: * indicates mandatory fields**
 <br>
 <br>

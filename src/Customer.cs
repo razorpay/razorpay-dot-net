@@ -127,5 +127,12 @@ namespace Razorpay.Api
                 return null;
             }
         }
+
+        public Customer CancelToken(string customerId, string tokenId)
+        {
+            string relativeUrl = string.Format("{0}/{1}/{2}/tokens/{3}/cancel", GetUrlVersion(), GetEntityUrl(), customerId, tokenId);
+            List<Entity> entities = Request(relativeUrl, HttpMethod.PUT, null);
+            return (Customer)entities[0];
+        }
     }
 }
