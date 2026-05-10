@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <!-- Multi-targeting: Support multiple .NET versions -->
-    <TargetFrameworks>net47;net48;netstandard2.0;net6.0;net8.0</TargetFrameworks>
+    <!-- net6.0 removed (EOL Nov 2024), added net9.0 and net10.0 -->
+    <TargetFrameworks>net47;net48;netstandard2.0;net8.0;net9.0;net10.0</TargetFrameworks>
     
     <!-- Assembly Information -->
     <RootNamespace>Razorpay.Api</RootNamespace>
@@ -25,7 +26,7 @@
     <PackageLicenseUrl>https://github.com/razorpay/razorpay-dot-net/blob/master/licence.txt</PackageLicenseUrl>
     <PackageIconUrl>https://razorpay.com/favicon.png</PackageIconUrl>
     <PackageTags>Razorpay;Payment;Gateway;API;SDK</PackageTags>
-    <PackageReleaseNotes>Added .NET Standard 2.0 support for maximum compatibility across .NET ecosystem. Supports .NET Framework 4.7+, .NET Core 2.0+, .NET 5+, and modern .NET 6.0+</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated to support .NET 8.0, 9.0, and 10.0 LTS. Dropped EOL .NET 6.0. Maintains backward compatibility with .NET Framework 4.8 and .NET Standard 2.0.</PackageReleaseNotes>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     
     <!-- Build Configuration -->
@@ -49,7 +50,7 @@
 
   <!-- Package Dependencies -->
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
   </ItemGroup>
 
@@ -67,8 +68,13 @@
   </ItemGroup>
 
   <!-- Modern .NET specific dependencies -->
-  <ItemGroup Condition="'$(TargetFramework)' == 'net6.0' OR '$(TargetFramework)' == 'net8.0'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0' OR '$(TargetFramework)' == 'net9.0' OR '$(TargetFramework)' == 'net10.0'">
     <!-- Modern .NET specific packages if needed -->
+  </ItemGroup>
+
+  <!-- .NET Framework 4.7 specific dependencies -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net47'">
+    <!-- net47 maintained for backward compatibility with enterprise users -->
   </ItemGroup>
 
 </Project>

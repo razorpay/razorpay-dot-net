@@ -3,9 +3,10 @@
 *.suo
 *.user
 .vs
-bin
-packages
-TestResults
+bin/
+obj/
+packages/
+TestResults/
 /net40/obj
 /net45/obj
 /net40/bin
@@ -17,3 +18,7 @@ TestResults
 
 # Rider files
 .idea/
+
+# NuGet packages
+*.nupkg
+*.snupkg
