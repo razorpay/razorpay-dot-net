@@ -17,3 +17,9 @@ TestResults
 
 # Rider files
 .idea/
+
+# Build artifacts
+obj/
+bin/
+test/**/obj/
+test/**/bin/

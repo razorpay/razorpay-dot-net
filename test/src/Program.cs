@@ -112,6 +112,21 @@ namespace RazorpayClientTest
             UtilsTestCases.VerifyWebhookSignatureTest();
 
             UtilsTestCases.FailedVerifyWebhookSignatureTest();
+
+            // Negative-path crypto tests
+            UtilsTestCases.EmptySignatureRejectedTest();
+
+            UtilsTestCases.WrongLengthSignatureRejectedTest();
+
+            UtilsTestCases.NonHexSignatureRejectedTest();
+
+            UtilsTestCases.TamperedValidHexSignatureRejectedTest();
+
+            UtilsTestCases.ValidDynamicSignatureAcceptedTest();
+
+            UtilsTestCases.SpecialCharsInPayloadTest();
+
+            UtilsTestCases.UnicodeInPayloadTest();
         }
 
         public static void RunAllCustomerTests(string key, string secret)
