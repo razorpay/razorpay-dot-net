@@ -55,6 +55,11 @@ namespace Razorpay.Api
 
         public static void verifyWebhookSignature(string payload, string expectedSignature, string secret)
         {
+            verifyWebhookSignature(Encoding.UTF8.GetBytes(payload), expectedSignature, secret);
+        }
+
+        public static void verifyWebhookSignature(byte[] payload, string expectedSignature, string secret)
+        {
             verifySignature(payload, expectedSignature, secret);
         }
 
@@ -67,6 +72,11 @@ namespace Razorpay.Api
 
         private static void verifySignature(string payload, string expectedSignature, string secret)
         {
+            verifySignature(Encoding.UTF8.GetBytes(payload), expectedSignature, secret);
+        }
+
+        private static void verifySignature(byte[] payload, string expectedSignature, string secret)
+        {
             string actualSignature = getActualSignature(payload, secret);
 
             bool verified = actualSignature.Equals(expectedSignature);
@@ -77,15 +87,14 @@ namespace Razorpay.Api
             }
         }
 
-        private static string getActualSignature(string payload, string secret)
+        private static string getActualSignature(byte[] payload, string secret)
         {
-            byte[] secretBytes = StringEncode(secret);
+            byte[] secretBytes = Encoding.UTF8.GetBytes(secret);
 
-            HMACSHA256 hashHmac = new HMACSHA256(secretBytes);
-
-            var bytes = StringEncode(payload);
-
-            return HashEncode(hashHmac.ComputeHash(bytes));
+            using (HMACSHA256 hashHmac = new HMACSHA256(secretBytes))
+            {
+                return HashEncode(hashHmac.ComputeHash(payload));
+            }
         }
         
         public static string GenerateOnboardingSignature(Dictionary<string, object> attributes, string secret)
@@ -128,12 +137,6 @@ namespace Razorpay.Api
                 hexBuilder.AppendFormat("{0:x2}", b);
             }
             return hexBuilder.ToString();
-        }
-
-        private static byte[] StringEncode(string text)
-        {
-            var encoding = new ASCIIEncoding();
-            return encoding.GetBytes(text);
         }
 
         private static string HashEncode(byte[] hash)

@@ -38,5 +38,19 @@ namespace RazorpayClientTest
                 Helper.TestFailedVerifyWebhookSignature();
             });
         }
+
+        public static void VerifyWebhookSignatureWithUtf8PayloadTest()
+        {
+            Assert.DoesNotThrow(() => {
+                Helper.TestVerifyWebhookSignatureWithUtf8Payload();
+            });
+        }
+
+        public static void FailedVerifyWebhookSignatureWithMutatedUtf8PayloadTest()
+        {
+            Assert.Throws<SignatureVerificationError>(() => {
+                Helper.TestFailedVerifyWebhookSignatureWithMutatedUtf8Payload();
+            });
+        }
     }
 }

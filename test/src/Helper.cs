@@ -223,6 +223,25 @@ namespace RazorpayClientTest
             Utils.verifyWebhookSignature(payload, expected, secret);
         }
 
+        public static void TestVerifyWebhookSignatureWithUtf8Payload()
+        {
+            string payload = "{\"name\":\"Achu ₹ മലയാളം 😀\"}";
+            string secret = "chosen_webhook_secret";
+            string expected = "b484f43a3c9a9ff75213d382c54a308034ac09ecc500a76999546c6e9d33a32c";
+
+            Utils.verifyWebhookSignature(payload, expected, secret);
+            Utils.verifyWebhookSignature(Encoding.UTF8.GetBytes(payload), expected, secret);
+        }
+
+        public static void TestFailedVerifyWebhookSignatureWithMutatedUtf8Payload()
+        {
+            string payload = "{\"name\":\"Achu ₹ മലയാളം 😁\"}";
+            string secret = "chosen_webhook_secret";
+            string expected = "b484f43a3c9a9ff75213d382c54a308034ac09ecc500a76999546c6e9d33a32c";
+
+            Utils.verifyWebhookSignature(payload, expected, secret);
+        }
+
         public static Customer TestCreateCustomer()
         {
             Dictionary<string, object> data = new Dictionary<string, object>();

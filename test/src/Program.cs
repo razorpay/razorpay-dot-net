@@ -112,6 +112,8 @@ namespace RazorpayClientTest
             UtilsTestCases.VerifyWebhookSignatureTest();
 
             UtilsTestCases.FailedVerifyWebhookSignatureTest();
+            UtilsTestCases.VerifyWebhookSignatureWithUtf8PayloadTest();
+            UtilsTestCases.FailedVerifyWebhookSignatureWithMutatedUtf8PayloadTest();
         }
 
         public static void RunAllCustomerTests(string key, string secret)
