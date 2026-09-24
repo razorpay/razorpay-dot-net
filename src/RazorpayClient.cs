@@ -16,6 +16,7 @@ namespace Razorpay.Api
         private static string secret = null;
         private static string baseUrl = null;
         private static string accessToken = null;
+        private static bool useManagedTls = false;
         private Payment payment = null;
         private Order order = null;
         private Refund refund = null;
@@ -114,6 +115,24 @@ namespace Razorpay.Api
             private set
             {
                 accessToken = value;
+            }
+        }
+
+        /// <summary>
+        /// When true, API calls perform TLS in managed code (BouncyCastle) instead of
+        /// the operating system, offering only TLS 1.3/1.2 AEAD cipher suites. Use on
+        /// hosts whose OS cannot negotiate modern ciphers, such as Windows Server 2012 R2.
+        /// Defaults to false (OS TLS via HttpWebRequest).
+        /// </summary>
+        public static bool UseManagedTls
+        {
+            get
+            {
+                return useManagedTls;
+            }
+            set
+            {
+                useManagedTls = value;
             }
         }
 
