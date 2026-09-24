@@ -1,9 +1,8 @@
 using System;
-using System.IO;
-using System.Net;
 using System.Text;
 using Newtonsoft.Json;
 using Razorpay.Api.Errors;
+using Razorpay.Api.Http;
 using System.Collections.Generic;
 
 namespace Razorpay.Api
@@ -15,6 +14,27 @@ namespace Razorpay.Api
             HttpMethod.POST, HttpMethod.PUT, HttpMethod.PATCH
         };
 
+        private readonly IHttpTransport transport;
+
+        public RestClient()
+            : this(DefaultTransport())
+        {
+        }
+
+        internal RestClient(IHttpTransport transport)
+        {
+            this.transport = transport;
+        }
+
+        internal static IHttpTransport DefaultTransport()
+        {
+            if (RazorpayClient.UseManagedTls)
+            {
+                return ManagedTlsTransport.Instance;
+            }
+            return WebRequestTransport.Instance;
+        }
+
         public string MakeRequest(string relativeUrl, HttpMethod method, string data, string host, AuthType authType)
         {
             return MakeRequest(relativeUrl, method, data, host, authType, (DeviceMode?)null);
@@ -22,30 +42,18 @@ namespace Razorpay.Api
 
         public string MakeRequest(string relativeUrl, HttpMethod method, string data, string host, AuthType authType, DeviceMode? mode)
         {
-            HttpWebRequest request = createRequest(relativeUrl, method, host, authType, mode);
+            HttpRequestData request = createRequest(relativeUrl, method, data, host, authType, mode);
+            HttpResult response = transport.Send(request);
 
-            if (JsonifyInput.Contains(method) == true) 
+            if (response.StatusCode < 200 || response.StatusCode >= 300)
             {
-                var bytes = Encoding.UTF8.GetBytes(data);
-                request.ContentLength = bytes.Length;
-
-                using (var writeStream = request.GetRequestStream())
-                {
-                    writeStream.Write(bytes, 0, bytes.Length);
-                }
+                HandleErrors(response.StatusCode, response.Body, host);
             }
 
-            return createResponse(request, host);
+            return response.Body;
         }
 
-
-
-        private HttpWebRequest createRequest(string relativeUrl, HttpMethod method, string host, AuthType authType)
-        {
-            return createRequest(relativeUrl, method, host, authType, (DeviceMode?)null);
-        }
-
-        private HttpWebRequest createRequest(string relativeUrl, HttpMethod method, string host, AuthType authType, DeviceMode? mode)
+        private HttpRequestData createRequest(string relativeUrl, HttpMethod method, string data, string host, AuthType authType, DeviceMode? mode)
         {
             string baseUrl;
 
@@ -64,28 +72,30 @@ namespace Razorpay.Api
 
             // Ensure proper URL construction with path separator
             string fullUrl = baseUrl.TrimEnd('/') + "/" + relativeUrl.TrimStart('/');
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(fullUrl);
-            request.Method = method.ToString();
-            request.ContentLength = 0;
-            request.ContentType = "application/json";
 
             string userAgent = string.Format("{0} {1}", RazorpayClient.Version, getAppDetailsUa());
-            request.UserAgent = "razorpay-dot-net/" + userAgent;
 
-            request.Headers["Authorization"] = GetAuthorizationHeader(authType);
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers["Authorization"] = GetAuthorizationHeader(authType);
 
             foreach (KeyValuePair<string, string> header in RazorpayClient.Headers)
             {
-                request.Headers[header.Key] = header.Value;
+                headers[header.Key] = header.Value;
             }
 
             // Automatically add X-Razorpay-Device-Mode header for DeviceActivity APIs (AuthType.Public with mode)
             if (authType == AuthType.Public && mode.HasValue)
             {
-                request.Headers["X-Razorpay-Device-Mode"] = mode.Value.ToString().ToLower();
+                headers["X-Razorpay-Device-Mode"] = mode.Value.ToString().ToLower();
             }
 
-            return request;
+            byte[] body = null;
+            if (JsonifyInput.Contains(method) == true)
+            {
+                body = Encoding.UTF8.GetBytes(data ?? string.Empty);
+            }
+
+            return new HttpRequestData(method.ToString(), new Uri(fullUrl), headers, "application/json", "razorpay-dot-net/" + userAgent, body);
         }
 
         private string GetAuthorizationHeader(AuthType authType)
@@ -139,49 +149,8 @@ namespace Razorpay.Api
             return appsDetailsUa;
         }
 
-        private string createResponse(HttpWebRequest request, string host) 
+        private void HandleErrors(int statusCode, string response, string host)
         {
-            var responseValue = string.Empty;
-            HttpWebResponse response = null;
-            try
-            {
-                response = (HttpWebResponse)request.GetResponse();
-                responseValue = ParseResponse(response);
-            }
-            catch (WebException ex)
-            {
-                response = (HttpWebResponse)ex.Response;
-                responseValue = ParseResponse(response);
-            }
-            finally
-            {
-                if (response.StatusCode < HttpStatusCode.OK || response.StatusCode >= HttpStatusCode.Ambiguous)
-                {
-                    HandleErrors(response, responseValue, host);
-                }
-            }
-
-            return responseValue;
-        }
-
-        private string ParseResponse(HttpWebResponse response)
-        {
-            string responseValue = string.Empty;
-            using (var responseStream = response.GetResponseStream())
-            {
-                if (responseStream != null)
-                    using (var reader = new StreamReader(responseStream))
-                    {
-                        responseValue = reader.ReadToEnd();
-                    }
-            }
-
-            return responseValue;
-        }
-
-        private void HandleErrors(HttpWebResponse webResponse, string response, string host)
-        {
-            int statusCode = (int)webResponse.StatusCode;
             dynamic data = null;
             string errorCode = string.Empty;
             string field = string.Empty;
@@ -202,7 +171,7 @@ namespace Razorpay.Api
                         errorCode = ErrorCodes.SERVER_ERROR.ToString();
                     }
                 }
-                
+
                 Enum.Parse(typeof(ErrorCodes), errorCode);
                 description = data["error"]["description"];
                 field = data["error"]["field"];
